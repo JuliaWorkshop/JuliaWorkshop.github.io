@@ -54,16 +54,34 @@ Previous Section: <a href="datatypes.html"> Data Types </a> | Back to <a href="i
 </h5>
 
 <pre><code>
+# Add stuff to the end of a list with push! and append!
+push!(a,1)     # => [1]
+push!(a,2)     # => [1,2]
+push!(a,4)     # => [1,2,4]
+push!(a,3)     # => [1,2,4,3]
+</code></pre>
 
-# Here is some code
+<pre><code>
+# Arrays of a particular Type
+b = Int8[4, 5, 6] # => 3-element Int8 Array: [4, 5, 6]
 
-union(X,Y)
+# Remove from the end with pop
+pop!(b)        # => 6 and b is now [4,5]
 
 </code></pre>
 
-<h5> The Monty Hall Problem </h5>
+`end` is a shorthand for the last index. It can be used in any indexing expression.
+<pre><code>
 
-We can use set theory functions to study the Monty Hall Problem
+a[end] # => 6
+</code></pre>
+
+<h6> shift and unshift </h6>
+<pre><code>
+# we also have shift and unshift
+shift!(a) # => 1 and a is now [2,4,3,4,5,6]
+unshift!(a,7) # => [7,2,4,3,4,5,6]
+</code></pre>
 
 
 
