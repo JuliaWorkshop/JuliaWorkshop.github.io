@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Dragonflystats.GitHub.io : Website">
+    <meta name="description" content="JuliaWorkshop.GitHub.io : Website">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Dragonflystats.GitHub.io</title>
+    <title>JuliaWorkshop.GitHub.io</title>
   </head>
 
   <body>
@@ -42,16 +42,7 @@ Previous Section: <a href="datatypes.html"> Data Types </a> | Back to <a href="i
 </font>
 
 
-<h5>
 
-
-<ul>
- <li> Arrays
- <li> Matrices
- <li> Sets
-</ul>
-
-</h5>
 
 <pre><code>
 
@@ -67,6 +58,61 @@ using Dataframes
 
 
 
+You might not want to run this file completely, as the Pkg-commands can take a
+long time to complete.
+
+
+<pre><code>
+# list all available packages:
+Pkg.available()
+
+# install one package (e.g. Calculus) and all its dependencies:
+Pkg.add("Calculus")
+</pre></code>
+
+<pre><code>
+# to list all installed packages
+Pkg.installed()
+
+# to update all packages to their newest version
+Pkg.update()
+</pre></code>
+
+<pre><code>
+# to use a package:
+using Calculus
+# will import all functions of that package into the current namespace, so that
+# it is possible to call
+derivative(x -> sin(x), 1.0)
+# without specifing the package it is included in.
+</pre></code>
+
+<pre><code>
+import Calculus
+# will enable you to specify which package the function is called from
+Calculus.derivative(x -> cos(x), 1.0)
+</pre></code>
+
+<pre><code>
+# Using `import` is especially useful if there are conflicts in function/type-names
+# between packages.
+# Example:
+# Winston as well as Gadfly provide a plot() function (see below).
+Pkg.add("Winston")
+Pkg.add("Gadfly")
+</pre></code>
+
+<pre><code>
+# If you were to "import" both of the packages with `using`, there would be a conflict.
+# That can be prevented by using `import`, as follows:
+import Winston
+import Gadfly
+</pre></code>
+
+<pre><code>
+Winston.plot(rand(4))
+Gadfly.plot(x=[1:10], y=rand(10))
+</pre></code>
 
 
 
