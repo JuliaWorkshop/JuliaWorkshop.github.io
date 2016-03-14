@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Dragonflystats.GitHub.io : Website">
+    <meta name="description" content="JuliaWorkshop.GitHub.io : Website">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Dragonflystats.GitHub.io</title>
+    <title>JuliaWorkshop.GitHub.io</title>
   </head>
 
   <body>
@@ -53,17 +53,31 @@ Previous Section: <a href="datatypes.html"> Data Types </a> | Back to <a href="i
 
 </h5>
 
+<h5>
+Converting Data Types
+</h5>
+Conversion of values to various types is performed by the convert function. The convert function generally takes two arguments: the first is a type object while the second is a value to convert to that type; the returned value is the value converted to an instance of given type. The simplest way to understand this function is to see it in action:
+
 <pre><code>
+julia> x = 12
+12
 
-# Here is some code
+julia> typeof(x)
+Int64
 
-union(X,Y)
+julia> convert(Uint8, x)
+0x0c
 
+julia> typeof(ans)
+Uint8
+
+julia> convert(FloatingPoint, x)
+12.0
+
+julia> typeof(ans)
+Float64
 </code></pre>
 
-<h5> The Monty Hall Problem </h5>
-
-We can use set theory functions to study the Monty Hall Problem
 
 
 
