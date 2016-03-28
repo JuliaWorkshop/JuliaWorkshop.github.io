@@ -43,6 +43,52 @@ Previous Section: <a href="datatypes.html"> Data Types </a> | Back to <a href="i
 
 
 
+<pre><code>
+julia> a = [-1, 0, 1]
+3-element Array{Int64,1}:
+ -1
+  0
+  1
+
+julia> length(a)
+3
+
+julia> sum(a)
+0
+
+julia> mean(a)
+0.0
+
+julia> std(a)
+1.0
+
+julia> var(a)
+1.0
+
+julia> maximum(a)
+1
+
+julia> minimum(a)
+-1
+
+julia> b = sort(a, rev=true)  # Returns new array, original not modified
+3-element Array{Int64,1}:
+  1
+  0
+ -1
+
+julia> b === a  # === tests if arrays are identical (i.e share same memory)
+false
+
+julia> b = sort!(a, rev=true)  # Returns *modified original* array
+3-element Array{Int64,1}:
+  1
+  0
+ -1
+
+julia> b === a
+true
+</code></pre>
 
 <ul>
  <li> To add an item at the front, use the <code>unshift!()</code> function.
