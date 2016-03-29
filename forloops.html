@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Dragonflystats.GitHub.io : Website">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Dragonflystats.GitHub.io</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+          <h1 id="project_title">JuliaWorkshop.GitHub.io</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+<h4>
+Set Theory
+</h4>
+
+
+
+
+
+
+
+
+
+
+<font = 4>
+Previous Section | Back to <a href="index.html"> Main Page </a> | Next Section
+</font>
+
+
+
+
+<h5>For loops and iteration</h5>
+
+Working through a list or a set of values or from a start value to a finish value are all examples of iteration, and the for ... end construction can let you iterate through a number of different types of object, including ranges, arrays, sets, dictionaries, and strings.
+
+Here's the standard syntax for a simple iteration through a range of values:
+
+<pre><code>
+julia> for i in 0:10:100
+            println(i)
+       end
+0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100
+
+</code></pre>
+
+<h6>Iterating through a tuple</h6>
+<pre><code>
+julia> for element in (1, 2, 4, 8, 16, 32) # a tuple
+           print(element, " ")
+       end
+1 2 4 8 16 32
+
+
+</code></pre>
+
+
+
+
+
+
+<h6>Fine tuning the loop: <code>Continue</code></h6>
+Sometimes on a particular iteration you might want to skip to the next value. You can use continue to skip the rest of the code inside the loop and start the loop again with the next value.
+
+<pre><code>
+julia>for i in 1:10
+    if i % 3 == 0
+       continue
+    end
+    println(i) # this and subsequent lines are
+               # skipped if i is a multiple of 3
+end
+
+1
+2
+4
+5
+7
+8
+10
+</code></pre>
+    
+
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="JuliaWorkshop.GitHub.io : Website">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>JuliaWorkshop.GitHub.io</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+          <h1 id="project_title">JuliaWorkshop.GitHub.io</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+<h4>
+Set Theory
+</h4>
+
+
+
+
+
+
+
+
+
+
+<font = 4>
+Previous Section | Back to <a href="index.html"> Main Page </a> | Next Section
+</font>
+
+
+<h5>While Loops</h5>
+To repeat some expressions while a condition is true, use the <code>while ... end</code> construction.
+
+<pre><code>
+julia> x = 0
+0
+julia> while x < 4
+    println(x)
+    x += 1
+end
+
+0
+1
+2
+3
+</code></pre>
+If you want the condition to be tested after the statements, rather than 
+before, producing a "do .. until" form, use the following construction:
+
+<pre><code>
+while true
+   println(x)
+   x += 1
+   x >= 4 && break
+end
+
+0
+1
+2
+3
+</code></pre>
+Here we're using a Boolean switch rather than an <code>if ... end</code> statement.
+
+
+
+
+
+
+
+
+
+
+    
+
+  </body>
+</html>
