@@ -92,6 +92,64 @@ julia> rank(A)
 
 
 
+<ul>
+
+<li> Second approach  - First set up an array
+<li> Then reshape the array into a matrix, specifying the dimensions
+
+</ul>
+
+<pre>
+<code>
+Y = [ 1 5 6; 4 8 5; 8 9 7]
+A = [1,5,4,2,7,5,9,4,2]
+A = reshape(A,3,3)
+</code>
+</pre>
+(Point of the second approach - talk about <code>reshape()</code>)
+
+
+
+
+
+ 
+<h6>Matrix Multiplication</h6>
+
+<pre>
+<code>
+A * B * C
+*(A,B,C)
+</code>
+</pre>
+
+
+
+
+
+<h6>Identity Matrices</h6>
+<ul>
+<li> <code>eye(n)</code> n-by-n identity matrix
+<li> <code>eye(m, n)</code> m-by-n identity matrix
+</ul>
+
+
+
+
+
+
+
+<ul>
+<li> <code>inv()</code> compute the inverse of a matrix
+<li> <code>det()</code> compute the determinant of a matrix
+<li> <code>rank()</code> compute the rank of a matrix
+<li> <code>eig()</code> eigen values and vectors of a matrix
+</ul>
+
+
+
+
+
+
 
 
 
