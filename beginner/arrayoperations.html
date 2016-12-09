@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Dragonflystats.GitHub.io</title>
+    <title>JuliaWorkshop.GitHub.io</title>
   </head>
 
   <body>
@@ -43,7 +43,7 @@ Previous Section | Back to <a href="index.html"> Main Page </a> | Next Section
 
 
 <h5>
-Changing Dimensions
+Working with Arrays
 </h5>
 
 
@@ -74,7 +74,7 @@ julia> reshape(a, 1, 4)
 
 Notice that this function returns a new copy of the reshaped array rather than modifying the existing one
 
-To collapse an array along one dimension you can use squeeze()
+To collapse an array along one dimension you can use ``squeeze()``
 <pre><code>
 julia> a = [1 2 3 4]  # Two dimensional
 1x4 Array{Int64,2}:
@@ -90,7 +90,7 @@ julia> squeeze(a, 1)
 </code></pre>
 
 
-The return value is an Array with the specified dimension ìflattenedî
+The return value is an Array with the specified dimension ‚Äúflattened‚Äù
 
 
 
