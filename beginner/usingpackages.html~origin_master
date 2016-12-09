@@ -1,5 +1,0 @@
-There are two steps to using a Julia module.
-
-First, you have to download and install the package containing the module. There's a list of packages available <a href="http://pkg.julialang.org/" target="_blank">here</a>.
-
-To download and install, you just have to give the name of the package to the <code>Pkg.add()</code> function.
