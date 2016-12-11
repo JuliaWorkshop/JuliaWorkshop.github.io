@@ -1,5 +1,5 @@
 \documentclass{beamer}
-
+\usepackage{framed}
 \usepackage{enumerate}
 \usepackage{amsmath}
 \usepackage{multicol}
@@ -107,4 +107,35 @@ f(x) = \frac{1}{1+e^{-x}}
 	\]
 	
 \end{frame}
+
+\begin{frame}[fragile]
+\textbf{Statistics Functions}
+\begin{framed}
+\begin{verbatim}
+julia> using StatsBase, StatsFuns, StreamStats
+\end{verbatim}
+\end{framed}	
+
+	\begin{multicols}{3}
+		\begin{enumerate}[(i)]	
+			\item \texttt{mean(X)}
+			\item \texttt{median(X)}
+			\item \texttt{var(X)}
+			\item \texttt{std(X)}
+		    \item \texttt{iqr(X)}
+			\item \texttt{skewness(X)}
+			\item \texttt{kurtosis(X)}
+			\item \texttt{mode(X) / modes(X)}
+			\item \texttt{maximum(X)}
+			
+			\item \texttt{minimum(X)}
+			\item \texttt{findmax(X)}
+			\item \texttt{quantile(X)}
+				\item \texttt{cov(X,Y)}
+				\item \texttt{cor(X,Y)}
+		%	\item \texttt{summarystats(X)}
+		\end{enumerate}	
+	\end{multicols}
+\end{frame}
+
 \end{document}
