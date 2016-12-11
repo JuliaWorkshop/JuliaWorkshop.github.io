@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>MathsResource.com</title>
+    <title>JuliaWorkshop.GitHub.io</title>
   </head>
 
   <body>
@@ -39,21 +39,21 @@ JuliaWorkshop.GitHub.io</h3>
 .tg .tg-76so{font-size:15px;background-color:#cbcefb;vertical-align:top}
 </style>
 <center>
-<table class="tg" style="undefined;table-layout: fixed; width: 750px">
+<table class="tg" style="undefined;table-layout: fixed; width: 720px">
 <colgroup>
-<col style="width: 125px">
-<col style="width: 125px">
-<col style="width: 125px">
-<col style="width: 125px">
-<col style="width: 125px">
-<col style="width: 125px">
+<col style="width: 120px">
+<col style="width: 120px">
+<col style="width: 120px">
+<col style="width: 120px">
+<col style="width: 120px">
+<col style="width: 120px">
 </colgroup>
 
 <tr>
 <td class="tg-76so"><strong><b><a href="appmaths01.html">Section 1</a></b></strong></td> 
 <td class="tg-76so"><strong><b><a href="appmaths02.html">Section 2</a></b></strong></td> 
 <td class="tg-76so"><strong><b><a href="appmaths03.html">Section 3</a></b></strong></td> 
-<td class="tg-76so"><strong><b><a href="writingfunctions.html">Writing Functions</a></b></strong></td> 
+<td class="tg-76so"><strong><b><a href="appmaths04.html">Section 4</a></b></strong></td> 
 <td class="tg-76so"><strong><b><a href="appmaths05.html">Section 5</a></b></strong></td> 
 <td class="tg-76so"><strong><b><a href="appmaths06.html">Section 6</a></b></strong></td> 
 </tr>
@@ -68,12 +68,12 @@ JuliaWorkshop.GitHub.io</h3>
   
 </table>
 
-<h1 class="entry-title">Problem Set 3</h1>
-  
-<table class="tg" style="undefined;table-layout: fixed; width: 750px">
+<h1 class="entry-title">Matrices and Linear Algebra</h1>
+<table class="tg" style="undefined;table-layout: fixed; width: 700px">
 <colgroup>
-<col style="width: 750px">
+<col style="width: 350px">
 
+<col style="width: 350px">
 </colgroup>
 
   <tr>
@@ -81,56 +81,29 @@ JuliaWorkshop.GitHub.io</h3>
 
 
 
-<ol>
-<li> Create a 8x8 matrix and fill it with a checkerboard pattern </li>
-<li>  Create a 10x10 array with random values and find the minimum and maximum values </li>
-<li>  Create a checkerboard 8x8 matrix using the tile function </li>
-<li>  Normalize a 5x5 random matrix (between 0 and 1) </li>
-<li>  Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) </li>
-<li>  Create a 10x10 matrix with row values ranging from 0 to 9 </li>
-<li>  Create a vector of size 1000 with values ranging from 0 to 1, both excluded </li>
-<li>  Create a random vector of size 100 and sort it </li>
-<li>  Consider two random matrices A anb B, check if they are equal. </li>
-<li>  Create a random vector of size 1000 and find the mean value </li>
-</ol>
-</td>
+<ul>
+<li> Some useful commands </li>
+<li> Matrix Multiplication </li>
+<li> Linear Algebra functions </li>
+</ul>
+    </td>
+    <td class="tg-76so"><strong> Scripts</strong><br>	
+
+
+
+<ul>
+<li> inv() - compute the inverse of a matrix</li>
+<li> det() - compute the determinant of a matrix</li>
+<li> rank() - compute the rank of a matrix </li>
+</ul>
+    </td>
   </tr>
   
 </table>
-<!------------------------------------------------------------------------------------------>
-<h2> Writing Functions - Exercises </h2>
-<table class="tg" style="undefined;table-layout: fixed; width: 750px">
-<colgroup>
-<col style="width: 750px">
-
-</colgroup>
-
-  <tr>
-    <td class="tg-76so">		
 
 
-<strong>Functions for Single Value Inputs</strong>
 
-<ol>
-<li> Write a function to implement the logistic function.</li>
-<center><img src="images/logisticfunction.jpg"></center>
-<li> Write a function to implement the tanh function</li>
-<center><img src="images/tanhfunction.jpg"></center>
-</ol>
-<br>
-<strong>Functions for Arrays</strong>
 
-<ol>
-<li> Write a function to implement the standardization function.</li>
-<center><img src="images/standardizationfunction.jpg"></center>
-<li> Write a function to implement the normalization function</li>
-<center><img src="images/normalizationfunction.jpg"></center>
-</ol>
-
-</td>
-  </tr>
-  
-</table>
 <br>
 <br>
 <br>

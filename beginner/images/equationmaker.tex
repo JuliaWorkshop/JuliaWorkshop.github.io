@@ -1,0 +1,110 @@
+\documentclass{beamer}
+
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{multicol}
+
+\begin{document}
+\begin{frame}
+	\large
+Given \texttt{x = [3 1 5 7 9 2 6]}, explain what the following commands do by
+summarizing the net result of the command.
+
+\begin{multicols}{2}
+\begin{enumerate}[(i)]
+	\item  \texttt{x(3)}
+	\item \texttt{x(1:5)}
+	\item \texttt{x(1:end)}
+	\item \texttt{x(1:end-1)}
+	\item \texttt{x}\texttt{(6:-2:1)}
+	\item \texttt{x([1 6 2 1 1])}
+	\item \texttt{sum(x)}
+	\item \texttt{sort(x)}
+\end{enumerate}	
+\end{multicols}
+\end{frame}
+
+\begin{frame}
+	Given the array \texttt{A = [2 6 9 7 ; 3 1 4 6 ; 5 3 2 7]}, explain the results of the
+	following commands:
+
+\begin{multicols}{2}
+	\begin{enumerate}[(i)]	
+\item \texttt{A'}
+\item \texttt{A(:,[1 4])}
+\item \texttt{A([2 3],[3 1])}
+\item \texttt{reshape(A,2,6)}
+\item \texttt{A(:)}
+\item \texttt{flipud(A)}
+\item \texttt{fliplr(A)}
+\item \texttt{[A A(end,:)]}
+\item \texttt{A(1:3,:)}
+\item \texttt{[A ; A(1:2,:)]}
+\item \texttt{sum(A)}
+\item \texttt{sum(A')}
+\item \texttt{sum(A,2)}
+%\item [ [ A ; sum(A) ] [ sum(A,2) ; sum(A(:)) ] ]
+\end{enumerate}	
+\end{multicols}
+\end{frame}
+
+\begin{frame}
+	\huge
+\[
+	A= \left(\begin{matrix}
+	1 & 5 & 7 \\
+	4 & -2 & 9\\
+	3 & 1 & 4\\
+	\end{matrix}\right)\;
+			B = \left(\begin{matrix}
+		1 & 3 & 5 \\
+		1 & 0 & 3\\
+		2 & 7 & -1\\
+		\end{matrix}\right)
+\]
+\end{frame}
+\begin{frame}
+	\huge
+	\[
+	C= \left(\begin{matrix}
+	1 & 2 & 2 \\
+	3 & 1 & 3\\
+	\end{matrix}\right)\;
+	D = \left(\begin{matrix}
+	1 & 5  \\
+	-1 & 3\\
+	2  & -2\\
+	\end{matrix}\right)
+	\]
+\end{frame}
+\begin{frame}
+	\huge
+The logistic function
+	\[
+f(x) = \frac{1}{1+e^{-x}}
+	\]
+\end{frame}
+\begin{frame}
+	\huge
+	The tanh function
+	\[
+	f(x) = \frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}
+	\]
+\end{frame}
+\begin{frame}
+	\huge
+	The standardization function: \smallskip
+	\[
+	f(x_i) = \frac{x_i-\bar{x}}{s_x}
+	\]
+	
+\end{frame}
+\begin{frame}
+	\huge
+	The normalization function: \smallskip
+	\[
+	f(x_i) = \frac{x_i-\operatorname{min}(x)}{\operatorname{max}(x)-\operatorname{min}(x)}
+	\]
+	
+\end{frame}
+\end{document}
