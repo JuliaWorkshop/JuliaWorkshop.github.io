@@ -1,0 +1,19 @@
+---
+title: "Numerical Computing"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: united
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
