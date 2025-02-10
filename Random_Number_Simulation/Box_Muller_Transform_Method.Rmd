@@ -1,3 +1,50 @@
+The algorithm used in the previous example is the **Box-Muller transform**, specifically the **polar form** of the Box-Muller transform.  It's a method for generating pseudo-random numbers from the standard normal distribution (mean 0 and variance 1) given a source of uniform random numbers. Here's a detailed breakdown:
+
+**1. The Goal:**
+
+The objective is to transform two independent random variables, *U1* and *U2*, which are uniformly distributed between 0 and 1, into two independent random variables, *X* and *Y*, which follow a standard normal distribution.
+
+**2. The Box-Muller Transform (Polar Form):**
+
+The polar form avoids the calculation of trigonometric functions, which can be computationally expensive. It proceeds as follows:
+
+* **Generate Two Uniform Random Numbers:** Two independent random numbers, *U1* and *U2*, are generated from a uniform distribution on the interval (0, 1).  In the code, this is done using `rand()`.
+
+* **Transform to [-1, 1]:** The uniform random numbers are transformed to the interval [-1, 1]:
+   * *V1* = 2 * *U1* - 1
+   * *V2* = 2 * *U2* - 1
+
+* **Calculate s:** Calculate the sum of squares:
+   * *s* = *V1*² + *V2*²
+
+* **Rejection Sampling (The "Polar" Part):** This is the key part that makes this the *polar* form. We only accept the pair (*V1*, *V2*) if it falls within the unit circle (i.e., *s* < 1).  If *s* ≥ 1, we reject the pair and generate new *U1* and *U2* until we find a pair that satisfies *s* < 1.  This is a form of rejection sampling. It ensures that the distribution of the accepted points is uniform within the unit circle. The condition `s > 0` is also important to prevent issues with the log function if `s` is very close to zero.
+
+* **The Transformation (If Accepted):** If the pair is accepted (*s* < 1), then the following transformation is applied:
+   * *X* = sqrt(-2 * log(*s*) / *s*) * *V1*
+   * *Y* = sqrt(-2 * log(*s*) / *s*) * *V2*
+
+   These *X* and *Y* will be independent standard normal random variables.
+
+**3. Why it Works:**
+
+The Box-Muller transform is based on the fact that if *X* and *Y* are independent standard normal variables, then *X*² + *Y*² follows a chi-squared distribution with two degrees of freedom, which is equivalent to an exponential distribution with a mean of 2.  The polar form is an optimized version of the Box-Muller method that avoids the use of trigonometric functions by using a rejection sampling step. The rejection sampling ensures that the distribution of the points is uniform within the unit circle. This uniformity is crucial for the transformation to produce standard normal variates.
+
+**4. In the Code:**
+
+The `while` loop and the `if s < 1` condition implement the rejection sampling. The lines inside the `if` block perform the Box-Muller transformation to produce the normal variates. The code generates two normal random variables per loop iteration, which is why the loop counter `i` is incremented twice and the `if i <= n` check is in place.
+
+**5. Advantages of the Polar Method:**
+
+* **No Trigonometric Functions:** It avoids the use of sine and cosine, which can be computationally expensive.
+* **Simpler:** Conceptually, it's a bit simpler to understand than the original Box-Muller transform.
+
+**6. Disadvantages:**
+
+* **Rejection Sampling:** The rejection sampling step means that some pairs of uniform random numbers are discarded. This can make the polar method slightly less efficient than other normal random number generators (although it's still quite fast).  The probability of rejection is approximately (1 - π/4) ≈ 0.215. This means that, on average, you'll need to generate about 4/π ≈ 1.27 times more uniform random number pairs than normal random numbers you want.
+
+In summary, the polar form of the Box-Muller transform is a clever and efficient way to generate standard normal random variates using uniform random numbers. It's widely used in Monte Carlo simulations and other applications that require normally distributed random numbers.
+
+--------------------------------------------------------------------------------------------------------------------------
 The Box-Muller transform is a method for generating pairs of independent, standard, normally distributed random numbers given a source of uniformly distributed random numbers. It's a fundamental algorithm in computational statistics and Monte Carlo simulations.
 
 **Here's a breakdown of the Box-Muller transform:**
