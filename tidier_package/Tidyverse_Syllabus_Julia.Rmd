@@ -1,0 +1,116 @@
+## Tidyverse with Julia: A Lesson Plan (8 x 1-hour Classes)
+
+This lesson plan focuses on teaching the core concepts and functionality of the Tidyverse (specifically focusing on its equivalent packages and philosophy) within the Julia programming language.  It emphasizes hands-on practice and real-world examples to make learning engaging and effective.
+
+**Overall Learning Objectives:**
+
+By the end of this course, students will be able to:
+
+* Understand the Tidyverse philosophy of data manipulation.
+* Use key Julia packages for data wrangling, visualization, and tidying.
+* Perform common data manipulation tasks efficiently and elegantly.
+* Create informative and visually appealing data visualizations.
+* Apply these skills to solve real-world data analysis problems.
+
+**Target Audience:**  Beginner to intermediate Julia programmers who want to learn data manipulation and visualization techniques.
+
+**Software:** Julia (latest version), relevant Julia packages (DataFrames.jl, CSV.jl, Plots.jl, Gadfly.jl, Tidier.jl, etc.)
+
+---
+
+**Lesson 1: Introduction to Tidy Data and DataFrames.jl (1 hour)**
+
+* **Topics:**
+    * The principles of tidy data (each variable forms a column, each observation forms a row, each type of observational unit forms a table).
+    * Introduction to DataFrames.jl: creating, inspecting, and manipulating data frames.
+    * Reading and writing data from CSV files using CSV.jl.
+* **Examples/Exercises:**
+    * Convert a messy dataset (e.g., a table with combined columns) into tidy format.
+    * Import a CSV file containing sales data and explore its structure.
+    * Create a new DataFrame by selecting specific columns from an existing one.
+
+**Lesson 2: Data Transformation with DataFrames.jl (1 hour)**
+
+* **Topics:**
+    * `select()`: Choosing columns.
+    * `filter()`: Selecting rows based on conditions.
+    * `mutate()`: Creating new columns or modifying existing ones.
+    * `rename()`: Renaming columns.
+* **Examples/Exercises:**
+    * Filter a dataset of customer information to find customers in a specific region.
+    * Create a new column calculating the total price based on quantity and unit price.
+    * Rename columns in a dataset to be more descriptive.
+
+**Lesson 3: Data Aggregation and Grouping with DataFrames.jl (1 hour)**
+
+* **Topics:**
+    * `groupby()`: Grouping data by one or more columns.
+    * `summarize()`: Calculating summary statistics for groups.
+    * Combining `groupby()` and `summarize()` for powerful data aggregation.
+* **Examples/Exercises:**
+    * Calculate the average sales per product category.
+    * Find the top 10 customers with the highest total purchases.
+    * Calculate the number of observations in each group.
+
+**Lesson 4: Data Joining and Combining with DataFrames.jl (1 hour)**
+
+* **Topics:**
+    * `innerjoin()`, `leftjoin()`, `rightjoin()`, `outerjoin()`: Joining data frames based on common columns.
+    * `vcat()`: Combining data frames vertically.
+* **Examples/Exercises:**
+    * Join two datasets, one containing customer information and the other containing order details.
+    * Combine data from multiple CSV files into a single DataFrame.
+    * Perform different types of joins (inner, left, right) and observe the results.
+
+**Lesson 5: Introduction to Data Visualization with Plots.jl (1 hour)**
+
+* **Topics:**
+    * Basic plotting with Plots.jl: scatter plots, line plots, bar charts, histograms.
+    * Customizing plots: adding titles, labels, legends, themes.
+    * Creating visualizations from DataFrames.
+* **Examples/Exercises:**
+    * Create a scatter plot of sales vs. advertising spend.
+    * Plot the trend of sales over time.
+    * Create a bar chart showing the distribution of customers by region.
+
+**Lesson 6: Advanced Visualization with Plots.jl (1 hour)**
+
+* **Topics:**
+    * Faceting: Creating multiple plots based on different groups.
+    * Advanced plot types: box plots, violin plots, heatmaps.
+    * Combining multiple plots into a single figure.
+* **Examples/Exercises:**
+    * Create a faceted plot showing the sales trend for each product category.
+    * Visualize the distribution of customer ages using a box plot.
+    * Create a heatmap showing the correlation between different variables.
+
+**Lesson 7:  Introduction to Gadfly.jl (1 hour)**
+
+* **Topics:**
+    * The Grammar of Graphics and its implementation in Gadfly.jl
+    * Layers, aesthetics, geoms, and scales.
+    * Creating complex and customized visualizations.
+* **Examples/Exercises:**
+    * Recreate visualizations from the previous lesson using Gadfly.jl.
+    * Explore different geoms and aesthetics to create unique visualizations.
+    * Create a layered plot with multiple geoms.
+
+**Lesson 8: Putting it all together: A mini data analysis project (1 hour)**
+
+* **Topics:**
+    * Applying the learned skills to a real-world dataset.
+    * Working through a small data analysis project, from data cleaning and transformation to visualization and interpretation.
+    * Best practices for data analysis and visualization.
+* **Examples/Exercises:**
+    * Analyze a dataset of movie ratings, including cleaning, transforming, and visualizing the data.
+    * Analyze a dataset of weather data, including calculating summary statistics and creating visualizations.
+    * Students work on a small project of their own choosing.
+
+**Throughout the lessons:**
+
+* Emphasize the "pipe" (`|>`) operator for chaining data manipulation operations.
+* Encourage students to explore the documentation and examples for each package.
+* Provide real-world datasets for exercises and projects.
+* Foster a collaborative learning environment.
+
+This detailed lesson plan provides a solid foundation in the Tidyverse principles and their application within Julia. By combining theoretical explanations with hands-on exercises and real-world examples, students will gain valuable skills in data manipulation and visualization. Remember to adapt the pace and content based on your students' background and learning progress.
