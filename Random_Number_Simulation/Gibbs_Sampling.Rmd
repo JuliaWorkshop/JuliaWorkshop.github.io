@@ -1,0 +1,87 @@
+## Gibbs Sampling
+
+Gibbs sampling is a Markov Chain Monte Carlo (MCMC) method used for sampling from joint probability distributions.  It's particularly useful when the joint distribution is complex or unknown, but the *conditional* distributions of each variable *given all other variables* are known and easier to sample from.
+
+**The Basic Idea:**
+
+1. **Start with initial values:** Assign arbitrary starting values to all the variables in your distribution.
+
+2. **Iterative sampling:** Cycle through each variable. For each variable:
+   * Sample a new value from its *conditional* distribution, given the current values of all other variables.
+
+3. **Repeat:** Repeat step 2 many times. The sequence of samples you generate for each variable forms a Markov chain.  After a "burn-in" period (where the chain converges to the stationary distribution), the samples approximately represent draws from the joint distribution you're interested in.
+
+-----------------------------------------------------------------------------
+
+**Why it works:**
+
+Gibbs sampling exploits the fact that if you know all the conditional distributions, you can reconstruct the joint distribution. By repeatedly sampling from the conditionals, the chain explores the joint distribution and eventually converges to it.
+
+**Example: Bivariate Normal Distribution**
+
+Let's illustrate Gibbs sampling with a simple example: sampling from a bivariate normal distribution.  Suppose we have two variables, X and Y, with means μx and μy, standard deviations σx and σy, and correlation coefficient ρ.  The conditional distributions are:
+
+* X | Y ~ Normal(μx + ρ(σx/σy)(Y - μy), σx√(1 - ρ²))
+* Y | X ~ Normal(μy + ρ(σy/σx)(X - μx), σy√(1 - ρ²))
+
+Here's how to implement Gibbs sampling in Julia:
+
+```julia
+using Random
+using Distributions
+
+function gibbs_sampling(n_samples, mu_x, mu_y, sigma_x, sigma_y, rho)
+    # Initialize
+    x = zeros(n_samples)
+    y = zeros(n_samples)
+    x[1] = mu_x  # Start at the mean of x
+    y[1] = mu_y  # Start at the mean of y
+
+    # Gibbs sampling iterations
+    for i in 2:n_samples
+        # Sample x given y
+        mu_x_cond = mu_x + rho * (sigma_x / sigma_y) * (y[i-1] - mu_y)
+        sigma_x_cond = sigma_x * sqrt(1 - rho^2)
+        x[i] = rand(Normal(mu_x_cond, sigma_x_cond))
+
+        # Sample y given x
+        mu_y_cond = mu_y + rho * (sigma_y / sigma_x) * (x[i] - mu_x)
+        sigma_y_cond = sigma_y * sqrt(1 - rho^2)
+        y[i] = rand(Normal(mu_y_cond, sigma_y_cond))
+    end
+    return x, y
+end
+
+# Example usage:
+n_samples = 10000
+mu_x = 0.0
+mu_y = 0.0
+sigma_x = 1.0
+sigma_y = 1.0
+rho = 0.8  # Correlation coefficient
+
+x_samples, y_samples = gibbs_sampling(n_samples, mu_x, mu_y, sigma_x, sigma_y, rho)
+
+# Analyze the samples (e.g., plot, calculate statistics)
+using Plots
+scatter(x_samples, y_samples, xlabel="X", ylabel="Y", title="Gibbs Sampling from Bivariate Normal")
+```
+
+**Explanation:**
+
+1. **`gibbs_sampling` function:** Takes the number of samples, means, standard deviations, and correlation as input.
+2. **Initialization:** Creates arrays to store the samples and initializes the first values.
+3. **Iteration:** Loops through the desired number of samples. In each iteration:
+   * Calculates the parameters of the conditional distributions.
+   * Samples from the conditional distributions using `rand(Normal(mean, std))`.
+4. **Return:** Returns the sampled x and y values.
+5. **Example Usage:** Sets parameters for the bivariate normal distribution and calls the `gibbs_sampling` function.
+6. **Visualization:** Creates a scatter plot of the generated samples, demonstrating the bivariate normal distribution.
+
+**Key Points:**
+
+* **Conditional Distributions:** The crucial part is knowing and being able to sample from the conditional distributions.
+* **Convergence:**  You need to run the sampler long enough for it to converge to the stationary distribution.  You often discard the initial "burn-in" samples.
+* **Applications:** Gibbs sampling is widely used in Bayesian statistics, particularly for complex models where direct sampling is difficult.
+
+This example provides a concrete illustration of Gibbs sampling in Julia. 
