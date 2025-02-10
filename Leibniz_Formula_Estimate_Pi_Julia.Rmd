@@ -1,0 +1,40 @@
+Here is the implementation of the Leibniz formula for approximating π using the Julia programming language:
+
+This implementation provides a straightforward way to approximate π using the Leibniz formula in Julia. Keep in mind that the Leibniz formula converges very slowly, so you may need a large number of terms for an accurate approximation. Other methods for calculating π can converge much faster.
+
+
+
+
+
+```julia
+# Number of terms to use in the approximation
+terms = 100000
+
+# Generate the sequence of denominators (1, 3, 5, 7, ...)
+denominators = 1 .+ 2 .* (0:(terms-1))
+
+# Create the alternating signs (+1, -1, +1, -1, ...)
+signs = (-1) .^ (0:(terms-1))
+
+# Calculate the terms of the series (sign / denominator)
+terms_of_series = signs ./ denominators
+
+# Sum the terms of the series
+sum_of_series = sum(terms_of_series)
+
+# Multiply by 4 to get the approximation of π
+pi_approximation = 4 * sum_of_series
+
+# Display the result
+println("Approximated value of π: ", pi_approximation)
+```
+
+Here's a brief explanation of the code:
+
+1. **Number of Terms:** Sets the number of terms to be used in the approximation.
+2. **Generating Denominators:** Generates the sequence of odd denominators.
+3. **Alternating Signs:** Creates the alternating sequence of +1 and -1.
+4. **Calculating Terms:** Divides each sign by the corresponding denominator.
+5. **Summing Terms:** Sums all the terms of the series.
+6. **Approximating Pi:** Multiplies the sum by 4 to approximate the value of π.
+7. **Displaying Result:** Prints the approximated value of π.
