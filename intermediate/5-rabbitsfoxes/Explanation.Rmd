@@ -1,0 +1,55 @@
+Sure! Let me break down the code for you:
+
+This code simulates a predator-prey model using rabbits and foxes. Here's a step-by-step explanation:
+
+### Time Parameters
+- `start_time = 0`: The starting time of the simulation.
+- `end_time = 100`: The ending time of the simulation.
+- `time_step = 1/4`: The interval between each calculation, in years.
+- `end_step = int(((end_time-start_time)/time_step))`: The total number of steps in the simulation.
+
+### Initial Values
+- `initial_rabbits = 30000`: Initial number of rabbits.
+- `initial_foxes = 15`: Initial number of foxes.
+- `rabbits_killed_per_fox_birth = 1000`: Number of rabbits killed for each new fox birth.
+- `chance_a_rabbit_will_die_during_a_meeting = 0.50`: Probability that a rabbit will die when encountering a fox.
+- `chance_of_rabbit_and_fox_meeting = 0.02`: Probability of a rabbit and fox encountering each other.
+- `rabbit_growth_rate = 0.20`: Percentage of the rabbit population born each time step.
+- `fox_death_rate = 0.10`: Percentage of the fox population that dies each time step.
+
+### Storage Arrays
+- `rabbits_over_time`: Array to store the number of rabbits at each time step.
+- `foxes_over_time`: Array to store the number of foxes at each time step.
+- `model_time`: Array to store the time at each time step.
+
+### Initial Populations
+- `rabbits = initial_rabbits`: Sets the initial number of rabbits.
+- `foxes = initial_foxes`: Sets the initial number of foxes.
+- `rabbits_over_time[1] = rabbits`: Stores the initial number of rabbits.
+- `foxes_over_time[1] = foxes`: Stores the initial number of foxes.
+
+### Simulation Loop
+- The loop runs from `1` to `end_step`, performing the following tasks at each step:
+  1. **Calculate Time:**
+     - `sim_time = start_time + sim_step * time_step`
+     - Stores the current time in `model_time`.
+  2. **Calculate Flows (Rates):**
+     - `rabbit_births = rabbits * rabbit_growth_rate`: Calculates the number of rabbit births.
+     - `rabbits_eaten = min(rabbits, chance_a_rabbit_will_die_during_a_meeting * chance_of_rabbit_and_fox_meeting * foxes * rabbits)`: Calculates the number of rabbits eaten by foxes.
+     - `fox_births = 1/rabbits_killed_per_fox_birth * rabbits_eaten`: Calculates the number of new foxes born.
+     - `fox_deaths = foxes * fox_death_rate`: Calculates the number of foxes that die.
+  3. **Update Stocks:**
+     - `foxes = foxes + fox_births - fox_deaths`: Updates the number of foxes.
+     - `rabbits = rabbits + rabbit_births - rabbits_eaten`: Updates the number of rabbits.
+  4. **Store Updated Values:**
+     - `rabbits_over_time[sim_step+1] = rabbits`: Stores the updated number of rabbits.
+     - `foxes_over_time[sim_step+1] = foxes`: Stores the updated number of foxes.
+
+### Output
+- Prints the simulation results in a CSV format:
+  - `println("Time,Rabbits (Thousands),Foxes")`: Prints the header.
+  - The loop iterates through each time step and prints the time, number of rabbits (in thousands), and number of foxes.
+
+This code simulates the population dynamics of rabbits and foxes over time based on birth and death rates, interactions, and probabilities. The results can be used to analyze how the populations change and interact with each other over the specified time period.
+
+If you have any questions or need further assistance, feel free to ask!
