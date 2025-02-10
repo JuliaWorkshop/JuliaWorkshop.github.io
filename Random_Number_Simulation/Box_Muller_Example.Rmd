@@ -1,0 +1,90 @@
+Show how to simulation normal random variates using the polar method from the Julia programming language.
+
+```julia
+using Random
+
+function polar_method(n::Int)
+    """
+    Generates n standard normal random variates using the Box-Muller transform (polar method).
+    """
+    result = zeros(n)
+    i = 1
+    while i <= n
+        u1, u2 = rand(), rand()  # Generate two uniform random numbers
+        v1 = 2*u1 - 1
+        v2 = 2*u2 - 1
+        s = v1^2 + v2^2
+
+        if s < 1 && s > 0 #check for s == 0 is important to avoid Inf or NaN
+            x = sqrt(-2*log(s)/s) * v1
+            y = sqrt(-2*log(s)/s) * v2
+
+            result[i] = x
+            i += 1
+            if i <= n  # Check if we still need another sample
+                result[i] = y
+                i += 1
+            end
+        end
+    end
+    return result
+end
+
+
+# Example usage:
+n_samples = 10000
+normal_variates = polar_method(n_samples)
+
+# Verify (optional):
+using Statistics
+println("Mean: ", mean(normal_variates))
+println("Standard Deviation: ", std(normal_variates))
+
+using Plots #for visualization
+histogram(normal_variates, bins = 50,  xlabel = "Value", ylabel = "Frequency", title = "Histogram of Normal Variates (Polar Method)")
+
+#or using StatsPlots
+using StatsPlots
+@df normal_variates histogram(: , bins = 50,  xlabel = "Value", ylabel = "Frequency", title = "Histogram of Normal Variates (Polar Method)")
+
+
+```
+
+**Explanation:**
+
+1. **`polar_method(n)` function:** Takes the number of desired normal variates `n` as input.
+
+2. **Initialization:** Creates an array `result` to store the generated normal variates.
+
+3. **While loop:** Continues until `n` normal variates have been generated.
+
+4. **Uniform Random Numbers:** Generates two uniform random numbers `u1` and `u2` between 0 and 1 using `rand()`.
+
+5. **Transformation:** Transforms `u1` and `u2` to `v1` and `v2` in the range [-1, 1].
+
+6. **Check for s:** Calculates `s = v1^2 + v2^2`. The polar method is based on accepting points that fall within the unit circle. This `if` statement ensures that we only proceed if the generated point is within the circle. This is also important to avoid issues when `s` is close to zero, which can cause problems with the log and division later on.
+
+7. **Box-Muller Transform (Polar Form):** If `s` is within the valid range, the core of the polar method is applied:
+   * `x = sqrt(-2*log(s)/s) * v1`
+   * `y = sqrt(-2*log(s)/s) * v2`
+   These `x` and `y` are independent standard normal variates.
+
+8. **Store Results:** Stores `x` and `y` in the `result` array. The loop counter `i` is incremented.  The check `if i <= n` is included because each loop iteration generates *two* normal random variables.
+
+9. **Return:** Returns the array `result` containing the generated normal variates.
+
+10. **Example Usage:** Calls the `polar_method` function to generate 10,000 standard normal variates.
+
+11. **Verification (Optional):** Calculates and prints the mean and standard deviation of the generated samples.  These should be close to 0 and 1, respectively, for standard normal variates.
+
+12. **Visualization:**  A histogram is created to visualize the distribution of the generated normal variates using `Plots.jl` or `StatsPlots.jl`.  The histogram should resemble a standard normal distribution (bell curve).
+
+**Key Improvements in this Version:**
+
+* **Clearer Variable Names:** More descriptive variable names (e.g., `v1`, `v2`, `s`) improve readability.
+* **Efficiency:** The `while` loop with the `if i <= n` condition ensures that only the necessary number of random numbers are generated and processed, making it a bit more efficient.
+* **Check for s=0:** The `if s < 1 && s > 0` condition prevents potential issues with the calculation when `s` is very close or equal to zero, avoiding `Inf` or `NaN` values.
+* **Visualization:** The code now includes a histogram plot to visually verify the distribution of the generated normal variates.  This is a good practice to ensure the method is working as expected.
+* **Using StatsPlots:** An alternative plotting method using the `@df` macro from `StatsPlots.jl` is also included, which some users might find more convenient.
+
+This improved version provides a more robust and practical way to generate normal random variates using the polar method in Julia. It's also more efficient and includes verification and visualization to ensure correctness.
