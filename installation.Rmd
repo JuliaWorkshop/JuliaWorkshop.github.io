@@ -1,0 +1,59 @@
+---
+title: "Julia Workshop" 
+subtitle: "JuliaWorkshop.github.io"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installing Julia
+
+(<a href="index.html">Back to main page</a>)
+
+Here's a short tutorial on installing Julia, along with instructions for setting up Jupyter Notebooks and IJulia.jl.
+
+### Installing Julia
+1. **Download Julia:**
+   - Head over to the [official Julia website](https://julialang.org/downloads/) and download the latest stable release for your operating system (Windows, macOS, or Linux).
+
+2. **Install Julia:**
+   - **Windows:** Run the downloaded `.exe` file and follow the installation prompts.
+   - **macOS:** Open the downloaded `.dmg` file and drag Julia to the Applications folder.
+   - **Linux:** Extract the downloaded `.tar.gz` file and follow the instructions in the README file to install Julia.
+
+3. **Verify Installation:**
+   - Open a terminal or command prompt and type `julia` to launch the Julia REPL (Read-Eval-Print Loop). You should see the Julia prompt (`julia>`).
+
+### Installing Jupyter Notebooks and IJulia.jl
+1. **Install Jupyter:**
+   - You'll need to have Python and pip installed. If you don't have them, install Python from the [official website](https://www.python.org/downloads/).
+   - Once Python is installed, open a terminal or command prompt and run the following command to install Jupyter:
+     ```sh
+     pip install jupyter
+     ```
+
+2. **Install IJulia.jl:**
+   - Open the Julia REPL by typing `julia` in your terminal or command prompt.
+   - Add the IJulia package by running the following commands in the Julia REPL:
+     ```julia
+     import Pkg
+     Pkg.add("IJulia")
+     ```
+
+3. **Launch Jupyter Notebook:**
+   - After installing IJulia, you can launch Jupyter Notebook from the Julia REPL by running:
+     ```julia
+     using IJulia
+     notebook()
+     ```
+   - Alternatively, you can launch Jupyter Notebook from your terminal or command prompt by running:
+     ```sh
+     jupyter notebook
+     ```
+   - This will open Jupyter Notebook in your web browser. You can create a new notebook and select `Julia` as the kernel.
+
