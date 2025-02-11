@@ -6,7 +6,7 @@ output:
     css: style.css
 ---
 
-```{r setup, include=FALSE}
+```{r  include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 ```
@@ -17,3 +17,11 @@ About {data-navmenu="About"}
 
 Column {.tabset}
 --------------------
+
+### Numerical Computing With Julia
+
+#### Numerical Computing with Julia
+
+```{r child = "Numerical_Computing_Syllabus.Rmd"}
+
+```
