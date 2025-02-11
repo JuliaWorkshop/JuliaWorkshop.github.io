@@ -1,0 +1,27 @@
+---
+title: "Numerical Computing"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: united
+    css: style.css
+---
+
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Numerical Computing With Julia
+
+#### Numerical Computing with Julia
+
+```{r child = "Numerical_Computing_Syllabus.Rmd"}
+
+```
