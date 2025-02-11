@@ -1,0 +1,75 @@
+---
+title: "Julia Workshop" 
+subtitle: "JuliaWorkshop.github.io"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Julia Workshop
+<center>
+<a href="http://julialang.org/"><img src="http://statslabdotcom.files.wordpress.com/2013/05/julia-logo-e1368996683973.png?w=150&h=100" alt="Julia logo" width="100" height="67" /></a>
+</center>
+
+
+Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments. It provides a sophisticated compiler, distributed parallel execution, numerical accuracy, and an extensive mathematical function library.
+
+<h2>Workshops</h2>
+
+<center>
+<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
+<colgroup>
+<col style="width: 350px">
+<col style="width: 350px">
+<col style="width: 350px">
+</colgroup>
+
+   <tr>
+   <td class="tg-76so"><strong><a href="about.html">About Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Mathematics/index.html">Installing Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Statistics/index.html">Statistics</a></strong></td>
+   </tr>
+
+  <tr>
+   <td class="tg-76so"><strong><a href="Data_Science/index.html">Data Science With Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="intermediate/index.html">Intermediate Workshop</a></strong></td>
+   <td class="tg-76so"><strong><a href="advanced/index.html">Advanced Workshop</a></strong></td>
+ </tr>
+  <tr>
+   <td class="tg-76so"><strong><a href="machinelearning.html">Machine Learning with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Financial_Maths.html/index.html">Financial Maths with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Random_Number_Simulation/index.html">Random Numbers & Simulation with Julia</a></strong></td>
+ </tr>
+</table>
+</center>
+
+<h2>Resources</h2>
+
+<center>
+<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
+<colgroup>
+<col style="width: 350px">
+<col style="width: 350px">
+<col style="width: 350px">
+</colgroup>
+
+   <tr>
+   <td class="tg-76so"><strong><a href="about.html">About Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="installation.html">Installing Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="resources.html">Resources</a></strong></td>
+   </tr>
+
+  <tr>
+   <td class="tg-76so"><strong><a href="Datasets/index.html">Datasets for Julia Examples</a></strong></td>
+   <td class="tg-76so"><strong><a href="intermediate/index.html">Intermediate Workshop</a></strong></td>
+   <td class="tg-76so"><strong><a href="advanced/index.html">Advanced Workshop</a></strong></td>
+ </tr>
+
+</table>
+
+<br><br><br>
