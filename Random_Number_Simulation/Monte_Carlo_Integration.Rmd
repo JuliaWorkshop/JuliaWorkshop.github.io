@@ -1,0 +1,77 @@
+## Monte Carlo integration
+
+Monte Carlo integration is a numerical technique that uses random sampling to estimate the value of a definite integral. It's particularly useful when dealing with integrals that are difficult or impossible to solve analytically, or when the function being integrated is complex or defined by a set of data points.
+
+-----------------------------------------------------------------
+### Breakdown 
+Here's a breakdown of the Monte Carlo integration algorithm:
+
+**1. Define the integration domain:**
+
+* Determine the limits of integration, which define the interval or region over which you want to calculate the integral.
+
+**2. Generate random samples:**
+
+* Generate a set of random points within the integration domain. These points should be randomly distributed, typically using a uniform distribution.
+
+**3. Evaluate the function:**
+
+* Evaluate the function you want to integrate at each of the randomly generated points.
+
+**4. Calculate the average:**
+
+* Calculate the average of the function values obtained in the previous step.
+
+**5. Scale the average:**
+
+* Multiply the average by the size (length, area, or volume) of the integration domain. This scaled average provides an estimate of the definite integral.
+
+**Underlying principle:**
+
+The Monte Carlo integration algorithm is based on the Law of Large Numbers, which states that the average of a large number of random samples will converge towards the true expected value. In this context, the expected value is the definite integral we are trying to estimate.
+
+**Algorithm in pseudocode:**
+
+```
+function monte_carlo_integration(f, a, b, n)
+  // f: The function to integrate
+  // a: The lower limit of integration
+  // b: The upper limit of integration
+  // n: The number of random samples
+
+  sum_f = 0
+  for i = 1 to n
+    x = random number between a and b
+    sum_f = sum_f + f(x)
+  end
+
+  average_f = sum_f / n
+  integral_estimate = (b - a) * average_f
+
+  return integral_estimate
+end
+```
+
+**Key features:**
+
+* **Random sampling:** The algorithm relies on random sampling to explore the integration domain.
+* **Statistical convergence:** The accuracy of the estimate improves as the number of random samples increases.
+* **Handles complex integrals:** It can be applied to integrals with complex integrands or integration domains.
+* **Simple implementation:** The basic algorithm is relatively straightforward to implement.
+
+**Limitations:**
+
+* **Accuracy:** The accuracy of the estimate depends on the number of random samples used.
+* **Convergence:** Convergence can be slow compared to other numerical integration methods.
+* **Randomness:** The results can vary slightly due to the random nature of the sampling process.
+
+**Applications:**
+
+Monte Carlo integration is used in various fields, including:
+
+* **Finance:** Pricing complex financial instruments and options.
+* **Physics:** Simulating particle transport and interactions.
+* **Engineering:** Reliability analysis and risk assessment.
+* **Computer graphics:** Rendering images and simulating light transport.
+
+In summary, Monte Carlo integration is a powerful technique for estimating definite integrals, especially in situations where traditional methods are not feasible. It leverages the power of random sampling and the Law of Large Numbers to provide approximate solutions to complex integration problems.
