@@ -1,5 +1,5 @@
 ---
-title: "Numerical Computing"
+title: "Financial Mathematics with Julia"
 output: 
   flexdashboard::flex_dashboard:
     theme: united
@@ -18,10 +18,10 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
-### Numerical Computing With Julia
+### Financial Mathematics with Julia
 
-#### Numerical Computing with Julia
+#### Financial Mathematics with Julia
 
-```{r child = "Numerical_Computing_Syllabus.Rmd"}
+```{r child = "Financial_Risk_Management_Julia_Syllabus.Rmd"}
 
 ```
