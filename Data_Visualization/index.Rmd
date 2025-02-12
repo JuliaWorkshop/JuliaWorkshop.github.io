@@ -1,6 +1,24 @@
-Creating a syllabus for a course on Data Visualization with Julia sounds like a great idea! Here’s a structured outline to get you started:
-
 ---
+title: "Data Visualization With Julia"
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
 
 ### **Data Visualization with Julia Syllabus**
 
@@ -83,6 +101,3 @@ By the end of this course, students will be able to:
 - "The Grammar of Graphics" by Leland Wilkinson
 - Julia Documentation: [https://docs.julialang.org](https://docs.julialang.org)
 
----
-
-Feel free to tailor this syllabus to better fit your needs. Happy teaching and learning!📊✨

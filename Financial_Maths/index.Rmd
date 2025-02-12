@@ -1,15 +1,18 @@
 ---
 title: "Financial Mathematics with Julia"
-output: 
+output:
   flexdashboard::flex_dashboard:
-    theme: united
-    css: style.css
+    theme: 
+      version: 4
+      bootswatch: minty
 ---
 
 ```{r  include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 ```
+
+
 
 
 About {data-navmenu="About"}

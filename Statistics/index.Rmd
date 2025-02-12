@@ -1,9 +1,10 @@
 ---
 title: "Random Number Generation, Sampling, and Simulation with Julia"
-output: 
+output:
   flexdashboard::flex_dashboard:
-    theme: united
-    css: style.css
+    theme: 
+      version: 4
+      bootswatch: minty
 ---
 
 ```{r  include=FALSE}

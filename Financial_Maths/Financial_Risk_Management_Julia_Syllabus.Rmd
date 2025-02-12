@@ -1,4 +1,4 @@
-## Financial Risk Management with Julia: A Detailed Syllabus
+### Financial Risk Management with Julia: A Detailed Syllabus
 
 **Course Description:** This course provides a comprehensive introduction to financial risk management, combining theoretical foundations with practical applications using the Julia programming language. Students will learn about various types of financial risk, quantitative methods for risk assessment, and techniques for risk mitigation. The course emphasizes hands-on experience through coding exercises, case studies, and a final project.
 

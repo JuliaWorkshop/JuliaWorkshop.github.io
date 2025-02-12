@@ -111,3 +111,9 @@ Column {.tabset}
 - Project Planning and Data Collection
 - Applying Data Science Techniques
 - Project Presentation and Evaluation
+
+
+### MlJ Julia package
+
+```{r child = "MLJ_Julia_Package.Rmd"}
+```
