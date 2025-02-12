@@ -1,3 +1,13 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+### The `sklearn.jl` Package
+
 `scikit-learn.jl` (often referred to as `sklearn.jl`) is a Julia package that provides a Julia interface to the popular Python scikit-learn library.  It aims to bring the functionality and algorithms of scikit-learn to the Julia ecosystem, allowing Julia users to leverage the extensive collection of machine learning tools available in scikit-learn.
 
 **Key Functionality and Description:**
