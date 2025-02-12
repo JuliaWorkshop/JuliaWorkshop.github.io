@@ -1,0 +1,11 @@
+###  Frailty Models 
+
+Frailty models are a class of statistical models used in survival analysis to account for unobserved heterogeneity among individuals. This heterogeneity, or "frailty," can be thought of as an unmeasured characteristic that influences an individual's risk of experiencing the event of interest.
+
+In a standard survival model, such as the Cox proportional hazards model, each individual is assumed to have the same baseline hazard rate. However, in reality, individuals may differ in their underlying susceptibility to the event, even after accounting for observed covariates. Frailty models address this issue by incorporating a random effect, or frailty term, into the model. This frailty term is assumed to be a positive random variable that multiplies the baseline hazard rate for each individual.
+
+Frailty models have several advantages over standard survival models. First, they can provide a more realistic representation of the data by accounting for unobserved heterogeneity. Second, they can improve the efficiency of parameter estimation by reducing bias that can arise from ignoring frailty. Third, they can be used to assess the impact of unobserved heterogeneity on the relationship between covariates and survival time.
+
+One common approach to modeling frailty is to assume that the frailty term follows a gamma distribution. However, other distributions, such as the log-normal and inverse Gaussian, can also be used. The choice of frailty distribution can have an impact on the model's fit and interpretation.
+
+Frailty models are widely used in various fields, including medicine, epidemiology, economics, and engineering. They are particularly useful in situations where there is evidence of unobserved heterogeneity among individuals, such as in studies of family-based data or clustered data.
