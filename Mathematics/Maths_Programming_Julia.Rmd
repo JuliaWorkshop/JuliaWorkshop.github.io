@@ -1,0 +1,61 @@
+
+**Week 1: Introduction to Julia Programming Language**
+- Overview of Julia: Features and Advantages
+- Setting Up the Julia Environment
+- Basic Syntax and Data Types
+- Writing and Running Your First Julia Program
+
+**Week 2: Control Flow and Functions**
+- Conditional Statements and Loops
+- Defining and Calling Functions
+- Scope and Variable Lifetime
+- Introduction to Julia Modules
+
+**Week 3: Working with Arrays and Matrices**
+- Creating and Manipulating Arrays
+- Basic Matrix Operations
+- Array and Matrix Indexing
+- Using the LinearAlgebra.jl Package
+
+**Week 4: Data Structures and DataFrames**
+- Introduction to Data Structures in Julia
+- Working with Tuples, Dictionaries, and Sets
+- Introduction to DataFrames.jl
+- Basic Data Manipulation with DataFrames
+
+**Week 5: Introduction to Linear Algebra**
+- Vectors and Matrices in Mathematical Programming
+- Matrix Operations and Transformations
+- Solving Linear Systems
+- Eigenvalues and Eigenvectors
+
+**Week 6: Complex Numbers and Trigonometry**
+- Introduction to Complex Numbers
+- Operations with Complex Numbers
+- Trigonometric Functions and Identities
+- Applications of Trigonometry in Julia
+
+**Week 7: Set Theory**
+- Introduction to Sets and Set Operations
+- Working with Sets in Julia
+- Venn Diagrams and Applications of Set Theory
+- Examples and Practice Problems
+
+**Week 8: Plotting and Visualization**
+- Introduction to Plots.jl
+- Creating Basic Plots (Line, Bar, Scatter)
+- Customizing Plots (Titles, Labels, Legends)
+- Advanced Plotting Techniques
+
+**Week 9: Optimization and Numerical Methods**
+- Introduction to Optimization Problems
+- Using the Optim.jl Package
+- Numerical Methods for Solving Equations
+- Gradient Descent Algorithm
+
+**Week 10: Capstone Project**
+- Project Planning and Proposal
+- Implementing a Mathematical Programming Solution
+- Presenting Your Project
+- Course Review and Q&A
+
