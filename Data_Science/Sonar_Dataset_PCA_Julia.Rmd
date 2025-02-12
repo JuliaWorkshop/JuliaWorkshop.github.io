@@ -1,3 +1,16 @@
+
+### Sonar Dataset Example
+
+The **Sonar dataset**, also known as the **Connectionist Bench (Sonar, Mines vs. Rocks)** dataset, is a well-known dataset used for machine learning and pattern recognition tasks. It consists of 208 instances, each with 60 features. The dataset is used to train a model to distinguish between sonar signals bounced off a metal cylinder (mines) and those bounced off a roughly cylindrical rock](https://archive.ics.uci.edu/ml/datasets/Connectionist+Bench+%28Sonar%2C+Mines+vs.+Rocks%29).
+
+Each instance in the dataset represents a sonar signal, with the 60 features corresponding to the energy within a particular frequency band, integrated over a certain period of time. The labels for each instance are either "R" for rocks or "M" for mines](https://archive.ics.uci.edu/ml/datasets/Connectionist+Bench+%28Sonar%2C+Mines+vs.+Rocks%29).
+
+You can find the dataset on the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Connectionist+Bench+%28Sonar%2C+Mines+vs.+Rocks%29).
+
+---------------------------------------------------------------------------
+
+show how to download the dataset using Julia and perform PCA on it
+
 ```julia
 using CSV, DataFrames, MLJ, MultivariateStats
 
