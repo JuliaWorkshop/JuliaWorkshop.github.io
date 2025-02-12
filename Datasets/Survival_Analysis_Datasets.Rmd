@@ -1,0 +1,33 @@
+### Datasets for Survival Analysis
+
+Here are some commonly used datasets for teaching survival analysis:
+
+* **Rossi Recidivism Data:** 
+    * This dataset tracks the time to rearrest of a group of male inmates. 
+    * It's often used to illustrate basic survival analysis concepts like Kaplan-Meier curves and log-rank tests.
+
+* **Veteran's Administration Lung Cancer Data:** 
+    * This dataset contains information on lung cancer patients, including treatment and survival times. 
+    * It's frequently used for demonstrating Cox proportional hazards models and assessing model fit.
+
+* **Breast Cancer Data:** 
+    * Various breast cancer datasets are available, often containing information on patient characteristics, treatment, and survival outcomes. 
+    * These datasets can be used to explore various aspects of survival analysis, including time-dependent covariates and competing risks.
+
+* **Leukemia Remission Data:** 
+    * This dataset tracks the time to remission for leukemia patients. 
+    * It's a classic dataset used to illustrate survival analysis concepts and techniques.
+
+* **Simulated Datasets:** 
+    * Simulated datasets can be very valuable for teaching purposes. 
+    * They allow instructors to control the underlying data generating process and create scenarios with specific characteristics to illustrate key concepts.
+
+These datasets are readily available in statistical software packages like R and Python, often within their survival analysis libraries. 
+
+**Key Considerations When Choosing Datasets:**
+
+* **Relevance to the Course Objectives:** The dataset should align with the specific topics and learning objectives of the course.
+* **Data Quality:** The dataset should be of good quality, with accurate and complete information.
+* **Complexity:** The dataset should be appropriate for the level of the students. Beginner-level courses might benefit from simpler datasets, while more advanced courses can use more complex datasets.
+* **Availability and Accessibility:** The dataset should be easily accessible to students, either through built-in functions in the software or through readily available online repositories.
+
