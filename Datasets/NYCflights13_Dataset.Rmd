@@ -1,0 +1,162 @@
+
+The NYC Flights 13 dataset in R is a popular resource for data analysis. It contains comprehensive information about all domestic flights departing from New York City airports (JFK, LGA, EWR) during the year 2013. 
+
+**Key Features:**
+
+* **Comprehensive Data:** Includes flight dates and times (scheduled and actual), departure and arrival delays, carrier information, origin and destination airports, flight numbers, and more.
+* **Real-World Data:** Offers a realistic and engaging dataset for practicing data manipulation, visualization, and statistical analysis techniques.
+* **Tidyverse-Friendly:** Easily integrates with the tidyverse ecosystem in R, making it convenient to use with popular packages like dplyr, ggplot2, and tidyr.
+
+**Common Uses:**
+
+* **Analyzing Flight Delays:** Investigating factors that contribute to flight delays, such as weather conditions, carrier performance, and time of year.
+* **Visualizing Flight Patterns:** Creating maps and charts to explore flight routes, destinations, and travel trends.
+* **Data Cleaning and Transformation:** Practicing data wrangling techniques, such as filtering, grouping, and joining data from different sources.
+* **Statistical Modeling:** Building predictive models to forecast flight delays or other aviation-related outcomes.
+
+The NYC Flights 13 dataset provides a valuable resource for learning and applying data analysis skills in R.
+
+```julia
+using DataFrames, CSV, HTTP
+
+# Download the NYC Flights 13 data from GitHub
+url = "https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv"
+response = HTTP.get(url)
+data = String(response.body)
+
+# Read the data into a DataFrame
+flights = CSV.read(IOBuffer(data), DataFrame)
+
+# Inspect the dimensions of the dataset
+num_rows, num_cols = size(flights) 
+println("Number of rows:", num_rows)
+println("Number of columns:", num_cols)
+```
+
+**Explanation:**
+
+1. **Import necessary packages:**
+   - `DataFrames`: For working with tabular data.
+   - `CSV`: For reading CSV files.
+   - `HTTP`: For downloading data from the web.
+
+2. **Download and load the data:** 
+   - The code downloads the NYC Flights 13 data from GitHub and reads it into a DataFrame.
+
+3. **Inspect dimensions:**
+   - `size(flights)` returns a tuple containing the number of rows and columns of the DataFrame. 
+   - The code extracts the number of rows and columns from the tuple and prints them to the console.
+
+This will output the number of rows and columns in the NYC Flights 13 dataset.
+
+**Exercise 1.1: Basic Data Exploration**
+
+```julia
+using DataFrames, CSV, HTTP
+
+# Download and load the data
+url = "https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv"
+response = HTTP.get(url)
+data = String(response.body)
+flights = CSV.read(IOBuffer(data), DataFrame)
+
+# Print the first 10 rows
+println("First 10 rows:")
+show(first(flights, 10))
+
+# Determine the number of rows and columns
+num_rows, num_cols = size(flights)
+println("Number of rows:", num_rows)
+println("Number of columns:", num_cols)
+
+# Print data types of each column
+println("Data types of each column:")
+for (col_name, col_type) in pairs(eltype(flights))
+    println("$col_name: $col_type")
+end
+```
+
+**Exercise 1.2: Unique Airlines and Flight Counts**
+
+```julia
+# Find unique airlines
+unique_carriers = unique(flights.carrier)
+println("Unique airlines:")
+println(unique_carriers)
+
+# Count flights for each carrier
+carrier_counts = countmap(flights.carrier)
+println("Flight counts for each carrier:")
+println(carrier_counts)
+```
+
+**Exercise 2.1: Filtering and Selecting Data**
+
+```julia
+# Filter flights departing from JFK
+jfk_flights = filter(:origin => ==("JFK"), flights)
+
+# Select specific columns
+selected_columns = select(jfk_flights, [:carrier, :flight, :origin, :dest])
+println("Flights departing from JFK:")
+show(selected_columns)
+```
+
+**Exercise 2.2: Filtering and Calculating Average Delay**
+
+```julia
+# Filter flights with arrival delay > 30 minutes
+delayed_flights = filter(:arr_delay => >=(30), flights)
+
+# Calculate average arrival delay
+avg_delay = mean(delayed_flights.arr_delay)
+println("Average arrival delay for delayed flights:", avg_delay)
+```
+
+**Exercise 3.1: Creating a New Column and Calculating Average Delay**
+
+```julia
+# Create a new column 'total_delay'
+flights_with_total_delay = transform(flights, :total_delay => (x, y) -> x .+ y, :dep_delay, :arr_delay)
+
+# Calculate average total delay for each carrier
+avg_total_delay_by_carrier = combine(groupby(flights_with_total_delay, :carrier), :total_delay => mean => :avg_total_delay)
+println("Average total delay for each carrier:")
+show(avg_total_delay_by_carrier)
+```
+
+**Exercise 3.2: Grouping and Counting Flights by Month**
+
+```julia
+# Create a new column 'flight_month'
+flights_with_month = transform(flights, :flight_month => x -> month(x), :month)
+
+# Group by 'flight_month' and count flights
+monthly_flight_counts = combine(groupby(flights_with_month, :flight_month), nrow => :num_flights)
+println("Number of flights per month:")
+show(monthly_flight_counts)
+```
+
+**Exercise 4.1: Data Visualization (requires Plots.jl)**
+
+```julia
+using Plots
+
+# Histogram of arrival delays
+histogram(flights.arr_delay, xlabel="Arrival Delay (minutes)", ylabel="Frequency", title="Histogram of Arrival Delays")
+
+# Bar chart of flights per carrier
+bar(keys(carrier_counts), values(carrier_counts), xlabel="Carrier", ylabel="Number of Flights", title="Flights per Carrier")
+
+# Scatter plot of departure delay vs. arrival delay
+scatter(flights.dep_delay, flights.arr_delay, xlabel="Departure Delay (minutes)", ylabel="Arrival Delay (minutes)", title="Departure Delay vs. Arrival Delay")
+```
+
+**Note:** These are basic examples. You can further explore and refine these exercises based on the specific learning objectives and the level of your students.
+
+Remember to install the required packages (`DataFrames`, `CSV`, `HTTP`, `Plots`) before running these scripts. You can install them using the Julia package manager:
+
+```julia
+using Pkg
+Pkg.add(["DataFrames", "CSV", "HTTP", "Plots"])
+```
