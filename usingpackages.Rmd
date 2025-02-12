@@ -1,0 +1,82 @@
+
+---
+title: "Julia Workshop" 
+subtitle: "JuliaWorkshop.github.io"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installing and Using Packages in Julia
+
+Julia has a robust package management system that makes it easy to add functionality to your projects. Here’s a step-by-step tutorial on how to install and use packages in Julia.
+
+#### **Installing Packages**
+
+1. **Open Julia REPL:**
+   - Launch the Julia REPL (Read-Eval-Print Loop) by opening Julia from your terminal or through your preferred Julia IDE (like VS Code with Julia extension).
+
+2. **Enter the Pkg Mode:**
+   - Press `]` to enter the package manager mode. The prompt will change from `julia>` to `pkg>`.
+
+3. **Add a Package:**
+   - Use the `add` command followed by the package name to install a package. For example, to install the `DataFrames` package, type:
+     ```julia
+     pkg> add DataFrames
+     ```
+
+4. **Update Packages:**
+   - To update all installed packages to their latest versions, use:
+     ```julia
+     pkg> update
+     ```
+
+5. **Exit Pkg Mode:**
+   - Press `backspace` to return to the normal Julia prompt.
+
+#### **Using Packages**
+
+1. **Load a Package:**
+   - Once a package is installed, you can load it in your Julia script or REPL using the `using` keyword. For example, to load the `DataFrames` package:
+     ```julia
+     using DataFrames
+     ```
+
+2. **Import Specific Functions:**
+   - If you only need specific functions from a package, use the `import` statement. For example:
+     ```julia
+     import DataFrames: DataFrame, describe
+     ```
+
+3. **Check Installed Packages:**
+   - To see a list of all installed packages, you can type:
+     ```julia
+     using Pkg
+     Pkg.status()
+     ```
+
+4. **Remove a Package:**
+   - If you no longer need a package, remove it by entering the Pkg mode and using the `rm` command:
+     ```julia
+     pkg> rm DataFrames
+     ```
+
+#### **Commonly Used Julia Packages**
+
+Here are some commonly used packages in the Julia ecosystem:
+
+- **DataFrames.jl:** Tools for working with data frames.
+- **Plots.jl:** Comprehensive plotting library.
+- **CSV.jl:** Efficient handling of CSV files.
+- **Distributions.jl:** Probability distributions and associated functions.
+- **JuMP.jl:** Algebraic modeling language for optimization problems.
+- **Flux.jl:** Machine learning library.
+- **Turing.jl:** Probabilistic programming with MCMC.
+- **Gadfly.jl:** Statistical plotting.
+- **HTTP.jl:** HTTP client/server implementation.
+- **GLM.jl:** Generalized linear models.
