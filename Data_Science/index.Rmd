@@ -1,9 +1,10 @@
 ---
-title: "Numerical Computing"
-output: 
+title: "Data Science With Julia"
+output:
   flexdashboard::flex_dashboard:
-    theme: united
-    css: style.css
+    theme: 
+      version: 4
+      bootswatch: minty
 ---
 
 ```{r  include=FALSE}
@@ -18,10 +19,95 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
-### Numerical Computing With Julia
+### Data Science with Julia
 
-#### Numerical Computing with Julia
+#### Data Science with Julia
 
-```{r child = "Numerical_Computing_Syllabus.Rmd"}
+**Week 1: Introduction to Julia and Data Science**
+- Overview of Data Science
+- Why Julia for Data Science?
+- Setting Up Julia Environment
+- Basic Syntax and Data Types
+- Simple Data Manipulation
 
-```
+**Week 2: Julia Fundamentals**
+- Control Flow (loops, conditions)
+- Functions and Modules
+- Working with Arrays and Matrices
+- Introduction to DataFrames.jl
+
+**Week 3: Data Manipulation**
+- Loading and Saving Data
+- Data Cleaning and Preprocessing
+- Handling Missing Data
+- Data Transformation and Aggregation
+
+**Week 4: Exploratory Data Analysis (EDA)**
+- Descriptive Statistics
+- Data Visualization with Plots.jl
+- Advanced Plotting Techniques
+- Correlation Analysis
+
+**Week 5: Probability and Statistics**
+- Introduction to Probability
+- Common Probability Distributions
+- Statistical Tests and Inference
+- Resampling Methods
+
+**Week 6: Linear Algebra for Data Science**
+- Vectors and Matrices
+- Matrix Operations
+- Eigenvalues and Eigenvectors
+- Singular Value Decomposition
+
+**Week 7: Regression Analysis**
+- Simple Linear Regression
+- Multiple Linear Regression
+- Diagnostics and Model Assumptions
+- Polynomial Regression
+
+**Week 8: Classification Techniques**
+- Logistic Regression
+- Decision Trees
+- Support Vector Machines
+- Model Evaluation Metrics
+
+**Week 9: Unsupervised Learning**
+- Clustering Algorithms (K-Means, Hierarchical Clustering)
+- Dimensionality Reduction (PCA, LDA)
+- Association Rule Mining
+
+**Week 10: Time Series Analysis**
+- Introduction to Time Series Data
+- Time Series Decomposition
+- Forecasting Models (ARIMA, Exponential Smoothing)
+- Evaluating Forecast Accuracy
+
+**Week 11: Natural Language Processing (NLP)**
+- Text Preprocessing and Tokenization
+- Sentiment Analysis
+- Topic Modeling
+- Word Embeddings
+
+**Week 12: Neural Networks and Deep Learning**
+- Introduction to Neural Networks
+- Building Neural Networks with Flux.jl
+- Training and Evaluating Models
+- Convolutional Neural Networks (CNNs)
+
+**Week 13: Big Data with Julia**
+- Introduction to Big Data
+- Working with Distributed Computing
+- Julia and Apache Spark
+- Case Studies
+
+**Week 14: Advanced Topics in Data Science**
+- Model Deployment and Productionization
+- Model Interpretation and Explainability
+- Ethical Considerations in Data Science
+- Latest Trends and Research in Data Science
+
+**Week 15: Capstone Project**
+- Project Planning and Data Collection
+- Applying Data Science Techniques
+- Project Presentation and Evaluation
