@@ -1,0 +1,87 @@
+**Survival Analysis with Julia: A 12-Week Course**
+
+**Course Description:**
+
+This course provides an introduction to survival analysis, a statistical methodology crucial for analyzing time-to-event data. We will explore key concepts, models, and their implementation using the Julia programming language. 
+
+**Course Objectives:**
+
+* Understand fundamental concepts in survival analysis, including survival functions, hazard functions, and censoring.
+* Learn to estimate and interpret survival probabilities using Kaplan-Meier curves.
+* Master the use of the Cox proportional hazards model for analyzing the relationship between covariates and survival time.
+* Explore advanced topics such as time-dependent covariates, competing risks, and frailty models.
+* Gain proficiency in implementing survival analysis techniques using the Julia programming language and its relevant packages.
+
+**Course Schedule:**
+
+**Week 1: Introduction to Survival Analysis**
+    * Definition and applications of survival analysis.
+    * Types of time-to-event data: right-censored, left-censored, interval-censored.
+    * Survival and hazard functions: definitions, interpretations, and relationships.
+    * **Julia Packages:** `DataFrames`, `Plots` (for data manipulation and visualization)
+
+**Week 2: Kaplan-Meier Estimator**
+    * Estimation of the survival function using the Kaplan-Meier method.
+    * Plotting and interpreting Kaplan-Meier curves.
+    * Log-rank test for comparing survival curves between groups.
+    * **Julia Packages:** `Survival`, `Distributions` (for survival curve estimation and statistical tests)
+
+**Week 3: Cox Proportional Hazards Model**
+    * Introduction to the Cox proportional hazards model.
+    * Model assumptions and diagnostics.
+    * Fitting the Cox model in Julia using the `Survival` package.
+    * Interpretation of model coefficients and hazard ratios.
+
+**Week 4: Model Selection and Validation**
+    * Variable selection methods in Cox regression (e.g., stepwise selection, LASSO).
+    * Model validation techniques (e.g., cross-validation, bootstrap).
+    * Assessing model fit and goodness-of-fit tests.
+    * **Julia Packages:** `GLM`, `MLJ` (for model selection and evaluation)
+
+**Week 5: Time-Dependent Covariates**
+    * Definition and interpretation of time-dependent covariates.
+    * Fitting Cox models with time-dependent covariates in Julia.
+    * Applications of time-dependent covariates in real-world scenarios.
+
+**Week 6: Competing Risks**
+    * Introduction to competing risks analysis.
+    * Estimation of cause-specific hazard functions.
+    * Fine-Gray regression model for competing risks.
+    * **Julia Packages:** `Survival` (for competing risks analysis)
+
+**Week 7: Frailty Models**
+    * Introduction to frailty models for handling unobserved heterogeneity.
+    * Shared frailty models and random effects models.
+    * Fitting frailty models in Julia.
+
+**Week 8: Advanced Topics in Survival Analysis**
+    * Recurrent event data analysis.
+    * Multi-state models.
+    * Bayesian methods for survival analysis.
+
+**Week 9-12: Case Studies and Projects**
+    * In-depth analysis of real-world survival data using Julia.
+    * Student projects focusing on specific research questions or applications.
+    * Presentation and discussion of student projects.
+
+**Assessment:**
+
+* Weekly assignments (problem sets, coding exercises)
+* Midterm exam
+* Final project and presentation
+
+**Prerequisites:**
+
+* Basic understanding of statistical concepts (e.g., probability distributions, hypothesis testing)
+* Familiarity with the Julia programming language (basic data structures, functions, control flow)
+
+**Software:**
+
+* Julia programming language
+* Julia packages: `Survival`, `DataFrames`, `Plots`, `Distributions`, `GLM`, `MLJ` (and others as needed)
+
+**Note:**
+
+This is a tentative syllabus and may be subject to minor adjustments based on the pace of the course and the specific interests of the students.
+
+This syllabus provides a comprehensive overview of the 12-week survival analysis course using Julia. It covers essential topics, highlights key Julia packages, and outlines a structured learning path.
