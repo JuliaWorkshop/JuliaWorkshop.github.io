@@ -1,0 +1,98 @@
+### Beta Distribution - Example
+
+<h4>Beta Distribution - Example</h4>
+
+** Here's a worked example of the Beta distribution using Julia.**
+
+First, let's install the required packages if you don't already have them:
+
+```julia
+using Pkg
+Pkg.add("Distributions")
+Pkg.add("Plots")
+```
+
+Now, let's dive into the example:
+
+1. **Import the necessary packages:**
+
+```julia
+using Distributions
+using Plots
+```
+
+2. **Define the parameters of the Beta distribution:**
+
+Let's choose parameters \(\alpha = 2\) and \(\beta = 5\).
+
+```julia
+alpha = 2
+beta = 5
+```
+
+3. **Create a Beta distribution object:**
+
+```julia
+beta_dist = Beta(alpha, beta)
+```
+
+4. **Calculate the mean and variance:**
+
+```julia
+mean_beta = mean(beta_dist)
+variance_beta = var(beta_dist)
+println("Mean: ", mean_beta)
+println("Variance: ", variance_beta)
+```
+
+5. **Generate random samples from the Beta distribution:**
+
+Let's generate 1000 random samples.
+
+```julia
+samples = rand(beta_dist, 1000)
+```
+
+6. **Plot the probability density function (PDF):**
+
+We will plot the PDF of the Beta distribution and the histogram of the samples.
+
+```julia
+x = range(0, 1, length=100)
+pdf_values = pdf.(beta_dist, x)
+
+plot(x, pdf_values, label="Beta(2, 5) PDF", linewidth=2)
+histogram!(samples, normalize=true, alpha=0.5, label="Sample Histogram")
+```
+
+The complete code looks like this:
+
+```julia
+using Distributions
+using Plots
+
+# Define the parameters of the Beta distribution
+alpha = 2
+beta = 5
+
+# Create a Beta distribution object
+beta_dist = Beta(alpha, beta)
+
+# Calculate the mean and variance
+mean_beta = mean(beta_dist)
+variance_beta = var(beta_dist)
+println("Mean: ", mean_beta)
+println("Variance: ", variance_beta)
+
+# Generate random samples from the Beta distribution
+samples = rand(beta_dist, 1000)
+
+# Plot the probability density function (PDF)
+x = range(0, 1, length=100)
+pdf_values = pdf.(beta_dist, x)
+
+plot(x, pdf_values, label="Beta(2, 5) PDF", linewidth=2)
+histogram!(samples, normalize=true, alpha=0.5, label="Sample Histogram")
+```
+
+This code will generate a plot showing the probability density function of the Beta(2, 5) distribution and a histogram of 1000 random samples drawn from this distribution.
