@@ -24,6 +24,9 @@ Column {.tabset}
 ```{r child = "RDatasets_Julia_Package.Rmd"}
 ```
 
+```{r child = "NYCflights13_Dataset.Rmd"}
+```
+
 ### Survival Analysis
 
 #### Survival Analysis
