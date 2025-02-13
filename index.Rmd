@@ -30,11 +30,15 @@ Julia is a high-level, high-performance dynamic programming language for technic
 </colgroup>
 
    <tr>
-   <td class="tg-76so"><strong><a href="about.html">About Julia</a></strong></td>
-   <td class="tg-76so"><strong><a href="Mathematics/index.html">Installing Julia</a></strong></td>
-   <td class="tg-76so"><strong><a href="Statistics/index.html">Statistics</a></strong></td>
+   <td class="tg-76so"><strong><a href="Introduction_Julia/index.html">About Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Mathematics_Julia/index.html">Mathematics with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Statistics/index.html">Statistics with Julia</a></strong></td>
    </tr>
-
+   <tr>
+   <td class="tg-76so"><strong><a href="Numerical_Computing/index.html">Numerical Computing with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Tidyverse_Julia/index.html">Tidier.JL - Tidyverse with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Probability_Distributions/index.html">Probability Distributions with Julia</a></strong></td>
+   </tr>
   <tr>
    <td class="tg-76so"><strong><a href="Data_Science/index.html">Data Science With Julia</a></strong></td>
    <td class="tg-76so"><strong><a href="Survival_Analysis/index.html">Survival Analysis With Julia</a></strong></td>
