@@ -1,0 +1,44 @@
+### Extreme Value Theory (EVT) with Julia
+
+<h3>Extreme Value Theory (EVT) with Julia</h3>
+Extreme Value Theory (EVT) is primarily concerned with modeling the tails of probability distributions, focusing on extreme events. Here are the main probability distributions used in EVT:
+
+**1. Generalized Extreme Value (GEV) Distribution:**
+
+* **Central to EVT:** The GEV distribution is the cornerstone of EVT for modeling block maxima (the largest or smallest values in a set of data).
+* **Unified Family:** It combines three distributions into a single family:
+    * **Gumbel:** Used for unbounded distributions (e.g., maximum temperatures).
+    * **Fréchet:** Used for heavy-tailed distributions (e.g., financial losses).
+    * **Weibull:** Used for bounded distributions (e.g., material strength).
+* **Parameters:**
+    * **μ (location):** Shifts the distribution.
+    * **σ (scale):** Controls the spread.
+    * **ξ (shape):** Determines the tail behavior and which of the three types it is.
+
+**2. Generalized Pareto Distribution (GPD):**
+
+* **Peaks Over Threshold (POT):** The GPD is used to model exceedances over a high threshold (values above a certain level).
+* **Focus on Tails:** It specifically models the behavior of the distribution beyond the threshold.
+* **Parameters:**
+    * **σ (scale):** Controls the spread of the tail.
+    * **ξ (shape):** Determines the tail's heaviness.
+
+--------------------------------------------------------------------------------------------------------------
+**Key Points:**
+
+* **Extreme Value Theorem:** The foundation of EVT states that under certain conditions, the distribution of extreme values (block maxima or exceedances) will converge to one of these distributions (GEV or GPD).
+* **Choice of Distribution:** The choice between GEV and GPD depends on the specific problem and data:
+    * **GEV:** For modeling block maxima.
+    * **GPD:** For modeling peaks over thresholds.
+* **Parameter Estimation:** Accurate estimation of the parameters is crucial for making reliable predictions about extreme events.
+
+**Applications:**
+
+These distributions are widely used in various fields:
+
+* **Finance:** Risk management, estimating extreme losses.
+* **Insurance:** Assessing the probability of large claims.
+* **Environmental Science:** Modeling extreme weather events, floods, droughts.
+* **Engineering:** Assessing the reliability of structures under extreme loads.
+
+Understanding these distributions and their properties is essential for applying EVT effectively and making informed decisions about extreme events.
