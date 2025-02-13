@@ -25,5 +25,28 @@ Column {.tabset}
 
 #### Probability Distributions with Julia:
 
+
+
+```{r child = "Beta_Distribution_Julia.Rmd"}
+```
+
+Power Law Distributions {data-navmenu="Abvanced Topics"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Power Law Distributions
+
+```{r child = "Power_Law_Distributions_Julia.Rmd"}
+```
+
+Extreme Value Theory {data-navmenu="Abvanced Topics"}
+=====================================
+
+Column {.tabset}
+--------------------
+
 ```{r child = "Extreme_Value_Theory_Julia.Rmd"}
 ```
+

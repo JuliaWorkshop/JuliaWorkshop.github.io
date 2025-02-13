@@ -25,4 +25,13 @@ Column {.tabset}
 
 #### Statistics with Julia:
 
+```{r child="Statistical_Functions_Julia.Rmd"}
+```
 
+
+```{r child="Linear_Regression_Julia.Rmd"}
+```
+
+```{r child="Regression_Diagnostics_Packages_Julia.Rmd"}
+```{r child="Regression_Diagnostics_Packages_Julia.Rmd"}
+```

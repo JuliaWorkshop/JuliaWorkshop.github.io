@@ -1,0 +1,20 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+
+### Linear Regression
+
+The `linreg` function makes it easy to perform simple and multiple linear regression on datasets containing one or multiple independent variables.
+
+#### Multiple Linear Regression Example
+
+The data set represents samples of gasoline of various octane ratings. For each sample, the octane rating was measured along with the component makeup in terms of three components. We aim to model octane rating as a function of the component makeup of gasoline.
+
+```julia
+linreg(octane)
+```

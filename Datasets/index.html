@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2770,6 +2835,165 @@ software</li>
 table describing all the included datasets, or pass in a package name
 for a targeted list of datasets.</p>
 </div>
+<div id="nyc-flights-nycflights13" class="section level3">
+<h3>NYC Flights (<code>nycflights13</code>)</h3>
+<p>The NYC Flights 13 dataset in R is a popular resource for data
+analysis. It contains comprehensive information about all domestic
+flights departing from New York City airports (JFK, LGA, EWR) during the
+year 2013.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Comprehensive Data:</strong> Includes flight dates and times
+(scheduled and actual), departure and arrival delays, carrier
+information, origin and destination airports, flight numbers, and
+more.</li>
+<li><strong>Real-World Data:</strong> Offers a realistic and engaging
+dataset for practicing data manipulation, visualization, and statistical
+analysis techniques.</li>
+<li><strong>Tidyverse-Friendly:</strong> Easily integrates with the
+tidyverse ecosystem in R, making it convenient to use with popular
+packages like dplyr, ggplot2, and tidyr.</li>
+</ul>
+<p><strong>Common Uses:</strong></p>
+<ul>
+<li><strong>Analyzing Flight Delays:</strong> Investigating factors that
+contribute to flight delays, such as weather conditions, carrier
+performance, and time of year.</li>
+<li><strong>Visualizing Flight Patterns:</strong> Creating maps and
+charts to explore flight routes, destinations, and travel trends.</li>
+<li><strong>Data Cleaning and Transformation:</strong> Practicing data
+wrangling techniques, such as filtering, grouping, and joining data from
+different sources.</li>
+<li><strong>Statistical Modeling:</strong> Building predictive models to
+forecast flight delays or other aviation-related outcomes.</li>
+</ul>
+<p>The NYC Flights 13 dataset provides a valuable resource for learning
+and applying data analysis skills in R.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">HTTP</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Download the NYC Flights 13 data from GitHub</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>response <span class="op">=</span> HTTP.<span class="fu">get</span>(url)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">String</span>(response.body)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># Read the data into a DataFrame</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>flights <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">IOBuffer</span>(data), DataFrame)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Inspect the dimensions of the dataset</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>num_rows, num_cols <span class="op">=</span> <span class="fu">size</span>(flights) </span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of rows:&quot;</span>, num_rows)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of columns:&quot;</span>, num_cols)</span></code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Import necessary packages:</strong>
+<ul>
+<li><code>DataFrames</code>: For working with tabular data.</li>
+<li><code>CSV</code>: For reading CSV files.</li>
+<li><code>HTTP</code>: For downloading data from the web.</li>
+</ul></li>
+<li><strong>Download and load the data:</strong>
+<ul>
+<li>The code downloads the NYC Flights 13 data from GitHub and reads it
+into a DataFrame.</li>
+</ul></li>
+<li><strong>Inspect dimensions:</strong>
+<ul>
+<li><code>size(flights)</code> returns a tuple containing the number of
+rows and columns of the DataFrame.</li>
+<li>The code extracts the number of rows and columns from the tuple and
+prints them to the console.</li>
+</ul></li>
+</ol>
+<p>This will output the number of rows and columns in the NYC Flights 13
+dataset.</p>
+<p><strong>Exercise 1.1: Basic Data Exploration</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">HTTP</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Download and load the data</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>response <span class="op">=</span> HTTP.<span class="fu">get</span>(url)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">String</span>(response.body)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>flights <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">IOBuffer</span>(data), DataFrame)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># Print the first 10 rows</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;First 10 rows:&quot;</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">show</span>(<span class="fu">first</span>(flights, <span class="fl">10</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Determine the number of rows and columns</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>num_rows, num_cols <span class="op">=</span> <span class="fu">size</span>(flights)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of rows:&quot;</span>, num_rows)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of columns:&quot;</span>, num_cols)</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co"># Print data types of each column</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Data types of each column:&quot;</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="cf">for</span> (col_name, col_type) <span class="kw">in</span> <span class="fu">pairs</span>(<span class="fu">eltype</span>(flights))</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">$</span>col_name<span class="st">: </span><span class="sc">$</span>col_type<span class="st">&quot;</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p><strong>Exercise 1.2: Unique Airlines and Flight Counts</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Find unique airlines</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>unique_carriers <span class="op">=</span> <span class="fu">unique</span>(flights.carrier)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Unique airlines:&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">println</span>(unique_carriers)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># Count flights for each carrier</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>carrier_counts <span class="op">=</span> <span class="fu">countmap</span>(flights.carrier)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Flight counts for each carrier:&quot;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">println</span>(carrier_counts)</span></code></pre></div>
+<p><strong>Exercise 2.1: Filtering and Selecting Data</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Filter flights departing from JFK</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>jfk_flights <span class="op">=</span> <span class="fu">filter</span>(<span class="op">:</span>origin <span class="op">=&gt;</span> <span class="op">==</span>(<span class="st">&quot;JFK&quot;</span>), flights)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Select specific columns</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>selected_columns <span class="op">=</span> <span class="fu">select</span>(jfk_flights, [<span class="op">:</span>carrier, <span class="op">:</span>flight, <span class="op">:</span>origin, <span class="op">:</span>dest])</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Flights departing from JFK:&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="fu">show</span>(selected_columns)</span></code></pre></div>
+<p><strong>Exercise 2.2: Filtering and Calculating Average
+Delay</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Filter flights with arrival delay &gt; 30 minutes</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>delayed_flights <span class="op">=</span> <span class="fu">filter</span>(<span class="op">:</span>arr_delay <span class="op">=&gt;</span> <span class="op">&gt;=</span>(<span class="fl">30</span>), flights)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Calculate average arrival delay</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>avg_delay <span class="op">=</span> <span class="fu">mean</span>(delayed_flights.arr_delay)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average arrival delay for delayed flights:&quot;</span>, avg_delay)</span></code></pre></div>
+<p><strong>Exercise 3.1: Creating a New Column and Calculating Average
+Delay</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Create a new column &#39;total_delay&#39;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>flights_with_total_delay <span class="op">=</span> <span class="fu">transform</span>(flights, <span class="op">:</span>total_delay <span class="op">=&gt;</span> (x, y) <span class="op">-&gt;</span> x <span class="op">.+</span> y, <span class="op">:</span>dep_delay, <span class="op">:</span>arr_delay)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Calculate average total delay for each carrier</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>avg_total_delay_by_carrier <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(flights_with_total_delay, <span class="op">:</span>carrier), <span class="op">:</span>total_delay <span class="op">=&gt;</span> mean <span class="op">=&gt;</span> <span class="op">:</span>avg_total_delay)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average total delay for each carrier:&quot;</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">show</span>(avg_total_delay_by_carrier)</span></code></pre></div>
+<p><strong>Exercise 3.2: Grouping and Counting Flights by
+Month</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Create a new column &#39;flight_month&#39;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>flights_with_month <span class="op">=</span> <span class="fu">transform</span>(flights, <span class="op">:</span>flight_month <span class="op">=&gt;</span> x <span class="op">-&gt;</span> <span class="fu">month</span>(x), <span class="op">:</span>month)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Group by &#39;flight_month&#39; and count flights</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>monthly_flight_counts <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(flights_with_month, <span class="op">:</span>flight_month), nrow <span class="op">=&gt;</span> <span class="op">:</span>num_flights)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of flights per month:&quot;</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">show</span>(monthly_flight_counts)</span></code></pre></div>
+<p><strong>Exercise 4.1: Data Visualization (requires
+Plots.jl)</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Histogram of arrival delays</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">histogram</span>(flights.arr_delay, xlabel<span class="op">=</span><span class="st">&quot;Arrival Delay (minutes)&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Frequency&quot;</span>, title<span class="op">=</span><span class="st">&quot;Histogram of Arrival Delays&quot;</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># Bar chart of flights per carrier</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">bar</span>(<span class="fu">keys</span>(carrier_counts), <span class="fu">values</span>(carrier_counts), xlabel<span class="op">=</span><span class="st">&quot;Carrier&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Number of Flights&quot;</span>, title<span class="op">=</span><span class="st">&quot;Flights per Carrier&quot;</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># Scatter plot of departure delay vs. arrival delay</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">scatter</span>(flights.dep_delay, flights.arr_delay, xlabel<span class="op">=</span><span class="st">&quot;Departure Delay (minutes)&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Arrival Delay (minutes)&quot;</span>, title<span class="op">=</span><span class="st">&quot;Departure Delay vs. Arrival Delay&quot;</span>)</span></code></pre></div>
+<p><strong>Note:</strong> These are basic examples. You can further
+explore and refine these exercises based on the specific learning
+objectives and the level of your students.</p>
+<p>Remember to install the required packages (<code>DataFrames</code>,
+<code>CSV</code>, <code>HTTP</code>, <code>Plots</code>) before running
+these scripts. You can install them using the Julia package manager:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">&quot;DataFrames&quot;</span>, <span class="st">&quot;CSV&quot;</span>, <span class="st">&quot;HTTP&quot;</span>, <span class="st">&quot;Plots&quot;</span>])</span></code></pre></div>
+</div>
 <div id="survival-analysis" class="section level3">
 <h3>Survival Analysis</h3>
 <div id="survival-analysis-1" class="section level4">
@@ -2897,9 +3121,8 @@ accurate and up-to-date information.</p>
 </div>
 <div id="sonar-dataset" class="section level3">
 <h3>Sonar Dataset</h3>
-</div>
-<div id="connectionist-bench" class="section level3">
-<h3>Connectionist Bench</h3>
+<div id="connectionist-bench-sonar-dataset" class="section level4">
+<h4>Connectionist Bench Sonar dataset</h4>
 <p>The Sonar dataset, also known as the Connectionist Bench (Sonar,
 Mines vs. Rocks) dataset, is a classic dataset used in machine learning
 for binary classification. It’s designed to help train models that can
@@ -2950,6 +3173,7 @@ datasets.</li>
 to start practicing binary classification tasks. It allows you to work
 with real-world-inspired data and experiment with different algorithms
 and techniques.</p>
+</div>
 </div>
 </div>
 </div>

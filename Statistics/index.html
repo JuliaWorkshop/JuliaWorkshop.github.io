@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2735,6 +2800,320 @@ window.FlexDashboardComponents.push({
 <div id="statistics-with-julia-1" class="section level4">
 <h4>Statistics with Julia:</h4>
 </div>
+<div id="tutorial-basic-statistical-functions-in-julia" class="section level4">
+<h4>Tutorial: Basic Statistical Functions in Julia</h4>
+<p>Julia provides a rich set of functions for performing statistical
+calculations. This tutorial will cover some of the most common ones,
+demonstrating their usage with examples.</p>
+<hr />
+<p><strong>1. Mean:</strong></p>
+<p>The <code>mean()</code> function calculates the arithmetic mean of a
+collection of numbers.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>average <span class="op">=</span> <span class="fu">mean</span>(data)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, average) <span class="co"># Output: Mean: 3.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>data_float <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.5</span>, <span class="fl">3.7</span>, <span class="fl">4.2</span>, <span class="fl">5.1</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>avg_float <span class="op">=</span> <span class="fu">mean</span>(data_float)</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean (Float): &quot;</span>, avg_float) <span class="co"># Output: Mean (Float): 3.3</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#For other collection types</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>data_tuple <span class="op">=</span> (<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>avg_tuple <span class="op">=</span> <span class="fu">mean</span>(data_tuple)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean (Tuple): &quot;</span>, avg_tuple) <span class="co"># Output: Mean (Tuple): 3.0</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>data_set <span class="op">=</span> <span class="fu">Set</span>([<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>])</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>avg_set <span class="op">=</span> <span class="fu">mean</span>(data_set)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean (Set): &quot;</span>, avg_set) <span class="co"># Output: Mean (Set): 3.0</span></span></code></pre></div>
+<hr />
+<p><strong>2. Median:</strong></p>
+<p>The <code>median()</code> function returns the middle value of a
+sorted collection.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>med <span class="op">=</span> <span class="fu">median</span>(data)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Median: &quot;</span>, med) <span class="co"># Output: Median: 3.0</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>data_even <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>med_even <span class="op">=</span> <span class="fu">median</span>(data_even)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Median (Even): &quot;</span>, med_even) <span class="co"># Output: Median (Even): 2.5</span></span></code></pre></div>
+<hr />
+<p><strong>3. Standard Deviation:</strong></p>
+<p>The <code>std()</code> function calculates the standard deviation, a
+measure of the spread of data around the mean.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>stdev <span class="op">=</span> <span class="fu">std</span>(data)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Standard Deviation: &quot;</span>, stdev) <span class="co"># Output: Standard Deviation: 1.5811388300841898</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#To calculate standard deviation of a population instead of a sample, use the stdevp() function.</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>stdev_pop <span class="op">=</span> <span class="fu">stdp</span>(data)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Population Standard Deviation: &quot;</span>, stdev_pop) <span class="co"># Output: Population Standard Deviation: 1.4142135623730951</span></span></code></pre></div>
+<p><strong>4. Variance:</strong></p>
+<p>The <code>var()</code> function calculates the variance, the square
+of the standard deviation.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>variance <span class="op">=</span> <span class="fu">var</span>(data)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Variance: &quot;</span>, variance) <span class="co"># Output: Variance: 2.5</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#To calculate variance of a population instead of a sample, use the varp() function.</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>variance_pop <span class="op">=</span> <span class="fu">varp</span>(data)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Population Variance: &quot;</span>, variance_pop) <span class="co"># Output: Population Variance: 2.0</span></span></code></pre></div>
+<hr />
+<p><strong>5. Minimum and Maximum:</strong></p>
+<p>The <code>minimum()</code> and <code>maximum()</code> functions find
+the smallest and largest values in a collection. <code>extrema()</code>
+returns both.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">1</span>, <span class="fl">9</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>min_val <span class="op">=</span> <span class="fu">minimum</span>(data)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>max_val <span class="op">=</span> <span class="fu">maximum</span>(data)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>extrema_val <span class="op">=</span> <span class="fu">extrema</span>(data)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Minimum: &quot;</span>, min_val) <span class="co"># Output: Minimum: 1</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Maximum: &quot;</span>, max_val) <span class="co"># Output: Maximum: 9</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Extrema: &quot;</span>, extrema_val) <span class="co"># Output: Extrema: (1, 9)</span></span></code></pre></div>
+<p><strong>6. Quantiles:</strong></p>
+<p>The <code>quantile()</code> function calculates quantiles, which
+divide the data into equal parts.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>q25 <span class="op">=</span> <span class="fu">quantile</span>(data, <span class="fl">0.25</span>) <span class="co"># 25th percentile</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>q50 <span class="op">=</span> <span class="fu">quantile</span>(data, <span class="fl">0.5</span>)  <span class="co"># 50th percentile (median)</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>q75 <span class="op">=</span> <span class="fu">quantile</span>(data, <span class="fl">0.75</span>) <span class="co"># 75th percentile</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;25th Quantile: &quot;</span>, q25) <span class="co"># Output: 25th Quantile: 3.25</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;50th Quantile: &quot;</span>, q50) <span class="co"># Output: 50th Quantile: 5.5</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;75th Quantile: &quot;</span>, q75) <span class="co"># Output: 75th Quantile: 7.75</span></span></code></pre></div>
+<hr />
+<p><strong>7. <code>describe()</code> (from
+<code>DataFrames.jl</code>):</strong></p>
+<p>For a more comprehensive summary of descriptive statistics, the
+<code>describe()</code> function from the <code>DataFrames.jl</code>
+package is very helpful, especially when working with tabular data.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(A <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>], B <span class="op">=</span> [<span class="fl">2.1</span>, <span class="fl">3.2</span>, <span class="fl">4.3</span>, <span class="fl">5.4</span>, <span class="fl">6.5</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>summary_stats <span class="op">=</span> <span class="fu">describe</span>(df)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">println</span>(summary_stats)</span></code></pre></div>
+<p>This will output a table containing count, mean, std, min, median,
+max, and other statistics for each column in the DataFrame. Remember to
+install <code>DataFrames.jl</code> first using
+<code>] add DataFrames</code> in the Julia REPL.</p>
+<hr />
+<p><strong>Example: Combining functions:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>avg <span class="op">=</span> <span class="fu">mean</span>(data)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>stdev <span class="op">=</span> <span class="fu">std</span>(data)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, avg, <span class="st">&quot;, Standard Deviation: &quot;</span>, stdev)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>zscores <span class="op">=</span> (data <span class="op">.-</span> avg) <span class="op">./</span> stdev  <span class="co"># Calculate z-scores</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Z-scores: &quot;</span>, zscores)</span></code></pre></div>
+<p>This tutorial covers the basics. Julia’s statistical capabilities
+extend far beyond these functions. The <code>StatsBase.jl</code> package
+provides a wide array of more advanced statistical tools. Remember to
+consult the Julia documentation for more in-depth information and
+further functions.</p>
+<p>Let’s explore more statistical functions available in base Julia and
+the <code>StatsBase.jl</code> package.</p>
+<hr />
+<p><strong>Base Julia (Built-in Functions):</strong></p>
+<p>Beyond the basic functions (mean, median, std, var, min, max,
+quantile) we discussed before, base Julia offers several other useful
+statistical functions:</p>
+<ul>
+<li><strong><code>sum(x)</code>:</strong> Calculates the sum of all
+elements in <code>x</code>.</li>
+<li><strong><code>prod(x)</code>:</strong> Calculates the product of all
+elements in <code>x</code>.</li>
+<li><strong><code>cumsum(x)</code>:</strong> Calculates the cumulative
+sum of <code>x</code>. Returns a vector of the same length as
+<code>x</code>.</li>
+<li><strong><code>cumprod(x)</code>:</strong> Calculates the cumulative
+product of <code>x</code>.</li>
+<li><strong><code>diff(x)</code>:</strong> Calculates the differences
+between consecutive elements of <code>x</code>.</li>
+<li><strong><code>cor(x, y)</code>:</strong> Computes the Pearson
+correlation coefficient between vectors <code>x</code> and
+<code>y</code>.</li>
+<li><strong><code>cov(x, y)</code>:</strong> Computes the covariance
+between vectors <code>x</code> and <code>y</code>.</li>
+<li><strong><code>hist(x)</code>:</strong> Creates a histogram (returns
+a tuple containing edges and counts). <code>Plots.jl</code> is often
+used to visualize the histogram.</li>
+<li><strong><code>range(start, stop, length)</code>:</strong> Generates
+an evenly spaced range of numbers. Useful for creating data for
+statistical analysis or plotting.</li>
+<li><strong><code>rand(n)</code>:</strong> Generates <code>n</code>
+random numbers between 0 and 1.</li>
+<li><strong><code>randn(n)</code>:</strong> Generates <code>n</code>
+standard normal (mean 0, standard deviation 1) random numbers.</li>
+<li><strong><code>mean(f, x)</code>:</strong> Calculates the mean of
+<code>f(x)</code> where <code>f</code> is a function. Useful for
+weighted averages or transformations.</li>
+<li><strong><code>map(f, x)</code>:</strong> Applies the function
+<code>f</code> to each element of <code>x</code> and returns a new
+collection. Helpful for data preprocessing before statistical
+analysis.</li>
+<li><strong><code>filter(f, x)</code>:</strong> Returns a new collection
+containing only the elements of <code>x</code> for which the function
+<code>f</code> returns <code>true</code>. Useful for subsetting your
+data.</li>
+</ul>
+<hr />
+<p><strong><code>StatsBase.jl</code> Package:</strong></p>
+<p><code>StatsBase.jl</code> significantly expands Julia’s statistical
+capabilities. Here are some key functions and concepts it provides:</p>
+<ul>
+<li><strong>Descriptive Statistics:</strong>
+<ul>
+<li><code>modes(x)</code>: Returns the mode(s) of a dataset.</li>
+<li><code>skewness(x)</code>: Measures the asymmetry of the data
+distribution.</li>
+<li><code>kurtosis(x)</code>: Measures the “tailedness” of the data
+distribution.</li>
+<li><code>describe(x)</code>: Provides a summary of descriptive
+statistics.</li>
+<li><code>percentile(x, p)</code>: Calculates the p-th percentile.</li>
+<li><code>iqr(x)</code>: Calculates the interquartile range.</li>
+</ul></li>
+<li><strong>Distributions:</strong> <code>StatsBase.jl</code> integrates
+well with the <code>Distributions.jl</code> package, which provides a
+wide variety of probability distributions. You can work with these
+distributions to perform calculations related to probabilities,
+quantiles, fitting data to distributions, etc.</li>
+<li><strong>Hypothesis Testing:</strong> <code>StatsBase.jl</code>, in
+conjunction with other packages, supports hypothesis testing.</li>
+<li><strong>Regression:</strong> While basic linear regression can be
+done with matrix operations, more advanced regression models are
+typically handled by packages like <code>GLM.jl</code> (Generalized
+Linear Models).</li>
+<li><strong>Resampling:</strong> <code>StatsBase.jl</code> provides
+tools for bootstrapping and other resampling techniques.</li>
+<li><strong>Ranking and Ordering:</strong> Functions for ranking data
+and handling ties.</li>
+<li><strong>Weights:</strong> Many functions in
+<code>StatsBase.jl</code> accept weights, allowing you to perform
+weighted statistical calculations.</li>
+<li><strong>Sampling:</strong> Functions for different sampling
+methods.</li>
+</ul>
+<hr />
+<p><strong>Example using <code>StatsBase.jl</code>:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mode: &quot;</span>, <span class="fu">modes</span>(data))        <span class="co"># Output: Mode: [4]</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Skewness: &quot;</span>, <span class="fu">skewness</span>(data))    <span class="co"># Output: Skewness: 0.475206912734336</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Kurtosis: &quot;</span>, <span class="fu">kurtosis</span>(data))    <span class="co"># Output: Kurtosis: -0.5265625</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Percentile (75th): &quot;</span>, <span class="fu">percentile</span>(data, <span class="fl">75</span>)) <span class="co"># Output: Percentile (75th): 4.0</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Interquartile Range: &quot;</span>, <span class="fu">iqr</span>(data)) <span class="co"># Output: Interquartile Range: 2.5</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Describe: </span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="fu">describe</span>(data)) <span class="co"># Output: Describe: (summary statistics)</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co"># Using weights</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>weights <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">1</span>] <span class="co"># Example weights</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Weighted Mean: &quot;</span>, <span class="fu">mean</span>(data, weights)) <span class="co"># Output: Weighted Mean: 3.5294117647058822</span></span></code></pre></div>
+<hr />
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li><strong>Installation:</strong> You’ll need to install
+<code>StatsBase.jl</code> before using it. In the Julia REPL, type
+<code>] add StatsBase</code>.</li>
+<li><strong>Documentation:</strong> The <code>StatsBase.jl</code>
+documentation is your best resource for a complete list of functions and
+their usage. You can access it online or within the Julia REPL using
+<code>?StatsBase</code>.</li>
+<li><strong>Other Packages:</strong> For more specialized statistical
+tasks (like time series analysis, survival analysis, or advanced
+modeling), you might need to explore other packages in the Julia
+ecosystem.</li>
+</ul>
+<p>This expanded list and example should give you a better overview of
+the statistical functions available in Julia. Remember to consult the
+documentation for the most up-to-date information and details on
+function usage.</p>
+</div>
+</div>
+<div id="linear-regression" class="section level3">
+<h3>Linear Regression</h3>
+<p>The <code>linreg</code> function makes it easy to perform simple and
+multiple linear regression on datasets containing one or multiple
+independent variables.</p>
+<div id="multiple-linear-regression-example" class="section level4">
+<h4>Multiple Linear Regression Example</h4>
+<p>The data set represents samples of gasoline of various octane
+ratings. For each sample, the octane rating was measured along with the
+component makeup in terms of three components. We aim to model octane
+rating as a function of the component makeup of gasoline.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">linreg</span>(octane)</span></code></pre></div>
+</div>
+</div>
+<div id="regression-diagnostics-with-julia" class="section level3">
+<h3>Regression Diagnostics with Julia</h3>
+<h3>
+Regression Diagnostics with Julia
+</h3>
+<p>There are several Julia packages that can assist you with regression
+diagnostics. Here are a few of them:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>GLM.jl:</strong> The Generalized Linear Models package is
+the go-to for fitting linear and generalized linear models.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLM</span></span></code></pre></div></li>
+<li><p><strong>Plots.jl and StatsPlots.jl:</strong> These packages are
+excellent for creating diagnostic plots.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsPlots</span></span></code></pre></div></li>
+<li><p><strong>HypothesisTests.jl:</strong> This package contains
+various statistical tests, including those for heteroscedasticity and
+autocorrelation.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">HypothesisTests</span></span></code></pre></div></li>
+<li><p><strong>RegressionDiagnostics.jl:</strong> This package provides
+tools for checking multicollinearity, among other diagnostic tests.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RegressionDiagnostics</span></span></code></pre></div></li>
+<li><p><strong>DataFrames.jl:</strong> While not strictly for
+diagnostics, this package is incredibly useful for data manipulation and
+preparation.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span></code></pre></div></li>
+<li><p><strong>StatsBase.jl:</strong> Provides basic statistical
+functions that can be helpful in diagnostics.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span></code></pre></div></li>
+</ol>
+<p>By combining these packages, you can perform a thorough analysis and
+diagnostics of your regression models. Each package has its own set of
+functionalities that complement the others, making the entire diagnostic
+process smoother and more comprehensive.</p>
+</div>
+<div id="regression-diagnostics-with-julia-1" class="section level3">
+<h3>Regression Diagnostics with Julia</h3>
+<h3>
+Regression Diagnostics with Julia
+</h3>
+<p>There are several Julia packages that can assist you with regression
+diagnostics. Here are a few of them:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>GLM.jl:</strong> The Generalized Linear Models package is
+the go-to for fitting linear and generalized linear models.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLM</span></span></code></pre></div></li>
+<li><p><strong>Plots.jl and StatsPlots.jl:</strong> These packages are
+excellent for creating diagnostic plots.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsPlots</span></span></code></pre></div></li>
+<li><p><strong>HypothesisTests.jl:</strong> This package contains
+various statistical tests, including those for heteroscedasticity and
+autocorrelation.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">HypothesisTests</span></span></code></pre></div></li>
+<li><p><strong>RegressionDiagnostics.jl:</strong> This package provides
+tools for checking multicollinearity, among other diagnostic tests.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RegressionDiagnostics</span></span></code></pre></div></li>
+<li><p><strong>DataFrames.jl:</strong> While not strictly for
+diagnostics, this package is incredibly useful for data manipulation and
+preparation.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span></code></pre></div></li>
+<li><p><strong>StatsBase.jl:</strong> Provides basic statistical
+functions that can be helpful in diagnostics.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span></code></pre></div></li>
+</ol>
+<p>By combining these packages, you can perform a thorough analysis and
+diagnostics of your regression models. Each package has its own set of
+functionalities that complement the others, making the entire diagnostic
+process smoother and more comprehensive.</p>
 </div>
 </div>
 </div>

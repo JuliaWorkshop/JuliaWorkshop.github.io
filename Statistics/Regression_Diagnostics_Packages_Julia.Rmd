@@ -1,0 +1,37 @@
+### Regression Diagnostics with Julia 
+<h3>Regression Diagnostics with Julia</h3>
+There are several Julia packages that can assist you with regression diagnostics. Here are a few of them:
+
+1. **GLM.jl:** The Generalized Linear Models package is the go-to for fitting linear and generalized linear models.
+   ```julia
+   using GLM
+   ```
+
+2. **Plots.jl and StatsPlots.jl:** These packages are excellent for creating diagnostic plots.
+   ```julia
+   using Plots
+   using StatsPlots
+   ```
+
+3. **HypothesisTests.jl:** This package contains various statistical tests, including those for heteroscedasticity and autocorrelation.
+   ```julia
+   using HypothesisTests
+   ```
+
+4. **RegressionDiagnostics.jl:** This package provides tools for checking multicollinearity, among other diagnostic tests.
+   ```julia
+   using RegressionDiagnostics
+   ```
+
+5. **DataFrames.jl:** While not strictly for diagnostics, this package is incredibly useful for data manipulation and preparation.
+   ```julia
+   using DataFrames
+   ```
+
+6. **StatsBase.jl:** Provides basic statistical functions that can be helpful in diagnostics.
+   ```julia
+   using StatsBase
+   ```
+
+By combining these packages, you can perform a thorough analysis and diagnostics of your regression models. Each package has its own set of functionalities that complement the others, making the entire diagnostic process smoother and more comprehensive.
+

@@ -1,0 +1,51 @@
+---
+title: "Exploratory Data Analysis with Julia"
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Exploratory Data Analysis with Julia
+
+**Exploratory Data Analysis with Julia**
+
+This 12-week course introduces you to Exploratory Data Analysis (EDA) using the powerful Julia programming language. EDA is the crucial first step in any data science project. It involves investigating your data to understand its key characteristics, uncover hidden patterns, and identify any anomalies. Through a blend of lectures, hands-on exercises, and a final project, you'll gain a solid understanding of EDA techniques and their practical application. 
+
+We'll start with the fundamentals, covering essential Julia concepts and data manipulation techniques. Then, we'll delve into descriptive statistics, learning how to calculate and interpret measures of central tendency and dispersion. You'll also master the art of data visualization with Plots.jl, creating insightful charts and graphs to communicate your findings effectively. 
+
+The course will explore advanced topics like data transformations, handling missing data, and outlier detection. We'll also dedicate a week to method comparison studies, focusing on Bland-Altman plots to assess the agreement between different measurement methods.
+
+Finally, you'll put your knowledge into practice with a comprehensive final project, where you'll apply EDA techniques to a real-world dataset and present your findings. This course will equip you with the essential skills for successful data exploration and analysis.
+
+**Prerequisites:**
+
+* Basic programming experience (e.g., understanding of variables, control flow, functions).
+* Familiarity with basic statistical concepts (e.g., mean, median, standard deviation).
+* A computer with Julia and the necessary packages installed.
+
+**Software:**
+
+* Julia programming language
+* Julia packages: DataFrames.jl, Plots.jl, Statistics.jl, Missing.jl, HypothesisTests.jl (for statistical tests)
+
+
+
+### Exploratory Data Analysis with Julia
+
+```{r child = "EDA_Julia_Syllabus.Rmd"}
+
+```

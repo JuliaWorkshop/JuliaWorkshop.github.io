@@ -8,79 +8,14 @@
 
 
 
-<title>Probability Distributions with Julia</title>
+<title>Exploratory Data Analysis with Julia</title>
 
-<meta property="og:title" content="Probability Distributions with Julia" />
+<meta property="og:title" content="Exploratory Data Analysis with Julia" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-color: #aaaaaa;
-}
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } 
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.at { color: #7d9029; } 
-code span.bn { color: #40a070; } 
-code span.bu { color: #008000; } 
-code span.cf { color: #007020; font-weight: bold; } 
-code span.ch { color: #4070a0; } 
-code span.cn { color: #880000; } 
-code span.co { color: #60a0b0; font-style: italic; } 
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.do { color: #ba2121; font-style: italic; } 
-code span.dt { color: #902000; } 
-code span.dv { color: #40a070; } 
-code span.er { color: #ff0000; font-weight: bold; } 
-code span.ex { } 
-code span.fl { color: #40a070; } 
-code span.fu { color: #06287e; } 
-code span.im { color: #008000; font-weight: bold; } 
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
-code span.kw { color: #007020; font-weight: bold; } 
-code span.op { color: #666666; } 
-code span.ot { color: #007020; } 
-code span.pp { color: #bc7a00; } 
-code span.sc { color: #4070a0; } 
-code span.ss { color: #bb6688; } 
-code span.st { color: #4070a0; } 
-code span.va { color: #19177c; } 
-code span.vs { color: #4070a0; } 
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
-</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -1088,7 +1023,7 @@ height: 100%;
   
 </span>
 <span class="navbar-brand">
-  Probability Distributions with Julia
+  Exploratory Data Analysis with Julia
   <span class="navbar-author">
         </span>
 </span>
@@ -2794,341 +2729,234 @@ window.FlexDashboardComponents.push({
 <h1>About</h1>
 <div id="column" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
-<div id="probability-distributions-with-julia" class="section level3">
-<h3>Probability Distributions with Julia</h3>
-<p>(<a href="https://juliaworkshop.github.io">Back to Main Page</a>)</p>
-<div id="probability-distributions-with-julia-1" class="section level4">
-<h4>Probability Distributions with Julia:</h4>
-</div>
-</div>
-<div id="beta-distribution---example" class="section level3">
-<h3>Beta Distribution - Example</h3>
-<h4>
-Beta Distribution - Example
-</h4>
-<p>** Here’s a worked example of the Beta distribution using
-Julia.**</p>
-<p>First, let’s install the required packages if you don’t already have
-them:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Distributions&quot;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span></code></pre></div>
-<p>Now, let’s dive into the example:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Import the necessary packages:</strong></li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Define the parameters of the Beta
-distribution:</strong></li>
-</ol>
-<p>Let’s choose parameters <span class="math inline">\(\alpha =
-2\)</span> and <span class="math inline">\(\beta = 5\)</span>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">5</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Create a Beta distribution object:</strong></li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>beta_dist <span class="op">=</span> <span class="fu">Beta</span>(alpha, beta)</span></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Calculate the mean and variance:</strong></li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>mean_beta <span class="op">=</span> <span class="fu">mean</span>(beta_dist)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>variance_beta <span class="op">=</span> <span class="fu">var</span>(beta_dist)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, mean_beta)</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Variance: &quot;</span>, variance_beta)</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Generate random samples from the Beta
-distribution:</strong></li>
-</ol>
-<p>Let’s generate 1000 random samples.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(beta_dist, <span class="fl">1000</span>)</span></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li><strong>Plot the probability density function (PDF):</strong></li>
-</ol>
-<p>We will plot the PDF of the Beta distribution and the histogram of
-the samples.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>pdf_values <span class="op">=</span> <span class="fu">pdf</span>.(beta_dist, x)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">plot</span>(x, pdf_values, label<span class="op">=</span><span class="st">&quot;Beta(2, 5) PDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">histogram!</span>(samples, normalize<span class="op">=</span><span class="cn">true</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&quot;Sample Histogram&quot;</span>)</span></code></pre></div>
-<p>The complete code looks like this:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Define the parameters of the Beta distribution</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># Create a Beta distribution object</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>beta_dist <span class="op">=</span> <span class="fu">Beta</span>(alpha, beta)</span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># Calculate the mean and variance</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>mean_beta <span class="op">=</span> <span class="fu">mean</span>(beta_dist)</span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>variance_beta <span class="op">=</span> <span class="fu">var</span>(beta_dist)</span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, mean_beta)</span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Variance: &quot;</span>, variance_beta)</span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co"># Generate random samples from the Beta distribution</span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(beta_dist, <span class="fl">1000</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co"># Plot the probability density function (PDF)</span></span>
-<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>pdf_values <span class="op">=</span> <span class="fu">pdf</span>.(beta_dist, x)</span>
-<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="fu">plot</span>(x, pdf_values, label<span class="op">=</span><span class="st">&quot;Beta(2, 5) PDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="fu">histogram!</span>(samples, normalize<span class="op">=</span><span class="cn">true</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&quot;Sample Histogram&quot;</span>)</span></code></pre></div>
-<p>This code will generate a plot showing the probability density
-function of the Beta(2, 5) distribution and a histogram of 1000 random
-samples drawn from this distribution.</p>
-</div>
-</div>
-</div>
-<div id="power-law-distributions" class="section level1" data-navmenu="Abvanced Topics">
-<h1>Power Law Distributions</h1>
-<div id="column-1" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="power-law-distributions-1" class="section level3">
-<h3>Power Law Distributions</h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Power Law Distribution Tutorial in Julia</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span>, <span class="bu">Plots</span>, <span class="bu">StatsPlots</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># 1. Defining a Power Law Distribution</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co"># The Distributions.jl package doesn&#39;t have a built-in Power Law distribution.</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># We can define it ourselves.  Here&#39;s a simple implementation:</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="kw">struct</span> PowerLaw{T<span class="op">&lt;:</span><span class="dt">Real</span>} <span class="op">&lt;:</span><span class="dt"> ContinuousUnivariateDistribution</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>    xmin<span class="op">::</span><span class="dt">T  </span><span class="co"># Minimum value (must be &gt; 0)</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>    alpha<span class="op">::</span><span class="dt">T </span><span class="co"># Exponent (must be &gt; 1 for a proper distribution)</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co"># Define a method to generate random samples.</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="im">import</span> <span class="bu">Base.rand</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="kw">function</span> <span class="fu">rand</span>(rng<span class="op">::</span><span class="dt">AbstractRNG</span>, d<span class="op">::</span><span class="dt">PowerLaw</span>)</span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a>    u <span class="op">=</span> <span class="fu">rand</span>(rng)</span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>    <span class="cf">return</span> d.xmin <span class="op">*</span> (<span class="fl">1</span> <span class="op">-</span> u)<span class="op">^</span>(<span class="op">-</span><span class="fl">1</span><span class="op">/</span>(d.alpha <span class="op">-</span> <span class="fl">1</span>))</span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co"># Define other necessary methods for Distributions.jl compatibility (optional but good practice).</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="im">import</span> <span class="bu">Distributions</span>: pdf, cdf</span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pdf</span>(d<span class="op">::</span><span class="dt">PowerLaw</span>, x<span class="op">::</span><span class="dt">Real</span>)</span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> d.xmin</span>
-<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a>        <span class="cf">return</span> (d.alpha <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> d.xmin<span class="op">^</span>(d.alpha <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> x<span class="op">^</span>(<span class="op">-</span>d.alpha)</span>
-<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cdf</span>(d<span class="op">::</span><span class="dt">PowerLaw</span>, x<span class="op">::</span><span class="dt">Real</span>)</span>
-<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> d.xmin</span>
-<span id="cb9-36"><a href="#cb9-36" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb9-37"><a href="#cb9-37" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb9-38"><a href="#cb9-38" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span> <span class="op">-</span> (d.xmin <span class="op">/</span> x)<span class="op">^</span>(d.alpha <span class="op">-</span> <span class="fl">1</span>)</span>
-<span id="cb9-39"><a href="#cb9-39" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb9-40"><a href="#cb9-40" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb9-41"><a href="#cb9-41" tabindex="-1"></a></span>
-<span id="cb9-42"><a href="#cb9-42" tabindex="-1"></a><span class="co"># Example usage:</span></span>
-<span id="cb9-43"><a href="#cb9-43" tabindex="-1"></a>xmin <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Minimum value</span></span>
-<span id="cb9-44"><a href="#cb9-44" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">2.5</span> <span class="co"># Exponent</span></span>
-<span id="cb9-45"><a href="#cb9-45" tabindex="-1"></a>dist <span class="op">=</span> <span class="fu">PowerLaw</span>(xmin, alpha)</span>
-<span id="cb9-46"><a href="#cb9-46" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" tabindex="-1"></a><span class="co"># 2. Generating Random Samples</span></span>
-<span id="cb9-48"><a href="#cb9-48" tabindex="-1"></a></span>
-<span id="cb9-49"><a href="#cb9-49" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="fl">10000</span></span>
-<span id="cb9-50"><a href="#cb9-50" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(dist, n_samples)  <span class="co"># Generate random samples</span></span>
-<span id="cb9-51"><a href="#cb9-51" tabindex="-1"></a></span>
-<span id="cb9-52"><a href="#cb9-52" tabindex="-1"></a><span class="co"># 3. Visualizing the Distribution</span></span>
-<span id="cb9-53"><a href="#cb9-53" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="#cb9-54" tabindex="-1"></a><span class="co"># Histogram</span></span>
-<span id="cb9-55"><a href="#cb9-55" tabindex="-1"></a><span class="fu">histogram</span>(samples, </span>
-<span id="cb9-56"><a href="#cb9-56" tabindex="-1"></a>          bins <span class="op">=</span> <span class="op">:</span> FreedmanDiaconis, <span class="co">#Good automatic bin selection</span></span>
-<span id="cb9-57"><a href="#cb9-57" tabindex="-1"></a>          normalize <span class="op">=</span> <span class="cn">true</span>,</span>
-<span id="cb9-58"><a href="#cb9-58" tabindex="-1"></a>          xlabel <span class="op">=</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb9-59"><a href="#cb9-59" tabindex="-1"></a>          ylabel <span class="op">=</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
-<span id="cb9-60"><a href="#cb9-60" tabindex="-1"></a>          title <span class="op">=</span> <span class="st">&quot;Power Law Distribution (xmin=</span><span class="sc">$</span>xmin<span class="st">, α=</span><span class="sc">$</span>alpha<span class="st">)&quot;</span>)</span>
-<span id="cb9-61"><a href="#cb9-61" tabindex="-1"></a></span>
-<span id="cb9-62"><a href="#cb9-62" tabindex="-1"></a><span class="co"># Overlay the theoretical PDF (for comparison)</span></span>
-<span id="cb9-63"><a href="#cb9-63" tabindex="-1"></a>x_vals <span class="op">=</span> <span class="fu">range</span>(xmin, <span class="fu">maximum</span>(samples), length <span class="op">=</span> <span class="fl">200</span>)</span>
-<span id="cb9-64"><a href="#cb9-64" tabindex="-1"></a><span class="fu">plot!</span>(x_vals, <span class="fu">pdf</span>.(dist, x_vals), </span>
-<span id="cb9-65"><a href="#cb9-65" tabindex="-1"></a>      label <span class="op">=</span> <span class="st">&quot;Theoretical PDF&quot;</span>, </span>
-<span id="cb9-66"><a href="#cb9-66" tabindex="-1"></a>      linewidth <span class="op">=</span> <span class="fl">2</span>, </span>
-<span id="cb9-67"><a href="#cb9-67" tabindex="-1"></a>      color <span class="op">=</span> <span class="op">:</span>red)</span>
-<span id="cb9-68"><a href="#cb9-68" tabindex="-1"></a></span>
-<span id="cb9-69"><a href="#cb9-69" tabindex="-1"></a></span>
-<span id="cb9-70"><a href="#cb9-70" tabindex="-1"></a><span class="co"># Log-log plot (essential for power laws)</span></span>
-<span id="cb9-71"><a href="#cb9-71" tabindex="-1"></a><span class="fu">histogram</span>(samples,</span>
-<span id="cb9-72"><a href="#cb9-72" tabindex="-1"></a>          bins <span class="op">=</span> <span class="op">:</span>log, <span class="co"># Logarithmic bins</span></span>
-<span id="cb9-73"><a href="#cb9-73" tabindex="-1"></a>          normalize <span class="op">=</span> <span class="cn">true</span>,</span>
-<span id="cb9-74"><a href="#cb9-74" tabindex="-1"></a>          xlabel <span class="op">=</span> <span class="st">&quot;x (log scale)&quot;</span>,</span>
-<span id="cb9-75"><a href="#cb9-75" tabindex="-1"></a>          ylabel <span class="op">=</span> <span class="st">&quot;Probability Density (log scale)&quot;</span>,</span>
-<span id="cb9-76"><a href="#cb9-76" tabindex="-1"></a>          title <span class="op">=</span> <span class="st">&quot;Power Law Distribution (Log-Log Scale)&quot;</span>,</span>
-<span id="cb9-77"><a href="#cb9-77" tabindex="-1"></a>          xscale <span class="op">=</span> <span class="op">:</span>log10, yscale <span class="op">=</span> <span class="op">:</span>log10)</span>
-<span id="cb9-78"><a href="#cb9-78" tabindex="-1"></a></span>
-<span id="cb9-79"><a href="#cb9-79" tabindex="-1"></a><span class="fu">plot!</span>(x_vals, <span class="fu">pdf</span>.(dist, x_vals), </span>
-<span id="cb9-80"><a href="#cb9-80" tabindex="-1"></a>      label <span class="op">=</span> <span class="st">&quot;Theoretical PDF&quot;</span>, </span>
-<span id="cb9-81"><a href="#cb9-81" tabindex="-1"></a>      linewidth <span class="op">=</span> <span class="fl">2</span>, </span>
-<span id="cb9-82"><a href="#cb9-82" tabindex="-1"></a>      color <span class="op">=</span> <span class="op">:</span>red)</span>
-<span id="cb9-83"><a href="#cb9-83" tabindex="-1"></a></span>
-<span id="cb9-84"><a href="#cb9-84" tabindex="-1"></a><span class="co"># 4. Parameter Estimation (Optional)</span></span>
-<span id="cb9-85"><a href="#cb9-85" tabindex="-1"></a></span>
-<span id="cb9-86"><a href="#cb9-86" tabindex="-1"></a><span class="co"># Estimating parameters from data is more complex for power laws.</span></span>
-<span id="cb9-87"><a href="#cb9-87" tabindex="-1"></a><span class="co"># There are specialized methods, but a simple (though not always best)</span></span>
-<span id="cb9-88"><a href="#cb9-88" tabindex="-1"></a><span class="co"># approach is to use a linear fit on the log-log histogram.</span></span>
-<span id="cb9-89"><a href="#cb9-89" tabindex="-1"></a></span>
-<span id="cb9-90"><a href="#cb9-90" tabindex="-1"></a><span class="co"># (Simplified example – more robust methods exist)</span></span>
-<span id="cb9-91"><a href="#cb9-91" tabindex="-1"></a>log_x <span class="op">=</span> <span class="fu">log</span>.(samples)</span>
-<span id="cb9-92"><a href="#cb9-92" tabindex="-1"></a>log_counts <span class="op">=</span> <span class="fu">log</span>.(<span class="fu">fit</span>(Histogram, samples, <span class="op">:</span>log).weights)</span>
-<span id="cb9-93"><a href="#cb9-93" tabindex="-1"></a></span>
-<span id="cb9-94"><a href="#cb9-94" tabindex="-1"></a><span class="co"># Fit a line to the log-log data (you would typically exclude the tail of the distribution).</span></span>
-<span id="cb9-95"><a href="#cb9-95" tabindex="-1"></a><span class="co"># Note: This is a simplified example and might not be the most accurate estimation method.</span></span>
-<span id="cb9-96"><a href="#cb9-96" tabindex="-1"></a><span class="co">#       More robust methods like maximum likelihood estimation (MLE) are recommended.</span></span>
-<span id="cb9-97"><a href="#cb9-97" tabindex="-1"></a><span class="co">#       Packages like `PowerLaw` may be helpful for more advanced analysis.</span></span>
-<span id="cb9-98"><a href="#cb9-98" tabindex="-1"></a><span class="co">#       However, MLE for power-law is a complex topic and requires specialized treatment.</span></span>
-<span id="cb9-99"><a href="#cb9-99" tabindex="-1"></a></span>
-<span id="cb9-100"><a href="#cb9-100" tabindex="-1"></a><span class="co"># 5. Key Considerations for Power Laws</span></span>
-<span id="cb9-101"><a href="#cb9-101" tabindex="-1"></a></span>
-<span id="cb9-102"><a href="#cb9-102" tabindex="-1"></a><span class="co"># - **Minimum Value (xmin):**  The minimum value is a crucial parameter.  Accurately determining xmin is important.</span></span>
-<span id="cb9-103"><a href="#cb9-103" tabindex="-1"></a><span class="co"># - **Exponent (alpha):**  The exponent determines the shape of the distribution.</span></span>
-<span id="cb9-104"><a href="#cb9-104" tabindex="-1"></a><span class="co"># - **Log-log plots:**  Essential for visualizing and analyzing power laws.  The power law appears as a straight line on a log-log plot.</span></span>
-<span id="cb9-105"><a href="#cb9-105" tabindex="-1"></a><span class="co"># - **Parameter Estimation:**  Can be challenging.  Simple linear fits on log-log plots are a starting point but may not be accurate.  MLE is preferred but has its own complexities.  Be careful about binning effects.</span></span>
-<span id="cb9-106"><a href="#cb9-106" tabindex="-1"></a><span class="co"># - **Heavy Tails:**  Power laws have &quot;heavy tails,&quot; meaning extreme values are more likely than in many other distributions.  This has important implications for analysis and simulation.</span></span>
-<span id="cb9-107"><a href="#cb9-107" tabindex="-1"></a></span>
-<span id="cb9-108"><a href="#cb9-108" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Tutorial Completed!&quot;</span>)</span></code></pre></div>
-<p><strong>Explanation and Key Improvements:</strong></p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Custom <code>PowerLaw</code> Type:</strong> Since
-<code>Distributions.jl</code> doesn’t have a built-in power law, we
-define our own <code>PowerLaw</code> struct and implement the necessary
-methods (<code>rand</code>, <code>pdf</code>, <code>cdf</code>). This
-makes it behave like other Distributions.jl distributions.</p></li>
-<li><p><strong>Random Number Generation:</strong> The <code>rand</code>
-method uses the inverse transform sampling method, which is the standard
-way to generate power-law random variates.</p></li>
-<li><p><strong>PDF and CDF:</strong> The <code>pdf</code> and
-<code>cdf</code> methods are implemented for completeness and to allow
-comparison with the theoretical distribution.</p></li>
-<li><p><strong>Visualization:</strong></p>
+<div id="exploratory-data-analysis-with-julia" class="section level3">
+<h3>Exploratory Data Analysis with Julia</h3>
+<p><strong>Exploratory Data Analysis with Julia</strong></p>
+<p>This 12-week course introduces you to Exploratory Data Analysis (EDA)
+using the powerful Julia programming language. EDA is the crucial first
+step in any data science project. It involves investigating your data to
+understand its key characteristics, uncover hidden patterns, and
+identify any anomalies. Through a blend of lectures, hands-on exercises,
+and a final project, you’ll gain a solid understanding of EDA techniques
+and their practical application.</p>
+<p>We’ll start with the fundamentals, covering essential Julia concepts
+and data manipulation techniques. Then, we’ll delve into descriptive
+statistics, learning how to calculate and interpret measures of central
+tendency and dispersion. You’ll also master the art of data
+visualization with Plots.jl, creating insightful charts and graphs to
+communicate your findings effectively.</p>
+<p>The course will explore advanced topics like data transformations,
+handling missing data, and outlier detection. We’ll also dedicate a week
+to method comparison studies, focusing on Bland-Altman plots to assess
+the agreement between different measurement methods.</p>
+<p>Finally, you’ll put your knowledge into practice with a comprehensive
+final project, where you’ll apply EDA techniques to a real-world dataset
+and present your findings. This course will equip you with the essential
+skills for successful data exploration and analysis.</p>
+<p><strong>Prerequisites:</strong></p>
 <ul>
-<li>The code now includes a regular histogram and a <em>log-log
-histogram</em>, which is absolutely essential for visualizing and
-confirming that your data follows a power law. Power laws appear as
-straight lines on a log-log plot.</li>
-<li>The theoretical PDF is overlaid on the histogram for
-comparison.</li>
-<li><code>FreedmanDiaconis</code> is used for automatic bin selection
-which is generally a good choice.</li>
+<li>Basic programming experience (e.g., understanding of variables,
+control flow, functions).</li>
+<li>Familiarity with basic statistical concepts (e.g., mean, median,
+standard deviation).</li>
+<li>A computer with Julia and the necessary packages installed.</li>
+</ul>
+<p><strong>Software:</strong></p>
+<ul>
+<li>Julia programming language</li>
+<li>Julia packages: DataFrames.jl, Plots.jl, Statistics.jl, Missing.jl,
+HypothesisTests.jl (for statistical tests)</li>
+</ul>
+</div>
+<div id="exploratory-data-analysis-with-julia-1" class="section level3">
+<h3>Exploratory Data Analysis with Julia</h3>
+<p><strong>Exploratory Data Analysis with Julia</strong></p>
+<p><strong>Instructor:</strong> [Your Name] <strong>Email:</strong>
+[Your Email] <strong>Office Hours:</strong> [Your Office Hours]
+<strong>Course Website:</strong> [Link to Course Website (if
+applicable)]</p>
+<p><strong>Course Description:</strong></p>
+<p>This 12-week course will provide a comprehensive introduction to
+Exploratory Data Analysis (EDA) using the Julia programming language.
+EDA is a crucial initial step in any data science project, involving the
+in-depth investigation of a dataset to summarize its key
+characteristics, uncover patterns, and identify anomalies. Through a
+combination of lectures, hands-on exercises, and a final project,
+students will develop a strong foundation in EDA techniques and their
+practical application.</p>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>Basic programming experience (e.g., understanding of variables,
+control flow, functions).</li>
+<li>Familiarity with basic statistical concepts (e.g., mean, median,
+standard deviation).</li>
+<li>A computer with Julia and the necessary packages installed.</li>
+</ul>
+<p><strong>Software:</strong></p>
+<ul>
+<li>Julia programming language</li>
+<li>Julia packages: DataFrames.jl, Plots.jl, Statistics.jl, Missing.jl,
+HypothesisTests.jl (for statistical tests)</li>
+</ul>
+<p><strong>Grading:</strong></p>
+<ul>
+<li><strong>Assignments:</strong> [Percentage] (e.g., 40%) - Weekly
+assignments covering the course material.</li>
+<li><strong>Midterm Exam:</strong> [Percentage] (e.g., 25%) - In-class
+or take-home exam covering the first half of the course.</li>
+<li><strong>Final Project:</strong> [Percentage] (e.g., 35%) - A
+comprehensive project applying EDA techniques to a real-world dataset
+and presenting findings.</li>
+</ul>
+<p><strong>Course Schedule:</strong></p>
+<p><strong>Module 1: Introduction &amp; Foundations (Weeks
+1-2)</strong></p>
+<ul>
+<li><strong>Week 1:</strong>
+<ul>
+<li>Introduction to Exploratory Data Analysis (EDA) and its importance
+in data science</li>
+<li>Overview of the Julia programming language and its data science
+ecosystem</li>
+<li>Setting up the Julia environment and installing necessary
+packages</li>
+<li>Basic data structures in Julia: Vectors, Matrices, and
+DataFrames</li>
 </ul></li>
-<li><p><strong>Parameter Estimation (Simplified):</strong> The code
-provides a <em>very</em> basic example of parameter estimation using a
-linear fit on the log-log histogram. <strong>Important:</strong> This is
-a simplified example and may not be the most accurate method. Power-law
-parameter estimation is a complex topic. Maximum likelihood estimation
-(MLE) is generally preferred, but it’s more involved. The
-<code>PowerLaw</code> package may be helpful.</p></li>
-<li><p><strong>Key Considerations:</strong> The tutorial emphasizes the
-importance of <code>xmin</code>, <code>alpha</code>, log-log plots, and
-the challenges of parameter estimation for power laws.</p></li>
-<li><p><strong>Clearer Comments and Structure:</strong> The code is
-well-commented and organized, making it easier to follow.</p></li>
-<li><p><strong>Package Loading:</strong> Explicitly loads the necessary
-packages.</p></li>
-</ol>
-<p>This improved tutorial provides a more complete and informative
-introduction to working with power-law distributions in Julia, covering
-definition, random number generation, visualization, and basic (though
-simplified) parameter estimation. It also highlights the important
-considerations when dealing with power laws. Remember to install the
-necessary packages using
-<code>] add Distributions Plots StatsPlots</code> in the Julia REPL.</p>
-</div>
-</div>
-</div>
-<div id="extreme-value-theory" class="section level1" data-navmenu="Abvanced Topics">
-<h1>Extreme Value Theory</h1>
-<div id="column-2" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="extreme-value-theory-evt-with-julia" class="section level3">
-<h3>Extreme Value Theory (EVT) with Julia</h3>
-<h3>
-Extreme Value Theory (EVT) with Julia
-</h3>
-<p>Extreme Value Theory (EVT) is primarily concerned with modeling the
-tails of probability distributions, focusing on extreme events. Here are
-the main probability distributions used in EVT:</p>
-<p><strong>1. Generalized Extreme Value (GEV) Distribution:</strong></p>
+<li><strong>Week 2:</strong>
 <ul>
-<li><strong>Central to EVT:</strong> The GEV distribution is the
-cornerstone of EVT for modeling block maxima (the largest or smallest
-values in a set of data).</li>
-<li><strong>Unified Family:</strong> It combines three distributions
-into a single family:
+<li>Data loading and manipulation with DataFrames.jl:
 <ul>
-<li><strong>Gumbel:</strong> Used for unbounded distributions (e.g.,
-maximum temperatures).</li>
-<li><strong>Fréchet:</strong> Used for heavy-tailed distributions (e.g.,
-financial losses).</li>
-<li><strong>Weibull:</strong> Used for bounded distributions (e.g.,
-material strength).</li>
+<li>Reading data from various sources (CSV, Excel, etc.)</li>
+<li>Data cleaning and preprocessing: Handling missing values, data type
+conversions, and data subsetting.</li>
+<li>Basic data transformations: Filtering, sorting, and grouping
+data.</li>
 </ul></li>
-<li><strong>Parameters:</strong>
-<ul>
-<li><strong>μ (location):</strong> Shifts the distribution.</li>
-<li><strong>σ (scale):</strong> Controls the spread.</li>
-<li><strong>ξ (shape):</strong> Determines the tail behavior and which
-of the three types it is.</li>
 </ul></li>
 </ul>
-<p><strong>2. Generalized Pareto Distribution (GPD):</strong></p>
+<p><strong>Module 2: Descriptive Statistics (Weeks 3-4)</strong></p>
 <ul>
-<li><strong>Peaks Over Threshold (POT):</strong> The GPD is used to
-model exceedances over a high threshold (values above a certain
-level).</li>
-<li><strong>Focus on Tails:</strong> It specifically models the behavior
-of the distribution beyond the threshold.</li>
-<li><strong>Parameters:</strong>
+<li><strong>Week 3:</strong>
 <ul>
-<li><strong>σ (scale):</strong> Controls the spread of the tail.</li>
-<li><strong>ξ (shape):</strong> Determines the tail’s heaviness.</li>
+<li>Measures of central tendency: Mean, median, mode</li>
+<li>Measures of dispersion: Variance, standard deviation, quartiles,
+interquartile range</li>
+<li>Exploring data distributions: Histograms, density plots, box
+plots</li>
+</ul></li>
+<li><strong>Week 4:</strong>
+<ul>
+<li>Descriptive statistics for categorical data: Frequency tables,
+contingency tables</li>
+<li>Introduction to probability distributions: Normal distribution,
+binomial distribution</li>
 </ul></li>
 </ul>
-<hr />
-<p><strong>Key Points:</strong></p>
+<p><strong>Module 3: Data Visualization (Weeks 5-6)</strong></p>
 <ul>
-<li><strong>Extreme Value Theorem:</strong> The foundation of EVT states
-that under certain conditions, the distribution of extreme values (block
-maxima or exceedances) will converge to one of these distributions (GEV
-or GPD).</li>
-<li><strong>Choice of Distribution:</strong> The choice between GEV and
-GPD depends on the specific problem and data:
+<li><strong>Week 5:</strong>
 <ul>
-<li><strong>GEV:</strong> For modeling block maxima.</li>
-<li><strong>GPD:</strong> For modeling peaks over thresholds.</li>
+<li>Creating effective visualizations with Plots.jl:
+<ul>
+<li>Scatter plots, line plots, bar charts</li>
+<li>Customizing plots: Adding titles, labels, legends, and
+annotations</li>
 </ul></li>
-<li><strong>Parameter Estimation:</strong> Accurate estimation of the
-parameters is crucial for making reliable predictions about extreme
-events.</li>
-</ul>
-<p><strong>Applications:</strong></p>
-<p>These distributions are widely used in various fields:</p>
+<li>Visualizing relationships between variables: Scatter plots with
+regression lines, correlation matrices</li>
+</ul></li>
+<li><strong>Week 6:</strong>
 <ul>
-<li><strong>Finance:</strong> Risk management, estimating extreme
-losses.</li>
-<li><strong>Insurance:</strong> Assessing the probability of large
-claims.</li>
-<li><strong>Environmental Science:</strong> Modeling extreme weather
-events, floods, droughts.</li>
-<li><strong>Engineering:</strong> Assessing the reliability of
-structures under extreme loads.</li>
+<li>Advanced visualization techniques:
+<ul>
+<li>Heatmaps, 3D plots, interactive plots</li>
+<li>Communicating data insights effectively through visualizations</li>
+</ul></li>
+</ul></li>
 </ul>
-<p>Understanding these distributions and their properties is essential
-for applying EVT effectively and making informed decisions about extreme
-events.</p>
+<p><strong>Module 4: Data Transformations &amp; Handling Missing Data
+(Weeks 7-8)</strong></p>
+<ul>
+<li><strong>Week 7:</strong>
+<ul>
+<li>Data transformations: Log transformations, scaling,
+standardization</li>
+<li>Handling missing data:
+<ul>
+<li>Identifying and imputing missing values</li>
+<li>Techniques for dealing with missing data (e.g., mean imputation,
+deletion)</li>
+</ul></li>
+</ul></li>
+<li><strong>Week 8:</strong>
+<ul>
+<li>Outlier detection and handling: Identifying and addressing outliers
+in the dataset</li>
+</ul></li>
+</ul>
+<p><strong>Module 5: Method Comparison Studies (Week 9)</strong></p>
+<ul>
+<li><strong>Week 9:</strong>
+<ul>
+<li>Introduction to method comparison studies</li>
+<li>Bland-Altman plots:
+<ul>
+<li>Creating and interpreting Bland-Altman plots in Julia</li>
+<li>Assessing agreement between two measurement methods</li>
+<li>Calculating limits of agreement</li>
+</ul></li>
+<li>Case study: Analyzing a dataset involving two measurement methods
+(e.g., comparing blood pressure measurements from two different
+devices)</li>
+</ul></li>
+</ul>
+<p><strong>Module 6: Midterm Exam &amp; Case Study (Weeks
+10-11)</strong></p>
+<ul>
+<li><strong>Week 10:</strong>
+<ul>
+<li>Midterm Exam (covering Modules 1-5)</li>
+<li>Introduction to a case study: Analyzing a real-world dataset</li>
+</ul></li>
+<li><strong>Week 11:</strong>
+<ul>
+<li>In-depth analysis of the case study dataset:
+<ul>
+<li>Applying EDA techniques learned in the course</li>
+<li>Identifying key findings and insights</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Module 7: Final Project &amp; Presentations (Week
+12)</strong></p>
+<ul>
+<li><strong>Week 12:</strong>
+<ul>
+<li>Final Project: Students select and analyze their own datasets</li>
+<li>Guidance and support for final project development</li>
+<li>Final Project Presentations: Students present their findings to the
+class</li>
+<li>Course wrap-up and Q&amp;A session</li>
+</ul></li>
+</ul>
+<p><strong>Textbook (Optional):</strong></p>
+<ul>
+<li>A recommended textbook on statistical data analysis or a
+Julia-specific data science book.</li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>This is a sample syllabus and may be adjusted based on the specific
+needs and goals of the course.</li>
+<li>The instructor reserves the right to make changes to the syllabus as
+needed.</li>
+</ul>
+<p>This revised syllabus now includes a dedicated week for Method
+Comparison Studies, with a focus on Bland-Altman plots. This will
+provide students with valuable skills in assessing the agreement between
+different measurement methods, which is crucial in many scientific and
+clinical applications.</p>
 </div>
 </div>
 </div>
