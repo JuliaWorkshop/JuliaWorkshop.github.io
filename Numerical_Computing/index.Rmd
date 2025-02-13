@@ -1,9 +1,10 @@
 ---
 title: "Numerical Computing"
-output: 
+output:
   flexdashboard::flex_dashboard:
-    theme: united
-    css: style.css
+    theme: 
+      version: 4
+      bootswatch: minty
 ---
 
 ```{r  include=FALSE}
