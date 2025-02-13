@@ -18,7 +18,148 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
-### Random Number Generation, Sampling, and Simulation with Julia
+### Machine Learning with Julia
 
-#### Random Number Generation, Sampling, and Simulation with Julia:
+#### Machine Learning with Julia
+
+(<a href="juliaworkshop.github.io/index.html">Back to main page</a>)
+
+The "Machine Learning with Julia" program is a comprehensive and engaging course designed for those keen on delving into the world of machine learning using the Julia programming language. Over the span of eight weeks, students will be introduced to the fundamentals of machine learning and gain hands-on experience with Julia's powerful capabilities. From the basics of data preprocessing and visualization to advanced concepts like neural networks and deep learning, the program ensures a well-rounded understanding of both the theoretical and practical aspects of machine learning.
+
+One of the highlights of this program is the emphasis on Julia's role in machine learning. Julia is known for its high performance and ease of use, making it an ideal choice for scientific computing and machine learning tasks. Throughout the course, students will explore various Julia packages, such as `DataFrames.jl`, `Plots.jl`, `Flux.jl`, and more, to implement machine learning algorithms efficiently. By the end of the program, students will be proficient in utilizing Julia's ecosystem to build and evaluate machine learning models.
+
+Additionally, the course includes a capstone project that allows students to apply the concepts learned in a real-world scenario. This project work not only reinforces the theoretical knowledge but also enhances practical skills, preparing students for future challenges in the field of machine learning. With a blend of lectures, hands-on exercises, and project work, the "Machine Learning with Julia" program offers a robust learning experience tailored for aspiring machine learning practitioners.
+
+### Syllabus
+
+<h3>Machine Learning with Julia Syllabus</h3>
+
+#### **Course Overview**
+
+This course explores the fundamentals of machine learning using the Julia programming language. It covers key concepts, techniques, and tools needed to build machine learning models. Emphasis will be placed on understanding how Julia, with its high-performance capabilities, can be leveraged to efficiently implement machine learning algorithms.
+
+--------------------------------------------------------------------------------------------------------------
+#### **Week 1: Introduction to Julia and Machine Learning**
+
+- **Course Introduction**
+  - Overview of the course structure and objectives.
+  - Importance of machine learning in various domains.
+
+- **Introduction to Julia**
+  - Brief history of Julia and its role in scientific computing.
+  - Installation and setup of the Julia environment.
+  - Basic syntax, data structures, and control flow in Julia.
+
+- **Relevant Julia Packages**
+  - `DataFrames.jl`: Handling and manipulating data.
+  - `Plots.jl`: Basic data visualization.
+
+#### **Week 2: Data Preprocessing and Visualization**
+
+- **Data Preprocessing Techniques**
+  - Cleaning and preparing data.
+  - Handling missing data and outliers.
+  - Scaling and normalization.
+
+- **Data Visualization**
+  - Importance of data visualization in machine learning.
+  - Creating various types of plots using `Plots.jl`.
+
+- **Relevant Julia Packages**
+  - `DataFrames.jl`
+  - `CSV.jl`: Reading and writing CSV files.
+  - `Plots.jl`
+
+#### **Week 3: Supervised Learning - Regression**
+
+- **Introduction to Supervised Learning**
+  - Definition and types of supervised learning.
+  - Differences between regression and classification.
+
+- **Linear Regression**
+  - Concept and mathematical formulation.
+  - Implementation in Julia.
+  - Evaluation metrics for regression models.
+
+- **Relevant Julia Packages**
+  - `StatsModels.jl`: Statistical models.
+  - `GLM.jl`: Generalized Linear Models.
+
+#### **Week 4: Supervised Learning - Classification**
+
+- **Introduction to Classification**
+  - Concept and common algorithms.
+  - Performance metrics for classification models.
+
+- **Logistic Regression**
+  - Concept and mathematical formulation.
+  - Implementation in Julia.
+
+- **Decision Trees and Random Forests**
+  - Basic principles and implementation in Julia.
+
+- **Relevant Julia Packages**
+  - `DecisionTree.jl`: Decision tree and random forest models.
+  - `MLJ.jl`: Machine Learning in Julia.
+
+#### **Week 5: Unsupervised Learning**
+
+- **Introduction to Unsupervised Learning**
+  - Definition and types of unsupervised learning.
+
+- **Clustering Algorithms**
+  - K-Means Clustering.
+  - Hierarchical Clustering.
+  - Implementation in Julia.
+
+- **Dimensionality Reduction**
+  - Principal Component Analysis (PCA).
+  - Implementation in Julia.
+
+- **Relevant Julia Packages**
+  - `Clustering.jl`: Clustering algorithms.
+  - `MultivariateStats.jl`: Dimensionality reduction techniques.
+
+#### **Week 6: Neural Networks and Deep Learning**
+
+- **Introduction to Neural Networks**
+  - Basic concepts and architecture of neural networks.
+  - Training neural networks and backpropagation.
+
+- **Deep Learning with Flux.jl**
+  - Overview of deep learning and its applications.
+  - Implementation of neural networks using `Flux.jl`.
+
+- **Relevant Julia Packages**
+  - `Flux.jl`: Machine learning library for Julia.
+  - `Zygote.jl`: Automatic differentiation.
+
+#### **Week 7: Model Evaluation and Optimization**
+
+- **Model Evaluation Techniques**
+  - Cross-validation.
+  - Hyperparameter tuning.
+  - Model selection criteria.
+
+- **Optimization Algorithms**
+  - Gradient Descent and its variants.
+  - Implementation in Julia.
+
+- **Relevant Julia Packages**
+  - `MLJBase.jl`: Base functionality for MLJ.
+  - `Optim.jl`: Optimization algorithms.
+
+#### **Week 8: Practical Applications and Project Work**
+
+- **Real-world Applications of Machine Learning**
+  - Case studies and examples.
+  - Discussion on current trends and future directions.
+
+- **Course Project**
+  - Working on a comprehensive project that incorporates the concepts learned throughout the course.
+  - Presentation and discussion of project results.
+
+---
+
+This syllabus aims to provide a balanced mix of theoretical knowledge and practical skills using Julia for machine learning. The focus on Julia packages will allow students to leverage the language’s strengths for efficient and effective model building.
 
