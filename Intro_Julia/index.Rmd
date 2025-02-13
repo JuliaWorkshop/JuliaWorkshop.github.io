@@ -1,0 +1,132 @@
+---
+title: "Introduction to Julia"
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Introduction to Julia
+
+<h3> Introduction to Programming with Julia for Maths, Science & Engineering Students</h3>
+
+- Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments. 
+- It provides a sophisticated compiler, distributed parallel execution, numerical accuracy, and an extensive mathematical function library.
+
+- The library, largely written in Julia itself, also integrates mature, best-of-breed C and Fortran libraries for linear algebra, random number generation, signal processing, and string processing. 
+- In addition, the Julia developer community is contributing a number of external packages through Juliab
+
+### Syllabus
+
+<h3> Introduction to Programming with Julia for Maths, Science & Engineering Students</h3>
+
+
+**Course Description:**
+
+This course introduces fundamental programming concepts and techniques using the Julia language, specifically tailored for students in Mathematics, Science, and Engineering. Through a blend of lectures, hands-on exercises, and practical projects, students will gain a solid foundation in programming principles and their application to solve problems in their respective fields.
+
+**Prerequisites:**
+
+* Basic familiarity with mathematical concepts (e.g., algebra, functions)
+* No prior programming experience required
+
+**Software:**
+
+* Julia programming language
+* Julia REPL (Read-Eval-Print Loop)
+* Jupyter Notebooks (optional, but highly recommended)
+
+**Grading:**
+
+* **Assignments:** [Percentage] (e.g., 50%) - Weekly assignments covering the course material.
+* **Midterm Exam:** [Percentage] (e.g., 25%) - In-class or take-home exam covering the first half of the course.
+* **Final Project:** [Percentage] (e.g., 25%) - A project applying programming concepts to a problem relevant to your field of study.
+
+**Course Schedule (Tentative):**
+
+**Module 1: Introduction to Programming and Julia (Weeks 1-2)**
+
+* **Week 1:**
+    * Introduction to programming concepts: Algorithms, data structures, variables, data types
+    * Introduction to Julia: Syntax, REPL, basic data types (integers, floats, booleans)
+    * Operators, expressions, and basic input/output
+* **Week 2:**
+    * Control flow: Conditional statements (if-else), loops (for, while)
+    * Introduction to functions: Defining and calling functions, arguments, return values
+
+**Module 2: Data Structures and Algorithms (Weeks 3-4)**
+
+* **Week 3:** 
+    * Arrays: Creating, indexing, manipulating arrays
+    * Introduction to data structures: Tuples, dictionaries, sets
+    * Basic algorithms: Searching, sorting (optional)
+* **Week 4:** 
+    * Working with data: Reading and writing data from files (CSV, text)
+    * Data visualization with Plots.jl (basic plots)
+
+**Module 3: Functions and Modules (Weeks 5-6)**
+
+* **Week 5:** 
+    * Functions: Scope, recursion, anonymous functions
+    * Introduction to modules and packages
+* **Week 6:** 
+    * Working with external packages: Installing and using packages (e.g., DataFrames.jl, Statistics.jl)
+
+**Module 4: Object-Oriented Programming (Optional) (Week 7)**
+
+* **Week 7:** 
+    * Introduction to object-oriented programming concepts: Classes, objects, methods
+    * Basic implementation of classes and objects in Julia
+
+**Module 5: Midterm Exam and Project Planning (Weeks 8-9)**
+
+* **Week 8:** 
+    * Midterm Exam
+* **Week 9:** 
+    * Introduction to the final project
+    * Project planning and team formation (if applicable)
+
+**Module 6: Final Project (Weeks 10-12)**
+
+* **Weeks 10-11:** 
+    * Work on final projects
+    * Instructor office hours and support
+* **Week 12:** 
+    * Final project presentations and demos
+    * Course review and wrap-up
+
+**Textbook (Optional):**
+
+* A recommended textbook on programming with Julia.
+
+**Note:**
+
+* This is a sample syllabus and may be adjusted based on the specific needs and goals of the course.
+* The instructor reserves the right to make changes to the syllabus as needed.
+
+**Key Concepts Covered:**
+
+* Programming fundamentals
+* Julia language syntax
+* Data structures
+* Control flow
+* Functions
+* Modules and packages
+* Data visualization
+* Problem-solving with Julia
+
+This syllabus provides a solid foundation for an introductory programming course using Julia, tailored to the needs of Mathematics, Science, and Engineering students. 
+

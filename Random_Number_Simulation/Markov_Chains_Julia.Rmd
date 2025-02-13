@@ -1,0 +1,116 @@
+---
+title: "Markov Chains using Julia"
+subtitle: "Julia Workshop"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    font_size: 20pts
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+<style type="text/css">
+  body{
+  font-size: 20pt;
+}
+</style>
+
+```{r eval=FALSE,include=FALSE}
+
+# CT6 
+# - ASI 2005 April Question B - 1
+# - ASI 2006 April Question B - 1
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(knitr)
+library(dplyr)
+library(janitor)
+
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent_inverse(
+  #base_color = "#4169e1", #)(vvv#TREES
+  #background_color = "#E6E6FA",  #TREE
+  #base_color = "black", #)(
+  background_color =  "white",,
+  text_color="black",
+  text_bold_color = "black",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "400", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+### Markov Chains with Julia
+
+Several Julia packages are well-suited for modeling Markov chains, each with its strengths and focuses. Here's a breakdown of the most commonly used options:
+
+**1. `MarkovChains.jl`:** This package is specifically designed for working with discrete-time Markov chains (DTMCs). It provides a comprehensive set of tools for:
+
+* **Defining Markov chains:**  You can create Markov chains by specifying the transition probability matrix.
+* **Analyzing Markov chains:**  `MarkovChains.jl` offers functions for calculating:
+    * Stationary distributions (the long-run probabilities of being in each state).
+    * Transient probabilities (probabilities of being in a state at a specific time).
+    * Mean first passage times (expected time to reach a state).
+    * Recurrence and transience properties of states.
+* **Simulating Markov chains:** You can generate random sequences of states according to the transition probabilities.
+* **Higher-order Markov chains:** The package also supports higher-order Markov chains where the next state depends on a fixed number of previous states.
+
+---
+
+```julia
+using MarkovChains
+
+# Define the transition probability matrix
+P = [0.7 0.3; 0.2 0.8]  # Example 2-state Markov chain
+
+# Create a Markov chain object
+mc = MarkovChain(P)
+
+# Calculate the stationary distribution
+π = stationary_distribution(mc)
+println("Stationary Distribution: ", π)
+
+# Simulate the Markov chain for 10 steps
+states = simulate(mc, 10)
+println("Simulated States: ", states)
+
+# Calculate the probability of being in state 1 after 5 steps, starting in state 1
+p = transient_probabilities(mc, 5, 1)
+println("Transient probability: ", p[1])
+
+# Calculate the mean first passage time from state 1 to state 2
+m = mean_first_passage_time(mc, 1, 2)
+println("Mean First Passage Time: ", m)
+
+```
+
+---
+
+**2. `StatsBase.jl`:** While not exclusively for Markov chains, `StatsBase.jl` provides some useful functions that can be applied to Markov chains, especially when dealing with discrete data and probabilities. You can use it in conjunction with other packages.
+
+**3. `Distributions.jl`:** This package is essential for working with probability distributions, which are fundamental to Markov chains.  You'll often use `Distributions.jl` to define the underlying probability distributions that govern transitions between states (especially for continuous-time Markov chains or more complex models).
+
+**4. `QuantEcon.jl`:** As mentioned before, `QuantEcon.jl` is a powerful package for quantitative economics, and it includes tools for working with Markov chains, particularly in the context of dynamic programming and other economic models.
+
+**5. `SparseArrays.jl`:** If you're dealing with very large Markov chains with sparse transition matrices (where most entries are zero), using `SparseArrays.jl` can be crucial for memory efficiency and performance.  You can represent the transition matrix as a sparse array, which can significantly reduce storage requirements and speed up computations.
+
+---
+
+**Choosing the Right Package:**
+
+* **`MarkovChains.jl`:** This is generally the best choice for most standard discrete-time Markov chain analysis. It's specifically designed for this purpose and offers a complete set of tools.
+* **`QuantEcon.jl`:** If you are working on more complex economic models that involve Markov chains, then `QuantEcon.jl` may be a more suitable choice, as it integrates well with other tools for dynamic programming and economic modeling.
+* **`SparseArrays.jl`:**  Use this when dealing with large, sparse Markov chains.
+* **`StatsBase.jl` and `Distributions.jl`:**  These are useful supporting packages, especially when you need to work with specific probability distributions or perform general statistical calculations related to your Markov chain analysis.
+
+For most common Markov chain analysis tasks, `MarkovChains.jl` will be the most direct and convenient option.  If you are working on more specialized applications (e.g., large-scale systems, connections to economic models), then you might want to explore the other packages mentioned above.  Remember to install the chosen package(s) using the Julia package manager (e.g., `] add MarkovChains`).

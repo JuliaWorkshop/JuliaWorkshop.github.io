@@ -44,8 +44,36 @@ Finally, you'll put your knowledge into practice with a comprehensive final proj
 
 
 
-### Exploratory Data Analysis with Julia
+### Syllabus
 
 ```{r child = "EDA_Julia_Syllabus.Rmd"}
 
 ```
+
+```{r child = "Data_Transformation_Julia.Rmd"}
+
+```
+
+```{r child = "Heatmaps_Julia.Rmd"}
+
+```
+
+```{r child = "Correlation_Plots_Julia.Rmd"}
+
+```
+
+
+Anscombe's Quartet {data-navmenu="Correlation"}
+=====================================
+
+Column {.tabset}
+--------------------
+```{r child = "Anscombes_Quartet.Rmd"}
+
+```
+
+Method Comparison Studies {data-navmenu="Method Comparison"}
+=====================================
+
+Column {.tabset}
+--------------------

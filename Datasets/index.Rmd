@@ -24,23 +24,59 @@ Column {.tabset}
 ```{r child = "RDatasets_Julia_Package.Rmd"}
 ```
 
+NYC Flights {data-navmenu="Data Science"}
+=====================================
+
+Column {.tabset}
+--------------------
+
 ### NYC Flights (`nycflights13`)
 ```{r child = "NYCflights13_Dataset.Rmd"}
 ```
 
-### Survival Analysis
+Pima Diabetes Dataset {data-navmenu="Data Science"}
+=====================================
 
-#### Survival Analysis
+Column {.tabset}
+--------------------
 
-```{r child = "Survival_Analysis_Datasets.Rmd"}
+
+```{r child = "Pima_Diabetes_Dataset.Rmd"}
 ```
 
 
-```{r child = "Lung_Cancer_Dataset.Rmd"}
-```
+Sonar Dataset {data-navmenu="Data Science"}
+=====================================
 
+Column {.tabset}
+--------------------
 
 ### Sonar Dataset
 
 ```{r child = "Sonar_Dataset.Rmd"}
 ```
+
+
+Survival Analysis {data-navmenu="Survival Analysis"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+
+### Survival Analysis
+
+```{r child = "Survival_Analysis_Datasets.Rmd"}
+```
+
+
+Lung Cancer Data {data-navmenu="Survival Analysis"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Lung_Cancer_Dataset.Rmd"}
+```
+
+

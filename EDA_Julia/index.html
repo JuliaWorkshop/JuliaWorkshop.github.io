@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2768,8 +2833,8 @@ standard deviation).</li>
 HypothesisTests.jl (for statistical tests)</li>
 </ul>
 </div>
-<div id="exploratory-data-analysis-with-julia-1" class="section level3">
-<h3>Exploratory Data Analysis with Julia</h3>
+<div id="syllabus" class="section level3">
+<h3>Syllabus</h3>
 <p><strong>Exploratory Data Analysis with Julia</strong></p>
 <p><strong>Instructor:</strong> [Your Name] <strong>Email:</strong>
 [Your Email] <strong>Office Hours:</strong> [Your Office Hours]
@@ -2958,6 +3023,323 @@ provide students with valuable skills in assessing the agreement between
 different measurement methods, which is crucial in many scientific and
 clinical applications.</p>
 </div>
+<div id="data-transformation-in-julia-for-exploratory-data-analysis" class="section level3">
+<h3>Data Transformation in Julia for Exploratory Data Analysis</h3>
+<p><strong>Data Transformation in Julia for Exploratory Data
+Analysi</strong></p>
+<p>Data transformation is a crucial step in Exploratory Data Analysis
+(EDA). It involves modifying the original data to improve its
+interpretability, enhance the performance of machine learning
+algorithms, and meet the assumptions of statistical tests. This tutorial
+will guide you through common data transformations in Julia:</p>
+<p><strong>1. Log Transformation</strong></p>
+<ul>
+<li><strong>Purpose:</strong>
+<ul>
+<li>To handle skewed data.</li>
+<li>To stabilize variance.</li>
+<li>To linearize relationships between variables.</li>
+</ul></li>
+<li><strong>Implementation:</strong></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Sample skewed data</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">100</span>, <span class="fl">200</span>] </span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># Apply log transformation (base 10)</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>log_data <span class="op">=</span> <span class="fu">log10</span>.(data) </span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Visualize the effect</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">histogram</span>(data, label<span class="op">=</span><span class="st">&quot;Original Data&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">histogram</span>(log_data, label<span class="op">=</span><span class="st">&quot;Log-Transformed Data&quot;</span>)</span></code></pre></div>
+<p><strong>2. Scaling</strong></p>
+<ul>
+<li><p><strong>Purpose:</strong></p>
+<ul>
+<li>To bring features to a common scale.</li>
+<li>To prevent features with larger values from dominating others in
+algorithms like k-means clustering.</li>
+</ul></li>
+<li><p><strong>Methods:</strong></p>
+<ul>
+<li><p><strong>Min-Max Scaling:</strong> Scales data to a specific range
+(e.g., 0 to 1).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">min_max_scaling</span>(data)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    min_val <span class="op">=</span> <span class="fu">minimum</span>(data)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    max_val <span class="op">=</span> <span class="fu">maximum</span>(data)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    <span class="cf">return</span> (data <span class="op">.-</span> min_val) <span class="op">./</span> (max_val <span class="op">-</span> min_val)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div></li>
+<li><p><strong>Standardization (Z-score Scaling):</strong> Transforms
+data to have zero mean and unit variance.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">standardize</span>(data)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    mean_val <span class="op">=</span> <span class="fu">mean</span>(data)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    std_dev <span class="op">=</span> <span class="fu">std</span>(data)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="cf">return</span> (data <span class="op">.-</span> mean_val) <span class="op">./</span> std_dev</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div></li>
+</ul></li>
+</ul>
+<p><strong>3. Standardization</strong></p>
+<ul>
+<li><p><strong>Purpose:</strong></p>
+<ul>
+<li>To center the data around zero and standardize the variance.</li>
+<li>Often used in machine learning algorithms like Support Vector
+Machines (SVM) and Principal Component Analysis (PCA).</li>
+</ul></li>
+<li><p><strong>Implementation:</strong></p>
+<p>See the <code>standardize</code> function in the “Scaling” section
+above.</p></li>
+</ul>
+<p><strong>Example Usage:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">100</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Apply transformations</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>log_transformed <span class="op">=</span> <span class="fu">log10</span>.(data)</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>min_max_scaled <span class="op">=</span> <span class="fu">min_max_scaling</span>(data)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>standardized <span class="op">=</span> <span class="fu">standardize</span>(data)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Log Transformed: &quot;</span>, log_transformed)</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Min-Max Scaled: &quot;</span>, min_max_scaled)</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Standardized: &quot;</span>, standardized)</span></code></pre></div>
+<p><strong>Important Considerations:</strong></p>
+<ul>
+<li>Choose the appropriate transformation based on the characteristics
+of your data and the goals of your analysis.</li>
+<li>Always consider the impact of transformations on the interpretation
+of your results.</li>
+<li>Visualize the data before and after transformation to assess the
+effectiveness of the chosen method.</li>
+</ul>
+<p>This tutorial provides a basic overview of data transformation
+techniques in Julia. You can further explore advanced transformations
+and their applications in your EDA and machine learning projects.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>This tutorial assumes you have the <code>Statistics</code> and
+<code>Plots</code> packages installed in your Julia environment. You can
+install them using the package manager:
+<code>using Pkg; Pkg.add([&quot;Statistics&quot;, &quot;Plots&quot;])</code></li>
+</ul>
+<p>I hope this tutorial helps you effectively transform your data in
+Julia for your EDA projects!</p>
+</div>
+<div id="heatmaps-with-julia" class="section level3">
+<h3>Heatmaps with Julia</h3>
+<p><strong>Heatmaps with Julia</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Sample data (replace with your own data)</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">10</span>, <span class="fl">10</span>) <span class="co"># 10x10 matrix of random values</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Create the heatmap</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">heatmap</span>(data)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># Customize the plot (optional)</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">&quot;X-axis&quot;</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">&quot;Y-axis&quot;</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="fu">title!</span>(<span class="st">&quot;Heatmap Example&quot;</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="fu">colorbar</span>() </span></code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Import the <code>Plots</code> package:</strong> This line
+imports the necessary library for creating plots in Julia.</p></li>
+<li><p><strong>Create sample data:</strong></p>
+<ul>
+<li><code>data = rand(10, 10)</code>: Creates a 10x10 matrix filled with
+random numbers between 0 and 1.
+<ul>
+<li>Replace this with your actual data.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Create the heatmap:</strong></p>
+<ul>
+<li><code>heatmap(data)</code>: Creates a heatmap using the provided
+data. The color of each cell in the heatmap corresponds to the value in
+the matrix.</li>
+</ul></li>
+<li><p><strong>Customize the plot (optional):</strong></p>
+<ul>
+<li><code>xlabel!(&quot;X-axis&quot;)</code>: Sets the label for the x-axis.</li>
+<li><code>ylabel!(&quot;Y-axis&quot;)</code>: Sets the label for the y-axis.</li>
+<li><code>title!(&quot;Heatmap Example&quot;)</code>: Sets the title of the
+plot.</li>
+<li><code>colorbar()</code>: Adds a colorbar to the plot to indicate the
+mapping between data values and colors.</li>
+</ul></li>
+</ol>
+<p>This code will generate a basic heatmap. You can further customize it
+by:</p>
+<ul>
+<li><strong>Changing the colormap:</strong>
+<ul>
+<li><code>heatmap(data, c=:viridis)</code></li>
+<li>Explore other colormaps available in Plots.jl (e.g.,
+<code>:inferno</code>, <code>:plasma</code>, <code>:magma</code>).</li>
+</ul></li>
+<li><strong>Adjusting color limits:</strong>
+<ul>
+<li><code>heatmap(data, clims=(0, 0.5))</code>
+<ul>
+<li>Sets the minimum and maximum values for the color scale.</li>
+</ul></li>
+</ul></li>
+<li><strong>Adding annotations:</strong>
+<ul>
+<li>Use <code>annotate!()</code> to add text, arrows, or other
+annotations to the plot.</li>
+</ul></li>
+<li><strong>Creating subplots:</strong>
+<ul>
+<li>Use <code>plot()</code> with multiple subplots to display multiple
+heatmaps together.</li>
+</ul></li>
+</ul>
+<p>Remember to replace the sample data (<code>rand(10, 10)</code>) with
+your actual data for a meaningful heatmap.</p>
+</div>
+<div id="correlation-plots-with-julia" class="section level3">
+<h3>Correlation Plots with Julia</h3>
+<p><strong>Correlation Plots with Julia</strong></p>
+<p>This approach provides a basic framework for creating correlation
+plots in Julia.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsPlots</span> </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># Sample data (replace with your own DataFrame)</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">100</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">0.8</span> <span class="op">*</span> df.A <span class="op">+</span> <span class="fl">0.2</span> <span class="op">*</span> <span class="fu">randn</span>(<span class="fl">100</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    C <span class="op">=</span> <span class="fu">randn</span>(<span class="fl">100</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    D <span class="op">=</span> <span class="op">-</span><span class="fl">0.7</span> <span class="op">*</span> df.A <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> <span class="fu">randn</span>(<span class="fl">100</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># Create the correlation plot</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="fu">corrplot</span>(df) </span></code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Import the <code>StatsPlots</code> package:</strong> This
+package provides convenient functions for creating statistical plots,
+including correlation plots.</p></li>
+<li><p><strong>Prepare sample data:</strong></p>
+<ul>
+<li>Create a sample DataFrame <code>df</code> with four columns
+(<code>A</code>, <code>B</code>, <code>C</code>, <code>D</code>).
+<ul>
+<li>Column <code>B</code> is moderately correlated with
+<code>A</code>.</li>
+<li>Column <code>D</code> is negatively correlated with
+<code>A</code>.</li>
+<li>Column <code>C</code> is independent of the other columns.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Create the correlation plot:</strong></p>
+<ul>
+<li><code>corrplot(df)</code>: This function generates a correlation
+plot of the DataFrame.
+<ul>
+<li>The plot will visualize the pairwise correlations between all
+columns in the DataFrame.</li>
+<li>Typically, it uses a color-coded matrix to represent the correlation
+coefficients, with different colors indicating positive, negative, or no
+correlation.</li>
+</ul></li>
+</ul></li>
+</ol>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li><strong>Customization:</strong> You can customize the appearance of
+the correlation plot using various options within the
+<code>corrplot()</code> function. Refer to the <code>StatsPlots</code>
+documentation for available options.</li>
+<li><strong>Interpretation:</strong>
+<ul>
+<li>Look for strong colors (e.g., dark blue for strong positive
+correlations, dark red for strong negative correlations) to identify
+highly correlated variables.</li>
+<li>Diagonal elements represent the correlation of a variable with
+itself (always 1).</li>
+</ul></li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>This example uses a simple DataFrame for illustration. Replace it
+with your actual data for a meaningful correlation analysis.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="anscombes-quartet" class="section level1" data-navmenu="Correlation">
+<h1>Anscombe’s Quartet</h1>
+<div id="column-1" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="anscombes-quartet-1" class="section level3">
+<h3>Anscombe’s Quartet</h3>
+<p><strong>Anscombe’s Quartet: A Visual Tale of Data</strong></p>
+<p>Anscombe’s Quartet is a famous set of four datasets that have nearly
+identical simple statistical properties (mean, variance, correlation,
+regression line) yet look drastically different when visualized. This
+striking demonstration highlights the crucial role of data visualization
+in exploratory data analysis.</p>
+<p><strong>Key Takeaways:</strong></p>
+<ul>
+<li><strong>Don’t Rely Solely on Summary Statistics:</strong> While
+summary statistics provide valuable insights, they can sometimes mask
+underlying patterns or anomalies in the data.</li>
+<li><strong>Visualizations Reveal the Truth:</strong> Visualizing data
+can uncover hidden trends, outliers, and relationships that might be
+missed by numerical summaries alone.</li>
+</ul>
+<p><strong>Loading Anscombe’s Quartet in Julia</strong></p>
+<p>You can load Anscombe’s Quartet using the <code>DataFrames</code> and
+<code>RDatasets</code> packages in Julia. Here’s how:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Install the Packages:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">&quot;DataFrames&quot;</span>, <span class="st">&quot;RDatasets&quot;</span>])</span></code></pre></div></li>
+<li><p><strong>Load the Dataset:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">RDatasets</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>anscombe <span class="op">=</span> <span class="fu">dataset</span>(<span class="st">&quot;anscombe&quot;</span>)</span></code></pre></div></li>
+</ol>
+<p><strong>Visualizing Anscombe’s Quartet in Julia</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># Create a 2x2 grid of subplots</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">plot</span>(<span class="fl">1</span>, <span class="fl">2</span>, legend<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># Plot each dataset in a separate subplot</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>    x <span class="op">=</span> anscombe[!, <span class="fu">Symbol</span>(<span class="st">&quot;x</span><span class="sc">$</span>i<span class="st">&quot;</span>)]</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>    y <span class="op">=</span> anscombe[!, <span class="fu">Symbol</span>(<span class="st">&quot;y</span><span class="sc">$</span>i<span class="st">&quot;</span>)]</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>    <span class="fu">plot!</span>(p[i], x, y, seriestype<span class="op">=:</span>scatter, label<span class="op">=</span><span class="st">&quot;Dataset </span><span class="sc">$</span>(i)<span class="st">&quot;</span>, markersize<span class="op">=</span><span class="fl">3</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>    <span class="fu">plot!</span>(p[i], x, <span class="fl">3</span> <span class="op">+</span> <span class="fl">0.5</span>x, linestyle<span class="op">=:</span>dash, label<span class="op">=</span><span class="st">&quot;Regression Line&quot;</span>) </span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co"># Customize the plot (optional)</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="fu">title!</span>(p, <span class="st">&quot;Anscombe&#39;s Quartet&quot;</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="fu">xlabel!</span>(p[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="fu">ylabel!</span>(p[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="fu">xlabel!</span>(p[<span class="fl">3</span><span class="op">:</span><span class="fl">4</span>], <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="fu">ylabel!</span>(p[<span class="fl">3</span><span class="op">:</span><span class="fl">4</span>], <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co"># Display the plot</span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="fu">display</span>(p)</span></code></pre></div>
+<p>This code will generate a 2x2 grid of scatter plots, each
+representing one of the four datasets in Anscombe’s Quartet. You’ll
+immediately notice the distinct patterns in each dataset, despite their
+similar statistical summaries.</p>
+<p><strong>By visualizing the data, we gain a deeper understanding of
+the relationships between the variables, which might not be apparent
+from just looking at the numbers.</strong></p>
+</div>
+</div>
+</div>
+<div id="method-comparison-studies" class="section level1" data-navmenu="Method Comparison">
+<h1>Method Comparison Studies</h1>
+<div id="column-2" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
 </div>
 </div>
 
