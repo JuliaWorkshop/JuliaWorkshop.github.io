@@ -1,5 +1,5 @@
 ---
-title: "Random Number Generation, Sampling, and Simulation with Julia"
+title: "Machine Learning with Julia"
 output: 
   flexdashboard::flex_dashboard:
     theme: united
@@ -21,36 +21,4 @@ Column {.tabset}
 ### Random Number Generation, Sampling, and Simulation with Julia
 
 #### Random Number Generation, Sampling, and Simulation with Julia:
-
-
-----------------------------------------
-
-Random Number Generation, Sampling, and Simulation with Julia https://rpubs.com/JuliaWorkshop/Sampling_Random_Numbers_Julia_Syllabus
-
-Simulating Exponential Random Variate using Julia https://rpubs.com/JuliaWorkshop/Exponential_Simulation_Julia
-https://rpubs.com/JuliaWorkshop/Binomial_Simulation_Julia
-
--------------------------------------------------------
-* [The Random.jl package in Julia](https://rpubs.com/JuliaWorkshop/Random_Julia_Package)
-
-* [The Law of Large Numbers (LLN)](https://rpubs.com/JuliaWorkshop/Law_Large_Numbers_Julia)
-
-* [Markov Chain Monte Carlo (MCMC)](https://rpubs.com/JuliaWorkshop/MCMC_Lesson_Plan_Julia)
-
-* [Implementing Metropolis-Hastings in Julia](https://rpubs.com/JuliaWorkshop/Metropolis_Hastings_Julia)
-
-
-#### Random Number Generation, Sampling, and Simulation with Julia
-
-```{r child = "Sampling_Random_Numbers_Julia_Syllabus.Rmd"}
-
-```
-
-
-### Week 5: 
-
-[Monte Carlo Simulation in Julia (Week 5 Lesson Plan)](https://rpubs.com/JuliaWorkshop/Monte_Carlo_Simulation_Lesson_Plan_Julia)
-
-https://rpubs.com/JuliaWorkshop/Markov_Chains_Julia_Tutorial
-https://rpubs.com/JuliaWorkshop/Markov_Chain_Example_Julia
 

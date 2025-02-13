@@ -1,3 +1,29 @@
+---
+title: "Survival Analysis With Julia"
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Survival Analysis With Julia
+
+<h3>Survival Analysis With Julia</h3>
+
 Survival analysis is a statistical method used to analyze time-to-event data, such as the time until a patient's disease progresses or the time until a machine fails. The Julia programming language offers a powerful and efficient environment for conducting survival analysis.
 
 The `Survival` package in Julia provides a comprehensive set of tools for survival analysis, including functions for estimating survival probabilities, fitting Cox proportional hazards models, and performing time-dependent covariate analysis. The package also includes functions for visualizing survival curves and conducting hypothesis tests.

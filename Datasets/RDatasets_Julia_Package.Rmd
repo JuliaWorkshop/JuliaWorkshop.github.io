@@ -1,4 +1,4 @@
-##The `RDatasets.jl` package
+### The `RDatasets.jl` package
 
 The `RDatasets.jl` package in Julia provides an easy way for users to access many of the standard datasets available in R. It's essentially a port of the Rdatasets repository created by Vincent Arelbundock, which gathers datasets from various R packages in one convenient location. 
 

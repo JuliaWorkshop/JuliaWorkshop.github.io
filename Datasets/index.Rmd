@@ -1,10 +1,12 @@
 ---
 title: "Datasets for Julia Programming Examples"
-output: 
+output:
   flexdashboard::flex_dashboard:
-    theme: united
-    css: style.css
+    theme: 
+      version: 4
+      bootswatch: minty
 ---
+
 
 ```{r  include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -29,8 +31,11 @@ Column {.tabset}
 ```{r child = "Survival_Analysis_Datasets.Rmd"}
 ```
 
-```{r child = "Lung_Cancer_Datasets.Rmd"}
+
+```{r child = "Lung_Cancer_Dataset.Rmd"}
 ```
+
+
 ### Sonar Dataset
 
 ```{r child = "Sonar_Dataset.Rmd"}

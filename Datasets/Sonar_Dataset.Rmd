@@ -6,7 +6,7 @@ output:
       bootswatch: minty
 ---
 
-## Connectionist Bench
+### Connectionist Bench
 
 The Sonar dataset, also known as the Connectionist Bench (Sonar, Mines vs. Rocks) dataset, is a classic dataset used in machine learning for binary classification.  It's designed to help train models that can distinguish between sonar signals bounced off underwater objects.  Specifically, it aims to differentiate between signals returned from **mines** (metal cylinders) and **rocks** (roughly cylindrical rocks).
 
