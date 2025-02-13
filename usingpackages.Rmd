@@ -12,7 +12,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+(<a href="https://juliaworkshop.github.io">Back to Main Page</a>)
+
 ## Installing and Using Packages in Julia
+
+
 
 Julia has a robust package management system that makes it easy to add functionality to your projects. Here’s a step-by-step tutorial on how to install and use packages in Julia.
 

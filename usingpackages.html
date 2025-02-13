@@ -29,6 +29,97 @@ document.addEventListener('DOMContentLoaded', function(e) {
 </script>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+
+a.sourceLine {
+pointer-events: auto;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -62,119 +153,96 @@ code span.ot { color: #007020; }
 
 
 <section class="main-content">
-<div id="julia-workshop" class="section level2">
-<h2>Julia Workshop</h2>
-<center>
-<a href="http://julialang.org/"><img role="img" aria-label="Julia logo" src="data:image/png;base64,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" alt="Julia logo" width="100" height="67" /></a>
-</center>
-<p>Julia is a high-level, high-performance dynamic programming language
-for technical computing, with syntax that is familiar to users of other
-technical computing environments. It provides a sophisticated compiler,
-distributed parallel execution, numerical accuracy, and an extensive
-mathematical function library.</p>
-<h2>
-Workshops
-</h2>
-<center>
-<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
-<colgroup>
-<col style="width: 350px">
-<col style="width: 350px">
-<col style="width: 350px">
-</colgroup>
-<tr>
-<td class="tg-76so">
-<strong><a href="Introduction_Julia/index.html">About Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Mathematics_Julia/index.html">Mathematics with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Statistics/index.html">Statistics with
-Julia</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Numerical_Computing/index.html">Numerical Computing
-with Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Tidyverse_Julia/index.html"><code>tidier.tl</code> -
-Tidyverse with Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Probability_Distributions/index.html">Probability
-Distributions with Julia</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Data_Science/index.html">Data Science With
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Survival_Analysis/index.html">Survival Analysis With
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Data_Visualization/index.html">Data Visualization with
-Julia</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Machine_Learning/index.html">Machine Learning with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Financial_Maths/index.html">Financial Maths with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Random_Number_Simulation/index.html">Random Numbers
-&amp; Simulation with Julia</a></strong>
-</td>
-</tr>
-</table>
-</center>
-<h2>
-Resources
-</h2>
-<center>
-<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
-<colgroup>
-<col style="width: 350px">
-<col style="width: 350px">
-<col style="width: 350px">
-</colgroup>
-<tr>
-<td class="tg-76so">
-<strong><a href="about.html">About Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="installation.html">Installing Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="usingpackages.html">Using Julia Packages</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Datasets/index.html">Datasets for Julia
-Examples</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="intermediate/index.html">Intermediate
-Workshop</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="advanced/index.html">Advanced Workshop</a></strong>
-</td>
-</tr>
-</table>
-<p><br><br><br></p>
+<p>(<a href="https://juliaworkshop.github.io">Back to Main Page</a>)</p>
+<div id="installing-and-using-packages-in-julia" class="section level2">
+<h2>Installing and Using Packages in Julia</h2>
+<p>Julia has a robust package management system that makes it easy to
+add functionality to your projects. Here’s a step-by-step tutorial on
+how to install and use packages in Julia.</p>
+<div id="installing-packages" class="section level4">
+<h4><strong>Installing Packages</strong></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Open Julia REPL:</strong>
+<ul>
+<li>Launch the Julia REPL (Read-Eval-Print Loop) by opening Julia from
+your terminal or through your preferred Julia IDE (like VS Code with
+Julia extension).</li>
+</ul></li>
+<li><strong>Enter the Pkg Mode:</strong>
+<ul>
+<li>Press <code>]</code> to enter the package manager mode. The prompt
+will change from <code>julia&gt;</code> to <code>pkg&gt;</code>.</li>
+</ul></li>
+<li><strong>Add a Package:</strong>
+<ul>
+<li><p>Use the <code>add</code> command followed by the package name to
+install a package. For example, to install the <code>DataFrames</code>
+package, type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>pkg<span class="op">&gt;</span> add DataFrames</span></code></pre></div></li>
+</ul></li>
+<li><strong>Update Packages:</strong>
+<ul>
+<li><p>To update all installed packages to their latest versions,
+use:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>pkg<span class="op">&gt;</span> update</span></code></pre></div></li>
+</ul></li>
+<li><strong>Exit Pkg Mode:</strong>
+<ul>
+<li>Press <code>backspace</code> to return to the normal Julia
+prompt.</li>
+</ul></li>
+</ol>
+</div>
+<div id="using-packages" class="section level4">
+<h4><strong>Using Packages</strong></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Load a Package:</strong>
+<ul>
+<li><p>Once a package is installed, you can load it in your Julia script
+or REPL using the <code>using</code> keyword. For example, to load the
+<code>DataFrames</code> package:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span></code></pre></div></li>
+</ul></li>
+<li><strong>Import Specific Functions:</strong>
+<ul>
+<li><p>If you only need specific functions from a package, use the
+<code>import</code> statement. For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> <span class="bu">DataFrames</span>: DataFrame, describe</span></code></pre></div></li>
+</ul></li>
+<li><strong>Check Installed Packages:</strong>
+<ul>
+<li><p>To see a list of all installed packages, you can type:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">status</span>()</span></code></pre></div></li>
+</ul></li>
+<li><strong>Remove a Package:</strong>
+<ul>
+<li><p>If you no longer need a package, remove it by entering the Pkg
+mode and using the <code>rm</code> command:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>pkg<span class="op">&gt;</span> rm DataFrames</span></code></pre></div></li>
+</ul></li>
+</ol>
+</div>
+<div id="commonly-used-julia-packages" class="section level4">
+<h4><strong>Commonly Used Julia Packages</strong></h4>
+<p>Here are some commonly used packages in the Julia ecosystem:</p>
+<ul>
+<li><strong>DataFrames.jl:</strong> Tools for working with data
+frames.</li>
+<li><strong>Plots.jl:</strong> Comprehensive plotting library.</li>
+<li><strong>CSV.jl:</strong> Efficient handling of CSV files.</li>
+<li><strong>Distributions.jl:</strong> Probability distributions and
+associated functions.</li>
+<li><strong>JuMP.jl:</strong> Algebraic modeling language for
+optimization problems.</li>
+<li><strong>Flux.jl:</strong> Machine learning library.</li>
+<li><strong>Turing.jl:</strong> Probabilistic programming with
+MCMC.</li>
+<li><strong>Gadfly.jl:</strong> Statistical plotting.</li>
+<li><strong>HTTP.jl:</strong> HTTP client/server implementation.</li>
+<li><strong>GLM.jl:</strong> Generalized linear models.</li>
+</ul>
+</div>
 </div>
 </section>
 

@@ -1,9 +1,10 @@
 ---
 title: "Machine Learning with Julia"
-output: 
+output:
   flexdashboard::flex_dashboard:
-    theme: united
-    css: style.css
+    theme: 
+      version: 4
+      bootswatch: minty
 ---
 
 ```{r  include=FALSE}
@@ -20,9 +21,10 @@ Column {.tabset}
 
 ### Machine Learning with Julia
 
+
 #### Machine Learning with Julia
 
-(<a href="juliaworkshop.github.io/index.html">Back to main page</a>)
+(<a href="https://juliaworkshop.github.io">Back to Main Page</a>)
 
 The "Machine Learning with Julia" program is a comprehensive and engaging course designed for those keen on delving into the world of machine learning using the Julia programming language. Over the span of eight weeks, students will be introduced to the fundamentals of machine learning and gain hands-on experience with Julia's powerful capabilities. From the basics of data preprocessing and visualization to advanced concepts like neural networks and deep learning, the program ensures a well-rounded understanding of both the theoretical and practical aspects of machine learning.
 

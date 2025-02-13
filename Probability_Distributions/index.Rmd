@@ -1,5 +1,5 @@
 ---
-title: "Statistics with Julia"
+title: "Probability Distributions with Julia"
 output:
   flexdashboard::flex_dashboard:
     theme: 
@@ -19,10 +19,11 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
-### Statistics with Julia
+### Probability Distributions with Julia
 
 (<a href="https://juliaworkshop.github.io">Back to Main Page</a>)
 
-#### Statistics with Julia:
+#### Probability Distributions with Julia:
 
-
+```{r child = "Extreme_Value_Theory_Julia.Rmd"}
+```

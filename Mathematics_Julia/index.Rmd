@@ -1,5 +1,5 @@
 ---
-title: "Statistics with Julia"
+title: "Mathematics with Julia"
 output:
   flexdashboard::flex_dashboard:
     theme: 
@@ -19,10 +19,11 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
-### Statistics with Julia
+### Mathematics with Julia
 
-(<a href="https://juliaworkshop.github.io">Back to Main Page</a>)
+(<a href="http://juliaworkshop.github.io">Back to Main Page</a>)
 
-#### Statistics with Julia:
+#### Mathematics with Julia:
 
-
+```{r child = "Maths_Programming_Julia.Rmd"}
+```

@@ -36,7 +36,7 @@ Julia is a high-level, high-performance dynamic programming language for technic
    </tr>
    <tr>
    <td class="tg-76so"><strong><a href="Numerical_Computing/index.html">Numerical Computing with Julia</a></strong></td>
-   <td class="tg-76so"><strong><a href="Tidyverse_Julia/index.html">Tidier.JL - Tidyverse with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Tidyverse_Julia/index.html">`tidier.tl` - Tidyverse with Julia</a></strong></td>
    <td class="tg-76so"><strong><a href="Probability_Distributions/index.html">Probability Distributions with Julia</a></strong></td>
    </tr>
   <tr>
