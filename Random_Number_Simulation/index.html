@@ -8,9 +8,9 @@
 
 
 
-<title>Random Number Generation, Sampling, and Simulation with Julia</title>
+<title>Random Simulation with Julia</title>
 
-<meta property="og:title" content="Random Number Generation, Sampling, and Simulation with Julia" />
+<meta property="og:title" content="Random Simulation with Julia" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -1088,7 +1088,7 @@ height: 100%;
   
 </span>
 <span class="navbar-brand">
-  Random Number Generation, Sampling, and Simulation with Julia
+  Random Simulation with Julia
   <span class="navbar-author">
         </span>
 </span>
@@ -2947,14 +2947,258 @@ Metropolis-Hastings in Julia</a></p></li>
 </div>
 </div>
 </div>
+<div id="week-1" class="section level1" data-navmenu="Components">
+<h1>Week 1:</h1>
+<div id="column-1" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="week-1-1" class="section level3">
+<h3>Week 1</h3>
+</div>
+<div id="sampling-functions" class="section level3">
+<h3>Sampling Functions</h3>
+<h3>
+Sampling Functions
+</h3>
+<p>Julia provides several functions for creating samples, depending on
+the type of sampling you need to perform. Here’s a breakdown of common
+functions and their uses:</p>
+<p><strong>1. <code>rand()</code>:</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Generates random numbers. Can be used for
+simple random sampling with replacement.</li>
+<li><strong>Usage:</strong>
+<ul>
+<li><code>rand()</code>: Generates a random floating-point number
+between 0 and 1.</li>
+<li><code>rand(n)</code>: Generates an array of <code>n</code> random
+floating-point numbers between 0 and 1.</li>
+<li><code>rand(dims...)</code>: Generates an array with the specified
+dimensions filled with random floating-point numbers between 0 and
+1.</li>
+<li><code>rand(rng, n)</code>: Generates <code>n</code> random numbers
+using the random number generator <code>rng</code>.</li>
+<li><code>rand(1:10, n)</code>: Generates <code>n</code> random integers
+between 1 and 10 (inclusive). This is useful for simulating dice rolls
+or drawing numbers from a hat <em>with replacement</em>.</li>
+</ul></li>
+</ul>
+<p><strong>2. <code>sample()</code>:</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Provides more general sampling
+functionality, including with and without replacement, and weighted
+sampling.</li>
+<li><strong>Usage:</strong>
+<ul>
+<li><code>sample(population, n)</code>: Samples <code>n</code> elements
+from <code>population</code> <em>without</em> replacement.</li>
+<li><code>sample(population, n, replace=true)</code>: Samples
+<code>n</code> elements from <code>population</code> <em>with</em>
+replacement.</li>
+<li><code>sample(population, Weights(weights), n)</code>: Samples
+<code>n</code> elements from <code>population</code> with probabilities
+proportional to the given <code>weights</code>. <code>weights</code>
+should be a vector of the same length as <code>population</code>.</li>
+<li><code>sample(rng, population, n)</code>: Samples using the random
+number generator <code>rng</code>.</li>
+</ul></li>
+</ul>
+<p><strong>3. <code>shuffle()</code>:</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Randomly shuffles the elements of an
+array. This can be useful for creating a random permutation of your
+data, which can then be used for sampling or splitting into
+training/testing sets.</li>
+<li><strong>Usage:</strong>
+<ul>
+<li><code>shuffle(arr)</code>: Returns a new array with the elements of
+<code>arr</code> randomly shuffled.</li>
+<li><code>shuffle!(arr)</code>: Shuffles the elements of
+<code>arr</code> <em>in place</em>.</li>
+</ul></li>
+</ul>
+<p><strong>4. <code>randperm()</code>:</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Generates a random permutation of integers
+from 1 to <code>n</code>. Useful for creating random indices for
+sampling.</li>
+<li><strong>Usage:</strong>
+<ul>
+<li><code>randperm(n)</code>: Returns a random permutation of the
+integers 1 to <code>n</code>.</li>
+</ul></li>
+</ul>
+<p><strong>5. <code>StatsBase</code> functions:</strong></p>
+<p>The <code>StatsBase</code> package provides more advanced sampling
+methods, including:</p>
+<ul>
+<li><code>bootstrap</code>: For bootstrap resampling.</li>
+<li><code>stratifiedsample</code>: For stratified sampling.</li>
+</ul>
+<p>You’ll need to install the package using <code>] add StatsBase</code>
+in the Julia REPL.</p>
+<p><strong>Choosing the right function:</strong></p>
+<ul>
+<li><strong>Simple random sampling with replacement:</strong> Use
+<code>rand()</code> with a range for integers (e.g.,
+<code>rand(1:10, n)</code>) or
+<code>sample(population, n, replace=true)</code>.</li>
+<li><strong>Simple random sampling without replacement:</strong> Use
+<code>sample(population, n)</code>.</li>
+<li><strong>Weighted sampling:</strong> Use
+<code>sample(population, Weights(weights), n)</code>.</li>
+<li><strong>Creating random permutations:</strong> Use
+<code>randperm()</code> or <code>shuffle()</code>.</li>
+<li><strong>Advanced sampling techniques (bootstrap, stratified,
+etc.):</strong> Use functions from the <code>StatsBase</code>
+package.</li>
+</ul>
+<p><strong>Example: Sampling with replacement</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>population <span class="op">=</span> [<span class="ch">&#39;A&#39;</span>, <span class="ch">&#39;B&#39;</span>, <span class="ch">&#39;C&#39;</span>, <span class="ch">&#39;D&#39;</span>, <span class="ch">&#39;E&#39;</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>samples_with_replacement <span class="op">=</span> <span class="fu">sample</span>(population, n_samples, replace<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">println</span>(samples_with_replacement)</span></code></pre></div>
+<p><strong>Example: Sampling without replacement</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>population <span class="op">=</span> [<span class="ch">&#39;A&#39;</span>, <span class="ch">&#39;B&#39;</span>, <span class="ch">&#39;C&#39;</span>, <span class="ch">&#39;D&#39;</span>, <span class="ch">&#39;E&#39;</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>samples_without_replacement <span class="op">=</span> <span class="fu">sample</span>(population, n_samples)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">println</span>(samples_without_replacement)</span></code></pre></div>
+<p><strong>Example: Weighted sampling</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>population <span class="op">=</span> [<span class="ch">&#39;A&#39;</span>, <span class="ch">&#39;B&#39;</span>, <span class="ch">&#39;C&#39;</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>weights <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>]  <span class="co"># Probabilities for each element</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="fl">10</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>weighted_samples <span class="op">=</span> <span class="fu">sample</span>(population, <span class="fu">Weights</span>(weights), n_samples)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">println</span>(weighted_samples)</span></code></pre></div>
+<p>Remember to install <code>StatsBase</code> if you need its functions:
+<code>] add StatsBase</code> in the Julia REPL. Then,
+<code>using StatsBase</code> in your code.</p>
+</div>
+</div>
+</div>
+<div id="week-2" class="section level1" data-navmenu="Components">
+<h1>Week 2</h1>
+<div id="column-2" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="week-2-1" class="section level3">
+<h3>Week 2</h3>
+</div>
+<div id="bootstrap-sampling" class="section level3">
+<h3>Bootstrap Sampling</h3>
+<h3>
+Bootstrap Sampling
+</h3>
+<p>Bootstrap sampling is a powerful statistical technique for estimating
+the distribution of a sample statistic by resampling with replacement.
+It’s especially useful when the theoretical distribution of the
+statistic is complex or unknown. Julia, a high-performance programming
+language, is well-suited for implementing this method. Let’s dive into a
+step-by-step tutorial on how to perform bootstrap sampling in Julia.</p>
+<h3>
+Step-by-Step Tutorial: Bootstrap Sampling with Julia
+</h3>
+<div id="step-1-install-julia-and-necessary-packages" class="section level4">
+<h4>Step 1: Install Julia and Necessary Packages</h4>
+<p>First, make sure you have Julia installed on your system. You can
+download it from the <a href="https://julialang.org/downloads/">official
+Julia website</a>.</p>
+<p>Next, you need to install the necessary packages. We’ll use
+<code>Distributions</code> and <code>Statistics</code> for this
+tutorial. Open your Julia REPL (Read-Eval-Print Loop) and run the
+following commands:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Distributions&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Statistics&quot;</span>)</span></code></pre></div>
+</div>
+<div id="step-2-load-the-packages" class="section level4">
+<h4>Step 2: Load the Packages</h4>
+<p>Once the packages are installed, you can load them into your Julia
+environment:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span></span></code></pre></div>
+</div>
+<div id="step-3-generate-a-sample-dataset" class="section level4">
+<h4>Step 3: Generate a Sample Dataset</h4>
+<p>For demonstration purposes, let’s create a sample dataset. We will
+generate a random sample from a normal distribution:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Generate a sample dataset of 100 observations from a normal distribution</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>sample_data <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>), n)</span></code></pre></div>
+</div>
+<div id="step-4-define-the-bootstrap-sampling-function" class="section level4">
+<h4>Step 4: Define the Bootstrap Sampling Function</h4>
+<p>Now, let’s define a function to perform bootstrap sampling. This
+function will take the original sample data and the number of bootstrap
+samples as inputs, and return a matrix where each row is a bootstrap
+sample:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">bootstrap_samples</span>(data, n_samples)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">length</span>(data)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    bootstrap_samples <span class="op">=</span> <span class="fu">zeros</span>(n_samples, n)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n_samples</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>        bootstrap_samples[i, <span class="op">:</span>] <span class="op">=</span> <span class="fu">sample</span>(data, n, replace<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    <span class="cf">return</span> bootstrap_samples</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+</div>
+<div id="step-5-perform-bootstrap-sampling" class="section level4">
+<h4>Step 5: Perform Bootstrap Sampling</h4>
+<p>Next, let’s generate bootstrap samples using our function. We will
+create 1000 bootstrap samples from our original dataset:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>n_bootstrap_samples <span class="op">=</span> <span class="fl">1000</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>bootstrap_data <span class="op">=</span> <span class="fu">bootstrap_samples</span>(sample_data, n_bootstrap_samples)</span></code></pre></div>
+</div>
+<div id="step-6-calculate-the-statistic-of-interest" class="section level4">
+<h4>Step 6: Calculate the Statistic of Interest</h4>
+<p>Now, we need to calculate the statistic of interest for each
+bootstrap sample. For this tutorial, let’s estimate the mean of the
+sample data:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>bootstrap_means <span class="op">=</span> <span class="fu">mean</span>(bootstrap_data, dims<span class="op">=</span><span class="fl">2</span>)</span></code></pre></div>
+</div>
+<div id="step-7-analyze-the-results" class="section level4">
+<h4>Step 7: Analyze the Results</h4>
+<p>Finally, let’s analyze the results. We can calculate the bootstrap
+estimate of the mean, the standard error, and construct a confidence
+interval:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Bootstrap estimate of the mean</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>bootstrap_mean_estimate <span class="op">=</span> <span class="fu">mean</span>(bootstrap_means)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># Standard error of the bootstrap estimate</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>bootstrap_se <span class="op">=</span> <span class="fu">std</span>(bootstrap_means)</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co"># Construct a 95% confidence interval</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>confidence_interval <span class="op">=</span> <span class="fu">quantile</span>(bootstrap_means, [<span class="fl">0.025</span>, <span class="fl">0.975</span>])</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Bootstrap Mean Estimate: </span><span class="sc">$</span>bootstrap_mean_estimate<span class="st">&quot;</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Bootstrap Standard Error: </span><span class="sc">$</span>bootstrap_se<span class="st">&quot;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;95% Confidence Interval: </span><span class="sc">$</span>confidence_interval<span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In this tutorial, we have covered the basics of bootstrap sampling in
+Julia. We generated a sample dataset, defined a bootstrap sampling
+function, created bootstrap samples, calculated the statistic of
+interest, and analyzed the results. Bootstrap sampling is a versatile
+technique that can be applied to various statistical problems, and Julia
+makes it easy to implement and analyze.</p>
+<p>Feel free to experiment with different datasets and statistics. Happy
+coding!</p>
+<p>Is there anything specific you’d like to explore further in this
+tutorial?</p>
+</div>
+</div>
+</div>
 <div id="week-5" class="section level1" data-navmenu="Components">
 <h1>Week 5:</h1>
-<div id="column-1" class="section level2 tabset">
+<div id="column-3" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="week-5-1" class="section level3">
 <h3>Week 5</h3>
-<p><a href="https://rpubs.com/JuliaWorkshop/Monte_Carlo_Simulation_Lesson_Plan_Julia">Monte
-Carlo Simulation in Julia (Week 5 Lesson Plan)</a></p>
+<ul>
+<li><a href="https://rpubs.com/JuliaWorkshop/Monte_Carlo_Simulation_Lesson_Plan_Julia">Monte
+Carlo Simulation in Julia (Week 5 Lesson Plan)</a></li>
+</ul>
 <p><a href="https://rpubs.com/JuliaWorkshop/Markov_Chains_Julia_Tutorial" class="uri">https://rpubs.com/JuliaWorkshop/Markov_Chains_Julia_Tutorial</a>
 <a href="https://rpubs.com/JuliaWorkshop/Markov_Chain_Example_Julia" class="uri">https://rpubs.com/JuliaWorkshop/Markov_Chain_Example_Julia</a></p>
 </div>
@@ -2962,7 +3206,7 @@ Carlo Simulation in Julia (Week 5 Lesson Plan)</a></p>
 </div>
 <div id="week-6" class="section level1" data-navmenu="Components">
 <h1>Week 6:</h1>
-<div id="column-2" class="section level2 tabset">
+<div id="column-4" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <style type="text/css">
 body{
@@ -2997,29 +3241,29 @@ supports higher-order Markov chains where the next state depends on a
 fixed number of previous states.</li>
 </ul>
 <hr />
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">MarkovChains</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Define the transition probability matrix</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>P <span class="op">=</span> [<span class="fl">0.7</span> <span class="fl">0.3</span>; <span class="fl">0.2</span> <span class="fl">0.8</span>]  <span class="co"># Example 2-state Markov chain</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># Create a Markov chain object</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>mc <span class="op">=</span> <span class="fu">MarkovChain</span>(P)</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># Calculate the stationary distribution</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="cn">π</span> <span class="op">=</span> <span class="fu">stationary_distribution</span>(mc)</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Stationary Distribution: &quot;</span>, <span class="cn">π</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># Simulate the Markov chain for 10 steps</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>states <span class="op">=</span> <span class="fu">simulate</span>(mc, <span class="fl">10</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Simulated States: &quot;</span>, states)</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co"># Calculate the probability of being in state 1 after 5 steps, starting in state 1</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">transient_probabilities</span>(mc, <span class="fl">5</span>, <span class="fl">1</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Transient probability: &quot;</span>, p[<span class="fl">1</span>])</span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># Calculate the mean first passage time from state 1 to state 2</span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">mean_first_passage_time</span>(mc, <span class="fl">1</span>, <span class="fl">2</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean First Passage Time: &quot;</span>, m)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">MarkovChains</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># Define the transition probability matrix</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>P <span class="op">=</span> [<span class="fl">0.7</span> <span class="fl">0.3</span>; <span class="fl">0.2</span> <span class="fl">0.8</span>]  <span class="co"># Example 2-state Markov chain</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co"># Create a Markov chain object</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>mc <span class="op">=</span> <span class="fu">MarkovChain</span>(P)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># Calculate the stationary distribution</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="cn">π</span> <span class="op">=</span> <span class="fu">stationary_distribution</span>(mc)</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Stationary Distribution: &quot;</span>, <span class="cn">π</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co"># Simulate the Markov chain for 10 steps</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>states <span class="op">=</span> <span class="fu">simulate</span>(mc, <span class="fl">10</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Simulated States: &quot;</span>, states)</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co"># Calculate the probability of being in state 1 after 5 steps, starting in state 1</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">transient_probabilities</span>(mc, <span class="fl">5</span>, <span class="fl">1</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Transient probability: &quot;</span>, p[<span class="fl">1</span>])</span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co"># Calculate the mean first passage time from state 1 to state 2</span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">mean_first_passage_time</span>(mc, <span class="fl">1</span>, <span class="fl">2</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean First Passage Time: &quot;</span>, m)</span></code></pre></div>
 <hr />
 <p><strong>2. <code>StatsBase.jl</code>:</strong> While not exclusively
 for Markov chains, <code>StatsBase.jl</code> provides some useful
@@ -3070,6 +3314,362 @@ large-scale systems, connections to economic models), then you might
 want to explore the other packages mentioned above. Remember to install
 the chosen package(s) using the Julia package manager (e.g.,
 <code>] add MarkovChains</code>).</p>
+</div>
+</div>
+</div>
+<div id="week-10" class="section level1" data-navmenu="Components">
+<h1>Week 10</h1>
+<div id="column-5" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="week-10-1" class="section level3">
+<h3>Week 10</h3>
+</div>
+<div id="numerical-integration" class="section level3">
+<h3>Numerical Integration</h3>
+<h3>
+Numerical Integration
+</h3>
+<p>Numerical integration is a technique for approximating the definite
+integral of a function when it is difficult or impossible to find an
+analytical solution. It involves using numerical methods to estimate the
+area under the curve of the function within the given limits of
+integration.</p>
+<p>Here’s a breakdown of the key aspects of numerical integration:</p>
+<p><strong>What is a definite integral?</strong></p>
+<ul>
+<li>A definite integral represents the net area between the graph of a
+function and the x-axis, within specified limits on the x-axis.</li>
+<li>It has numerous applications in various fields, including physics,
+engineering, economics, and statistics.</li>
+</ul>
+<p><strong>Why use numerical integration?</strong></p>
+<ul>
+<li><strong>Analytical solutions may not exist:</strong> For some
+functions, finding an antiderivative (the function whose derivative is
+the original function) in a closed form may be impossible.</li>
+<li><strong>Complex functions:</strong> Even if an antiderivative
+exists, it might be too complex to evaluate easily.</li>
+<li><strong>Data-driven functions:</strong> When the function is defined
+by a set of data points rather than an explicit formula, numerical
+integration is necessary.</li>
+</ul>
+<p><strong>Common numerical integration methods:</strong></p>
+<ul>
+<li><strong>Rectangle rule:</strong> Approximates the area under the
+curve using rectangles.</li>
+<li><strong>Trapezoidal rule:</strong> Approximates the area using
+trapezoids, which generally provide a better approximation than
+rectangles.</li>
+<li><strong>Simpson’s rule:</strong> Uses quadratic functions to
+approximate the curve, resulting in even higher accuracy.</li>
+<li><strong>Gaussian quadrature:</strong> Selects specific points and
+weights to evaluate the function, optimizing accuracy for a given number
+of function evaluations.</li>
+</ul>
+<p><strong>Factors affecting accuracy:</strong></p>
+<ul>
+<li><strong>Choice of method:</strong> Different methods have varying
+levels of accuracy.</li>
+<li><strong>Number of intervals/points:</strong> Increasing the number
+of intervals or points used in the approximation generally improves
+accuracy.</li>
+<li><strong>Smoothness of the function:</strong> Smoother functions are
+typically easier to approximate accurately.</li>
+</ul>
+<p><strong>Applications of numerical integration:</strong></p>
+<ul>
+<li><strong>Calculating areas and volumes:</strong> Finding the area of
+irregular shapes or the volume of complex objects.</li>
+<li><strong>Solving differential equations:</strong> Many differential
+equations cannot be solved analytically, and numerical integration is
+used to approximate their solutions.</li>
+<li><strong>Probability and statistics:</strong> Calculating
+probabilities associated with continuous random variables.</li>
+<li><strong>Financial modeling:</strong> Pricing financial instruments
+and evaluating risk.</li>
+<li><strong>Computer graphics:</strong> Rendering images and simulating
+physical phenomena.</li>
+</ul>
+<p><strong>Advantages of numerical integration:</strong></p>
+<ul>
+<li><strong>Applicable to a wide range of functions:</strong> Can handle
+functions that are difficult or impossible to integrate
+analytically.</li>
+<li><strong>Relatively easy to implement:</strong> Many numerical
+integration methods are straightforward to program.</li>
+<li><strong>Controllable accuracy:</strong> The accuracy of the
+approximation can be adjusted by changing the number of intervals or
+points.</li>
+</ul>
+<hr />
+<p><strong>Limitations of numerical integration:</strong></p>
+<ul>
+<li><strong>Approximation, not exact:</strong> Numerical integration
+provides an approximation of the definite integral, not the exact
+value.</li>
+<li><strong>Computational cost:</strong> Increasing the accuracy often
+requires more function evaluations, which can be computationally
+expensive.</li>
+<li><strong>Potential for error:</strong> Numerical methods can
+introduce errors, such as round-off errors and truncation errors.</li>
+</ul>
+<p><strong>In summary, numerical integration is a powerful tool for
+approximating definite integrals when analytical solutions are not
+feasible. It has wide-ranging applications in various fields and
+provides a practical way to estimate areas, volumes, and solutions to
+complex problems.</strong></p>
+</div>
+<div id="numerical-integration-1" class="section level3">
+<h3>Numerical Integration</h3>
+<p>Numerical integration by simulation refers to a specific type of
+numerical integration technique that leverages the power of simulation
+to estimate the value of a definite integral. It’s also known as Monte
+Carlo integration. This method is particularly useful when dealing with
+integrals that are difficult or impossible to solve analytically, or
+when the function being integrated is complex or defined by a set of
+data points.</p>
+<p>Here’s how it works:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Random Sampling:</strong> Instead of dividing the
+integration interval into smaller subintervals like in traditional
+numerical integration methods, Monte Carlo integration relies on
+generating random samples within the integration domain.</li>
+<li><strong>Function Evaluation:</strong> The function to be integrated
+is evaluated at each of these randomly sampled points.</li>
+<li><strong>Averaging:</strong> The average of the function values
+obtained in step 2 is calculated.</li>
+<li><strong>Scaling:</strong> This average is then multiplied by the
+size of the integration domain to obtain an estimate of the definite
+integral.</li>
+</ol>
+<p>The underlying principle behind Monte Carlo integration is the Law of
+Large Numbers, which states that the average of a large number of random
+samples will converge towards the true expected value. In this context,
+the expected value is the definite integral we are trying to
+estimate.</p>
+<p><strong>Advantages of Monte Carlo Integration:</strong></p>
+<ul>
+<li><strong>Handles complex integrals:</strong> It can be applied to
+integrals with complex integrands or integration domains, where
+traditional methods might struggle.</li>
+<li><strong>Deals with high-dimensional integrals:</strong> It is
+particularly effective for high-dimensional integrals, where other
+numerical integration techniques become computationally expensive.</li>
+<li><strong>Simple to implement:</strong> The basic algorithm is
+relatively straightforward to implement.</li>
+</ul>
+<p><strong>Limitations of Monte Carlo Integration:</strong></p>
+<ul>
+<li><strong>Accuracy:</strong> The accuracy of the estimate depends on
+the number of random samples used. Increasing the number of samples
+improves accuracy but also increases computational cost.</li>
+<li><strong>Convergence:</strong> Convergence can be slow compared to
+other numerical integration methods, especially for low-dimensional
+integrals.</li>
+<li><strong>Randomness:</strong> The results can vary slightly due to
+the random nature of the sampling process.</li>
+</ul>
+<p><strong>Applications of Monte Carlo Integration:</strong></p>
+<ul>
+<li><strong>Finance:</strong> Pricing complex financial instruments and
+options.</li>
+<li><strong>Physics:</strong> Simulating particle transport and
+interactions.</li>
+<li><strong>Engineering:</strong> Reliability analysis and risk
+assessment.</li>
+<li><strong>Computer graphics:</strong> Rendering images and simulating
+light transport.</li>
+</ul>
+<p><strong>In summary, Monte Carlo integration is a powerful technique
+for estimating definite integrals, especially in situations where
+traditional methods are not feasible. It leverages the power of random
+sampling and the Law of Large Numbers to provide approximate solutions
+to complex integration problems.</strong></p>
+</div>
+</div>
+</div>
+<div id="week-11" class="section level1" data-navmenu="Advanced Topics">
+<h1>Week 11</h1>
+<div id="column-6" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="week-11-1" class="section level3">
+<h3>Week 11</h3>
+<p>
+</div>
+<div id="box-muller-transform" class="section level3">
+<h3>Box-Muller Transform</h3>
+<p>The algorithm used in the previous example is the <strong>Box-Muller
+transform</strong>, specifically the <strong>polar form</strong> of the
+Box-Muller transform. It’s a method for generating pseudo-random numbers
+from the standard normal distribution (mean 0 and variance 1) given a
+source of uniform random numbers. Here’s a detailed breakdown:</p>
+<p><strong>1. The Goal:</strong></p>
+<p>The objective is to transform two independent random variables,
+<em>U1</em> and <em>U2</em>, which are uniformly distributed between 0
+and 1, into two independent random variables, <em>X</em> and <em>Y</em>,
+which follow a standard normal distribution.</p>
+<p><strong>2. The Box-Muller Transform (Polar Form):</strong></p>
+<p>The polar form avoids the calculation of trigonometric functions,
+which can be computationally expensive. It proceeds as follows:</p>
+<ul>
+<li><p><strong>Generate Two Uniform Random Numbers:</strong> Two
+independent random numbers, <em>U1</em> and <em>U2</em>, are generated
+from a uniform distribution on the interval (0, 1). In the code, this is
+done using <code>rand()</code>.</p></li>
+<li><p><strong>Transform to [-1, 1]:</strong> The uniform random numbers
+are transformed to the interval [-1, 1]:</p>
+<ul>
+<li><em>V1</em> = 2 * <em>U1</em> - 1</li>
+<li><em>V2</em> = 2 * <em>U2</em> - 1</li>
+</ul></li>
+<li><p><strong>Calculate s:</strong> Calculate the sum of squares:</p>
+<ul>
+<li><em>s</em> = <em>V1</em>² + <em>V2</em>²</li>
+</ul></li>
+<li><p><strong>Rejection Sampling (The “Polar” Part):</strong> This is
+the key part that makes this the <em>polar</em> form. We only accept the
+pair (<em>V1</em>, <em>V2</em>) if it falls within the unit circle
+(i.e., <em>s</em> &lt; 1). If <em>s</em> ≥ 1, we reject the pair and
+generate new <em>U1</em> and <em>U2</em> until we find a pair that
+satisfies <em>s</em> &lt; 1. This is a form of rejection sampling. It
+ensures that the distribution of the accepted points is uniform within
+the unit circle. The condition <code>s &gt; 0</code> is also important
+to prevent issues with the log function if <code>s</code> is very close
+to zero.</p></li>
+<li><p><strong>The Transformation (If Accepted):</strong> If the pair is
+accepted (<em>s</em> &lt; 1), then the following transformation is
+applied:</p>
+<ul>
+<li><em>X</em> = sqrt(-2 * log(<em>s</em>) / <em>s</em>) *
+<em>V1</em></li>
+<li><em>Y</em> = sqrt(-2 * log(<em>s</em>) / <em>s</em>) *
+<em>V2</em></li>
+</ul>
+<p>These <em>X</em> and <em>Y</em> will be independent standard normal
+random variables.</p></li>
+</ul>
+<p><strong>3. Why it Works:</strong></p>
+<p>The Box-Muller transform is based on the fact that if <em>X</em> and
+<em>Y</em> are independent standard normal variables, then <em>X</em>² +
+<em>Y</em>² follows a chi-squared distribution with two degrees of
+freedom, which is equivalent to an exponential distribution with a mean
+of 2. The polar form is an optimized version of the Box-Muller method
+that avoids the use of trigonometric functions by using a rejection
+sampling step. The rejection sampling ensures that the distribution of
+the points is uniform within the unit circle. This uniformity is crucial
+for the transformation to produce standard normal variates.</p>
+<p><strong>4. In the Code:</strong></p>
+<p>The <code>while</code> loop and the <code>if s &lt; 1</code>
+condition implement the rejection sampling. The lines inside the
+<code>if</code> block perform the Box-Muller transformation to produce
+the normal variates. The code generates two normal random variables per
+loop iteration, which is why the loop counter <code>i</code> is
+incremented twice and the <code>if i &lt;= n</code> check is in
+place.</p>
+<p><strong>5. Advantages of the Polar Method:</strong></p>
+<ul>
+<li><strong>No Trigonometric Functions:</strong> It avoids the use of
+sine and cosine, which can be computationally expensive.</li>
+<li><strong>Simpler:</strong> Conceptually, it’s a bit simpler to
+understand than the original Box-Muller transform.</li>
+</ul>
+<p><strong>6. Disadvantages:</strong></p>
+<ul>
+<li><strong>Rejection Sampling:</strong> The rejection sampling step
+means that some pairs of uniform random numbers are discarded. This can
+make the polar method slightly less efficient than other normal random
+number generators (although it’s still quite fast). The probability of
+rejection is approximately (1 - π/4) ≈ 0.215. This means that, on
+average, you’ll need to generate about 4/π ≈ 1.27 times more uniform
+random number pairs than normal random numbers you want.</li>
+</ul>
+<p>In summary, the polar form of the Box-Muller transform is a clever
+and efficient way to generate standard normal random variates using
+uniform random numbers. It’s widely used in Monte Carlo simulations and
+other applications that require normally distributed random numbers.</p>
+<hr />
+<p>The Box-Muller transform is a method for generating pairs of
+independent, standard, normally distributed random numbers given a
+source of uniformly distributed random numbers. It’s a fundamental
+algorithm in computational statistics and Monte Carlo simulations.</p>
+<p><strong>Here’s a breakdown of the Box-Muller transform:</strong></p>
+<p><strong>1. The Goal:</strong></p>
+<p>The objective is to transform two independent random variables, U1
+and U2, which are uniformly distributed between 0 and 1, into two
+independent random variables, X and Y, which follow a standard normal
+distribution (mean 0 and variance 1).</p>
+<p><strong>2. The Transformation:</strong></p>
+<p>The Box-Muller transform involves the following steps:</p>
+<ul>
+<li><p><strong>Generate Two Uniform Random Numbers:</strong> Two
+independent random numbers, U1 and U2, are generated from a uniform
+distribution on the interval (0, 1).</p></li>
+<li><p><strong>Calculate Intermediate Values:</strong></p>
+<ul>
+<li>R = sqrt(-2 * ln(U1))</li>
+<li>Θ = 2 * π * U2</li>
+</ul></li>
+<li><p><strong>Calculate Normal Variates:</strong></p>
+<ul>
+<li>X = R * cos(Θ)</li>
+<li>Y = R * sin(Θ)</li>
+</ul></li>
+</ul>
+<p>These X and Y will be independent standard normal random
+variables.</p>
+<p><strong>3. Why it Works:</strong></p>
+<p>The Box-Muller transform is based on the fact that if X and Y are
+independent standard normal variables, then X² + Y² follows a
+chi-squared distribution with two degrees of freedom, which is
+equivalent to an exponential distribution. The transformation
+essentially maps points from a uniform distribution in polar coordinates
+(R and Θ) to Cartesian coordinates (X and Y), where the resulting X and
+Y are normally distributed.</p>
+<p><strong>4. In Simpler Terms:</strong></p>
+<p>Imagine you have a dartboard where you throw darts randomly, and they
+land uniformly across the board. The Box-Muller transform is like a
+recipe that takes where the dart landed (represented by two random
+numbers) and converts it into two new numbers that would have landed on
+a bullseye if the throws were normally distributed.</p>
+<p><strong>5. Key Points:</strong></p>
+<ul>
+<li><strong>Independence:</strong> The Box-Muller transform generates
+two <em>independent</em> standard normal random variables.</li>
+<li><strong>Uniform to Normal:</strong> It transforms uniform random
+variables into normal random variables.</li>
+<li><strong>No Approximations:</strong> The Box-Muller transform is an
+exact method (not an approximation).</li>
+</ul>
+<p><strong>6. Applications:</strong></p>
+<p>The Box-Muller transform is widely used in:</p>
+<ul>
+<li><strong>Monte Carlo simulations:</strong> To generate random numbers
+from a normal distribution, which is often needed in these
+simulations.</li>
+<li><strong>Statistics:</strong> For various statistical computations
+and simulations.</li>
+<li><strong>Computer graphics:</strong> To create realistic-looking
+random effects.</li>
+</ul>
+<p><strong>7. Variations:</strong></p>
+<p>There is a variation called the <strong>polar form</strong> of the
+Box-Muller transform, which is computationally more efficient as it
+avoids the use of trigonometric functions (sine and cosine).</p>
+<p><strong>In Summary:</strong></p>
+<p>The Box-Muller transform is a fundamental and widely used algorithm
+for generating normally distributed random numbers. It provides an exact
+method for converting uniform random numbers into standard normal random
+variables, making it a valuable tool in various fields.</p>
+<p>
+</div>
+</div>
+</div>
+<div id="week-12" class="section level1" data-navmenu="Advanced Topics">
+<h1>Week 12</h1>
+<div id="column-7" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="week-12-1" class="section level3">
+<h3>Week 12</h3>
 </div>
 </div>
 </div>

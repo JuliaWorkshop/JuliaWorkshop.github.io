@@ -1,0 +1,30 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+### Survival Analysis with Julia
+
+Julia has several packages that can be used for analyzing survival models. Here are some of the most popular ones:
+
+* **Survival.jl:** This is a dedicated package for survival analysis in Julia. It provides functionality for various aspects of survival analysis, including:
+    * Time-to-event types
+    * Kaplan-Meier survival curves
+    * Nelson-Aalen cumulative hazard estimation
+    * Cox proportional hazards regression
+
+* **JuliaActuary:** This is an ecosystem of packages specifically designed for actuarial modeling and analysis, which often involves survival analysis. Within JuliaActuary, you'll find packages like:
+    * **MortalityTables.jl:** For working with standard mortality tables and parametric models.
+    * **LifeContingencies.jl:** For insurance, annuity, premium, and reserve calculations.
+    * **ExperienceAnalysis.jl:** For exposure calculation needs.
+
+* **SurvivalAnalysis.jl:** This is a relatively new package that is under active development. It aims to provide a comprehensive set of tools for survival analysis, including handling different types of censoring and potentially incorporating advanced techniques.
+
+These are some of the key packages available in Julia for survival analysis. The specific choice of package may depend on the particular type of analysis you need to perform and the features offered by each package.
+
+In addition to these, you might also find relevant functionalities within other general-purpose statistical packages in Julia.
+
+Overall, Julia provides a growing set of tools for survival analysis, making it a viable option for researchers and practitioners in this field.

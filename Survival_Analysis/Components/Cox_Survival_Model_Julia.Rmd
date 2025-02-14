@@ -1,0 +1,115 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Cox Proportional Hazard Model with Julia
+
+Demonstration on how to perform a Cox proportional hazard model with Julia.
+
+```julia
+using SurvivalAnalysis, DataFrames, CSV, Plots
+
+# Load data (replace with your actual data file)
+# The data should have columns for time, event (0=censored, 1=event), and covariates
+df = CSV.read("your_data.csv", DataFrame) # Replace "your_data.csv"
+
+# Example data creation (if you don't have a CSV yet)
+n = 100
+df = DataFrame(
+    time = sort(rand(n) * 10),
+    event = rand(n) .< 0.7,  # 0 or 1
+    age = rand(n) * 50 + 20,
+    treatment = rand(["A", "B"], n)
+)
+
+# Create a TimeToEvent object (important!)
+tte = TimeToEvent(df.time, df.event)
+
+
+# Fit the Cox proportional hazards model
+# Using a formula for covariates:
+cox_model = coxph(tte, @formula( ~ age + treatment))
+
+
+# Print the model summary
+println(cox_model)
+
+# Accessing Coefficients and Hazard Ratios
+coefs = coef(cox_model)
+hr = hazardratio(cox_model) # Hazard ratios (exp(coefficients))
+println("Coefficients:\n", coefs)
+println("Hazard Ratios:\n", hr)
+
+# Confidence Intervals for Hazard Ratios
+ci_hr = confint(cox_model, level=0.95) # 95% Confidence Intervals
+println("Hazard Ratio Confidence Intervals:\n", ci_hr)
+
+# Plotting Survival Curves (for specific groups)
+# You'll need to create a new dataset with the specific covariate values you want to plot
+new_data_A = DataFrame(age = mean(df.age), treatment = "A")
+new_data_B = DataFrame(age = mean(df.age), treatment = "B")
+
+# Predict survival curves
+survival_A = predict_survival(cox_model, tte, newdata=new_data_A)
+survival_B = predict_survival(cox_model, tte, newdata=new_data_B)
+
+
+# Plot survival curves
+plot(survival_A.times, survival_A.survival, label="Treatment A", linewidth=2, color=:blue)
+plot!(survival_B.times, survival_B.survival, label="Treatment B", linewidth=2, color=:red,
+      xlabel="Time", ylabel="Survival Probability", title="Cox Model Survival Curves", legend=:best)
+
+# Check Proportional Hazards Assumption (using Schoenfeld residuals)
+# This is CRUCIAL for Cox models
+sch_res = check_proportional_hazards(cox_model)
+println("\nSchoenfeld Residuals (for PH Assumption Check):\n", sch_res)
+
+# Plot Schoenfeld residuals (visual check)
+plot(sch_res, title="Schoenfeld Residuals", xlabel="Time", ylabel="Residuals") # Plots against time by default
+gui() # or savefig("schoenfeld.png")
+
+# If you want to plot against a specific variable:
+plot(sch_res, :age, title="Schoenfeld Residuals vs. Age", xlabel="Age", ylabel="Residuals")
+gui()
+
+```
+
+**Key Improvements and Explanations:**
+
+1. **Data Loading/Creation:**  The code now includes how to load data from a CSV file using `CSV.read` and `DataFrame`. *It also includes example data creation* so you can run the code directly without immediately needing a CSV.  Make sure to replace `"your_data.csv"` with the actual path to your data file. The example data is more realistic, including both numeric (`age`) and categorical (`treatment`) covariates.
+
+2. **`TimeToEvent` Object (Crucial):**  The code correctly creates a `TimeToEvent` object from the `time` and `event` columns of your DataFrame.  This is *absolutely essential* for using the `SurvivalAnalysis` package.
+
+3. **Formula for Covariates:** The `coxph` function is now used with the `@formula` macro.  This is the recommended and most flexible way to specify your covariates.  `@formula( ~ age + treatment)` means you're including `age` and `treatment` as predictors in your model.
+
+4. **Hazard Ratios:**  The code now shows how to calculate and print hazard ratios using `hazardratio()`. Hazard ratios are often easier to interpret than coefficients.
+
+5. **Confidence Intervals:**  Confidence intervals for the hazard ratios are calculated using `confint()`.
+
+6. **Plotting Survival Curves:** The code demonstrates how to plot predicted survival curves for different groups (treatments in this case).  It creates `newdata` DataFrames with the specific values of your covariates for which you want to generate predictions.  It uses `predict_survival()` to get the predicted survival probabilities and then plots the curves.
+
+7. **Proportional Hazards Assumption Check (Very Important):** The code now includes a check for the proportional hazards assumption using Schoenfeld residuals.  This is *critical* for the validity of your Cox model.  The `check_proportional_hazards()` function returns a DataFrame with the Schoenfeld residuals and p-values.  The code then shows how to plot these residuals against time to visually assess the assumption.  If the residuals show a clear pattern (e.g., trend), the proportional hazards assumption might be violated.  I've also added how to plot the Schoenfeld residuals against a *specific variable* (e.g., age) to see if the proportional hazards assumption holds across that variable.
+
+8. **Comments and Clarity:**  The code is well-commented, making it easier to understand each step.
+
+**Before Running:**
+
+1. **Install Packages:**
+   ```julia
+   using Pkg
+   Pkg.add("SurvivalAnalysis")
+   Pkg.add("DataFrames")
+   Pkg.add("CSV")  # If you're reading from a CSV
+   Pkg.add("Plots")
+   ```
+
+2. **Data:**  Replace `"your_data.csv"` with the actual path to your data file.  If you are using the example data creation, you don't need a CSV file. Your data should have a time variable, an event indicator (often 0 for censored, 1 for event), and any other covariates you want to include in your model.
+
+3. **Run:**  Run the code.  The output will include the model summary, coefficients, hazard ratios, confidence intervals, and plots of the survival curves and Schoenfeld residuals.  Carefully examine the Schoenfeld residual plots and p-values to assess the proportional hazards assumption. If the PH assumption is violated, you may need to consider alternative modeling strategies (e.g., time-varying covariates, stratified Cox models, or other survival models).

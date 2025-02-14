@@ -1,5 +1,5 @@
 ---
-title: "Random Number Generation, Sampling, and Simulation with Julia"
+title: "Random Simulation with Julia"
 output:
   flexdashboard::flex_dashboard:
     theme: 
@@ -48,7 +48,7 @@ https://rpubs.com/JuliaWorkshop/Binomial_Simulation_Julia
 * [Implementing Metropolis-Hastings in Julia](https://rpubs.com/JuliaWorkshop/Metropolis_Hastings_Julia)
 
 
-Week 1  {data-navmenu="Components"}
+Week 1:  {data-navmenu="Components"}
 =====================================
 
 Column {.tabset}
@@ -56,8 +56,25 @@ Column {.tabset}
 
 ### Week 1
 
+
+
 ```{r child = "Sampling_Functions.Rmd"}
 ```
+
+
+Week 2  {data-navmenu="Components"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Week 2
+
+```{r child = "Components/Bootstrap_Sampling_Julia.Rmd"}
+```
+
+
+
 
 Week 5:  {data-navmenu="Components"}
 =====================================
@@ -80,7 +97,7 @@ Column {.tabset}
 --------------------
 
 
-```{r child = "Markov_Chains_Julia.Rmd"}
+```{r child = "Components/Markov_Chains_Julia.Rmd"}
 
 ```
 
@@ -93,5 +110,31 @@ Column {.tabset}
 
 ### Week 10
 
-```{r child = "Numerical_Integration.Rmd"}
+```{r child = "Components/Numerical_Integration.Rmd"}
 ```
+
+
+Week 11  {data-navmenu="Advanced Topics"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Week 11
+
+
+<p>
+
+
+```{r child = "Components/Box_Muller_Transform_Method.Rmd"}
+```
+
+
+
+Week 12  {data-navmenu="Advanced Topics"}
+====================================
+
+Column {.tabset}
+--------------------
+
+### Week 12

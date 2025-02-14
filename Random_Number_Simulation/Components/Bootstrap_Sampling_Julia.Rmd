@@ -1,8 +1,10 @@
-## Bootstrap Sampling
+### Bootstrap Sampling
+
+<h3>Bootstrap Sampling</h3>
 
 Bootstrap sampling is a powerful statistical technique for estimating the distribution of a sample statistic by resampling with replacement. It's especially useful when the theoretical distribution of the statistic is complex or unknown. Julia, a high-performance programming language, is well-suited for implementing this method. Let's dive into a step-by-step tutorial on how to perform bootstrap sampling in Julia.
 
-### Step-by-Step Tutorial: Bootstrap Sampling with Julia
+<h3>Step-by-Step Tutorial: Bootstrap Sampling with Julia</h3>
 
 #### Step 1: Install Julia and Necessary Packages
 First, make sure you have Julia installed on your system. You can download it from the [official Julia website](https://julialang.org/downloads/).

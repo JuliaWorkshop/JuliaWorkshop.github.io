@@ -1,3 +1,5 @@
+### Box-Muller Transform
+
 The algorithm used in the previous example is the **Box-Muller transform**, specifically the **polar form** of the Box-Muller transform.  It's a method for generating pseudo-random numbers from the standard normal distribution (mean 0 and variance 1) given a source of uniform random numbers. Here's a detailed breakdown:
 
 **1. The Goal:**
@@ -44,7 +46,9 @@ The `while` loop and the `if s < 1` condition implement the rejection sampling. 
 
 In summary, the polar form of the Box-Muller transform is a clever and efficient way to generate standard normal random variates using uniform random numbers. It's widely used in Monte Carlo simulations and other applications that require normally distributed random numbers.
 
---------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------
+
+
 The Box-Muller transform is a method for generating pairs of independent, standard, normally distributed random numbers given a source of uniformly distributed random numbers. It's a fundamental algorithm in computational statistics and Monte Carlo simulations.
 
 **Here's a breakdown of the Box-Muller transform:**
@@ -98,3 +102,6 @@ There is a variation called the **polar form** of the Box-Muller transform, whic
 **In Summary:**
 
 The Box-Muller transform is a fundamental and widely used algorithm for generating normally distributed random numbers. It provides an exact method for converting uniform random numbers into standard normal random variables, making it a valuable tool in various fields.
+
+<p>
+

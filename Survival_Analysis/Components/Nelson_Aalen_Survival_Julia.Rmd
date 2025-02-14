@@ -1,0 +1,134 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+### Nelson-Aalen Analysis with Julia
+
+The Nelson-Aalen analysis is a statistical method used in survival analysis to estimate the **cumulative hazard function**. 
+
+Here's a breakdown of its purpose and why it's important:
+
+**What is Survival Analysis?**
+
+Survival analysis deals with time-to-event data. This means we're interested in how long it takes for a specific event to occur. The "event" could be anything:
+
+* **In healthcare:** Death, disease onset, recovery from illness
+* **In engineering:** Failure of a machine, a component breaking down
+* **In business:** Customer churn, a product failing
+
+**What is the Cumulative Hazard Function?**
+
+The cumulative hazard function, denoted as H(t), represents the accumulated risk of experiencing the event up to time t. In simpler terms, it tells you the total "hazard" or risk you've been exposed to over time.
+
+**Purpose of Nelson-Aalen Analysis**
+
+The Nelson-Aalen estimator is a non-parametric way to estimate the cumulative hazard function from survival data. Here's why it's useful:
+
+1. **Describing Risk:** It provides a way to visualize and quantify the cumulative risk over time. This helps understand how the probability of an event changes as time goes on.
+
+2. **Comparing Groups:** You can use Nelson-Aalen curves to compare the cumulative hazard between different groups (e.g., patients receiving different treatments). If one group's curve is steeper, it indicates a higher cumulative risk.
+
+3. **Checking Model Assumptions:** The Nelson-Aalen estimator can be used to assess the fit of parametric survival models (like the exponential or Weibull model). By comparing the estimated cumulative hazard from the Nelson-Aalen method to the predicted cumulative hazard from a parametric model, you can check if the model assumptions are reasonable.
+
+4. **Non-Parametric Approach:** It's a non-parametric method, meaning it doesn't rely on specific assumptions about the underlying distribution of the data. This makes it more flexible than parametric methods, especially when you're unsure about the data's distribution.
+
+
+```julia
+using SurvivalAnalysis, Plots, DataFrames
+
+# Sample Data (replace with your actual data)
+n = 100
+df = DataFrame(
+    time = sort(rand(n) * 10),
+    event = rand(n) .< 0.7  # 0 or 1 (Censored or Event)
+)
+
+# Create a TimeToEvent object
+tte = TimeToEvent(df.time, df.event)
+
+# Calculate the Nelson-Aalen estimator
+na_est = nelson_aalen(tte)
+
+# Plot the cumulative hazard
+plot(na_est,
+     xlabel="Time",
+     ylabel="Cumulative Hazard",
+     title="Nelson-Aalen Cumulative Hazard",
+     legend=false,  # No legend needed for a single curve
+     linewidth=2,
+     color=:blue)
+
+
+# Confidence Intervals (Greenwood)
+ci_na = confint(na_est, method=:greenwood)
+plot!(ci_na,
+      fillto=na_est,
+      alpha=0.2,
+      color=:blue,
+      label="95% CI (Greenwood)")
+
+
+# Confidence Intervals (Bootstrap - more robust, but slower)
+ci_na_bs = confint(na_est, method=:bootstrap, n_boot=500) # n_boot: Number of bootstrap replicates
+plot!(ci_na_bs,
+      fillto=na_est,
+      alpha=0.2,
+      color=:red,
+      label="95% CI (Bootstrap)")
+
+gui() # or savefig("nelson_aalen.png")
+
+
+# --- Example with Strata (Groups) ---
+group = rand(["A", "B"], n) # Example group labels
+tte_grouped = TimeToEvent(df.time, df.event, group)
+
+na_est_grouped = nelson_aalen(tte_grouped)
+
+plot(na_est_grouped,
+    xlabel="Time",
+    ylabel="Cumulative Hazard",
+    title="Nelson-Aalen by Group",
+    legend=:best,
+    linewidth=2)
+gui()
+
+```
+
+**Explanation and Key Improvements:**
+
+1. **Clearer Data:** The code provides sample data generation (which is more helpful for running the code directly) and emphasizes that you should replace this with your own data.  It uses a DataFrame, which is typical for working with data in Julia.
+
+2. **`TimeToEvent` Object:** The `TimeToEvent` object is correctly created. This is essential for `SurvivalAnalysis`.
+
+3. **Nelson-Aalen Calculation:** The `nelson_aalen()` function is used to calculate the cumulative hazard estimates.
+
+4. **Plotting:** The plot is labeled correctly, and the legend is removed (since there's only one curve in the basic example).  Line properties are set for better visualization.
+
+5. **Confidence Intervals:**  The code now demonstrates how to calculate and plot confidence intervals for the Nelson-Aalen estimator using both the Greenwood formula (default and faster) and bootstrapping (more robust, especially with small sample sizes or when the assumptions of the Greenwood method are not met).  The bootstrap method is computationally more intensive.
+
+6. **Strata (Groups):** The code includes an example of how to perform Nelson-Aalen analysis with strata (groups). It creates random group labels and shows how to create a `TimeToEvent` object with groups and then plot separate Nelson-Aalen curves for each group.
+
+7. **Comments:** The code is well-commented.
+
+**Before Running:**
+
+1. **Install Packages:**
+   ```julia
+   using Pkg
+   Pkg.add("SurvivalAnalysis")
+   Pkg.add("DataFrames")
+   Pkg.add("Plots")
+   ```
+
+2. **Data:** Replace the sample data with your own data.  Your data should have a time variable and an event indicator (often 0 for censored, 1 for event).  If you have groups or strata, include a column for that as well.
+
+3. **Run:** Run the code. The plot of the Nelson-Aalen cumulative hazard will be displayed.  Examine the plot to understand the cumulative hazard over time.  The confidence intervals provide a measure of uncertainty around the estimated cumulative hazard.  If you have groups, you can compare the cumulative hazards between the groups.
+
+### Summary
+
+**In summary,** the Nelson-Aalen analysis helps you understand and quantify the risk of an event occurring over time. It's a valuable tool in survival analysis for describing risk, comparing groups, and checking model assumptions.

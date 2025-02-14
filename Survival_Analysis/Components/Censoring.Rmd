@@ -1,8 +1,15 @@
-## Censoring in Statistical Analysis
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+### Censoring in Statistical Analysis
 
 Censoring in statistical analysis occurs when the exact value of a variable of interest is not observed. This often happens in studies where the event of interest (e.g., death, disease onset) hasn't occurred for some individuals by the end of the study period.
 
-### Types of Censoring
+#### Types of Censoring
 
 1. **Right Censoring:**
    * **Definition:** This occurs when the event of interest has not happened by the end of the study period.

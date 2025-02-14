@@ -6,10 +6,6 @@ output:
       bootswatch: minty
 ---
 
-```{r  include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-```
 
 ### Pima Diabetes Data 
 

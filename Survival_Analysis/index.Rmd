@@ -29,3 +29,42 @@ Survival analysis is a statistical method used to analyze time-to-event data, su
 The `Survival` package in Julia provides a comprehensive set of tools for survival analysis, including functions for estimating survival probabilities, fitting Cox proportional hazards models, and performing time-dependent covariate analysis. The package also includes functions for visualizing survival curves and conducting hypothesis tests.
 
 Julia's high-performance capabilities make it well-suited for large-scale survival analysis tasks. Additionally, its user-friendly syntax and extensive ecosystem of libraries make it an excellent choice for researchers and practitioners in various fields.
+
+Statistical Models {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child="Components/Survival_Models_With_Julia.Rmd"}
+```
+
+```{r child="Components/Censoring.Rmd"}
+```
+
+Cox Models {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child="Components/Cox_Survival_Model_Julia.Rmd"}
+```
+
+Kaplan-Meier Curves {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child="Components/Kaplan_Meier_Curves_Julia.Rmd"}
+```
+
+Nelson-Aalen Models {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+```{r child="Components/Nelson_Aalen_Survival_Julia.Rmd"}
+```
+

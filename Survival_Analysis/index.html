@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2749,6 +2814,538 @@ tests.</p>
 large-scale survival analysis tasks. Additionally, its user-friendly
 syntax and extensive ecosystem of libraries make it an excellent choice
 for researchers and practitioners in various fields.</p>
+</div>
+</div>
+</div>
+<div id="statistical-models" class="section level1" data-navmenu="About">
+<h1>Statistical Models</h1>
+<div id="column-1" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="survival-analysis-with-julia-1" class="section level3">
+<h3>Survival Analysis with Julia</h3>
+<p>Julia has several packages that can be used for analyzing survival
+models. Here are some of the most popular ones:</p>
+<ul>
+<li><strong>Survival.jl:</strong> This is a dedicated package for
+survival analysis in Julia. It provides functionality for various
+aspects of survival analysis, including:
+<ul>
+<li>Time-to-event types</li>
+<li>Kaplan-Meier survival curves</li>
+<li>Nelson-Aalen cumulative hazard estimation</li>
+<li>Cox proportional hazards regression</li>
+</ul></li>
+<li><strong>JuliaActuary:</strong> This is an ecosystem of packages
+specifically designed for actuarial modeling and analysis, which often
+involves survival analysis. Within JuliaActuary, you’ll find packages
+like:
+<ul>
+<li><strong>MortalityTables.jl:</strong> For working with standard
+mortality tables and parametric models.</li>
+<li><strong>LifeContingencies.jl:</strong> For insurance, annuity,
+premium, and reserve calculations.</li>
+<li><strong>ExperienceAnalysis.jl:</strong> For exposure calculation
+needs.</li>
+</ul></li>
+<li><strong>SurvivalAnalysis.jl:</strong> This is a relatively new
+package that is under active development. It aims to provide a
+comprehensive set of tools for survival analysis, including handling
+different types of censoring and potentially incorporating advanced
+techniques.</li>
+</ul>
+<p>These are some of the key packages available in Julia for survival
+analysis. The specific choice of package may depend on the particular
+type of analysis you need to perform and the features offered by each
+package.</p>
+<p>In addition to these, you might also find relevant functionalities
+within other general-purpose statistical packages in Julia.</p>
+<p>Overall, Julia provides a growing set of tools for survival analysis,
+making it a viable option for researchers and practitioners in this
+field.</p>
+</div>
+<div id="censoring-in-statistical-analysis" class="section level3">
+<h3>Censoring in Statistical Analysis</h3>
+<p>Censoring in statistical analysis occurs when the exact value of a
+variable of interest is not observed. This often happens in studies
+where the event of interest (e.g., death, disease onset) hasn’t occurred
+for some individuals by the end of the study period.</p>
+<div id="types-of-censoring" class="section level4">
+<h4>Types of Censoring</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Right Censoring:</strong>
+<ul>
+<li><strong>Definition:</strong> This occurs when the event of interest
+has not happened by the end of the study period.</li>
+<li><strong>Example:</strong> In a clinical trial studying the time to
+disease progression, patients who are still disease-free at the end of
+the trial are considered right-censored.</li>
+</ul></li>
+<li><strong>Left Censoring:</strong>
+<ul>
+<li><strong>Definition:</strong> This happens when the event of interest
+is known to have occurred before the start of the study.</li>
+<li><strong>Example:</strong> In a study investigating the time to onset
+of symptoms after exposure to a toxin, individuals who were already
+symptomatic at the time of enrollment would be left-censored.</li>
+</ul></li>
+<li><strong>Interval Censoring:</strong>
+<ul>
+<li><strong>Definition:</strong> This occurs when the event of interest
+is known to have occurred between two specific time points.</li>
+<li><strong>Example:</strong> In a study monitoring the onset of a
+disease, if a patient is checked for the disease at two time points and
+the disease is detected at the second but not the first, the patient is
+interval-censored.</li>
+</ul></li>
+<li><strong>Random Censoring:</strong>
+<ul>
+<li><strong>Definition:</strong> This is a type of censoring where the
+reason for censoring is unrelated to the event of interest.</li>
+<li><strong>Example:</strong> In a clinical trial, patients may be lost
+to follow-up due to reasons unrelated to the disease being studied
+(e.g., moving, refusing to participate).</li>
+</ul></li>
+</ol>
+<p><strong>Note:</strong> Random censoring is often assumed in survival
+analysis models, as it allows for unbiased estimation of survival
+probabilities. However, if censoring is not random (e.g., due to
+selective dropout), it can lead to biased results.</p>
+<p><strong>In summary,</strong> understanding the different types of
+censoring is crucial in statistical analysis, especially when dealing
+with time-to-event data. Proper handling of censoring can ensure
+accurate and reliable results.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="cox-models" class="section level1" data-navmenu="Modules">
+<h1>Cox Models</h1>
+<div id="column-2" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="cox-proportional-hazard-model-with-julia" class="section level3">
+<h3>Cox Proportional Hazard Model with Julia</h3>
+<p>Demonstration on how to perform a Cox proportional hazard model with
+Julia.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">SurvivalAnalysis</span>, <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">Plots</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Load data (replace with your actual data file)</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># The data should have columns for time, event (0=censored, 1=event), and covariates</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>df <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="st">&quot;your_data.csv&quot;</span>, DataFrame) <span class="co"># Replace &quot;your_data.csv&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Example data creation (if you don&#39;t have a CSV yet)</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    time <span class="op">=</span> <span class="fu">sort</span>(<span class="fu">rand</span>(n) <span class="op">*</span> <span class="fl">10</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    event <span class="op">=</span> <span class="fu">rand</span>(n) <span class="op">.&lt;</span> <span class="fl">0.7</span>,  <span class="co"># 0 or 1</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    age <span class="op">=</span> <span class="fu">rand</span>(n) <span class="op">*</span> <span class="fl">50</span> <span class="op">+</span> <span class="fl">20</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    treatment <span class="op">=</span> <span class="fu">rand</span>([<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>], n)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># Create a TimeToEvent object (important!)</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>tte <span class="op">=</span> <span class="fu">TimeToEvent</span>(df.time, df.event)</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co"># Fit the Cox proportional hazards model</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># Using a formula for covariates:</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>cox_model <span class="op">=</span> <span class="fu">coxph</span>(tte, <span class="pp">@formula</span>( <span class="op">~</span> age <span class="op">+</span> treatment))</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co"># Print the model summary</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="fu">println</span>(cox_model)</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co"># Accessing Coefficients and Hazard Ratios</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>coefs <span class="op">=</span> <span class="fu">coef</span>(cox_model)</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>hr <span class="op">=</span> <span class="fu">hazardratio</span>(cox_model) <span class="co"># Hazard ratios (exp(coefficients))</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Coefficients:</span><span class="sc">\n</span><span class="st">&quot;</span>, coefs)</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Hazard Ratios:</span><span class="sc">\n</span><span class="st">&quot;</span>, hr)</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co"># Confidence Intervals for Hazard Ratios</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>ci_hr <span class="op">=</span> <span class="fu">confint</span>(cox_model, level<span class="op">=</span><span class="fl">0.95</span>) <span class="co"># 95% Confidence Intervals</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Hazard Ratio Confidence Intervals:</span><span class="sc">\n</span><span class="st">&quot;</span>, ci_hr)</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="co"># Plotting Survival Curves (for specific groups)</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co"># You&#39;ll need to create a new dataset with the specific covariate values you want to plot</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>new_data_A <span class="op">=</span> <span class="fu">DataFrame</span>(age <span class="op">=</span> <span class="fu">mean</span>(df.age), treatment <span class="op">=</span> <span class="st">&quot;A&quot;</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>new_data_B <span class="op">=</span> <span class="fu">DataFrame</span>(age <span class="op">=</span> <span class="fu">mean</span>(df.age), treatment <span class="op">=</span> <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="co"># Predict survival curves</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>survival_A <span class="op">=</span> <span class="fu">predict_survival</span>(cox_model, tte, newdata<span class="op">=</span>new_data_A)</span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a>survival_B <span class="op">=</span> <span class="fu">predict_survival</span>(cox_model, tte, newdata<span class="op">=</span>new_data_B)</span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="co"># Plot survival curves</span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="fu">plot</span>(survival_A.times, survival_A.survival, label<span class="op">=</span><span class="st">&quot;Treatment A&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>, color<span class="op">=:</span>blue)</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="fu">plot!</span>(survival_B.times, survival_B.survival, label<span class="op">=</span><span class="st">&quot;Treatment B&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>, color<span class="op">=:</span>red,</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a>      xlabel<span class="op">=</span><span class="st">&quot;Time&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Survival Probability&quot;</span>, title<span class="op">=</span><span class="st">&quot;Cox Model Survival Curves&quot;</span>, legend<span class="op">=:</span>best)</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="co"># Check Proportional Hazards Assumption (using Schoenfeld residuals)</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="co"># This is CRUCIAL for Cox models</span></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>sch_res <span class="op">=</span> <span class="fu">check_proportional_hazards</span>(cox_model)</span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Schoenfeld Residuals (for PH Assumption Check):</span><span class="sc">\n</span><span class="st">&quot;</span>, sch_res)</span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="co"># Plot Schoenfeld residuals (visual check)</span></span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a><span class="fu">plot</span>(sch_res, title<span class="op">=</span><span class="st">&quot;Schoenfeld Residuals&quot;</span>, xlabel<span class="op">=</span><span class="st">&quot;Time&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>) <span class="co"># Plots against time by default</span></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a><span class="fu">gui</span>() <span class="co"># or savefig(&quot;schoenfeld.png&quot;)</span></span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="co"># If you want to plot against a specific variable:</span></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a><span class="fu">plot</span>(sch_res, <span class="op">:</span>age, title<span class="op">=</span><span class="st">&quot;Schoenfeld Residuals vs. Age&quot;</span>, xlabel<span class="op">=</span><span class="st">&quot;Age&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="fu">gui</span>()</span></code></pre></div>
+<p><strong>Key Improvements and Explanations:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Data Loading/Creation:</strong> The code now includes how
+to load data from a CSV file using <code>CSV.read</code> and
+<code>DataFrame</code>. <em>It also includes example data creation</em>
+so you can run the code directly without immediately needing a CSV. Make
+sure to replace <code>&quot;your_data.csv&quot;</code> with the actual path to
+your data file. The example data is more realistic, including both
+numeric (<code>age</code>) and categorical (<code>treatment</code>)
+covariates.</p></li>
+<li><p><strong><code>TimeToEvent</code> Object (Crucial):</strong> The
+code correctly creates a <code>TimeToEvent</code> object from the
+<code>time</code> and <code>event</code> columns of your DataFrame. This
+is <em>absolutely essential</em> for using the
+<code>SurvivalAnalysis</code> package.</p></li>
+<li><p><strong>Formula for Covariates:</strong> The <code>coxph</code>
+function is now used with the <code>@formula</code> macro. This is the
+recommended and most flexible way to specify your covariates.
+<code>@formula( ~ age + treatment)</code> means you’re including
+<code>age</code> and <code>treatment</code> as predictors in your
+model.</p></li>
+<li><p><strong>Hazard Ratios:</strong> The code now shows how to
+calculate and print hazard ratios using <code>hazardratio()</code>.
+Hazard ratios are often easier to interpret than coefficients.</p></li>
+<li><p><strong>Confidence Intervals:</strong> Confidence intervals for
+the hazard ratios are calculated using <code>confint()</code>.</p></li>
+<li><p><strong>Plotting Survival Curves:</strong> The code demonstrates
+how to plot predicted survival curves for different groups (treatments
+in this case). It creates <code>newdata</code> DataFrames with the
+specific values of your covariates for which you want to generate
+predictions. It uses <code>predict_survival()</code> to get the
+predicted survival probabilities and then plots the curves.</p></li>
+<li><p><strong>Proportional Hazards Assumption Check (Very
+Important):</strong> The code now includes a check for the proportional
+hazards assumption using Schoenfeld residuals. This is <em>critical</em>
+for the validity of your Cox model. The
+<code>check_proportional_hazards()</code> function returns a DataFrame
+with the Schoenfeld residuals and p-values. The code then shows how to
+plot these residuals against time to visually assess the assumption. If
+the residuals show a clear pattern (e.g., trend), the proportional
+hazards assumption might be violated. I’ve also added how to plot the
+Schoenfeld residuals against a <em>specific variable</em> (e.g., age) to
+see if the proportional hazards assumption holds across that
+variable.</p></li>
+<li><p><strong>Comments and Clarity:</strong> The code is
+well-commented, making it easier to understand each step.</p></li>
+</ol>
+<p><strong>Before Running:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Install Packages:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;SurvivalAnalysis&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;DataFrames&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;CSV&quot;</span>)  <span class="co"># If you&#39;re reading from a CSV</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span></code></pre></div></li>
+<li><p><strong>Data:</strong> Replace <code>&quot;your_data.csv&quot;</code> with
+the actual path to your data file. If you are using the example data
+creation, you don’t need a CSV file. Your data should have a time
+variable, an event indicator (often 0 for censored, 1 for event), and
+any other covariates you want to include in your model.</p></li>
+<li><p><strong>Run:</strong> Run the code. The output will include the
+model summary, coefficients, hazard ratios, confidence intervals, and
+plots of the survival curves and Schoenfeld residuals. Carefully examine
+the Schoenfeld residual plots and p-values to assess the proportional
+hazards assumption. If the PH assumption is violated, you may need to
+consider alternative modeling strategies (e.g., time-varying covariates,
+stratified Cox models, or other survival models).</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="kaplan-meier-curves" class="section level1" data-navmenu="Modules">
+<h1>Kaplan-Meier Curves</h1>
+<div id="column-3" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="creating-kaplan-meier-curves-with-julia" class="section level4">
+<h4>Creating Kaplan-Meier Curves with Julia</h4>
+<p>This example provides a much more complete and practical
+demonstration of how to create and visualize Kaplan-Meier survival
+curves in Julia using the <code>SurvivalAnalysis</code> package.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">SurvivalAnalysis</span>, <span class="bu">Plots</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Generate some sample survival data (replace with your actual data)</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">100</span>  <span class="co"># Number of individuals</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">sort</span>(<span class="fu">rand</span>(n) <span class="op">*</span> <span class="fl">10</span>) <span class="co"># Random survival times</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>event <span class="op">=</span> <span class="fu">rand</span>(n) <span class="op">.&lt;</span> <span class="fl">0.7</span> <span class="co"># Random event indicators (true if event occurred, false if censored)</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># Create a TimeToEvent object</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>tte <span class="op">=</span> <span class="fu">TimeToEvent</span>(time, event)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># Calculate the Kaplan-Meier estimator</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>km_est <span class="op">=</span> <span class="fu">kaplan_meier</span>(tte)</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co"># Plot the Kaplan-Meier survival curve</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="fu">plot</span>(km_est,</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>     xlabel<span class="op">=</span><span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>     ylabel<span class="op">=</span><span class="st">&quot;Survival Probability&quot;</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>     title<span class="op">=</span><span class="st">&quot;Kaplan-Meier Survival Curve&quot;</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>     legend<span class="op">=:</span>best,</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>     linewidth<span class="op">=</span><span class="fl">2</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>     color<span class="op">=:</span>blue)</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a><span class="co"># Add confidence intervals (optional)</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>ci <span class="op">=</span> <span class="fu">confint</span>(km_est, method<span class="op">=:</span>greenwood)  <span class="co"># Calculate confidence intervals</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="fu">plot!</span>(ci,</span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a>      fillto<span class="op">=</span>km_est,  <span class="co"># Fill the area around the curve</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a>      alpha<span class="op">=</span><span class="fl">0.2</span>,      <span class="co"># Set transparency</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a>      color<span class="op">=:</span>blue,</span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a>      label<span class="op">=</span><span class="st">&quot;95% CI&quot;</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co"># Example with strata (groups)</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a>group <span class="op">=</span> <span class="fu">rand</span>([<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>], n) <span class="co"># Example group labels</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>tte_grouped <span class="op">=</span> <span class="fu">TimeToEvent</span>(time, event, group)</span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co"># Calculate KM curves for each group</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a>km_est_grouped <span class="op">=</span> <span class="fu">kaplan_meier</span>(tte_grouped)</span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a><span class="co"># Plot the grouped KM curves</span></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a><span class="fu">plot</span>(km_est_grouped,</span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">&quot;Survival Probability&quot;</span>,</span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Kaplan-Meier Survival Curves by Group&quot;</span>,</span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a>    legend<span class="op">=:</span>best,</span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a><span class="co"># Example with different CI method</span></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a>ci_bs <span class="op">=</span> <span class="fu">confint</span>(km_est, method<span class="op">=:</span>bootstrap, n_boot<span class="op">=</span><span class="fl">200</span>) <span class="co"># Bootstrap CI</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a><span class="fu">plot!</span>(ci_bs,</span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a>    fillto<span class="op">=</span>km_est,</span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a>    color<span class="op">=:</span>red,</span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a>    label<span class="op">=</span><span class="st">&quot;Bootstrap 95% CI&quot;</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a><span class="co"># Display the plot</span></span>
+<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a><span class="fu">gui</span>() <span class="co"># or savefig(&quot;km_curve.png&quot;) if you want to save</span></span></code></pre></div>
+<p><strong>Explanation and Key Improvements:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Clearer Data Generation:</strong> The example now
+generates sample <code>time</code> and <code>event</code> data.
+<em>Crucially</em>, the <code>time</code> is sorted, which is often a
+requirement for survival analysis functions and avoids potential issues.
+The <code>event</code> is a boolean vector indicating whether the event
+occurred (true) or was censored (false).</p></li>
+<li><p><strong><code>TimeToEvent</code> Object:</strong> The code
+correctly uses the <code>TimeToEvent</code> constructor to create the
+required input for <code>kaplan_meier</code>. This is essential for the
+<code>SurvivalAnalysis</code> package.</p></li>
+<li><p><strong>Confidence Intervals:</strong> The code now demonstrates
+how to calculate and plot confidence intervals for the Kaplan-Meier
+curve. The <code>confint</code> function is used, and I’ve shown two
+methods: <code>:greenwood</code> (the default) and
+<code>:bootstrap</code>. Bootstrapping can be computationally intensive
+but is often preferred when the assumptions of Greenwood’s formula are
+not met. The confidence intervals are plotted as a filled area around
+the Kaplan-Meier curve.</p></li>
+<li><p><strong>Strata (Groups):</strong> The example now includes how to
+analyze survival data with strata (groups). It generates random group
+labels and shows how to create a <code>TimeToEvent</code> object with
+groups and then plot separate Kaplan-Meier curves for each
+group.</p></li>
+<li><p><strong>Plotting Enhancements:</strong></p>
+<ul>
+<li><code>xlabel</code>, <code>ylabel</code>, and <code>title</code> are
+used to make the plot more informative.</li>
+<li><code>legend=:best</code> automatically places the legend in a good
+spot.</li>
+<li><code>linewidth</code> controls the thickness of the lines.</li>
+<li><code>color</code> sets the color of the lines.</li>
+<li><code>alpha</code> controls the transparency of the filled
+confidence interval areas.</li>
+</ul></li>
+<li><p><strong><code>gui()</code> or <code>savefig()</code>:</strong>
+I’ve added <code>gui()</code> so the plot will be displayed. If you want
+to save the plot to a file, you can use
+<code>savefig(&quot;km_curve.png&quot;)</code> (or any other file name and format
+you prefer).</p></li>
+<li><p><strong>Comments:</strong> The code is well-commented to explain
+each step.</p></li>
+</ol>
+<p><strong>Before Running:</strong></p>
+<p>Make sure you have the necessary packages installed:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;SurvivalAnalysis&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span></code></pre></div>
+<p>This improved example provides a much more complete and practical
+demonstration of how to create and visualize Kaplan-Meier survival
+curves in Julia using the <code>SurvivalAnalysis</code> package.
+Remember to replace the sample data with your own data.</p>
+</div>
+</div>
+</div>
+<div id="nelson-aalen-models" class="section level1" data-navmenu="Modules">
+<h1>Nelson-Aalen Models</h1>
+<div id="column-4" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="nelson-aalen-analysis-with-julia" class="section level3">
+<h3>Nelson-Aalen Analysis with Julia</h3>
+<p>The Nelson-Aalen analysis is a statistical method used in survival
+analysis to estimate the <strong>cumulative hazard
+function</strong>.</p>
+<p>Here’s a breakdown of its purpose and why it’s important:</p>
+<p><strong>What is Survival Analysis?</strong></p>
+<p>Survival analysis deals with time-to-event data. This means we’re
+interested in how long it takes for a specific event to occur. The
+“event” could be anything:</p>
+<ul>
+<li><strong>In healthcare:</strong> Death, disease onset, recovery from
+illness</li>
+<li><strong>In engineering:</strong> Failure of a machine, a component
+breaking down</li>
+<li><strong>In business:</strong> Customer churn, a product failing</li>
+</ul>
+<p><strong>What is the Cumulative Hazard Function?</strong></p>
+<p>The cumulative hazard function, denoted as H(t), represents the
+accumulated risk of experiencing the event up to time t. In simpler
+terms, it tells you the total “hazard” or risk you’ve been exposed to
+over time.</p>
+<p><strong>Purpose of Nelson-Aalen Analysis</strong></p>
+<p>The Nelson-Aalen estimator is a non-parametric way to estimate the
+cumulative hazard function from survival data. Here’s why it’s
+useful:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Describing Risk:</strong> It provides a way to visualize
+and quantify the cumulative risk over time. This helps understand how
+the probability of an event changes as time goes on.</p></li>
+<li><p><strong>Comparing Groups:</strong> You can use Nelson-Aalen
+curves to compare the cumulative hazard between different groups (e.g.,
+patients receiving different treatments). If one group’s curve is
+steeper, it indicates a higher cumulative risk.</p></li>
+<li><p><strong>Checking Model Assumptions:</strong> The Nelson-Aalen
+estimator can be used to assess the fit of parametric survival models
+(like the exponential or Weibull model). By comparing the estimated
+cumulative hazard from the Nelson-Aalen method to the predicted
+cumulative hazard from a parametric model, you can check if the model
+assumptions are reasonable.</p></li>
+<li><p><strong>Non-Parametric Approach:</strong> It’s a non-parametric
+method, meaning it doesn’t rely on specific assumptions about the
+underlying distribution of the data. This makes it more flexible than
+parametric methods, especially when you’re unsure about the data’s
+distribution.</p></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">SurvivalAnalysis</span>, <span class="bu">Plots</span>, <span class="bu">DataFrames</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Sample Data (replace with your actual data)</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">100</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    time <span class="op">=</span> <span class="fu">sort</span>(<span class="fu">rand</span>(n) <span class="op">*</span> <span class="fl">10</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    event <span class="op">=</span> <span class="fu">rand</span>(n) <span class="op">.&lt;</span> <span class="fl">0.7</span>  <span class="co"># 0 or 1 (Censored or Event)</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># Create a TimeToEvent object</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>tte <span class="op">=</span> <span class="fu">TimeToEvent</span>(df.time, df.event)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co"># Calculate the Nelson-Aalen estimator</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>na_est <span class="op">=</span> <span class="fu">nelson_aalen</span>(tte)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co"># Plot the cumulative hazard</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="fu">plot</span>(na_est,</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>     xlabel<span class="op">=</span><span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>     ylabel<span class="op">=</span><span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a>     title<span class="op">=</span><span class="st">&quot;Nelson-Aalen Cumulative Hazard&quot;</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>     legend<span class="op">=</span><span class="cn">false</span>,  <span class="co"># No legend needed for a single curve</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>     linewidth<span class="op">=</span><span class="fl">2</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>     color<span class="op">=:</span>blue)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co"># Confidence Intervals (Greenwood)</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>ci_na <span class="op">=</span> <span class="fu">confint</span>(na_est, method<span class="op">=:</span>greenwood)</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="fu">plot!</span>(ci_na,</span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>      fillto<span class="op">=</span>na_est,</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a>      alpha<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a>      color<span class="op">=:</span>blue,</span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a>      label<span class="op">=</span><span class="st">&quot;95% CI (Greenwood)&quot;</span>)</span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co"># Confidence Intervals (Bootstrap - more robust, but slower)</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a>ci_na_bs <span class="op">=</span> <span class="fu">confint</span>(na_est, method<span class="op">=:</span>bootstrap, n_boot<span class="op">=</span><span class="fl">500</span>) <span class="co"># n_boot: Number of bootstrap replicates</span></span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="fu">plot!</span>(ci_na_bs,</span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a>      fillto<span class="op">=</span>na_est,</span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a>      alpha<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a>      color<span class="op">=:</span>red,</span>
+<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a>      label<span class="op">=</span><span class="st">&quot;95% CI (Bootstrap)&quot;</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="fu">gui</span>() <span class="co"># or savefig(&quot;nelson_aalen.png&quot;)</span></span>
+<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a><span class="co"># --- Example with Strata (Groups) ---</span></span>
+<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a>group <span class="op">=</span> <span class="fu">rand</span>([<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>], n) <span class="co"># Example group labels</span></span>
+<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a>tte_grouped <span class="op">=</span> <span class="fu">TimeToEvent</span>(df.time, df.event, group)</span>
+<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a>na_est_grouped <span class="op">=</span> <span class="fu">nelson_aalen</span>(tte_grouped)</span>
+<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" tabindex="-1"></a><span class="fu">plot</span>(na_est_grouped,</span>
+<span id="cb5-53"><a href="#cb5-53" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;Time&quot;</span>,</span>
+<span id="cb5-54"><a href="#cb5-54" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
+<span id="cb5-55"><a href="#cb5-55" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Nelson-Aalen by Group&quot;</span>,</span>
+<span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a>    legend<span class="op">=:</span>best,</span>
+<span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a><span class="fu">gui</span>()</span></code></pre></div>
+<p><strong>Explanation and Key Improvements:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Clearer Data:</strong> The code provides sample data
+generation (which is more helpful for running the code directly) and
+emphasizes that you should replace this with your own data. It uses a
+DataFrame, which is typical for working with data in Julia.</p></li>
+<li><p><strong><code>TimeToEvent</code> Object:</strong> The
+<code>TimeToEvent</code> object is correctly created. This is essential
+for <code>SurvivalAnalysis</code>.</p></li>
+<li><p><strong>Nelson-Aalen Calculation:</strong> The
+<code>nelson_aalen()</code> function is used to calculate the cumulative
+hazard estimates.</p></li>
+<li><p><strong>Plotting:</strong> The plot is labeled correctly, and the
+legend is removed (since there’s only one curve in the basic example).
+Line properties are set for better visualization.</p></li>
+<li><p><strong>Confidence Intervals:</strong> The code now demonstrates
+how to calculate and plot confidence intervals for the Nelson-Aalen
+estimator using both the Greenwood formula (default and faster) and
+bootstrapping (more robust, especially with small sample sizes or when
+the assumptions of the Greenwood method are not met). The bootstrap
+method is computationally more intensive.</p></li>
+<li><p><strong>Strata (Groups):</strong> The code includes an example of
+how to perform Nelson-Aalen analysis with strata (groups). It creates
+random group labels and shows how to create a <code>TimeToEvent</code>
+object with groups and then plot separate Nelson-Aalen curves for each
+group.</p></li>
+<li><p><strong>Comments:</strong> The code is well-commented.</p></li>
+</ol>
+<p><strong>Before Running:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Install Packages:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;SurvivalAnalysis&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;DataFrames&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span></code></pre></div></li>
+<li><p><strong>Data:</strong> Replace the sample data with your own
+data. Your data should have a time variable and an event indicator
+(often 0 for censored, 1 for event). If you have groups or strata,
+include a column for that as well.</p></li>
+<li><p><strong>Run:</strong> Run the code. The plot of the Nelson-Aalen
+cumulative hazard will be displayed. Examine the plot to understand the
+cumulative hazard over time. The confidence intervals provide a measure
+of uncertainty around the estimated cumulative hazard. If you have
+groups, you can compare the cumulative hazards between the
+groups.</p></li>
+</ol>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p><strong>In summary,</strong> the Nelson-Aalen analysis helps you
+understand and quantify the risk of an event occurring over time. It’s a
+valuable tool in survival analysis for describing risk, comparing
+groups, and checking model assumptions.</p>
 </div>
 </div>
 </div>

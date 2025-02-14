@@ -1,0 +1,110 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+
+
+#### Creating Kaplan-Meier Curves with Julia
+
+
+This example provides a much more complete and practical demonstration of how to create and visualize Kaplan-Meier survival curves in Julia using the `SurvivalAnalysis` package. 
+
+
+```julia
+using SurvivalAnalysis, Plots
+
+# Generate some sample survival data (replace with your actual data)
+n = 100  # Number of individuals
+time = sort(rand(n) * 10) # Random survival times
+event = rand(n) .< 0.7 # Random event indicators (true if event occurred, false if censored)
+
+# Create a TimeToEvent object
+tte = TimeToEvent(time, event)
+
+# Calculate the Kaplan-Meier estimator
+km_est = kaplan_meier(tte)
+
+# Plot the Kaplan-Meier survival curve
+plot(km_est,
+     xlabel="Time",
+     ylabel="Survival Probability",
+     title="Kaplan-Meier Survival Curve",
+     legend=:best,
+     linewidth=2,
+     color=:blue)
+
+
+# Add confidence intervals (optional)
+ci = confint(km_est, method=:greenwood)  # Calculate confidence intervals
+plot!(ci,
+      fillto=km_est,  # Fill the area around the curve
+      alpha=0.2,      # Set transparency
+      color=:blue,
+      label="95% CI")
+
+
+# Example with strata (groups)
+group = rand(["A", "B"], n) # Example group labels
+tte_grouped = TimeToEvent(time, event, group)
+
+# Calculate KM curves for each group
+km_est_grouped = kaplan_meier(tte_grouped)
+
+# Plot the grouped KM curves
+plot(km_est_grouped,
+    xlabel="Time",
+    ylabel="Survival Probability",
+    title="Kaplan-Meier Survival Curves by Group",
+    legend=:best,
+    linewidth=2)
+
+
+# Example with different CI method
+ci_bs = confint(km_est, method=:bootstrap, n_boot=200) # Bootstrap CI
+plot!(ci_bs,
+    fillto=km_est,
+    alpha=0.2,
+    color=:red,
+    label="Bootstrap 95% CI")
+
+
+# Display the plot
+gui() # or savefig("km_curve.png") if you want to save
+```
+
+**Explanation and Key Improvements:**
+
+1. **Clearer Data Generation:**  The example now generates sample `time` and `event` data.  *Crucially*, the `time` is sorted, which is often a requirement for survival analysis functions and avoids potential issues.  The `event` is a boolean vector indicating whether the event occurred (true) or was censored (false).
+
+2. **`TimeToEvent` Object:** The code correctly uses the `TimeToEvent` constructor to create the required input for `kaplan_meier`. This is essential for the `SurvivalAnalysis` package.
+
+3. **Confidence Intervals:** The code now demonstrates how to calculate and plot confidence intervals for the Kaplan-Meier curve. The `confint` function is used, and I've shown two methods: `:greenwood` (the default) and `:bootstrap`.  Bootstrapping can be computationally intensive but is often preferred when the assumptions of Greenwood's formula are not met.  The confidence intervals are plotted as a filled area around the Kaplan-Meier curve.
+
+4. **Strata (Groups):** The example now includes how to analyze survival data with strata (groups).  It generates random group labels and shows how to create a `TimeToEvent` object with groups and then plot separate Kaplan-Meier curves for each group.
+
+5. **Plotting Enhancements:**
+   - `xlabel`, `ylabel`, and `title` are used to make the plot more informative.
+   - `legend=:best` automatically places the legend in a good spot.
+   - `linewidth` controls the thickness of the lines.
+   - `color` sets the color of the lines.
+   - `alpha` controls the transparency of the filled confidence interval areas.
+
+6. **`gui()` or `savefig()`:** I've added `gui()` so the plot will be displayed.  If you want to save the plot to a file, you can use `savefig("km_curve.png")` (or any other file name and format you prefer).
+
+7. **Comments:**  The code is well-commented to explain each step.
+
+**Before Running:**
+
+Make sure you have the necessary packages installed:
+
+```julia
+using Pkg
+Pkg.add("SurvivalAnalysis")
+Pkg.add("Plots")
+```
+
+This improved example provides a much more complete and practical demonstration of how to create and visualize Kaplan-Meier survival curves in Julia using the `SurvivalAnalysis` package.  Remember to replace the sample data with your own data.
