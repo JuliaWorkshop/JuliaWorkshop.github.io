@@ -1,0 +1,109 @@
+## Linear Mixed Effects Models in Julia: A 14-Week Syllabus
+
+**Course Description:** This course provides a comprehensive introduction to linear mixed effects models (LMEMs) and their implementation using the Julia programming language. LMEMs are powerful statistical tools for analyzing data with hierarchical or clustered structures, common in various fields like biology, psychology, and engineering.  Students will learn the theoretical foundations of LMEMs, model specification, parameter estimation, model diagnostics, interpretation of results, and specialized applications including method comparison studies. The course emphasizes practical application through hands-on coding exercises and real-world datasets.
+
+**Prerequisites:**  Basic knowledge of linear regression, statistical inference, and familiarity with programming concepts (ideally in any language).  Prior experience with Julia is beneficial but not required.  A brief introduction to Julia will be provided in the first week.
+
+**Course Objectives:** Upon successful completion of this course, students will be able to:
+
+* Understand the theoretical underpinnings of linear mixed effects models.
+* Formulate appropriate LMEMs for various data structures.
+* Implement and fit LMEMs using the `MixedModels.jl` package in Julia.
+* Interpret model outputs and assess model fit.
+* Perform model comparison and selection.
+* Apply LMEMs to analyze real-world datasets, including method comparison studies.
+* Understand the specific challenges and considerations in analyzing method comparison data.
+* Communicate results effectively.
+
+**Software:** Julia (version 1.9 or later recommended),  `MixedModels.jl`, `DataFrames.jl`, `Plots.jl`, and other relevant Julia packages.  Instructions for installation and setup will be provided.
+
+**Assessment:**
+
+* **Homework Assignments (40%):**  Regular assignments involving data analysis and model interpretation using LMEMs in Julia, including assignments focused on method comparison.
+* **Midterm Exam (30%):**  Covers the theoretical concepts and practical application of LMEMs from the first half of the course.
+* **Final Project (30%):**  Students will work on a data analysis project using LMEMs, potentially focusing on a method comparison study, culminating in a written report and a short presentation.
+
+**Course Schedule:**
+
+**Week 1: Introduction to Julia and Statistical Modeling**
+* Introduction to Julia: Data types, control flow, functions, packages.
+* Review of linear regression: Model specification, parameter estimation, hypothesis testing.
+* Introduction to statistical modeling in Julia.
+
+**Week 2:  Fundamentals of Linear Mixed Effects Models**
+* Motivation for LMEMs: Handling clustered and hierarchical data.
+* Fixed effects vs. random effects.
+* Variance components and covariance structures.
+* Model specification and notation.
+
+**Week 3:  The `MixedModels.jl` Package**
+* Introduction to `MixedModels.jl`: Installing and using the package.
+* Data structures for LMEMs: `DataFrame` manipulation.
+* Fitting basic LMEMs using `fit()`.
+
+**Week 4: Random Effects Structures**
+* Specifying different random effects structures: Intercepts, slopes, and correlated random effects.
+* Understanding variance-covariance matrices.
+* Model diagnostics and checking assumptions.
+
+**Week 5:  Estimation and Inference**
+* Maximum likelihood estimation (MLE) and restricted maximum likelihood (REML).
+* Hypothesis testing and confidence intervals for fixed and random effects.
+* Understanding p-values and their interpretation.
+
+**Week 6: Model Comparison and Selection**
+* Information criteria: AIC, BIC.
+* Likelihood ratio tests.
+* Comparing and selecting appropriate random effects structures.
+* Model diagnostics for model selection.
+
+**Week 7: Method Comparison Studies - Part 1: Introduction and Design**
+* Introduction to method comparison studies: Goals, designs, and common challenges.
+* Assessing agreement: Bland-Altman plots, concordance correlation coefficient.
+* Understanding bias, precision, and limits of agreement.
+* Different study designs: Replicate measurements, paired measurements.
+
+**Week 8: Method Comparison Studies - Part 2: LMEMs for Analysis**
+* Applying LMEMs to analyze method comparison data.
+* Modeling bias and variability.
+* Partitioning variance components.
+* Assessing agreement using LMEM-based approaches.
+* Interpretation of LMEM results in the context of method comparison.
+
+**Week 9:  Generalized Linear Mixed Models (GLMMs) - Introduction**
+* Brief overview of GLMMs and their relationship to LMEMs.
+* Introduction to link functions and different distributions.
+* Focus on the conceptual differences and when to use GLMMs.
+
+**Week 10:  Nested and Crossed Designs**
+* Analyzing data from nested and crossed designs using LMEMs.
+* Understanding the implications of different designs for model specification.
+* Practical examples and applications.
+
+**Week 11:  Longitudinal Data Analysis**
+* Applying LMEMs to analyze longitudinal data.
+* Modeling time effects and within-subject correlations.
+* Growth curve modeling.
+
+**Week 12:  Power Analysis for LMEMs**
+* Introduction to power analysis for LMEMs.
+* Determining sample size for detecting specific effects.
+* Using simulations for power analysis.
+
+**Week 13:  Advanced Topics (Optional)**
+*  Bootstrapping for LMEMs.
+*  Dealing with non-normal residuals.
+*  Extensions to more complex models.
+
+**Week 14:  Final Project Presentations and Wrap-up**
+* Student presentations of final projects.
+* Review of key concepts and discussion of future directions.
+
+**Recommended Readings:**
+
+* *Linear Mixed Models: A Practical Guide Using Statistical Software* by West, Welch, and Galecki.
+* *Mixed-Effects Models in S and R* by Pinheiro and Bates.
+* *Statistical Methods for Assessing Agreement Between Two Methods of Clinical Measurement* by Bland and Altman.
+* Online documentation for `MixedModels.jl`.
+
+ Specific topics and readings may be modified based on student background and progress.  The optional topics in Week 13 may be adjusted based on student interest.
