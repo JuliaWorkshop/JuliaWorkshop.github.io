@@ -1,0 +1,100 @@
+```julia
+function sample_without_replacement(population::AbstractArray, k::Int)
+    """
+    Samples k elements from a population without replacement.
+
+    Args:
+        population: The population to sample from (can be any AbstractArray).
+        k: The number of samples to take.
+
+    Returns:
+        A new array containing the k sampled elements.
+        Throws an ArgumentError if k is larger than the population size or not a positive integer.
+    """
+
+    n = length(population)
+
+    if !isa(k, Integer) || k <= 0
+        throw(ArgumentError("k must be a positive integer."))
+    end
+
+    if k > n
+        throw(ArgumentError("k cannot be larger than the population size."))
+    end
+
+    # Create a copy of the population so we don't modify the original
+    remaining_population = copy(population)
+
+    samples = similar(population, k) # Pre-allocate for efficiency
+
+    for i in 1:k
+        # Generate a random index within the *remaining* population
+        rand_index = rand(1:length(remaining_population))
+
+        # Get the element at that index
+        sampled_element = remaining_population[rand_index]
+
+        # Remove the sampled element from the remaining population
+        deleteat!(remaining_population, rand_index)
+
+        # Store the sample
+        samples[i] = sampled_element
+    end
+
+    return samples
+end
+
+
+# Demonstration:
+
+population = ['A', 'B', 'C', 'D', 'E', 'F']
+k = 3
+
+sampled_elements = sample_without_replacement(population, k)
+println("Original population: ", population)
+println("Sampled elements (without replacement): ", sampled_elements)
+
+
+# Another Example with numbers
+numbers = 1:10
+k_numbers = 4
+sampled_numbers = sample_without_replacement(numbers, k_numbers)
+println("Original Numbers: ", numbers)
+println("Sampled numbers (without replacement): ", sampled_numbers)
+
+# Example of error handling
+try
+    sample_without_replacement(population, 7) # Trying to sample more than the population size
+catch e
+    println("Error caught: ", e.message)
+end
+
+try
+    sample_without_replacement(population, -2) # Trying to sample a negative number of elements
+catch e
+    println("Error caught: ", e.message)
+end
+
+try
+    sample_without_replacement(population, 2.5) # Trying to sample a non-integer number of elements
+catch e
+    println("Error caught: ", e.message)
+end
+
+```
+
+**Key Improvements and Explanations:**
+
+* **Clear Function Definition and Docstring:**  The function is well-defined with a helpful docstring explaining its purpose, arguments, and return value.
+
+* **Error Handling:** The code now includes checks to ensure that `k` is a positive integer and that it's not larger than the population size.  `ArgumentError` is used for clear error reporting.
+
+* **Copy of Population:** The code now creates a *copy* of the input `population` using `copy(population)`.  This is crucial.  Without it, the `sample_without_replacement` function would *modify* the original `population` array, which is usually undesirable.
+
+* **Efficient Removal:** `deleteat!(remaining_population, rand_index)` efficiently removes the sampled element from the `remaining_population`.
+
+* **Pre-allocation:** `samples = similar(population, k)` pre-allocates the `samples` array.  This is a good practice for performance, especially when dealing with larger samples.
+
+* **Clear Demonstration:** The example code shows how to use the function and demonstrates the "without replacement" behavior. The output shows the original population and the sampled elements.
+
+* **Type Stability:** The `similar(population, k)` call ensures that the `samples` array has the same element type as the `population` array, which is good for type stability and performance in Julia.
