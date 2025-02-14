@@ -48,7 +48,16 @@ https://rpubs.com/JuliaWorkshop/Binomial_Simulation_Julia
 * [Implementing Metropolis-Hastings in Julia](https://rpubs.com/JuliaWorkshop/Metropolis_Hastings_Julia)
 
 
+Week 1  {data-navmenu="Components"}
+=====================================
 
+Column {.tabset}
+--------------------
+
+### Week 1
+
+```{r child = "Sampling_Functions.Rmd"}
+```
 
 Week 5:  {data-navmenu="Components"}
 =====================================
@@ -58,7 +67,7 @@ Column {.tabset}
 
 ### Week 5
 
-[Monte Carlo Simulation in Julia (Week 5 Lesson Plan)](https://rpubs.com/JuliaWorkshop/Monte_Carlo_Simulation_Lesson_Plan_Julia)
+* [Monte Carlo Simulation in Julia (Week 5 Lesson Plan)](https://rpubs.com/JuliaWorkshop/Monte_Carlo_Simulation_Lesson_Plan_Julia)
 
 https://rpubs.com/JuliaWorkshop/Markov_Chains_Julia_Tutorial
 https://rpubs.com/JuliaWorkshop/Markov_Chain_Example_Julia
@@ -73,4 +82,16 @@ Column {.tabset}
 
 ```{r child = "Markov_Chains_Julia.Rmd"}
 
+```
+
+
+Week 10  {data-navmenu="Components"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Week 10
+
+```{r child = "Numerical_Integration.Rmd"}
 ```
