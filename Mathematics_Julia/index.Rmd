@@ -27,3 +27,29 @@ Column {.tabset}
 
 ```{r child = "Maths_Programming_Julia.Rmd"}
 ```
+
+
+```{r child = "Components/RoundingFunctions.Rmd"}
+```
+
+```{r child = "Components/Trig_unctions.Rmd"}
+```
+
+Factorial Functions {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Components/factorials.Rmd"}
+```
+
+Complex Number {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Components/Complex_Numbers.Rmd"}
+```
+
