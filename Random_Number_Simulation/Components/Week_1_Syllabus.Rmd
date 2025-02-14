@@ -105,6 +105,3 @@ Sure! Here are four 1-hour lesson plans that cover the topics you mentioned.
 4. **Hands-on Activity (10 minutes)**
    - Exercises to practice random number generation and sampling (e.g., generating random data for a simulation, sampling from a dataset)
 
----
-
-I hope you find these lesson plans helpful! If you need any further details or adjustments, feel free to let me know.
