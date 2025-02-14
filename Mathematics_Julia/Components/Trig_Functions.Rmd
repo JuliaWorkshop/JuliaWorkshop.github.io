@@ -1,0 +1,69 @@
+Trigonometric functions are fundamental in many areas of mathematics and science. 
+Here are some short exercises related to trigonometric functions using Julia, suitable for students:
+
+### Trigonometric Functions in Julia: Exercise List
+
+1. **Calculate Basic Trigonometric Functions:**
+   - Compute the sine, cosine, and tangent of \( \pi/4 \).
+
+   ```julia
+   sin(pi/4)
+   cos(pi/4)
+   tan(pi/4)
+   ```
+
+2. **Inverse Trigonometric Functions:**
+   - Compute the arcsine, arccosine, and arctangent of \( \sqrt{2}/2 \).
+
+   ```julia
+   asin(sqrt(2)/2)
+   acos(sqrt(2)/2)
+   atan(sqrt(2)/2)
+   ```
+
+3. **Plotting Trigonometric Functions:**
+   - Plot the sine and cosine functions over the interval \( [0, 2\pi] \).
+
+   ```julia
+   using Plots
+   x = 0:0.01:2*pi
+   plot(x, sin.(x), label="sin(x)")
+   plot!(x, cos.(x), label="cos(x)")
+   ```
+
+4. **Trigonometric Identities:**
+   - Verify the trigonometric identity \( \sin^2(x) + \cos^2(x) = 1 \) for \( x = \pi/3 \).
+
+   ```julia
+   x = pi/3
+   sin(x)^2 + cos(x)^2
+   ```
+
+5. **Using Trigonometric Functions in Equations:**
+   - Solve the equation \( \sin(x) = 0.5 \) for \( x \) in the interval \( [0, 2\pi] \).
+
+   ```julia
+   using Roots
+   f(x) = sin(x) - 0.5
+   find_zeros(f, 0, 2*pi)
+   ```
+
+6. **Angle Conversion:**
+   - Convert 45 degrees to radians and compute the sine and cosine of the angle.
+
+   ```julia
+   radians = deg2rad(45)
+   sin(radians)
+   cos(radians)
+   ```
+
+7. **Phase Shift:**
+   - Plot the sine function and the sine function with a phase shift of \( \pi/2 \) over the interval \( [0, 2\pi] \).
+
+   ```julia
+   x = 0:0.01:2*pi
+   plot(x, sin.(x), label="sin(x)")
+   plot!(x, sin.(x .+ pi/2), label="sin(x + π/2)")
+   ```
+
+These exercises should help students get a good grasp of trigonometric functions using Julia. 
