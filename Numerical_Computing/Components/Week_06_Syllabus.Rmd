@@ -1,5 +1,9 @@
 ### Week 6: Numerical Solutions of Ordinary Differential Equations (ODEs)
 
+---
+
+This lesson plan should provide a thorough understanding of numerical solutions for ODEs and practical implementation using Julia.
+
 #### Learning Objectives:
 - Understand and solve Initial Value Problems (IVPs)
 - Apply Euler’s method and improved Euler’s method
@@ -8,7 +12,7 @@
 
 ---
 
-### Lesson Plan
+#### Lesson Plan
 
 #### Lecture 1: Introduction to Initial Value Problems (IVPs)
 1. **Concepts Covered:**
@@ -70,7 +74,7 @@
 
 ---
 
-### Useful Julia Functions
+#### Useful Julia Functions
 - **Differential Equations**: `DifferentialEquations.jl`, `@ode_def`
 - **Plotting**: `Plots.jl`, `plot`, `plot!`
 - **Basic Julia**: `function`, `for`, `while`, basic arithmetic operators
@@ -83,6 +87,4 @@
 - Use `DifferentialEquations.jl` to solve complex ODEs and compare results with previous methods
 - Write a report discussing the accuracy and efficiency of the methods learned
 
----
 
-This lesson plan should provide a thorough understanding of numerical solutions for ODEs and practical implementation using Julia. Let me know if you need any further details or resources!

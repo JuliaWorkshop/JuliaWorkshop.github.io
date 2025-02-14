@@ -26,3 +26,12 @@ Column {.tabset}
 ```{r child = "Numerical_Computing_Syllabus.Rmd"}
 
 ```
+```{r child = "Components/Week_02_Syllabus.Rmd"}
+
+```
+```{r child = "Components/Week_06_Syllabus.Rmd"}
+
+```
+```{r child = "Components/Week_07_Syllabus.Rmd"}
+
+```

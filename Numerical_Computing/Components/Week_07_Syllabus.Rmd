@@ -1,0 +1,141 @@
+### Week 7: Numerical Solutions of Partial Differential Equations (PDEs)
+
+This is a tutorial on numerical solutions of PDEs using Julia.
+
+#### 1. Classification of PDEs
+
+Partial Differential Equations (PDEs) can be classified based on their linearity, order, and the nature of the coefficients. Here are some common classifications:
+
+- **Linearity**: Linear vs. Nonlinear
+- **Order**: First-order, Second-order, etc.
+- **Nature of Coefficients**: Constant coefficients vs. Variable coefficients
+
+In this tutorial, we'll focus on linear second-order PDEs with constant coefficients.
+
+#### 2. Finite Difference Methods for PDEs
+
+Finite difference methods are numerical techniques for solving PDEs by approximating derivatives with difference equations. Here's a simple example using Julia:
+
+```julia
+# Define grid size and time step
+nx, nt = 100, 100
+dx, dt = 1.0/nx, 0.01
+
+# Initialize solution matrix
+u = zeros(nx, nt)
+
+# Initial condition
+u[:, 1] = sin.(2 * π * (0:dx:1))
+
+# Finite difference loop
+for n in 1:nt-1
+    for i in 2:nx-1
+        u[i, n+1] = u[i, n] + dt * (u[i+1, n] - 2*u[i, n] + u[i-1, n]) / dx^2
+    end
+end
+```
+
+#### 3. Solving Heat and Wave Equations
+
+Let's tackle the heat equation and the wave equation using finite difference methods.
+
+**Heat Equation**:
+
+The heat equation is a PDE that describes the distribution of heat over time. The equation is:
+
+$$\frac{\partial u}{\partial t} = \alpha \frac{\partial^2 u}{\partial x^2}$$
+
+Here's how to solve it using Julia:
+
+```julia
+# Parameters
+α = 0.01
+dx, dt = 0.1, 0.001
+nx, nt = 100, 1000
+
+# Initialize solution matrix
+u = zeros(nx, nt)
+
+# Initial condition
+u[:, 1] = sin.(2 * π * (0:dx:1))
+
+# Finite difference loop
+for n in 1:nt-1
+    for i in 2:nx-1
+        u[i, n+1] = u[i, n] + α * dt * (u[i+1, n] - 2*u[i, n] + u[i-1, n]) / dx^2
+    end
+end
+```
+
+**Wave Equation**:
+
+The wave equation describes the propagation of waves. The equation is:
+
+$$\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}$$
+
+Here's how to solve it using Julia:
+
+```julia
+# Parameters
+c = 1.0
+dx, dt = 0.1, 0.01
+nx, nt = 100, 100
+
+# Initialize solution matrices
+u = zeros(nx, nt)
+u_new = copy(u)
+u_old = copy(u)
+
+# Initial condition
+u[:, 1] = sin.(2 * π * (0:dx:1))
+
+# Finite difference loop
+for n in 2:nt-1
+    for i in 2:nx-1
+        u_new[i, n+1] = 2*u[i, n] - u_old[i, n] + (c^2 * dt^2 * (u[i+1, n] - 2*u[i, n] + u[i-1, n]) / dx^2)
+    end
+    u_old = copy(u)
+    u = copy(u_new)
+end
+```
+
+#### 4. Implementing PDE Solvers in Julia
+
+To make the PDE solvers more reusable and modular, we can wrap them into functions.
+
+```julia
+function heat_equation_solver(α, dx, dt, nx, nt, initial_condition)
+    u = zeros(nx, nt)
+    u[:, 1] = initial_condition
+
+    for n in 1:nt-1
+        for i in 2:nx-1
+            u[i, n+1] = u[i, n] + α * dt * (u[i+1, n] - 2*u[i, n] + u[i-1, n]) / dx^2
+        end
+    end
+    return u
+end
+
+function wave_equation_solver(c, dx, dt, nx, nt, initial_condition)
+    u = zeros(nx, nt)
+    u_new = copy(u)
+    u_old = copy(u)
+    u[:, 1] = initial_condition
+
+    for n in 2:nt-1
+        for i in 2:nx-1
+            u_new[i, n+1] = 2*u[i, n] - u_old[i, n] + (c^2 * dt^2 * (u[i+1, n] - 2*u[i, n] + u[i-1, n]) / dx^2)
+        end
+        u_old = copy(u)
+        u = copy(u_new)
+    end
+    return u
+end
+
+# Example usage:
+initial_condition = sin.(2 * π * (0:dx:1))
+u_heat = heat_equation_solver(0.01, 0.1, 0.001, 100, 1000, initial_condition)
+u_wave = wave_equation_solver(1.0, 0.1, 0.01, 100, 100, initial_condition)
+```
+
+That's a brief overview of solving PDEs using finite difference methods in Julia.

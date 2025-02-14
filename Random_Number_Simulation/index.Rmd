@@ -61,6 +61,10 @@ Column {.tabset}
 ```{r child = "Sampling_Functions.Rmd"}
 ```
 
+```{r child = "Components/Exponential_Simulation_Julia.Rmd"}
+```
+
+
 
 Week 2  {data-navmenu="Components"}
 =====================================

@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2887,6 +2952,422 @@ course</p></li>
 <p>This syllabus provides a detailed structure for a university course
 on numerical computing with Julia, ensuring a thorough understanding of
 numerical methods and their applications.</p>
+</div>
+<div id="linear-algebra" class="section level3">
+<h3>Linear Algebra</h3>
+<p>These lesson plans will help you cover the essential topics of
+numerical linear algebra and provide practical experience with Julia
+implementations.</p>
+<div id="lesson-1-solving-systems-of-linear-equations" class="section level4">
+<h4>Lesson 1: Solving Systems of Linear Equations</h4>
+<p><strong>Objective</strong>: Understand direct and iterative methods
+for solving systems of linear equations and implement them in Julia.</p>
+<p><strong>Outline</strong>: 1. <strong>Introduction</strong> (10 mins)
+- Brief overview of linear systems - Applications of solving linear
+systems in various fields</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Direct Methods</strong> (20 mins)
+<ul>
+<li><p>Gaussian Elimination</p></li>
+<li><p>LU Decomposition</p></li>
+<li><p>Example and Julia implementation:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">3</span> <span class="fl">2</span>; <span class="fl">1</span> <span class="fl">2</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">4</span>; <span class="fl">2</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>x <span class="op">=</span> A <span class="op">\</span> b  <span class="co"># Solving Ax = b</span></span></code></pre></div></li>
+</ul></li>
+<li><strong>Iterative Methods</strong> (20 mins)
+<ul>
+<li><p>Jacobi Method</p></li>
+<li><p>Gauss-Seidel Method</p></li>
+<li><p>Example and Julia implementation:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">jacobi</span>(A, b, tol<span class="op">=</span><span class="fl">1e-10</span>, max_iter<span class="op">=</span><span class="fl">1000</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">size</span>(A, <span class="fl">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">zeros</span>(n)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    x_old <span class="op">=</span> <span class="fu">copy</span>(x)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>max_iter</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>            x[i] <span class="op">=</span> (b[i] <span class="op">-</span> A[i, <span class="fl">1</span><span class="op">:</span>i<span class="op">-</span><span class="fl">1</span>] <span class="op">*</span> x_old[<span class="fl">1</span><span class="op">:</span>i<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> A[i, i<span class="op">+</span><span class="fl">1</span><span class="op">:</span><span class="kw">end</span>] <span class="op">*</span> x_old[i<span class="op">+</span><span class="fl">1</span><span class="op">:</span><span class="kw">end</span>]) <span class="op">/</span> A[i, i]</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">norm</span>(x <span class="op">-</span> x_old, <span class="cn">Inf</span>) <span class="op">&lt;</span> tol</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>            <span class="cf">return</span> x</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>        x_old <span class="op">=</span> <span class="fu">copy</span>(x)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div></li>
+</ul></li>
+</ol>
+</div>
+<div id="lesson-2-matrix-factorizations" class="section level4">
+<h4>Lesson 2: Matrix Factorizations</h4>
+<p><strong>Objective</strong>: Learn different matrix factorization
+techniques (LU, QR, Cholesky) and their implementations in Julia.</p>
+<p><strong>Outline</strong>: 1. <strong>Introduction</strong> (5 mins) -
+Importance of matrix factorizations</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>LU Decomposition</strong> (15 mins)
+<ul>
+<li><p>Definition and applications</p></li>
+<li><p>Example and Julia implementation:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">4</span> <span class="fl">3</span>; <span class="fl">6</span> <span class="fl">3</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>L, U <span class="op">=</span> <span class="fu">lu</span>(A)</span></code></pre></div></li>
+</ul></li>
+<li><strong>QR Decomposition</strong> (15 mins)
+<ul>
+<li><p>Definition and applications</p></li>
+<li><p>Example and Julia implementation:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span>; <span class="fl">3</span> <span class="fl">4</span>; <span class="fl">5</span> <span class="fl">6</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>Q, R <span class="op">=</span> <span class="fu">qr</span>(A)</span></code></pre></div></li>
+</ul></li>
+<li><strong>Cholesky Decomposition</strong> (15 mins)
+<ul>
+<li><p>Definition and applications</p></li>
+<li><p>Example and Julia implementation:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">4</span> <span class="fl">2</span>; <span class="fl">2</span> <span class="fl">3</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>L <span class="op">=</span> <span class="fu">cholesky</span>(A).L</span></code></pre></div></li>
+</ul></li>
+</ol>
+</div>
+<div id="lesson-3-eigenvalues-and-eigenvectors" class="section level4">
+<h4>Lesson 3: Eigenvalues and Eigenvectors</h4>
+<p><strong>Objective</strong>: Understand the concepts of eigenvalues
+and eigenvectors, and learn how to compute them in Julia.</p>
+<p><strong>Outline</strong>: 1. <strong>Introduction</strong> (10 mins)
+- Definition of eigenvalues and eigenvectors - Applications in science
+and engineering</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Computing Eigenvalues and Eigenvectors</strong> (20 mins)
+<ul>
+<li><p>Power Method</p></li>
+<li><p>Example and Julia implementation:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">4</span> <span class="fl">1</span>; <span class="fl">2</span> <span class="fl">3</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>λ, v <span class="op">=</span> <span class="fu">eigen</span>(A)</span></code></pre></div></li>
+</ul></li>
+<li><strong>Applications</strong> (20 mins)
+<ul>
+<li>Principal Component Analysis (PCA)</li>
+<li>Vibrations and stability analysis</li>
+<li>Example and discussion</li>
+</ul></li>
+</ol>
+</div>
+<div id="lesson-4-implementing-linear-algebra-algorithms-in-julia" class="section level4">
+<h4>Lesson 4: Implementing Linear Algebra Algorithms in Julia</h4>
+<p><strong>Objective</strong>: Practice implementing various linear
+algebra algorithms in Julia and understand their practical
+applications.</p>
+<p><strong>Outline</strong>: 1. <strong>Introduction</strong> (5 mins) -
+Review of previous lessons</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Practice Implementations</strong> (25 mins)
+<ul>
+<li>Gaussian Elimination</li>
+<li>Jacobi Method</li>
+<li>Eigenvalue computation</li>
+<li>Example implementations</li>
+</ul></li>
+<li><strong>Applications</strong> (20 mins)
+<ul>
+<li><p>Solving real-world problems using linear algebra</p></li>
+<li><p>Case studies and examples</p></li>
+<li><p>Julia code implementation:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Example: Solving a system of equations for a real-world problem</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">3</span> <span class="fl">2</span> <span class="op">-</span><span class="fl">1</span>; <span class="fl">2</span> <span class="op">-</span><span class="fl">2</span> <span class="fl">4</span>; <span class="op">-</span><span class="fl">1</span> <span class="fl">0.5</span> <span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">1</span>; <span class="op">-</span><span class="fl">2</span>; <span class="fl">0</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>x <span class="op">=</span> A <span class="op">\</span> b</span></code></pre></div></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="week-6-numerical-solutions-of-ordinary-differential-equations-odes" class="section level3">
+<h3>Week 6: Numerical Solutions of Ordinary Differential Equations
+(ODEs)</h3>
+<hr />
+<p>This lesson plan should provide a thorough understanding of numerical
+solutions for ODEs and practical implementation using Julia.</p>
+<div id="learning-objectives" class="section level4">
+<h4>Learning Objectives:</h4>
+<ul>
+<li>Understand and solve Initial Value Problems (IVPs)</li>
+<li>Apply Euler’s method and improved Euler’s method</li>
+<li>Implement Runge-Kutta methods</li>
+<li>Implement ODE solvers in Julia</li>
+</ul>
+<hr />
+</div>
+<div id="lesson-plan" class="section level4">
+<h4>Lesson Plan</h4>
+</div>
+<div id="lecture-1-introduction-to-initial-value-problems-ivps" class="section level4">
+<h4>Lecture 1: Introduction to Initial Value Problems (IVPs)</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Concepts Covered:</strong>
+<ul>
+<li>Definition and formulation of Initial Value Problems</li>
+<li>Examples of real-world IVPs</li>
+<li>Basic numerical integration concepts</li>
+</ul></li>
+<li><strong>Julia Functions:</strong>
+<ul>
+<li>Basic plotting functions from <code>Plots.jl</code>:
+<code>plot</code>, <code>plot!</code></li>
+<li>Functions to define differential equations:
+<code>f(t, y) = ...</code></li>
+</ul></li>
+<li><strong>Activities:</strong>
+<ul>
+<li>Discuss and derive the mathematical formulation of IVPs</li>
+<li>Illustrate with examples and graphical representations</li>
+<li>Assign a simple IVP to solve analytically and numerically</li>
+</ul></li>
+</ol>
+</div>
+<div id="lecture-2-eulers-method-and-improved-eulers-method" class="section level4">
+<h4>Lecture 2: Euler’s Method and Improved Euler’s Method</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Concepts Covered:</strong>
+<ul>
+<li>Euler’s method: Step-by-step numerical solution of ODEs</li>
+<li>Improved Euler’s method (Heun’s method): Enhancement and
+accuracy</li>
+</ul></li>
+<li><strong>Julia Functions:</strong>
+<ul>
+<li>Loops: <code>for</code>, <code>while</code></li>
+<li>Function definition:
+<code>function euler_method(f, t0, y0, h, n)</code></li>
+<li>Basic arithmetic operations and plotting</li>
+</ul></li>
+<li><strong>Activities:</strong>
+<ul>
+<li>Derive Euler’s method formula</li>
+<li>Implement Euler’s method in Julia</li>
+<li>Compare analytical solutions with Euler’s method results</li>
+<li>Introduce and implement Improved Euler’s method</li>
+</ul></li>
+</ol>
+</div>
+<div id="lecture-3-runge-kutta-methods" class="section level4">
+<h4>Lecture 3: Runge-Kutta Methods</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Concepts Covered:</strong>
+<ul>
+<li>Overview of Runge-Kutta methods</li>
+<li>Derivation and implementation of the classical 4th-order Runge-Kutta
+method (RK4)</li>
+</ul></li>
+<li><strong>Julia Functions:</strong>
+<ul>
+<li>Advanced function definitions:
+<code>function rk4(f, t0, y0, h, n)</code></li>
+<li>Plotting solutions for comparison:
+<code>plot(sol_analytical, sol_rk4)</code></li>
+</ul></li>
+<li><strong>Activities:</strong>
+<ul>
+<li>Derive the RK4 method step by step</li>
+<li>Implement RK4 in Julia</li>
+<li>Compare results from Euler’s method, Improved Euler’s method, and
+RK4</li>
+</ul></li>
+</ol>
+</div>
+<div id="lecture-4-implementing-ode-solvers-in-julia" class="section level4">
+<h4>Lecture 4: Implementing ODE Solvers in Julia</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Concepts Covered:</strong>
+<ul>
+<li>Utilizing Julia packages for solving ODEs</li>
+<li>Introduction to <code>DifferentialEquations.jl</code></li>
+</ul></li>
+<li><strong>Julia Functions:</strong>
+<ul>
+<li>Using <code>DifferentialEquations.jl</code>: <code>@ode_def</code>,
+<code>solve</code>, <code>ODEProblem</code>, <code>plot</code> from
+<code>Plots.jl</code></li>
+</ul></li>
+<li><strong>Activities:</strong>
+<ul>
+<li>Install and import <code>DifferentialEquations.jl</code>
+package</li>
+<li>Define an ODE problem using
+<code>DifferentialEquations.jl</code></li>
+<li>Solve and plot the solution using built-in solvers</li>
+</ul></li>
+</ol>
+<hr />
+</div>
+<div id="useful-julia-functions" class="section level4">
+<h4>Useful Julia Functions</h4>
+<ul>
+<li><strong>Differential Equations</strong>:
+<code>DifferentialEquations.jl</code>, <code>@ode_def</code></li>
+<li><strong>Plotting</strong>: <code>Plots.jl</code>, <code>plot</code>,
+<code>plot!</code></li>
+<li><strong>Basic Julia</strong>: <code>function</code>,
+<code>for</code>, <code>while</code>, basic arithmetic operators</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="homework-and-assignments" class="section level3">
+<h3>Homework and Assignments:</h3>
+<ul>
+<li>Solve a set of IVPs using Euler’s method and Improved Euler’s
+method</li>
+<li>Implement the RK4 method for given ODEs</li>
+<li>Use <code>DifferentialEquations.jl</code> to solve complex ODEs and
+compare results with previous methods</li>
+<li>Write a report discussing the accuracy and efficiency of the methods
+learned</li>
+</ul>
+</div>
+<div id="week-7-numerical-solutions-of-partial-differential-equations-pdes" class="section level3">
+<h3>Week 7: Numerical Solutions of Partial Differential Equations
+(PDEs)</h3>
+<p>This is a tutorial on numerical solutions of PDEs using Julia.</p>
+<div id="classification-of-pdes" class="section level4">
+<h4>1. Classification of PDEs</h4>
+<p>Partial Differential Equations (PDEs) can be classified based on
+their linearity, order, and the nature of the coefficients. Here are
+some common classifications:</p>
+<ul>
+<li><strong>Linearity</strong>: Linear vs. Nonlinear</li>
+<li><strong>Order</strong>: First-order, Second-order, etc.</li>
+<li><strong>Nature of Coefficients</strong>: Constant coefficients
+vs. Variable coefficients</li>
+</ul>
+<p>In this tutorial, we’ll focus on linear second-order PDEs with
+constant coefficients.</p>
+</div>
+<div id="finite-difference-methods-for-pdes" class="section level4">
+<h4>2. Finite Difference Methods for PDEs</h4>
+<p>Finite difference methods are numerical techniques for solving PDEs
+by approximating derivatives with difference equations. Here’s a simple
+example using Julia:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Define grid size and time step</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>nx, nt <span class="op">=</span> <span class="fl">100</span>, <span class="fl">100</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>dx, dt <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span>nx, <span class="fl">0.01</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># Initialize solution matrix</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>u <span class="op">=</span> <span class="fu">zeros</span>(nx, nt)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>u[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">=</span> <span class="fu">sin</span>.(<span class="fl">2</span> <span class="op">*</span> <span class="cn">π</span> <span class="op">*</span> (<span class="fl">0</span><span class="op">:</span>dx<span class="op">:</span><span class="fl">1</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co"># Finite difference loop</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>nt<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nx<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>        u[i, n<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> u[i, n] <span class="op">+</span> dt <span class="op">*</span> (u[i<span class="op">+</span><span class="fl">1</span>, n] <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">+</span> u[i<span class="op">-</span><span class="fl">1</span>, n]) <span class="op">/</span> dx<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+</div>
+<div id="solving-heat-and-wave-equations" class="section level4">
+<h4>3. Solving Heat and Wave Equations</h4>
+<p>Let’s tackle the heat equation and the wave equation using finite
+difference methods.</p>
+<p><strong>Heat Equation</strong>:</p>
+<p>The heat equation is a PDE that describes the distribution of heat
+over time. The equation is:</p>
+<p><span class="math display">\[\frac{\partial u}{\partial t} = \alpha
+\frac{\partial^2 u}{\partial x^2}\]</span></p>
+<p>Here’s how to solve it using Julia:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>α <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>dx, dt <span class="op">=</span> <span class="fl">0.1</span>, <span class="fl">0.001</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>nx, nt <span class="op">=</span> <span class="fl">100</span>, <span class="fl">1000</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># Initialize solution matrix</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>u <span class="op">=</span> <span class="fu">zeros</span>(nx, nt)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>u[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">=</span> <span class="fu">sin</span>.(<span class="fl">2</span> <span class="op">*</span> <span class="cn">π</span> <span class="op">*</span> (<span class="fl">0</span><span class="op">:</span>dx<span class="op">:</span><span class="fl">1</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co"># Finite difference loop</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>nt<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nx<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>        u[i, n<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> u[i, n] <span class="op">+</span> α <span class="op">*</span> dt <span class="op">*</span> (u[i<span class="op">+</span><span class="fl">1</span>, n] <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">+</span> u[i<span class="op">-</span><span class="fl">1</span>, n]) <span class="op">/</span> dx<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p><strong>Wave Equation</strong>:</p>
+<p>The wave equation describes the propagation of waves. The equation
+is:</p>
+<p><span class="math display">\[\frac{\partial^2 u}{\partial t^2} = c^2
+\frac{\partial^2 u}{\partial x^2}\]</span></p>
+<p>Here’s how to solve it using Julia:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>dx, dt <span class="op">=</span> <span class="fl">0.1</span>, <span class="fl">0.01</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>nx, nt <span class="op">=</span> <span class="fl">100</span>, <span class="fl">100</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co"># Initialize solution matrices</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>u <span class="op">=</span> <span class="fu">zeros</span>(nx, nt)</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>u_new <span class="op">=</span> <span class="fu">copy</span>(u)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>u_old <span class="op">=</span> <span class="fu">copy</span>(u)</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co"># Initial condition</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>u[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">=</span> <span class="fu">sin</span>.(<span class="fl">2</span> <span class="op">*</span> <span class="cn">π</span> <span class="op">*</span> (<span class="fl">0</span><span class="op">:</span>dx<span class="op">:</span><span class="fl">1</span>))</span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co"># Finite difference loop</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nt<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nx<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>        u_new[i, n<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">-</span> u_old[i, n] <span class="op">+</span> (c<span class="op">^</span><span class="fl">2</span> <span class="op">*</span> dt<span class="op">^</span><span class="fl">2</span> <span class="op">*</span> (u[i<span class="op">+</span><span class="fl">1</span>, n] <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">+</span> u[i<span class="op">-</span><span class="fl">1</span>, n]) <span class="op">/</span> dx<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>    u_old <span class="op">=</span> <span class="fu">copy</span>(u)</span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>    u <span class="op">=</span> <span class="fu">copy</span>(u_new)</span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+</div>
+<div id="implementing-pde-solvers-in-julia" class="section level4">
+<h4>4. Implementing PDE Solvers in Julia</h4>
+<p>To make the PDE solvers more reusable and modular, we can wrap them
+into functions.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">heat_equation_solver</span>(α, dx, dt, nx, nt, initial_condition)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    u <span class="op">=</span> <span class="fu">zeros</span>(nx, nt)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    u[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">=</span> initial_condition</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>nt<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nx<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>            u[i, n<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> u[i, n] <span class="op">+</span> α <span class="op">*</span> dt <span class="op">*</span> (u[i<span class="op">+</span><span class="fl">1</span>, n] <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">+</span> u[i<span class="op">-</span><span class="fl">1</span>, n]) <span class="op">/</span> dx<span class="op">^</span><span class="fl">2</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="kw">function</span> <span class="fu">wave_equation_solver</span>(c, dx, dt, nx, nt, initial_condition)</span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>    u <span class="op">=</span> <span class="fu">zeros</span>(nx, nt)</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>    u_new <span class="op">=</span> <span class="fu">copy</span>(u)</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>    u_old <span class="op">=</span> <span class="fu">copy</span>(u)</span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>    u[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">=</span> initial_condition</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nt<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>nx<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a>            u_new[i, n<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">-</span> u_old[i, n] <span class="op">+</span> (c<span class="op">^</span><span class="fl">2</span> <span class="op">*</span> dt<span class="op">^</span><span class="fl">2</span> <span class="op">*</span> (u[i<span class="op">+</span><span class="fl">1</span>, n] <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>u[i, n] <span class="op">+</span> u[i<span class="op">-</span><span class="fl">1</span>, n]) <span class="op">/</span> dx<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a>        u_old <span class="op">=</span> <span class="fu">copy</span>(u)</span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a>        u <span class="op">=</span> <span class="fu">copy</span>(u_new)</span>
+<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a>    <span class="cf">return</span> u</span>
+<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a></span>
+<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a>initial_condition <span class="op">=</span> <span class="fu">sin</span>.(<span class="fl">2</span> <span class="op">*</span> <span class="cn">π</span> <span class="op">*</span> (<span class="fl">0</span><span class="op">:</span>dx<span class="op">:</span><span class="fl">1</span>))</span>
+<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a>u_heat <span class="op">=</span> <span class="fu">heat_equation_solver</span>(<span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.001</span>, <span class="fl">100</span>, <span class="fl">1000</span>, initial_condition)</span>
+<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a>u_wave <span class="op">=</span> <span class="fu">wave_equation_solver</span>(<span class="fl">1.0</span>, <span class="fl">0.1</span>, <span class="fl">0.01</span>, <span class="fl">100</span>, <span class="fl">100</span>, initial_condition)</span></code></pre></div>
+<p>That’s a brief overview of solving PDEs using finite difference
+methods in Julia.</p>
+</div>
 </div>
 </div>
 </div>
