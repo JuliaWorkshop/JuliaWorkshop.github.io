@@ -1,0 +1,159 @@
+Certainly! Here's the tutorial on binary classifiers using simple logistic regression, with the text formatted in markdown and the code converted to Julia.
+
+## Binary Classifiers
+
+### Part 1 - Simple Logistic Regression
+
+The Pima Indians Diabetes Dataset involves predicting the onset of diabetes within 5 years in Pima Indians given medical details. This dataset is a small dataset which includes 8 key features & a binary target value as follows:
+
+- Number of times pregnant
+- Plasma glucose concentration a 2 hours in an oral glucose tolerance test
+- Diastolic blood pressure (mm Hg)
+- Triceps skin fold thickness (mm)
+- 2-Hour serum insulin (mu U/ml)
+- Body mass index (weight in kg/(height in m)^2)
+- Diabetes pedigree function
+- Age (years)
+- Class variable (0 or 1)
+
+A small logistic regression model will be developed in an attempt to predict whether a patient is likely (represented by 1) or not likely (represented by 0) to develop diabetes in the next 5 years.
+
+```julia
+using CSV
+using DataFrames
+using StatsPlots
+
+# Load the dataset
+data = CSV.read("../input/diabetes.csv", DataFrame)
+
+# Display the first few rows of the dataset
+first(data, 5)
+```
+
+| Pregnancies | Glucose | BloodPressure | SkinThickness | Insulin | BMI | DiabetesPedigreeFunction | Age | Outcome |
+|-------------|---------|---------------|---------------|---------|-----|---------------------------|-----|---------|
+| 6           | 148     | 72            | 35            | 0       | 33.6| 0.627                     | 50  | 1       |
+| 1           | 85      | 66            | 29            | 0       | 26.6| 0.351                     | 31  | 0       |
+| 8           | 183     | 64            | 0             | 0       | 23.3| 0.672                     | 32  | 1       |
+| 1           | 89      | 66            | 23            | 94      | 28.1| 0.167                     | 21  | 0       |
+| 0           | 137     | 40            | 35            | 168     | 43.1| 2.288                     | 33  | 1       |
+
+After an initial view of the data, we can see that all features contain numeric data. However, the scale of each feature is inconsistent, and we may need to apply some feature scaling to ensure that our learning model can handle this data correctly.
+
+Before applying feature scaling, it is often worth building a correlation matrix to see which features are highly correlated with the target value. Viewing the correlation matrix shows that all feature columns have a positive correlation with the target value, but columns 1 (Plasma glucose concentration a 2 hours in an oral glucose tolerance test) and 5 (Body mass index (weight in kg/(height in m)^2)) appear to have the highest correlation.
+
+```julia
+# Compute the correlation matrix
+correlations = cor(data)
+outcome_correlations = correlations[:, :Outcome]
+
+# Sort the correlations
+sorted_correlations = sortperm(outcome_correlations, rev=true)
+for i in sorted_correlations
+    println("Feature: ", names(data)[i], " Correlation: ", outcome_correlations[i])
+end
+```
+
+In addition to viewing the correlation matrix, it can also be useful to view a scatter plot of the features that we have chosen to form the basis of the model.
+
+```julia
+# Visualize the correlation between Glucose and BMI
+function visualize(data)
+    scatter(data.Glucose, data.BMI, title="Highly Correlated Features", xlabel="Plasma glucose concentration", ylabel="Body mass index")
+end
+
+visualize(data)
+```
+
+After viewing the scatter plot above, it is immediately obvious that we have some missing values in this dataset. With some domain knowledge, we can deduce that it should not be possible to have a body mass index or plasma glucose concentration of 0. We will need to remove this dirty data before building our learning model. This can be achieved quickly by replacing the missing values with `missing` and then removing these rows from the dataset.
+
+```julia
+# Replace zeros with missing for Glucose and BMI
+data[!, ["Glucose", "BMI"]] .= ifelse.((data.Glucose .== 0) .| (data.BMI .== 0), missing, data[!, ["Glucose", "BMI"]])
+dropmissing!(data)
+
+# Visualize the cleaned data
+visualize(data)
+```
+
+Since we have decided to use features 1 and 5 to build our logistic regression classifier, we can extract the feature columns and target values easily as follows:
+
+```julia
+# Extract features and target values
+X = Matrix(select(data, ["Glucose", "BMI"]))
+y = data.Outcome
+```
+
+In addition, now that we have our feature columns isolated, we can apply feature scaling. This can be achieved using the `StandardScaler` class of the `ScikitLearn` package as follows:
+
+```julia
+using ScikitLearn
+@sk_import preprocessing: StandardScaler
+
+# Feature scaling
+sc = StandardScaler()
+X = fit_transform!(sc, X)
+
+# Display mean and standard deviation
+mean = mean(X, dims=1)
+std_dev = std(X, dims=1)
+println("Mean: ", mean)
+println("Standard deviation: ", std_dev)
+
+# Display the first ten rows of the scaled dataset
+println(X[1:10, :])
+```
+
+Next, we will split the dataset into a training set and a test set, which will be useful when evaluating the model's performance. An 80% / 20% split will be used when splitting the dataset.
+
+```julia
+@sk_import model_selection: train_test_split
+
+# Split the dataset
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+```
+
+Once we have our training set and test set, we can define a `LogisticRegression` model and fit it to our training data. Once trained, the model can then be used to make predictions against the test set.
+
+```julia
+@sk_import linear_model: LogisticRegression
+
+# Define and train the model
+model = LogisticRegression()
+fit!(model, X_train, y_train)
+y_pred = predict(model, X_test)
+```
+
+There are a number of different ways that we can evaluate the performance of our model, but perhaps the simplest is to compute the confusion matrix:
+
+```julia
+@sk_import metrics: confusion_matrix
+
+# Compute the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+println(cm)
+```
+
+The confusion matrix is a summary of prediction results for a given classification problem. The confusion matrix shows the number of correct and incorrect predictions broken down by each class.
+
+In this case, the number of true positives was 92 and the number of true negatives was 29. This means we made a total of 121 correct predictions out of a total of 151 (~80%). The confusion matrix also allows us to compute two additional statistics which are good for model evaluation, namely precision and recall.
+
+```julia
+function precision_recall(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
+    tp = cm[1, 1]
+    fp = cm[1, 2]
+    fn = cm[2, 1]
+    prec = tp / (tp + fp)
+    rec = tp / (tp + fn)
+    return prec, rec
+end
+
+precision, recall = precision_recall(y_test, y_pred)
+println("Precision: ", precision)
+println("Recall: ", recall)
+```
+
+Precision-Recall is a useful measure of success of prediction when the classes are imbalanced. In information retrieval, precision is a measure of result relevancy, while recall is a measure of how many truly relevant results are returned. An ideal system with high precision and high recall will return many results, with all results labeled correctly.
+
+Overall, our `LogisticRegression` model using just two of the features provided does a decent job of predicting the onset of diabetes within 5 years in Pima Indians. However, a more complicated model might be able to provide even better results. A small Artificial Neural Network might be a valid next step to see if using all features can do a better job.
