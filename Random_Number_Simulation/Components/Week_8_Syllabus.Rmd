@@ -1,0 +1,139 @@
+### Week 8: Performance Optimization and Best Practices
+
+#### Class 1: Improving the Performance of Julia Simulations
+
+**Objective:** Students will learn techniques to optimize the performance of Julia simulations.
+
+**Materials Needed:**
+- Computers with Julia installed
+- Sample Julia simulation code
+- Projector and screen
+
+**Class Outline:**
+1. **Introduction (10 minutes)**
+    - Brief overview of the importance of performance optimization in simulations.
+    - Discuss common performance bottlenecks in simulation code.
+
+2. **Code Analysis and Optimization Techniques (30 minutes)**
+    - Analyzing sample simulation code to identify performance issues.
+    - Techniques for optimizing code:
+        - Reducing memory allocation
+        - Avoiding global variables
+        - Using type-stable functions
+        - Inlining small functions
+    - Hands-on practice: Students will optimize provided sample code.
+
+3. **Case Study: Real-world Simulation Optimization (20 minutes)**
+    - Presentation of a case study where simulation performance was significantly improved.
+    - Discussion on the methods used and results achieved.
+
+4. **Q&A and Discussion (10 minutes)**
+    - Open floor for questions and discussion on the covered topics.
+
+**Homework:**
+- Students will optimize a provided simulation code and submit their solutions.
+
+---
+
+#### Class 2: Profiling and Benchmarking Julia Code
+
+**Objective:** Students will learn how to profile and benchmark Julia code to identify performance bottlenecks.
+
+**Materials Needed:**
+- Computers with Julia installed
+- Profiling and benchmarking tools (e.g., `Profile`, `BenchmarkTools` packages)
+- Projector and screen
+
+**Class Outline:**
+1. **Introduction to Profiling and Benchmarking (10 minutes)**
+    - Definition and importance of profiling and benchmarking.
+    - Overview of tools available in Julia for profiling and benchmarking.
+
+2. **Profiling Code with `Profile` (20 minutes)**
+    - Demonstration of using the `Profile` package to identify performance bottlenecks.
+    - Analyzing profiling results and interpreting the data.
+
+3. **Benchmarking Code with `BenchmarkTools` (20 minutes)**
+    - Introduction to the `BenchmarkTools` package.
+    - Writing and running benchmarks for Julia code.
+    - Interpreting benchmark results to assess performance.
+
+4. **Hands-on Practice (20 minutes)**
+    - Students will profile and benchmark provided sample code.
+    - Discussion of results and potential optimizations.
+
+5. **Q&A and Discussion (10 minutes)**
+    - Open floor for questions and discussion on profiling and benchmarking.
+
+**Homework:**
+- Students will profile and benchmark a provided codebase and identify areas for optimization.
+
+---
+
+#### Class 3: Parallel Computing and Distributed Simulations
+
+**Objective:** Students will learn the basics of parallel computing and how to implement distributed simulations in Julia.
+
+**Materials Needed:**
+- Computers with Julia installed
+- Parallel computing tools (e.g., `Distributed` package)
+- Projector and screen
+
+**Class Outline:**
+1. **Introduction to Parallel Computing (10 minutes)**
+    - Definition and importance of parallel computing.
+    - Overview of parallel computing models and concepts.
+
+2. **Parallel Computing in Julia (20 minutes)**
+    - Introduction to the `Distributed` package.
+    - Demonstration of basic parallel computing techniques:
+        - `@distributed` macro
+        - `pmap` function
+        - Shared arrays
+
+3. **Implementing Distributed Simulations (20 minutes)**
+    - Example of converting a serial simulation code to a distributed version.
+    - Hands-on practice: Students will implement distributed simulations using provided sample code.
+
+4. **Performance Analysis and Optimization (20 minutes)**
+    - Analyzing the performance of distributed simulations.
+    - Techniques for optimizing parallel code.
+
+5. **Q&A and Discussion (10 minutes)**
+    - Open floor for questions and discussion on parallel computing and distributed simulations.
+
+**Homework:**
+- Students will convert a provided serial simulation code to a distributed version and analyze its performance.
+
+---
+
+#### Class 4: Best Practices for Writing Efficient and Maintainable Julia Code
+
+**Objective:** Students will learn best practices for writing efficient and maintainable Julia code.
+
+**Materials Needed:**
+- Computers with Julia installed
+- Projector and screen
+
+**Class Outline:**
+1. **Introduction to Best Practices (10 minutes)**
+    - Importance of writing efficient and maintainable code.
+    - Overview of best practices for Julia programming.
+
+2. **Efficient Julia Coding Practices (20 minutes)**
+    - Writing type-stable functions.
+    - Avoiding unnecessary memory allocation.
+    - Using built-in functions and libraries.
+
+3. **Code Organization and Maintainability (20 minutes)**
+    - Structuring code for readability and maintainability.
+    - Documentation and comments.
+    - Writing unit tests and using Continuous Integration (CI) tools.
+
+4. **Code Review and Refactoring (20 minutes)**
+    - Conducting code reviews.
+    - Techniques for refactoring code to improve efficiency and maintainability.
+    - Hands-on practice: Students will review and refactor provided sample code.
+
+5. **Q&A and Discussion (10 minutes)**
+    - Open floor for questions and discussion on best practices.
