@@ -1,5 +1,5 @@
 ---
-title: "Numerical Computing"
+title: "Tidyverse"
 output:
   flexdashboard::flex_dashboard:
     theme: 
@@ -19,10 +19,10 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
-### Numerical Computing With Julia
+### Tidyverse With Julia
 
-#### Numerical Computing with Julia
+#### Tidyverse with Julia
 
-```{r child = "Numerical_Computing_Syllabus.Rmd"}
+```{r child = "Tidyverse_Syllabus_Julia.Rmd"}
 
 ```
