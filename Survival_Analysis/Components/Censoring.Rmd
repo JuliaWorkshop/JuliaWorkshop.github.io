@@ -1,0 +1,25 @@
+## Censoring in Statistical Analysis
+
+Censoring in statistical analysis occurs when the exact value of a variable of interest is not observed. This often happens in studies where the event of interest (e.g., death, disease onset) hasn't occurred for some individuals by the end of the study period.
+
+### Types of Censoring
+
+1. **Right Censoring:**
+   * **Definition:** This occurs when the event of interest has not happened by the end of the study period.
+   * **Example:** In a clinical trial studying the time to disease progression, patients who are still disease-free at the end of the trial are considered right-censored.
+
+2. **Left Censoring:**
+   * **Definition:** This happens when the event of interest is known to have occurred before the start of the study.
+   * **Example:** In a study investigating the time to onset of symptoms after exposure to a toxin, individuals who were already symptomatic at the time of enrollment would be left-censored.
+
+3. **Interval Censoring:**
+   * **Definition:** This occurs when the event of interest is known to have occurred between two specific time points.
+   * **Example:** In a study monitoring the onset of a disease, if a patient is checked for the disease at two time points and the disease is detected at the second but not the first, the patient is interval-censored.
+
+4. **Random Censoring:**
+   * **Definition:** This is a type of censoring where the reason for censoring is unrelated to the event of interest.
+   * **Example:** In a clinical trial, patients may be lost to follow-up due to reasons unrelated to the disease being studied (e.g., moving, refusing to participate).
+
+**Note:** Random censoring is often assumed in survival analysis models, as it allows for unbiased estimation of survival probabilities. However, if censoring is not random (e.g., due to selective dropout), it can lead to biased results.
+
+**In summary,** understanding the different types of censoring is crucial in statistical analysis, especially when dealing with time-to-event data. Proper handling of censoring can ensure accurate and reliable results.
