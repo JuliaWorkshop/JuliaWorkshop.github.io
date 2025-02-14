@@ -1,0 +1,104 @@
+### Rounding Functions
+
+<h3>Rounding Functions</h3>
+
+```julia
+# Sine function
+x = π/4  # Example angle in radians
+sin_x = sin(x)
+println("sin($x) = $sin_x")
+
+# Floor function
+y = 3.14159
+floor_y = floor(y)
+println("floor($y) = $floor_y")
+
+# Ceiling function
+ceil_y = ceil(y)
+println("ceil($y) = $ceil_y")
+
+# Rounding functions
+
+# round() - Rounds to the nearest integer by default
+round_y = round(y)
+println("round($y) = $round_y")
+
+# round(x, digits) - Rounds to a specified number of decimal places
+round_y_2_digits = round(y, digits=2)
+println("round($y, digits=2) = $round_y_2_digits")
+
+# round(x, RoundNearest) - Rounds to nearest integer (default behavior)
+round_y_nearest = round(y, RoundNearest)
+println("round($y, RoundNearest) = $round_y_nearest")
+
+# round(x, RoundUp) - Rounds up (same as ceil)
+round_y_up = round(y, RoundUp)
+println("round($y, RoundUp) = $round_y_up")
+
+# round(x, RoundDown) - Rounds down (same as floor)
+round_y_down = round(y, RoundDown)
+println("round($y, RoundDown) = $round_y_down")
+
+# round(x, RoundToZero) - Rounds towards zero
+z = -2.7
+round_z_to_zero = round(z, RoundToZero)
+println("round($z, RoundToZero) = $round_z_to_zero")
+
+
+# Other associated functions
+
+# trunc() - Truncates (removes the fractional part) - similar to floor for positive numbers, ceil for negative
+trunc_y = trunc(y)
+println("trunc($y) = $trunc_y")
+trunc_z = trunc(z)
+println("trunc($z) = $trunc_z")
+
+# ftrunc(x, digits) - truncates to a specified number of decimal places.
+ftrunc_y_2 = ftrunc(y, digits=2)
+println("ftrunc($y, digits=2) = $ftrunc_y_2")
+
+
+# modf() - Returns the fractional and integer parts of a number
+fractional_y, integer_y = modf(y)
+println("modf($y) = ($fractional_y, $integer_y)")
+
+# rem(x,y) - remainder after division, can be used to determine if number is even or odd
+remainder = rem(7,2)
+println("rem(7,2) = $remainder")
+
+# isinteger(x) - returns true if x is an integer, false otherwise
+is_int = isinteger(5.0)
+is_float = isinteger(5.2)
+println("isinteger(5.0) = $is_int")
+println("isinteger(5.2) = $is_float")
+
+#sign(x) - returns the sign of x (-1, 0 or +1)
+sign_y = sign(y)
+sign_z = sign(z)
+sign_0 = sign(0.0)
+println("sign($y) = $sign_y")
+println("sign($z) = $sign_z")
+println("sign(0.0) = $sign_0")
+
+
+
+```
+
+**Explanation and Key Points:**
+
+*   **`sin(x)`:**  The standard sine function.  `x` should be in radians.
+*   **`floor(x)`:** Returns the largest integer less than or equal to `x`.
+*   **`ceil(x)`:** Returns the smallest integer greater than or equal to `x`.
+*   **`round(x)`:** Rounds `x` to the nearest integer.  You can also specify the number of decimal places to round to using `round(x, digits=n)`.  Julia 1.0 introduced the `RoundNearest`, `RoundUp`, `RoundDown`, and `RoundToZero` rounding modes to provide more control over rounding behavior.
+*   **`trunc(x)`:** Truncates `x` towards zero (removes the fractional part).  For positive numbers, it's the same as `floor()`. For negative numbers, it's the same as `ceil()`.
+*   **`ftrunc(x, digits)`:** truncates `x` to a specified number of digits after the decimal.
+*   **`modf(x)`:** Returns a tuple containing the fractional and integer parts of `x`.
+*   **`rem(x,y)`:** Returns the remainder after division of `x` by `y`.
+*   **`isinteger(x)`:** Returns `true` if `x` is an integer (or effectively an integer, like 5.0), and `false` otherwise.
+*   **`sign(x)`:** Returns the sign of `x`: -1 if `x` is negative, 0 if `x` is zero, and +1 if `x` is positive.
+
+**Important Considerations:**
+
+*   **Radians:**  Trigonometric functions in Julia (like `sin`, `cos`, `tan`) work with radians by default.  If you have angles in degrees, you'll need to convert them to radians using `deg2rad(degrees)`.
+*   **Rounding Modes:** Be mindful of the different rounding modes (`RoundNearest`, `RoundUp`, `RoundDown`, `RoundToZero`) when using `round()` if you need specific rounding behavior.
+*   **Floating-Point Numbers:** Remember that floating-point numbers are not always represented exactly.  This can sometimes lead to small rounding errors.  If you need very precise calculations, consider using rational numbers or specialized libraries for arbitrary-precision arithmetic.
