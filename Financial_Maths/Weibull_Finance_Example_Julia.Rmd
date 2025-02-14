@@ -1,0 +1,178 @@
+**Weibull Distribution: A Worked Example for Finance Students**
+
+The Weibull distribution is a versatile probability distribution that can be applied to various fields, including finance. It's particularly useful for modeling the time until a specific event occurs, such as default or bankruptcy. 
+
+**Understanding the Weibull Distribution**
+
+The Weibull distribution is characterized by two parameters:
+
+* **Shape parameter (k):** Determines the shape of the distribution.
+    * k < 1: Decreasing failure rate
+    * k = 1: Constant failure rate (exponential distribution)
+    * k > 1: Increasing failure rate
+* **Scale parameter (λ):** Influences the scale of the distribution.
+
+**Probability Density Function (PDF):**
+```
+f(x; k, λ) = (k/λ) * (x/λ)^(k-1) * exp(-(x/λ)^k)
+```
+
+**Cumulative Distribution Function (CDF):**
+```
+F(x; k, λ) = 1 - exp(-(x/λ)^k)
+```
+
+**Worked Example: Modeling Default Time**
+
+Suppose we want to model the time until a company defaults. We have historical data on default times for similar companies and estimate the shape parameter (k) to be 2 and the scale parameter (λ) to be 5 years.
+
+**1. Probability of Default Within 3 Years:**
+
+To calculate the probability that a company defaults within 3 years, we use the CDF:
+
+```
+P(X ≤ 3) = F(3; 2, 5) = 1 - exp(-(3/5)^2) ≈ 0.3012
+```
+So, there's a 30.12% chance the company will default within 3 years.
+
+**2. Expected Default Time:**
+
+The expected value (mean) of a Weibull distribution with parameters k and λ is:
+
+```
+E[X] = λ * Γ(1 + 1/k)
+```
+
+where Γ is the gamma function. 
+
+Using a calculator or statistical software, we find:
+
+```
+E[X] = 5 * Γ(1 + 1/2) ≈ 3.5355 years
+```
+
+Therefore, the expected default time for a company is approximately 3.54 years.
+
+**3. Median Default Time:**
+
+The median default time is the time at which 50% of the companies have defaulted. We can find it by setting the CDF equal to 0.5:
+
+```
+0.5 = 1 - exp(-(x/5)^2)
+```
+
+Solving for x, we get:
+
+```
+x ≈ 3.364 years
+```
+
+So, half of the companies are expected to default within 3.36 years.
+
+**Applications in Finance**
+
+* **Credit Risk Modeling:** Assessing the probability of default for loans and bonds.
+* **Operational Risk:** Modeling the time until a specific operational event, like a system failure.
+* **Insurance:** Analyzing the time until a claim is filed.
+* **Portfolio Management:** Incorporating default probabilities into investment decisions.
+
+By understanding and applying the Weibull distribution, finance professionals can make more informed decisions and manage risk effectively.
+
+```julia
+using Distributions, SpecialFunctions
+
+# Parameters
+k = 2.0  # Shape parameter
+λ = 5.0  # Scale parameter
+
+# 1. Probability of Default Within 3 Years
+probability_default_3 = cdf(Weibull(k, λ), 3)
+println("Probability of default within 3 years: ", probability_default_3)
+
+# 2. Expected Default Time
+expected_default_time = λ * gamma(1 + 1/k)
+println("Expected default time: ", expected_default_time)
+
+# 3. Median Default Time
+# We need to solve for x in the equation: 0.5 = 1 - exp(-(x/λ)^k)
+# Rearranging, we get: (x/λ)^k = -log(0.5)  => x = λ * (-log(0.5))^(1/k)
+median_default_time = λ * (-log(0.5))^(1/k)
+println("Median default time: ", median_default_time)
+
+
+# --- Example using the Distributions package more directly ---
+# Create a Weibull distribution object
+weibull_dist = Weibull(k, λ)
+
+# 1. Probability of Default Within 3 Years (using Distributions package)
+probability_default_3_dist = cdf(weibull_dist, 3)
+println("Probability of default within 3 years (Distributions): ", probability_default_3_dist)
+
+# 2. Expected Default Time (using Distributions package)
+expected_default_time_dist = mean(weibull_dist) # Or using the formula as above.
+println("Expected default time (Distributions): ", expected_default_time_dist)
+
+# 3. Median Default Time (using Distributions package)
+median_default_time_dist = quantile(weibull_dist, 0.5)
+println("Median default time (Distributions): ", median_default_time_dist)
+
+
+# --- Demonstrating the shape parameter's effect ---
+# Example with k < 1 (decreasing failure rate)
+weibull_dist_k_less_than_1 = Weibull(0.5, λ)
+println("\nExample with k < 1 (decreasing failure rate):")
+println("Expected default time: ", mean(weibull_dist_k_less_than_1))
+
+# Example with k = 1 (constant failure rate - Exponential)
+weibull_dist_k_equals_1 = Weibull(1.0, λ) # Equivalent to Exponential(λ)
+println("\nExample with k = 1 (constant failure rate - Exponential):")
+println("Expected default time: ", mean(weibull_dist_k_equals_1))
+
+# Example with k > 1 (increasing failure rate) - Our original case
+println("\nExample with k > 1 (increasing failure rate):")
+println("Expected default time: ", mean(weibull_dist)) # Our original distribution
+
+
+# --- Plotting the PDF and CDF (for visualization) ---
+using Plots
+x_values = range(0, 20, length=100)  # Values for plotting
+plot(x_values, pdf.(weibull_dist, x_values), label="PDF", xlabel="Time (Years)", ylabel="Probability Density")
+plot!(x_values, cdf.(weibull_dist, x_values), label="CDF")
+savefig("weibull_plot.png") # Saves the plot to a file. You can also use display() to show it.
+
+```
+
+**Explanation and Key Improvements:**
+
+1.  **`Distributions` Package:**  We use the `Distributions` package, which is the standard way to work with probability distributions in Julia.  This provides functions like `cdf`, `mean`, and `quantile` directly for the Weibull distribution.  It's much cleaner and more efficient than manually implementing the formulas.
+
+2.  **`SpecialFunctions` Package:** The `SpecialFunctions` package is used for the Gamma function (`gamma()`), which is required for the analytical calculation of the mean.
+
+3.  **Clearer Variable Names:**  More descriptive variable names (e.g., `probability_default_3` instead of just `p`) improve readability.
+
+4.  **Direct Calculation of Median:** The median calculation is now done more directly using the formula derived from the CDF. It's also now calculated using the `quantile` function from the `Distributions` package.
+
+5.  **Demonstration of Shape Parameter's Effect:** The code now includes examples showing how the shape parameter (`k`) affects the expected default time.  This is crucial for understanding the Weibull distribution.
+
+6.  **Plotting:** The code now uses the `Plots` package to visualize the PDF and CDF. This is extremely helpful for understanding the distribution's behavior.  Remember to install the `Plots` package if you haven't already: `] add Plots` in the Julia REPL.
+
+7.  **Comments and Explanations:**  Added more comments to explain each part of the code, making it easier to follow.
+
+8.  **`using` statements:** Explicitly `using` the necessary packages makes the code more robust.
+
+**How to Run:**
+
+1.  **Install Julia:** If you don't have Julia installed, download it from [https://julialang.org/](https://www.google.com/url?sa=E&source=gmail&q=https://julialang.org/).
+2.  **Install Packages:** Open the Julia REPL (command-line interface) and type the following, pressing Enter after each line:
+    ```julia
+    ] add Distributions
+    ] add SpecialFunctions
+    ] add Plots
+    ```
+3.  **Save the Code:** Save the Julia code above as a `.jl` file (e.g., `weibull_example.jl`).
+4.  **Run from the REPL:** In the Julia REPL, navigate to the directory where you saved the file and run it:
+    ```julia
+    include("weibull_example.jl")
+    ```
+
+The output will be printed to the console, and the plot will be saved as `weibull_plot.png` in the same directory.
