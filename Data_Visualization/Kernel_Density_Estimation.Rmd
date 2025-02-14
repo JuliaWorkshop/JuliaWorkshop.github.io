@@ -1,0 +1,180 @@
+### Kernel Density Estimation
+
+```julia
+using Plots  # For plotting
+using Statistics # For calculating statistics if needed
+
+# Sample data (replace with your own data)
+data = randn(1000)  # 1000 random numbers from a standard normal distribution
+
+# Basic histogram
+histogram(data)
+
+# Customizing the histogram
+
+# 1. Number of bins:
+histogram(data, bins=20) # Explicitly set the number of bins
+
+# Or, specify bin edges directly:
+bin_edges = range(-4, 4, length=30) # Creates 30 evenly spaced edges from -4 to 4
+histogram(data, bins=bin_edges)
+
+# 2. Color and fill:
+histogram(data, bins=20, color=:blue, fill=:lightblue)
+
+# 3. Labels and title:
+histogram(data, bins=20, color=:blue, fill=:lightblue, 
+          xlabel="Value", ylabel="Frequency", title="Histogram of Random Data")
+
+# 4. Normalization (to probabilities):
+histogram(data, bins=20, color=:blue, fill=:lightblue, 
+          xlabel="Value", ylabel="Probability", title="Normalized Histogram",
+          normalize = true)  #Important to add this for normalized histogram
+
+# 5. Adding a density curve:
+using Distributions  # For probability distributions
+
+# Fit a normal distribution to the data (if it's approximately normal)
+fit_dist = fit(Normal, data)
+
+# Plot the histogram and the density curve on the same plot
+histogram(data, bins=20, color=:blue, fill=:lightblue, 
+          xlabel="Value", ylabel="Frequency", title="Histogram with Density Curve",
+          label="Data") #label added for legend
+
+# Create x values for the density curve
+x_vals = range(minimum(data), maximum(data), length=100)
+
+# Plot the density curve
+plot!(x_vals, pdf.(fit_dist, x_vals), color=:red, label="Normal Density") #plot! adds to the existing plot
+
+
+# 6. Multiple Histograms on the same plot
+
+data1 = randn(500)
+data2 = 2*randn(500) .+ 3 # shifted data
+
+histogram(data1, bins=20, color=:blue, fill=:lightblue, label="Data 1")
+histogram!(data2, bins=20, color=:green, fill=:lightgreen, label="Data 2") #histogram! adds to the existing plot
+xlabel!("Value")
+ylabel!("Frequency")
+title!("Two Histograms")
+
+
+
+# Saving the plot to a file:
+savefig("my_histogram.png") # Saves as a PNG file
+# other file formats are possible, check Plots.jl documentation
+
+
+# Interactive plots (using GR backend, you might need to install GR if not already installed)
+# using GR
+# plotly() # for interactive plots with plotly backend
+# histogram(data, bins=20, color=:blue, fill=:lightblue, 
+#           xlabel="Value", ylabel="Frequency", title="Interactive Histogram")
+
+```
+
+**Explanation and Key Improvements:**
+
+* **`Plots.jl`:**  The code uses the `Plots.jl` package, which is a powerful and versatile plotting library in Julia.  You'll need to install it if you haven't already:  In the Julia REPL, type `] add Plots`.  Then, `using Plots` in your code.
+* **Sample Data:** I've included `data = randn(1000)` to generate some sample data (1000 random numbers from a standard normal distribution).  *Replace this with your actual data.*
+* **Customization:** The code demonstrates how to customize the histogram:
+    * `bins`: Control the number of bins or specify the bin edges directly.
+    * `color`, `fill`: Set the color of the bars and the fill color.
+    * `xlabel`, `ylabel`, `title`: Add labels and a title to the plot.
+    * `normalize = true`: For plotting a probability density instead of frequencies.
+* **Density Curve:**  The code shows how to overlay a density curve on the histogram.  This requires the `Distributions.jl` package (install with `] add Distributions` and then `using Distributions`).  It fits a normal distribution to the data (you might need to use a different distribution if your data is not normally distributed) and plots the PDF.
+* **Multiple Histograms:** The example shows how to plot multiple histograms on the same axes for comparison.  Note the use of `histogram!` to add to an existing plot.
+* **Saving Plots:**  The `savefig()` function is used to save the plot to a file.
+* **Interactive Plots:** The code shows how to make interactive plots. You might need to install the GR backend if you haven't already: `] add GR`. Then `using GR` before calling `plotly()`.
+
+Remember to replace the sample data with your own data and adjust the customization options as needed.  The `Plots.jl` package has many more options for customizing plots, so check the documentation for more details.
+
+############################################
+
+A kernel density plot is a statistical tool used to estimate the probability density function of a continuous random variable. Unlike a histogram, which breaks data into discrete bins, a kernel density plot smooths out the data to produce a continuous curve. This allows for a clearer visualization of the distribution's shape, highlighting peaks, valleys, and overall trends in the data. Essentially, it helps to understand the underlying pattern of the data distribution.
+
+using Plots
+using KernelDensity
+
+# Sample data (replace with your own data)
+data = randn(1000)  # 1000 random numbers from a standard normal distribution
+
+# 1. Basic Kernel Density Plot:
+
+# Estimate the kernel density
+kde = kde(data)
+
+# Plot the KDE
+plot(kde, label="KDE")  # 'label' is for the legend if you add more plots
+
+# 2. Customizing the KDE Plot:
+
+# Bandwidth (controls the smoothness of the curve):
+kde_bw_05 = kde(data, bandwidth=0.5) # Smaller bandwidth, more detailed, potentially noisy
+kde_bw_2 = kde(data, bandwidth=2.0)  # Larger bandwidth, smoother curve
+
+plot(kde, label="Default Bandwidth")
+plot!(kde_bw_05, label="Bandwidth = 0.5")
+plot!(kde_bw_2, label="Bandwidth = 2.0")
+xlabel!("Value")
+ylabel!("Density")
+title!("Kernel Density Estimation with Different Bandwidths")
+
+
+# 3. Specifying the x-range:
+
+x_vals = range(minimum(data) - 2, maximum(data) + 2, length=200) # Extend x-range a bit
+kde_x = kde(data, x_vals) # Evaluate KDE at specific x-values
+
+plot(x_vals, kde_x, label="KDE over specified range")
+xlabel!("Value")
+ylabel!("Density")
+title!("KDE over specified x-range")
+
+
+# 4. Kernel Function:
+# You can choose different kernel functions (Gaussian is the default).
+# Common options include:
+# * `Gaussian()`
+# * `Epanechnikov()`
+# * `Uniform()`
+# * `Triangular()`
+
+kde_epanechnikov = kde(data, kernel=Epanechnikov())
+
+plot(kde, label="Gaussian Kernel (Default)")
+plot!(kde_epanechnikov, label="Epanechnikov Kernel")
+xlabel!("Value")
+ylabel!("Density")
+title!("KDE with Different Kernels")
+
+
+# 5. Combining with a histogram:
+
+histogram(data, bins=30, normalize=true, label="Histogram", alpha=0.5) # alpha makes the histogram transparent
+plot!(kde, label="KDE")
+xlabel!("Value")
+ylabel!("Density/Frequency")
+title!("KDE and Histogram")
+
+
+# 6. Multiple KDEs on the same plot:
+
+data1 = randn(500)
+data2 = 2*randn(500) .+ 3 # shifted data
+
+kde1 = kde(data1)
+kde2 = kde(data2)
+
+
+plot(kde1, label="Data 1 KDE", color=:blue)
+plot!(kde2, label="Data 2 KDE", color=:red)
+xlabel!("Value")
+ylabel!("Density")
+title!("Multiple KDEs")
+
+
+# 7. Saving the plot:
+savefig("kernel_density_plot.png")
