@@ -1,5 +1,7 @@
 ### Factorial
 
+<h3>Factorial Functions with Julia</h3>
+
 Calculating a factorial in Julia is quite straightforward. You can write a simple function to achieve this. Here's a basic example:
 
 ```julia
