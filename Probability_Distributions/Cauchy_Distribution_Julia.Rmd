@@ -1,0 +1,20 @@
+The Cauchy distribution, named after Augustin-Louis Cauchy, is a continuous probability distribution. It is characterized by a heavy-tailed shape, meaning that it has a higher probability of producing extreme values than many other distributions.
+
+The probability density function (PDF) of the Cauchy distribution is given by:
+
+f(x) = (1/π) * (γ / ((x - x₀)² + γ²))
+
+where:
+
+- x₀ is the location parameter, representing the peak of the distribution.
+- γ is the scale parameter, controlling the width of the distribution.
+
+The Cauchy distribution does not have a finite mean or variance. This is due to its heavy tails, which cause the integral for the mean and variance to diverge. However, it does have a well-defined median, which is equal to the location parameter x₀.
+
+The cumulative distribution function (CDF) of the Cauchy distribution is given by:
+
+F(x) = (1/π) * arctan((x - x₀) / γ) + 1/2
+
+The Cauchy distribution is often used in physics and engineering to model phenomena with heavy tails, such as the Lorentzian line profile in spectroscopy and the distribution of particle sizes in certain materials. It is also used in finance to model the returns of certain assets.
+
+One of the challenges with the Cauchy distribution is that its lack of finite moments makes it difficult to apply some statistical methods that rely on these moments, such as the central limit theorem. However, there are alternative methods that can be used to analyze data from a Cauchy distribution, such as robust statistical methods.
