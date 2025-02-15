@@ -1,0 +1,39 @@
+```julia
+using HypothesisTests
+
+# Sample data (replace with your actual data)
+before = [10, 12, 15, 18, 20]
+after = [12, 14, 17, 20, 22]
+
+# Perform the paired t-test
+t_test = ttest(before, after, paired=true)
+
+# Extract the p-value
+p_value = pvalue(t_test)
+
+# Print the results
+println("Paired t-test Results:")
+println("Test Statistic:", statistic(t_test))
+println("p-value:", p_value)
+
+# Interpretation
+if p_value < 0.05
+    println("Reject the null hypothesis. There is a statistically significant difference between the paired samples.")
+else
+    println("Fail to reject the null hypothesis. There is no statistically significant difference between the paired samples.")
+end
+```
+
+**Explanation:**
+
+1. **Import the `HypothesisTests` package:** This line imports the necessary package for performing statistical tests in Julia.
+2. **Define sample data:** Replace the example data with your actual data.
+3. **Perform the paired t-test:**
+   - `ttest(before, after, paired=true)` performs the paired t-test. The `paired=true` argument specifies that the data is paired.
+4. **Extract the p-value:** `pvalue(t_test)` extracts the p-value from the test result.
+5. **Print the results:** This section prints the test statistic and p-value.
+6. **Interpretation:**
+   - If the p-value is less than 0.05 (or your chosen significance level), you reject the null hypothesis. This suggests that there is a statistically significant difference between the paired samples.
+   - If the p-value is greater than or equal to 0.05, you fail to reject the null hypothesis. This suggests that there is no statistically significant difference between the paired samples.
+
+This code demonstrates how to perform a paired t-test in Julia using the `HypothesisTests` package. Remember to adjust the significance level and interpret the results based on your specific research question and data.

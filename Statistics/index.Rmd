@@ -33,5 +33,56 @@ Column {.tabset}
 ```
 
 ```{r child="Regression_Diagnostics_Packages_Julia.Rmd"}
-```{r child="Regression_Diagnostics_Packages_Julia.Rmd"}
 ```
+
+
+```{r child="Components/Bland_Altman_Plot_Julia.Rmd"}
+```
+
+
+
+Computing Exercise {data-navmenu="Functions"}
+=====================================
+
+Column {.tabset}
+--------------------
+```{r child="Components/Statistical_Computing_Exercise.Rmd"}
+```
+
+```{r child="Components/Statistical_Functions_Julia.Rmd"   } 
+```
+
+
+Paired T-Test {data-navmenu="Hypothesis Testing"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child="Components/Paired_T_Test_Julia.Rmd"         }   `
+```
+
+
+```{r child="Components/Paired_T_Test_Julia_Example.Rmd"  }  
+```
+
+
+Computing Exercise {data-navmenu="Bivariate Analysis"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child="Components/Correlation_Testing_Julia.Rmd"   } 
+
+```
+
+```{r child="Components/Chi_Square_Test_Julia.Rmd"  }     
+
+```
+
+```{"Testing_Normality_Julia.Rmd"  }   
+
+```
+
+

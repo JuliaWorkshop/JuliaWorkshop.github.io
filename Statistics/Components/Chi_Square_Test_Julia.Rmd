@@ -1,0 +1,44 @@
+
+
+### The Chi Square Test
+
+This code will:
+
+1. **Import the necessary package:**
+   - `HypothesisTests`: This package provides functions for various statistical tests, including the chi-square test.
+
+2. **Define the data:**
+   - `observed`: A vector containing the observed frequencies for each category.
+   - `expected`: A vector containing the expected frequencies for each category. If you don't have specific expected frequencies, you can calculate them based on your assumptions (e.g., equal expected frequencies as in the example).
+
+3. **Perform the chi-square test:**
+   - `ChisqTest(observed, expected)`: This function performs the chi-square test and returns a test statistic object.
+   
+```julia
+using HypothesisTests
+
+# Define observed and expected frequencies
+observed = [10, 20, 15, 5]
+expected = [12.5, 12.5, 12.5, 12.5]  # Example: Assuming equal expected frequencies
+
+# Perform the chi-square test
+test = ChisqTest(observed, expected)
+
+# Print the test results
+println(test)
+```
+
+
+4. **Print the results:**
+   - `println(test)`: This will print a summary of the test results, including the test statistic, p-value, degrees of freedom, and a conclusion about whether to reject or fail to reject the null hypothesis.
+
+**Interpretation:**
+
+- **p-value:** If the p-value is less than your chosen significance level (e.g., 0.05), you can reject the null hypothesis and conclude that there is a statistically significant difference between the observed and expected frequencies.
+- **Degrees of freedom:** The degrees of freedom for a chi-square test are calculated as `(number of categories) - 1`.
+
+**Additional Notes:**
+
+- You can adjust the `expected` frequencies based on your specific research question or hypotheses.
+- For more complex scenarios, such as tests of independence or homogeneity, you can use the `ChisqTest` function with a contingency table (a matrix of observed frequencies).
+- The `HypothesisTests` package provides various other statistical tests, so you can explore its documentation for more options.

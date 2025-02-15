@@ -29,10 +29,16 @@ Column {.tabset}
 ```
 
 
-```{r child = "Components/RoundingFunctions.Rmd"}
+```{r child = "Components/Rounding_Functions.Rmd"}
 ```
 
-```{r child = "Components/Trig_unctions.Rmd"}
+Trig Functions {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Components/Trig_Functions.Rmd"}
 ```
 
 Factorial Functions {data-navmenu="Modules"}
@@ -41,7 +47,7 @@ Factorial Functions {data-navmenu="Modules"}
 Column {.tabset}
 --------------------
 
-```{r child = "Components/factorials.Rmd"}
+```{r child = "Components/Factorial_Functions.Rmd"}
 ```
 
 Complex Number {data-navmenu="Modules"}
@@ -53,3 +59,21 @@ Column {.tabset}
 ```{r child = "Components/Complex_Numbers.Rmd"}
 ```
 
+
+Big Integers {data-navmenu="Modules"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Components/Big_Integers_Julia.Rmd"}
+```
+
+Project Euler {data-navmenu="Exercises"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Components/PRoject_Euler_Introduction.Rmd"}
+```

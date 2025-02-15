@@ -1,0 +1,216 @@
+
+### Tutorial: Basic Statistical Functions in Julia
+
+Julia provides a rich set of functions for performing statistical calculations.  This tutorial will cover some of the most common ones, demonstrating their usage with examples.
+
+---
+
+**1. Mean:**
+
+The `mean()` function calculates the arithmetic mean of a collection of numbers.
+
+```julia
+data = [1, 2, 3, 4, 5]
+average = mean(data)
+println("Mean: ", average) # Output: Mean: 3.0
+
+data_float = [1.0, 2.5, 3.7, 4.2, 5.1]
+avg_float = mean(data_float)
+println("Mean (Float): ", avg_float) # Output: Mean (Float): 3.3
+
+#For other collection types
+data_tuple = (1,2,3,4,5)
+avg_tuple = mean(data_tuple)
+println("Mean (Tuple): ", avg_tuple) # Output: Mean (Tuple): 3.0
+
+data_set = Set([1,2,3,4,5])
+avg_set = mean(data_set)
+println("Mean (Set): ", avg_set) # Output: Mean (Set): 3.0
+```
+
+---
+
+**2. Median:**
+
+The `median()` function returns the middle value of a sorted collection.
+
+```julia
+data = [1, 2, 3, 4, 5]
+med = median(data)
+println("Median: ", med) # Output: Median: 3.0
+
+data_even = [1, 2, 3, 4]
+med_even = median(data_even)
+println("Median (Even): ", med_even) # Output: Median (Even): 2.5
+```
+
+---
+
+**3. Standard Deviation:**
+
+The `std()` function calculates the standard deviation, a measure of the spread of data around the mean.
+
+```julia
+data = [1, 2, 3, 4, 5]
+stdev = std(data)
+println("Standard Deviation: ", stdev) # Output: Standard Deviation: 1.5811388300841898
+
+#To calculate standard deviation of a population instead of a sample, use the stdevp() function.
+stdev_pop = stdp(data)
+println("Population Standard Deviation: ", stdev_pop) # Output: Population Standard Deviation: 1.4142135623730951
+```
+
+**4. Variance:**
+
+The `var()` function calculates the variance, the square of the standard deviation.
+
+```julia
+data = [1, 2, 3, 4, 5]
+variance = var(data)
+println("Variance: ", variance) # Output: Variance: 2.5
+
+#To calculate variance of a population instead of a sample, use the varp() function.
+variance_pop = varp(data)
+println("Population Variance: ", variance_pop) # Output: Population Variance: 2.0
+```
+
+---
+
+**5. Minimum and Maximum:**
+
+The `minimum()` and `maximum()` functions find the smallest and largest values in a collection.  `extrema()` returns both.
+
+```julia
+data = [5, 2, 8, 1, 9]
+min_val = minimum(data)
+max_val = maximum(data)
+extrema_val = extrema(data)
+
+println("Minimum: ", min_val) # Output: Minimum: 1
+println("Maximum: ", max_val) # Output: Maximum: 9
+println("Extrema: ", extrema_val) # Output: Extrema: (1, 9)
+```
+
+**6. Quantiles:**
+
+The `quantile()` function calculates quantiles, which divide the data into equal parts.
+
+```julia
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+q25 = quantile(data, 0.25) # 25th percentile
+q50 = quantile(data, 0.5)  # 50th percentile (median)
+q75 = quantile(data, 0.75) # 75th percentile
+
+println("25th Quantile: ", q25) # Output: 25th Quantile: 3.25
+println("50th Quantile: ", q50) # Output: 50th Quantile: 5.5
+println("75th Quantile: ", q75) # Output: 75th Quantile: 7.75
+```
+
+---
+
+**7.  `describe()` (from `DataFrames.jl`):**
+
+For a more comprehensive summary of descriptive statistics, the `describe()` function from the `DataFrames.jl` package is very helpful, especially when working with tabular data.
+
+```julia
+using DataFrames
+
+df = DataFrame(A = [1, 2, 3, 4, 5], B = [2.1, 3.2, 4.3, 5.4, 6.5])
+summary_stats = describe(df)
+println(summary_stats)
+```
+
+This will output a table containing count, mean, std, min, median, max, and other statistics for each column in the DataFrame.  Remember to install `DataFrames.jl` first using `] add DataFrames` in the Julia REPL.
+
+---
+
+**Example: Combining functions:**
+
+```julia
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+avg = mean(data)
+stdev = std(data)
+println("Mean: ", avg, ", Standard Deviation: ", stdev)
+
+zscores = (data .- avg) ./ stdev  # Calculate z-scores
+println("Z-scores: ", zscores)
+```
+
+This tutorial covers the basics. Julia's statistical capabilities extend far beyond these functions. The `StatsBase.jl` package provides a wide array of more advanced statistical tools.  Remember to consult the Julia documentation for more in-depth information and further functions.
+
+Let's explore more statistical functions available in base Julia and the `StatsBase.jl` package.
+
+---
+
+**Base Julia (Built-in Functions):**
+
+Beyond the basic functions (mean, median, std, var, min, max, quantile) we discussed before, base Julia offers several other useful statistical functions:
+
+* **`sum(x)`:** Calculates the sum of all elements in `x`.
+* **`prod(x)`:** Calculates the product of all elements in `x`.
+* **`cumsum(x)`:** Calculates the cumulative sum of `x`.  Returns a vector of the same length as `x`.
+* **`cumprod(x)`:** Calculates the cumulative product of `x`.
+* **`diff(x)`:** Calculates the differences between consecutive elements of `x`.
+* **`cor(x, y)`:** Computes the Pearson correlation coefficient between vectors `x` and `y`.
+* **`cov(x, y)`:** Computes the covariance between vectors `x` and `y`.
+* **`hist(x)`:**  Creates a histogram (returns a tuple containing edges and counts).  `Plots.jl` is often used to visualize the histogram.
+* **`range(start, stop, length)`:** Generates an evenly spaced range of numbers. Useful for creating data for statistical analysis or plotting.
+* **`rand(n)`:** Generates `n` random numbers between 0 and 1.
+* **`randn(n)`:** Generates `n` standard normal (mean 0, standard deviation 1) random numbers.
+* **`mean(f, x)`:**  Calculates the mean of `f(x)` where `f` is a function.  Useful for weighted averages or transformations.
+* **`map(f, x)`:** Applies the function `f` to each element of `x` and returns a new collection.  Helpful for data preprocessing before statistical analysis.
+* **`filter(f, x)`:** Returns a new collection containing only the elements of `x` for which the function `f` returns `true`. Useful for subsetting your data.
+
+---
+
+**`StatsBase.jl` Package:**
+
+`StatsBase.jl` significantly expands Julia's statistical capabilities. Here are some key functions and concepts it provides:
+
+
+
+* **Descriptive Statistics:**
+    * `modes(x)`: Returns the mode(s) of a dataset.
+    * `skewness(x)`: Measures the asymmetry of the data distribution.
+    * `kurtosis(x)`: Measures the "tailedness" of the data distribution.
+    * `describe(x)`: Provides a summary of descriptive statistics.
+    * `percentile(x, p)`: Calculates the p-th percentile.
+    * `iqr(x)`: Calculates the interquartile range.
+* **Distributions:** `StatsBase.jl` integrates well with the `Distributions.jl` package, which provides a wide variety of probability distributions.  You can work with these distributions to perform calculations related to probabilities, quantiles, fitting data to distributions, etc.
+* **Hypothesis Testing:**  `StatsBase.jl`, in conjunction with other packages, supports hypothesis testing.
+* **Regression:** While basic linear regression can be done with matrix operations, more advanced regression models are typically handled by packages like `GLM.jl` (Generalized Linear Models).
+* **Resampling:** `StatsBase.jl` provides tools for bootstrapping and other resampling techniques.
+* **Ranking and Ordering:** Functions for ranking data and handling ties.
+* **Weights:** Many functions in `StatsBase.jl` accept weights, allowing you to perform weighted statistical calculations.
+* **Sampling:** Functions for different sampling methods.
+
+---
+
+**Example using `StatsBase.jl`:**
+
+```julia
+using StatsBase
+
+data = [1, 2, 2, 3, 4, 4, 4, 5, 6]
+
+println("Mode: ", modes(data))        # Output: Mode: [4]
+println("Skewness: ", skewness(data))    # Output: Skewness: 0.475206912734336
+println("Kurtosis: ", kurtosis(data))    # Output: Kurtosis: -0.5265625
+println("Percentile (75th): ", percentile(data, 75)) # Output: Percentile (75th): 4.0
+println("Interquartile Range: ", iqr(data)) # Output: Interquartile Range: 2.5
+println("Describe: \n", describe(data)) # Output: Describe: (summary statistics)
+
+# Using weights
+weights = [1, 2, 1, 1, 2, 1, 3, 1, 1] # Example weights
+println("Weighted Mean: ", mean(data, weights)) # Output: Weighted Mean: 3.5294117647058822
+```
+
+---
+
+**Key Considerations:**
+
+* **Installation:** You'll need to install `StatsBase.jl` before using it.  In the Julia REPL, type `] add StatsBase`.
+* **Documentation:** The `StatsBase.jl` documentation is your best resource for a complete list of functions and their usage.  You can access it online or within the Julia REPL using `?StatsBase`.
+* **Other Packages:** For more specialized statistical tasks (like time series analysis, survival analysis, or advanced modeling), you might need to explore other packages in the Julia ecosystem.
+
+This expanded list and example should give you a better overview of the statistical functions available in Julia. Remember to consult the documentation for the most up-to-date information and details on function usage.

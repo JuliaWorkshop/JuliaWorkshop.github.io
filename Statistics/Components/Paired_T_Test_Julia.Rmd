@@ -1,0 +1,38 @@
+```julia
+using HypothesisTests
+
+# Calculate the pairwise differences 
+differences = after - before 
+
+# Perform the paired t-test using the differences
+t_test = OneSampleTTest(differences)
+
+# Extract the p-value
+p_value = pvalue(t_test)
+
+# Print the results
+println("Paired t-test Results:")
+println("Test Statistic:", statistic(t_test))
+println("p-value:", p_value)
+
+# Interpretation
+if p_value < 0.05
+    println("Reject the null hypothesis. There is a statistically significant difference between the paired samples.")
+else
+    println("Fail to reject the null hypothesis. There is no statistically significant difference between the paired samples.")
+end
+```
+
+**Explanation:**
+
+1. **Calculate the differences:** 
+   - `differences = after - before` calculates the difference between each pair of measurements.
+
+2. **Perform the paired t-test:**
+   - `OneSampleTTest(differences)` performs a one-sample t-test on the calculated differences. This is equivalent to a paired t-test, as we are testing whether the mean difference between the pairs is significantly different from zero.
+
+3. **Extract the p-value:** `pvalue(t_test)` extracts the p-value from the test result.
+
+4. **Print the results and interpretation:** This part remains the same as in the previous example.
+
+This approach directly utilizes the pairwise differences for the paired t-test, which is often considered more concise and mathematically accurate.

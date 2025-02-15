@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2769,6 +2834,650 @@ Numerical Methods for Solving Equations - Gradient Descent Algorithm</p>
 Proposal - Implementing a Mathematical Programming Solution - Presenting
 Your Project - Course Review and Q&amp;A</p>
 </div>
+</div>
+<div id="rounding-functions" class="section level3">
+<h3>Rounding Functions</h3>
+<h3>
+Rounding Functions
+</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Sine function</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>x <span class="op">=</span> <span class="cn">π</span><span class="op">/</span><span class="fl">4</span>  <span class="co"># Example angle in radians</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>sin_x <span class="op">=</span> <span class="fu">sin</span>(x)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;sin(</span><span class="sc">$</span>x<span class="st">) = </span><span class="sc">$</span>sin_x<span class="st">&quot;</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># Floor function</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">3.14159</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>floor_y <span class="op">=</span> <span class="fu">floor</span>(y)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;floor(</span><span class="sc">$</span>y<span class="st">) = </span><span class="sc">$</span>floor_y<span class="st">&quot;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Ceiling function</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>ceil_y <span class="op">=</span> <span class="fu">ceil</span>(y)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;ceil(</span><span class="sc">$</span>y<span class="st">) = </span><span class="sc">$</span>ceil_y<span class="st">&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co"># Rounding functions</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co"># round() - Rounds to the nearest integer by default</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>round_y <span class="op">=</span> <span class="fu">round</span>(y)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;round(</span><span class="sc">$</span>y<span class="st">) = </span><span class="sc">$</span>round_y<span class="st">&quot;</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co"># round(x, digits) - Rounds to a specified number of decimal places</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>round_y_2_digits <span class="op">=</span> <span class="fu">round</span>(y, digits<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;round(</span><span class="sc">$</span>y<span class="st">, digits=2) = </span><span class="sc">$</span>round_y_2_digits<span class="st">&quot;</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co"># round(x, RoundNearest) - Rounds to nearest integer (default behavior)</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>round_y_nearest <span class="op">=</span> <span class="fu">round</span>(y, <span class="cn">RoundNearest</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;round(</span><span class="sc">$</span>y<span class="st">, RoundNearest) = </span><span class="sc">$</span>round_y_nearest<span class="st">&quot;</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co"># round(x, RoundUp) - Rounds up (same as ceil)</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>round_y_up <span class="op">=</span> <span class="fu">round</span>(y, <span class="cn">RoundUp</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;round(</span><span class="sc">$</span>y<span class="st">, RoundUp) = </span><span class="sc">$</span>round_y_up<span class="st">&quot;</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="co"># round(x, RoundDown) - Rounds down (same as floor)</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>round_y_down <span class="op">=</span> <span class="fu">round</span>(y, <span class="cn">RoundDown</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;round(</span><span class="sc">$</span>y<span class="st">, RoundDown) = </span><span class="sc">$</span>round_y_down<span class="st">&quot;</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co"># round(x, RoundToZero) - Rounds towards zero</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>z <span class="op">=</span> <span class="op">-</span><span class="fl">2.7</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>round_z_to_zero <span class="op">=</span> <span class="fu">round</span>(z, <span class="cn">RoundToZero</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;round(</span><span class="sc">$</span>z<span class="st">, RoundToZero) = </span><span class="sc">$</span>round_z_to_zero<span class="st">&quot;</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="co"># Other associated functions</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="co"># trunc() - Truncates (removes the fractional part) - similar to floor for positive numbers, ceil for negative</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>trunc_y <span class="op">=</span> <span class="fu">trunc</span>(y)</span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;trunc(</span><span class="sc">$</span>y<span class="st">) = </span><span class="sc">$</span>trunc_y<span class="st">&quot;</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>trunc_z <span class="op">=</span> <span class="fu">trunc</span>(z)</span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;trunc(</span><span class="sc">$</span>z<span class="st">) = </span><span class="sc">$</span>trunc_z<span class="st">&quot;</span>)</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="co"># ftrunc(x, digits) - truncates to a specified number of decimal places.</span></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>ftrunc_y_2 <span class="op">=</span> <span class="fu">ftrunc</span>(y, digits<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;ftrunc(</span><span class="sc">$</span>y<span class="st">, digits=2) = </span><span class="sc">$</span>ftrunc_y_2<span class="st">&quot;</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="co"># modf() - Returns the fractional and integer parts of a number</span></span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>fractional_y, integer_y <span class="op">=</span> <span class="fu">modf</span>(y)</span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;modf(</span><span class="sc">$</span>y<span class="st">) = (</span><span class="sc">$</span>fractional_y<span class="st">, </span><span class="sc">$</span>integer_y<span class="st">)&quot;</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a><span class="co"># rem(x,y) - remainder after division, can be used to determine if number is even or odd</span></span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a>remainder <span class="op">=</span> <span class="fu">rem</span>(<span class="fl">7</span>,<span class="fl">2</span>)</span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;rem(7,2) = </span><span class="sc">$</span>remainder<span class="st">&quot;</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="co"># isinteger(x) - returns true if x is an integer, false otherwise</span></span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a>is_int <span class="op">=</span> <span class="fu">isinteger</span>(<span class="fl">5.0</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a>is_float <span class="op">=</span> <span class="fu">isinteger</span>(<span class="fl">5.2</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;isinteger(5.0) = </span><span class="sc">$</span>is_int<span class="st">&quot;</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;isinteger(5.2) = </span><span class="sc">$</span>is_float<span class="st">&quot;</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a><span class="co">#sign(x) - returns the sign of x (-1, 0 or +1)</span></span>
+<span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a>sign_y <span class="op">=</span> <span class="fu">sign</span>(y)</span>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a>sign_z <span class="op">=</span> <span class="fu">sign</span>(z)</span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a>sign_0 <span class="op">=</span> <span class="fu">sign</span>(<span class="fl">0.0</span>)</span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;sign(</span><span class="sc">$</span>y<span class="st">) = </span><span class="sc">$</span>sign_y<span class="st">&quot;</span>)</span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;sign(</span><span class="sc">$</span>z<span class="st">) = </span><span class="sc">$</span>sign_z<span class="st">&quot;</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;sign(0.0) = </span><span class="sc">$</span>sign_0<span class="st">&quot;</span>)</span>
+<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a></span></code></pre></div>
+<p><strong>Explanation and Key Points:</strong></p>
+<ul>
+<li><strong><code>sin(x)</code>:</strong> The standard sine function.
+<code>x</code> should be in radians.</li>
+<li><strong><code>floor(x)</code>:</strong> Returns the largest integer
+less than or equal to <code>x</code>.</li>
+<li><strong><code>ceil(x)</code>:</strong> Returns the smallest integer
+greater than or equal to <code>x</code>.</li>
+<li><strong><code>round(x)</code>:</strong> Rounds <code>x</code> to the
+nearest integer. You can also specify the number of decimal places to
+round to using <code>round(x, digits=n)</code>. Julia 1.0 introduced the
+<code>RoundNearest</code>, <code>RoundUp</code>, <code>RoundDown</code>,
+and <code>RoundToZero</code> rounding modes to provide more control over
+rounding behavior.</li>
+<li><strong><code>trunc(x)</code>:</strong> Truncates <code>x</code>
+towards zero (removes the fractional part). For positive numbers, it’s
+the same as <code>floor()</code>. For negative numbers, it’s the same as
+<code>ceil()</code>.</li>
+<li><strong><code>ftrunc(x, digits)</code>:</strong> truncates
+<code>x</code> to a specified number of digits after the decimal.</li>
+<li><strong><code>modf(x)</code>:</strong> Returns a tuple containing
+the fractional and integer parts of <code>x</code>.</li>
+<li><strong><code>rem(x,y)</code>:</strong> Returns the remainder after
+division of <code>x</code> by <code>y</code>.</li>
+<li><strong><code>isinteger(x)</code>:</strong> Returns
+<code>true</code> if <code>x</code> is an integer (or effectively an
+integer, like 5.0), and <code>false</code> otherwise.</li>
+<li><strong><code>sign(x)</code>:</strong> Returns the sign of
+<code>x</code>: -1 if <code>x</code> is negative, 0 if <code>x</code> is
+zero, and +1 if <code>x</code> is positive.</li>
+</ul>
+<p><strong>Important Considerations:</strong></p>
+<ul>
+<li><strong>Radians:</strong> Trigonometric functions in Julia (like
+<code>sin</code>, <code>cos</code>, <code>tan</code>) work with radians
+by default. If you have angles in degrees, you’ll need to convert them
+to radians using <code>deg2rad(degrees)</code>.</li>
+<li><strong>Rounding Modes:</strong> Be mindful of the different
+rounding modes (<code>RoundNearest</code>, <code>RoundUp</code>,
+<code>RoundDown</code>, <code>RoundToZero</code>) when using
+<code>round()</code> if you need specific rounding behavior.</li>
+<li><strong>Floating-Point Numbers:</strong> Remember that
+floating-point numbers are not always represented exactly. This can
+sometimes lead to small rounding errors. If you need very precise
+calculations, consider using rational numbers or specialized libraries
+for arbitrary-precision arithmetic.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="trig-functions" class="section level1" data-navmenu="Modules">
+<h1>Trig Functions</h1>
+<div id="column-1" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<p>Trigonometric functions are fundamental in many areas of mathematics
+and science. Here are some short exercises related to trigonometric
+functions using Julia, suitable for students:</p>
+<div id="trigonometric-functions-in-julia-exercise-list" class="section level3">
+<h3>Trigonometric Functions in Julia: Exercise List</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Calculate Basic Trigonometric Functions:</strong>
+<ul>
+<li>Compute the sine, cosine, and tangent of <span class="math inline">\(\pi/4\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sin</span>(<span class="cn">pi</span><span class="op">/</span><span class="fl">4</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">cos</span>(<span class="cn">pi</span><span class="op">/</span><span class="fl">4</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">tan</span>(<span class="cn">pi</span><span class="op">/</span><span class="fl">4</span>)</span></code></pre></div></li>
+<li><strong>Inverse Trigonometric Functions:</strong>
+<ul>
+<li>Compute the arcsine, arccosine, and arctangent of <span class="math inline">\(\sqrt{2}/2\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">asin</span>(<span class="fu">sqrt</span>(<span class="fl">2</span>)<span class="op">/</span><span class="fl">2</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">acos</span>(<span class="fu">sqrt</span>(<span class="fl">2</span>)<span class="op">/</span><span class="fl">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">atan</span>(<span class="fu">sqrt</span>(<span class="fl">2</span>)<span class="op">/</span><span class="fl">2</span>)</span></code></pre></div></li>
+<li><strong>Plotting Trigonometric Functions:</strong>
+<ul>
+<li>Plot the sine and cosine functions over the interval <span class="math inline">\([0, 2\pi]\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">0.01</span><span class="op">:</span><span class="fl">2</span><span class="op">*</span><span class="cn">pi</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">sin</span>.(x), label<span class="op">=</span><span class="st">&quot;sin(x)&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">plot!</span>(x, <span class="fu">cos</span>.(x), label<span class="op">=</span><span class="st">&quot;cos(x)&quot;</span>)</span></code></pre></div></li>
+<li><strong>Trigonometric Identities:</strong>
+<ul>
+<li>Verify the trigonometric identity <span class="math inline">\(\sin^2(x) + \cos^2(x) = 1\)</span> for <span class="math inline">\(x = \pi/3\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>x <span class="op">=</span> <span class="cn">pi</span><span class="op">/</span><span class="fl">3</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">sin</span>(x)<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fu">cos</span>(x)<span class="op">^</span><span class="fl">2</span></span></code></pre></div></li>
+<li><strong>Using Trigonometric Functions in Equations:</strong>
+<ul>
+<li>Solve the equation <span class="math inline">\(\sin(x) =
+0.5\)</span> for <span class="math inline">\(x\)</span> in the interval
+<span class="math inline">\([0, 2\pi]\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Roots</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="fu">sin</span>(x) <span class="op">-</span> <span class="fl">0.5</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">find_zeros</span>(f, <span class="fl">0</span>, <span class="fl">2</span><span class="op">*</span><span class="cn">pi</span>)</span></code></pre></div></li>
+<li><strong>Angle Conversion:</strong>
+<ul>
+<li>Convert 45 degrees to radians and compute the sine and cosine of the
+angle.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>radians <span class="op">=</span> <span class="fu">deg2rad</span>(<span class="fl">45</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">sin</span>(radians)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">cos</span>(radians)</span></code></pre></div></li>
+<li><strong>Phase Shift:</strong>
+<ul>
+<li>Plot the sine function and the sine function with a phase shift of
+<span class="math inline">\(\pi/2\)</span> over the interval <span class="math inline">\([0, 2\pi]\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">0.01</span><span class="op">:</span><span class="fl">2</span><span class="op">*</span><span class="cn">pi</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">sin</span>.(x), label<span class="op">=</span><span class="st">&quot;sin(x)&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">plot!</span>(x, <span class="fu">sin</span>.(x <span class="op">.+</span> <span class="cn">pi</span><span class="op">/</span><span class="fl">2</span>), label<span class="op">=</span><span class="st">&quot;sin(x + π/2)&quot;</span>)</span></code></pre></div></li>
+</ol>
+<p>These exercises should help students get a good grasp of
+trigonometric functions using Julia.</p>
+</div>
+</div>
+</div>
+<div id="factorial-functions" class="section level1" data-navmenu="Modules">
+<h1>Factorial Functions</h1>
+<div id="column-2" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="factorial" class="section level3">
+<h3>Factorial</h3>
+<h3>
+Factorial Functions with Julia
+</h3>
+<p>Calculating a factorial in Julia is quite straightforward. You can
+write a simple function to achieve this. Here’s a basic example:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">factorial</span>(n<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>        <span class="cf">return</span> n <span class="op">*</span> <span class="fu">factorial</span>(n <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">factorial</span>(<span class="fl">5</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;The factorial of 5 is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+<p>This code defines a recursive function <code>factorial</code> that
+calculates the factorial of a given integer <code>n</code>. When you
+call <code>factorial(5)</code>, it will return 120, which is the
+factorial of 5.</p>
+<p>Would you like to know more about how recursion works or perhaps
+explore other methods for calculating factorials in Julia?</p>
+<p>To calculate a binomial coefficient in Julia, you can use a simple
+function. The binomial coefficient, often denoted as <span class="math inline">\(\binom{n}{k}\)</span>, is defined as the number of
+ways to choose <span class="math inline">\(k\)</span> elements from a
+set of <span class="math inline">\(n\)</span> elements without regard to
+the order. Here’s how you can compute it in Julia:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">binomial_coefficient</span>(n<span class="op">::</span><span class="dt">Int</span>, k<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">&gt;</span> n <span class="op">||</span> k <span class="op">&lt;</span> <span class="fl">0</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    min_k <span class="op">=</span> <span class="fu">min</span>(k, n <span class="op">-</span> k)</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    result <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>min_k</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>        result <span class="op">=</span> result <span class="op">*</span> (n <span class="op">-</span> i <span class="op">+</span> <span class="fl">1</span>) <span class="op">//</span> i</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">binomial_coefficient</span>(n, k)</span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;The binomial coefficient of </span><span class="sc">$</span>n<span class="st"> choose </span><span class="sc">$</span>k<span class="st"> is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+<p>In this code: - The function <code>binomial_coefficient</code>
+calculates the binomial coefficient for given <code>n</code> and
+<code>k</code>. - It uses a loop to multiply and divide the appropriate
+terms to get the result efficiently.</p>
+<p>For the example <code>binomial_coefficient(5, 2)</code>, the output
+will be 10, which means there are 10 ways to choose 2 elements from a
+set of 5.</p>
+<p>Let me know if you need further assistance or have any more questions
+about numerical computing in Julia!</p>
+<p>Absolutely, let’s dive into the approach used for calculating the
+binomial coefficient in Julia:</p>
+</div>
+<div id="overview-of-the-binomial-coefficient" class="section level3">
+<h3><strong>Overview of the Binomial Coefficient</strong></h3>
+<p>The binomial coefficient <span class="math inline">\(\binom{n}{k}\)</span> is the number of ways to
+choose <span class="math inline">\(k\)</span> elements from a set of
+<span class="math inline">\(n\)</span> elements without considering the
+order. The formula for the binomial coefficient is:</p>
+<p><span class="math display">\[ \binom{n}{k} = \frac{n!}{k!(n-k)!}
+\]</span></p>
+</div>
+<div id="implementation-approach" class="section level3">
+<h3><strong>Implementation Approach</strong></h3>
+<p>Here’s a step-by-step explanation of the code provided:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">binomial_coefficient</span>(n<span class="op">::</span><span class="dt">Int</span>, k<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">&gt;</span> n <span class="op">||</span> k <span class="op">&lt;</span> <span class="fl">0</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    min_k <span class="op">=</span> <span class="fu">min</span>(k, n <span class="op">-</span> k)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    result <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>min_k</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>        result <span class="op">=</span> result <span class="op">*</span> (n <span class="op">-</span> i <span class="op">+</span> <span class="fl">1</span>) <span class="op">//</span> i</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+</div>
+<div id="step-by-step-explanation" class="section level3">
+<h3><strong>Step-by-Step Explanation</strong></h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Function Definition:</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">binomial_coefficient</span>(n<span class="op">::</span><span class="dt">Int</span>, k<span class="op">::</span><span class="dt">Int</span>)</span></code></pre></div>
+<ul>
+<li>This line defines a function named <code>binomial_coefficient</code>
+that takes two integer arguments, <code>n</code> and
+<code>k</code>.</li>
+</ul></li>
+<li><p><strong>Input Validation:</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="cf">if</span> k <span class="op">&gt;</span> n <span class="op">||</span> k <span class="op">&lt;</span> <span class="fl">0</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<ul>
+<li>The function first checks if <span class="math inline">\(k\)</span>
+is greater than <span class="math inline">\(n\)</span> or if <span class="math inline">\(k\)</span> is negative. If either condition is
+true, it returns 0 because the binomial coefficient is not defined in
+these cases.</li>
+</ul></li>
+<li><p><strong>Optimization:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>min_k <span class="op">=</span> <span class="fu">min</span>(k, n <span class="op">-</span> k)</span></code></pre></div>
+<ul>
+<li>To optimize the calculation, the function calculates the minimum
+value between <span class="math inline">\(k\)</span> and <span class="math inline">\(n - k\)</span>. This is because <span class="math inline">\(\binom{n}{k}\)</span> is equal to <span class="math inline">\(\binom{n}{n-k}\)</span>, and it reduces the number
+of iterations needed.</li>
+</ul></li>
+<li><p><strong>Initialization:</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>result <span class="op">=</span> <span class="fl">1</span></span></code></pre></div>
+<ul>
+<li>A variable <code>result</code> is initialized to 1. This variable
+will hold the intermediate results of the calculation.</li>
+</ul></li>
+<li><p><strong>Loop to Calculate the Binomial Coefficient:</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>min_k</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>    result <span class="op">=</span> result <span class="op">*</span> (n <span class="op">-</span> i <span class="op">+</span> <span class="fl">1</span>) <span class="op">//</span> i</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<ul>
+<li>The loop iterates from 1 to <code>min_k</code>.</li>
+<li>In each iteration, the function multiplies <code>result</code> by
+<span class="math inline">\(n - i + 1\)</span> and divides by <span class="math inline">\(i\)</span>. The <code>//</code> operator performs
+integer division.</li>
+</ul></li>
+<li><p><strong>Return the Result:</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="cf">return</span> result</span></code></pre></div>
+<ul>
+<li>After the loop completes, the function returns the final value of
+<code>result</code>, which is the binomial coefficient <span class="math inline">\(\binom{n}{k}\)</span>.</li>
+</ul></li>
+</ol>
+</div>
+<div id="example-usage" class="section level3">
+<h3><strong>Example Usage</strong></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">binomial_coefficient</span>(n, k)</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;The binomial coefficient of </span><span class="sc">$</span>n<span class="st"> choose </span><span class="sc">$</span>k<span class="st"> is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+<ul>
+<li>In this example, <code>binomial_coefficient(5, 2)</code> returns 10,
+which is the number of ways to choose 2 elements from a set of 5.</li>
+</ul>
+<p>This approach is efficient and avoids unnecessary computations by
+leveraging properties of</p>
+<p>the binomial coefficient. Let me know if you have any more questions
+or if you’d like further clarifications!</p>
+<p>Julia provides a built-in function to calculate factorials, making it
+very convenient to use. You can find this function in the
+<code>Base</code> module, and it’s called <code>factorial</code>. Here’s
+how you can use it:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Calculate the factorial of 5</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">factorial</span>(<span class="fl">5</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;The factorial of 5 is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+<p>In this example: - The <code>factorial</code> function computes the
+factorial of the given number. - <code>factorial(5)</code> will return
+120, which is the factorial of 5.</p>
+<p>This built-in function is efficient and leverages Julia’s optimized
+libraries, so you don’t need to write your own implementation unless you
+want to practice or experiment with different methods.</p>
+</div>
+<div id="gamma-function" class="section level3">
+<h3>Gamma Function</h3>
+<h4>
+Gamma Function
+</h4>
+<p>The Gamma function is a mathematical function that generalizes the
+factorial function to complex and real numbers. For positive integers,
+the Gamma function <span class="math inline">\(\Gamma(n)\)</span> is
+defined as:</p>
+<p><span class="math display">\[ \Gamma(n) = (n-1)! \]</span></p>
+<p>This means that for a positive integer <span class="math inline">\(n\)</span>, the Gamma function of <span class="math inline">\(n\)</span> is equal to the factorial of <span class="math inline">\(n-1\)</span>.</p>
+</div>
+<div id="example-for-positive-integers" class="section level3">
+<h3><strong>Example for Positive Integers:</strong></h3>
+<ul>
+<li><span class="math inline">\(\Gamma(1) = 0! = 1\)</span></li>
+<li><span class="math inline">\(\Gamma(2) = 1! = 1\)</span></li>
+<li><span class="math inline">\(\Gamma(3) = 2! = 2\)</span></li>
+<li><span class="math inline">\(\Gamma(4) = 3! = 6\)</span></li>
+</ul>
+</div>
+<div id="using-the-gamma-function-in-julia" class="section level3">
+<h3><strong>Using the Gamma Function in Julia:</strong></h3>
+<p>Julia provides a built-in Gamma function as part of the
+<code>SpecialFunctions</code> package. You can use it as follows:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">SpecialFunctions</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co"># Calculate Gamma(5)</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">gamma</span>(<span class="fl">5</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Gamma(5) is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+<p>In this example: - The <code>gamma</code> function from the
+<code>SpecialFunctions</code> package is used to calculate the Gamma
+function. - <code>gamma(5)</code> will return 24, which is equal to
+<span class="math inline">\(4!\)</span>.</p>
+<p>Let me know if you have any more questions or need further
+explanations!</p>
+<p>To calculate the Gamma function for an integer <span class="math inline">\(n\)</span>, you can use the property <span class="math inline">\(\Gamma(n) = (n-1)!\)</span>. Here’s a
+straightforward implementation in Julia that leverages this
+property:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">gamma_integer</span>(n<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="fl">0</span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>        <span class="fu">throw</span>(<span class="fu">ArgumentError</span>(<span class="st">&quot;Gamma function is not defined for non-positive integers&quot;</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">factorial</span>(n <span class="op">-</span> <span class="fl">1</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">gamma_integer</span>(<span class="fl">5</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Gamma(5) for integer is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="explanation" class="section level3">
+<h3><strong>Explanation:</strong></h3>
+<ol style="list-style-type: decimal">
+<li><p><strong>Function Definition:</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="kw">function</span> <span class="fu">gamma_integer</span>(n<span class="op">::</span><span class="dt">Int</span>)</span></code></pre></div>
+<ul>
+<li>The function <code>gamma_integer</code> takes an integer <span class="math inline">\(n\)</span> as input.</li>
+</ul></li>
+<li><p><strong>Input Validation:</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="cf">if</span> n <span class="op">&lt;=</span> <span class="fl">0</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>    <span class="fu">throw</span>(<span class="fu">ArgumentError</span>(<span class="st">&quot;Gamma function is not defined for non-positive integers&quot;</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<ul>
+<li>The function checks if <span class="math inline">\(n\)</span> is a
+non-positive integer. If so, it throws an <code>ArgumentError</code>
+because the Gamma function is not defined for such values.</li>
+</ul></li>
+<li><p><strong>Factorial Calculation:</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="cf">return</span> <span class="fu">factorial</span>(n <span class="op">-</span> <span class="fl">1</span>)</span></code></pre></div>
+<ul>
+<li>The function returns the factorial of <span class="math inline">\(n-1\)</span> by calling Julia’s built-in
+<code>factorial</code> function.</li>
+</ul></li>
+</ol>
+</div>
+<div id="example-usage-1" class="section level3">
+<h3><strong>Example Usage:</strong></h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">gamma_integer</span>(<span class="fl">5</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Gamma(5) for integer is </span><span class="sc">$</span>result<span class="st">&quot;</span>)</span></code></pre></div>
+<ul>
+<li>In this example, <code>gamma_integer(5)</code> returns 24, which is
+<span class="math inline">\(4!\)</span>.</li>
+</ul>
+<p>This function provides an efficient way to calculate the Gamma
+function for positive integers in Julia. Let me know if you have any
+further questions or need more assistance!</p>
+</div>
+</div>
+</div>
+<div id="complex-number" class="section level1" data-navmenu="Modules">
+<h1>Complex Number</h1>
+<div id="column-3" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<p>Absolutely! Complex numbers are fascinating and very useful in many
+areas of mathematics and engineering. Here are some exercises related to
+complex number functions using Julia, tailored for students:</p>
+<div id="complex-number-functions-in-julia-exercise-list" class="section level3">
+<h3>Complex Number Functions in Julia: Exercise List</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Basic Complex Number Creation:</strong>
+<ul>
+<li>Create a complex number <span class="math inline">\(z = 3 +
+4i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">4im</span></span></code></pre></div></li>
+<li><strong>Real and Imaginary Parts:</strong>
+<ul>
+<li>Extract and print the real and imaginary parts of the complex number
+<span class="math inline">\(z = 5 + 12i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">5</span> <span class="op">+</span> <span class="fl">12im</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>real_part <span class="op">=</span> <span class="fu">real</span>(z)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>imaginary_part <span class="op">=</span> <span class="fu">imag</span>(z)</span></code></pre></div></li>
+<li><strong>Complex Conjugate:</strong>
+<ul>
+<li>Find the complex conjugate of <span class="math inline">\(z = -2 +
+7i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>z <span class="op">=</span> <span class="op">-</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">7im</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>conjugate_z <span class="op">=</span> <span class="fu">conj</span>(z)</span></code></pre></div></li>
+<li><strong>Magnitude and Phase:</strong>
+<ul>
+<li>Calculate the magnitude and phase (argument) of <span class="math inline">\(z = 1 - 1i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fl">1im</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>magnitude <span class="op">=</span> <span class="fu">abs</span>(z)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>phase <span class="op">=</span> <span class="fu">angle</span>(z)</span></code></pre></div></li>
+<li><strong>Addition and Subtraction:</strong>
+<ul>
+<li>Perform addition and subtraction on two complex numbers <span class="math inline">\(z1 = 2 + 3i\)</span> and <span class="math inline">\(z2 = 1 - 4i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>z1 <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3im</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>z2 <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fl">4im</span></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>sum <span class="op">=</span> z1 <span class="op">+</span> z2</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>difference <span class="op">=</span> z1 <span class="op">-</span> z2</span></code></pre></div></li>
+<li><strong>Multiplication and Division:</strong>
+<ul>
+<li>Multiply and divide two complex numbers <span class="math inline">\(z1 = 3 + 5i\)</span> and <span class="math inline">\(z2 = -2 + 2i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>z1 <span class="op">=</span> <span class="fl">3</span> <span class="op">+</span> <span class="fl">5im</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>z2 <span class="op">=</span> <span class="op">-</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2im</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>product <span class="op">=</span> z1 <span class="op">*</span> z2</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>quotient <span class="op">=</span> z1 <span class="op">/</span> z2</span></code></pre></div></li>
+<li><strong>Complex Exponential:</strong>
+<ul>
+<li>Compute the exponential of a complex number <span class="math inline">\(z = 1 + 2i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">2im</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>exp_z <span class="op">=</span> <span class="fu">exp</span>(z)</span></code></pre></div></li>
+<li><strong>Complex Logarithm:</strong>
+<ul>
+<li>Find the natural logarithm of a complex number <span class="math inline">\(z = 2 + 3i\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3im</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>log_z <span class="op">=</span> <span class="fu">log</span>(z)</span></code></pre></div></li>
+<li><strong>Plotting Complex Numbers:</strong>
+<ul>
+<li>Plot the complex numbers <span class="math inline">\(z1 = 2 +
+3i\)</span> and <span class="math inline">\(z2 = -1 - 4i\)</span> on the
+complex plane.</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>z1 <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">3im</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>z2 <span class="op">=</span> <span class="op">-</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">4im</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="fu">scatter</span>([<span class="fu">real</span>(z1), <span class="fu">real</span>(z2)], [<span class="fu">imag</span>(z1), <span class="fu">imag</span>(z2)], label<span class="op">=</span><span class="st">&quot;Complex Numbers&quot;</span>, legend<span class="op">=</span><span class="cn">false</span>)</span></code></pre></div></li>
+<li><strong>Solving Complex Equations:</strong>
+<ul>
+<li>Solve the complex equation <span class="math inline">\(z^2 + 1 =
+0\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Roots</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">f</span>(z) <span class="op">=</span> z<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="fu">roots</span>(f, <span class="op">-</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2im</span>)</span></code></pre></div></li>
+</ol>
+<p>These exercises should help students understand and work with complex
+numbers using Julia.</p>
+</div>
+</div>
+</div>
+<div id="big-integers" class="section level1" data-navmenu="Modules">
+<h1>Big Integers</h1>
+<div id="column-4" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="big-integers-n-julia" class="section level3">
+<h3>Big Integers n Julia</h3>
+<h3>
+Big Integers n Julia
+</h3>
+<p>Julia has excellent support for big integers (arbitrary-precision
+integers) built right into the language. This is crucial for certain
+types of computations where standard integer types (like
+<code>Int64</code>) might overflow or not provide enough precision.
+Here’s why tutorials on big integers with Julia are important and what
+they typically cover:</p>
+<p><strong>Why Big Integers are Essential</strong></p>
+<ul>
+<li><strong>Handling Large Numbers:</strong> Many mathematical problems,
+especially in fields like cryptography, number theory, and scientific
+computing, involve numbers that are far too large to be represented by
+standard integer types. Big integers allow you to work with these
+numbers without losing precision.</li>
+<li><strong>Exact Arithmetic:</strong> Standard integers have a limited
+range, and calculations that exceed this range can lead to incorrect
+results (overflow). Big integers provide exact arithmetic, ensuring that
+you get the correct answer even with very large numbers.</li>
+<li><strong>Arbitrary Precision:</strong> Big integers can grow to an
+arbitrary size, limited only by the available memory. This means you can
+perform calculations with numbers that have hundreds or even thousands
+of digits.</li>
+</ul>
+<p><strong>What Tutorials on Big Integers in Julia Cover</strong></p>
+<ul>
+<li><strong>Creating Big Integers:</strong> Tutorials will show you how
+to create big integers in Julia using the <code>BigInt</code> type and
+how to convert regular integers to big integers using functions like
+<code>big()</code>.</li>
+<li><strong>Arithmetic Operations:</strong> They’ll demonstrate how to
+perform basic arithmetic operations (addition, subtraction,
+multiplication, division, exponentiation) with big integers.</li>
+<li><strong>Mathematical Functions:</strong> Many standard mathematical
+functions (like <code>factorial</code>, <code>gcd</code>,
+<code>lcm</code>) are also defined for big integers, and tutorials will
+show how to use them.</li>
+<li><strong>Performance Considerations:</strong> While big integers
+provide flexibility, they can be slower than standard integers.
+Tutorials might discuss performance considerations and how to optimize
+code that uses big integers.</li>
+<li><strong>Applications:</strong> Some tutorials might include examples
+of how big integers are used in real-world applications, such as
+cryptography or solving Project Euler problems.</li>
+</ul>
+<p><strong>Key Concepts You’ll Learn</strong></p>
+<ul>
+<li><strong><code>BigInt</code> Type:</strong> Julia’s built-in type for
+representing arbitrary-precision integers.</li>
+<li><strong><code>big()</code> Function:</strong> Used to convert
+numbers to <code>BigInt</code> type.</li>
+<li><strong>Arithmetic Operators:</strong> How to use operators like
+<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>,
+<code>^</code> with <code>BigInt</code> values.</li>
+<li><strong>Mathematical Functions:</strong> Using functions like
+<code>factorial()</code>, <code>gcd()</code>, <code>lcm()</code> with
+<code>BigInt</code> values.</li>
+</ul>
+<p>By learning about big integers in Julia, you’ll be able to tackle a
+wider range of computational problems that require high precision or the
+ability to handle very large numbers.</p>
+</div>
+</div>
+</div>
+<div id="project-euler" class="section level1" data-navmenu="Exercises">
+<h1>Project Euler</h1>
+<div id="column-5" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="project-euler-1" class="section level3">
+<h3>Project Euler</h3>
+<p>Project Euler is a website hosting a collection of
+mathematically-oriented programming problems designed to be solved using
+computational thinking. It’s an excellent platform for Julia programmers
+to practice their skills, especially in areas like number theory,
+algorithm design, and performance optimization. Julia’s strengths in
+numerical computing and its relatively fast execution speed make it a
+powerful tool for tackling these challenges. Many problems that might be
+computationally intensive in other languages can be solved efficiently
+and elegantly in Julia. Furthermore, the process of solving Project
+Euler problems in Julia can also be a good way to learn and explore the
+language’s features and its standard library.</p>
+<ul>
+<li>“The problems often require a combination of mathematical insight
+and programming ability, encouraging users to think creatively and
+efficiently.”</li>
+<li>“Project Euler doesn’t provide solutions, so it’s a great way to
+learn through experimentation and independent problem-solving.”</li>
+<li>“The problems increase in difficulty, providing a continuous
+learning experience for Julia programmers of all levels.”</li>
+</ul>
 </div>
 </div>
 </div>

@@ -1,0 +1,7 @@
+### Project Euler
+
+Project Euler is a website hosting a collection of mathematically-oriented programming problems designed to be solved using computational thinking.  It's an excellent platform for Julia programmers to practice their skills, especially in areas like number theory, algorithm design, and performance optimization.  Julia's strengths in numerical computing and its relatively fast execution speed make it a powerful tool for tackling these challenges.  Many problems that might be computationally intensive in other languages can be solved efficiently and elegantly in Julia.  Furthermore, the process of solving Project Euler problems in Julia can also be a good way to learn and explore the language's features and its standard library.
+
+*   "The problems often require a combination of mathematical insight and programming ability, encouraging users to think creatively and efficiently."
+*   "Project Euler doesn't provide solutions, so it's a great way to learn through experimentation and independent problem-solving."
+*   "The problems increase in difficulty, providing a continuous learning experience for Julia programmers of all levels."

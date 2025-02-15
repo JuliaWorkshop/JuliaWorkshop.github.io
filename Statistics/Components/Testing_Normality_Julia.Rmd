@@ -1,0 +1,55 @@
+### Testing Normality```julia
+
+```julia
+using HypothesisTests
+using Distributions
+
+# Sample data
+data = [10.0, 12.5, 15.3, 18.1, 20.2, 11.7, 13.9, 16.5, 19.0, 21.4]
+
+# Perform the Anderson-Darling test for normality
+result = OneSampleADTest(data, Normal()) 
+
+# Extract the p-value
+p_value = pvalue(result)
+
+# Print the results
+println("Anderson-Darling Test Results:")
+println("Test Statistic:", statistic(result))
+println("p-value:", p_value)
+
+# Interpretation
+if p_value < 0.05
+    println("Reject the null hypothesis. The data may not be normally distributed.")
+else
+    println("Fail to reject the null hypothesis. The data may be normally distributed.")
+end
+```
+
+**Explanation:**
+
+1. **Import necessary packages:**
+   - `HypothesisTests`: Provides functions for various statistical tests, including the Anderson-Darling test.
+   - `Distributions`: Provides definitions for probability distributions, such as the normal distribution.
+
+2. **Define sample data:** Replace the example data with your actual data.
+
+3. **Perform the Anderson-Darling test:**
+   - `OneSampleADTest(data, Normal())`: This line performs the Anderson-Darling test on the given data. 
+     - `data`: The vector containing your sample data.
+     - `Normal()`: Specifies that you are testing for normality.
+
+4. **Extract the p-value:** `pvalue(result)` extracts the p-value from the test result.
+
+5. **Print the results:** This section prints the test statistic and p-value.
+
+6. **Interpretation:**
+   - If the p-value is less than 0.05 (or your chosen significance level), you reject the null hypothesis. This suggests that the data may not be normally distributed.
+   - If the p-value is greater than or equal to 0.05, you fail to reject the null hypothesis. This suggests that the data may be normally distributed.
+
+**Key Points:**
+
+- The Anderson-Darling test is more sensitive to deviations from normality in the tails of the distribution compared to some other tests like the Shapiro-Wilk test.
+- This code provides a basic example. You can adjust the significance level and incorporate error handling as needed for your specific analysis.
+
+This demonstrates how to perform the Anderson-Darling test in Julia to assess the normality of your data. Remember to choose the appropriate statistical tests based on the characteristics of your data and the research question you are investigating.

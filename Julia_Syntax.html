@@ -62,148 +62,25 @@ code span.ot { color: #007020; }
 
 
 <section class="main-content">
-<div id="julia-workshop" class="section level2">
-<h2>Julia Workshop</h2>
-<center>
-<a href="http://julialang.org/"><img role="img" aria-label="Julia logo" src="data:image/png;base64,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" alt="Julia logo" width="100" height="67" /></a>
-</center>
-<p>Julia is a high-level, high-performance dynamic programming language
-for technical computing, with syntax that is familiar to users of other
-technical computing environments. It provides a sophisticated compiler,
-distributed parallel execution, numerical accuracy, and an extensive
-mathematical function library.</p>
-<h2>
-Workshops
-</h2>
-<center>
-<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
-<colgroup>
-<col style="width: 350px">
-<col style="width: 350px">
-<col style="width: 350px">
-</colgroup>
-<tr>
-<td class="tg-76so">
-<strong><a href="Intro_Julia/index.html">Introduction to
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Mathematics_Julia/index.html">Mathematics with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Statistics/index.html">Statistics with
-Julia</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Numerical_Computing/index.html">Numerical Computing
-with Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Tidyverse_Julia/index.html"><code>tidier.tl</code> -
-Tidyverse with Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Probability_Distributions/index.html">Probability
-Distributions with Julia</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Data_Science/index.html">Data Science With
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Survival_Analysis/index.html">Survival Analysis With
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Data_Visualization/index.html">Data Visualization with
-Julia</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Machine_Learning/index.html">Machine Learning with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Financial_Maths/index.html">Financial Maths with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Random_Number_Simulation/index.html">Random Numbers
-&amp; Simulation with Julia</a></strong>
-</td>
-</tr>
-</table>
-</center>
-<h2>
-Resources
-</h2>
-<center>
-<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
-<colgroup>
-<col style="width: 350px">
-<col style="width: 350px">
-<col style="width: 350px">
-</colgroup>
-<tr>
-<td class="tg-76so">
-<strong><a href="about.html">About Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="installation.html">Installing Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="usingpackages.html">Using Julia Packages</a></strong>
-</td>
-</tr>
-<tr>
-<td class="tg-76so">
-<strong><a href="Datasets/index.html">Datasets for Julia
-Examples</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Julia_Getting_Help.html">Getting Help with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Julia_Syntax.html">Julia Syntax</a></strong>
-</td>
-</tr>
-</table>
-</center>
-<!------------------------------------------------------------------------------->
-<h2>
-Advanced Topics
-</h2>
-<center>
-<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
-<colgroup>
-<col style="width: 350px">
-<col style="width: 350px">
-<col style="width: 350px">
-</colgroup>
-<tr>
-<td class="tg-76so">
-<strong><a href="Advanced_Statistics/index.html">LME Models With
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Advanced_Statistics/index.html">GLMs with
-Julia</a></strong>
-</td>
-<td class="tg-76so">
-<strong><a href="Advanced_Statistics/index.html">Advanced
-Statistics</a></strong>
-</td>
-</tr>
-</table>
-<p></centre></p>
-<p><br><br><br></p>
+<div id="syntax-elements" class="section level2">
+<h2>Syntax Elements</h2>
+<hr />
+<p>(<a href="index.html">Back to main page</a>)</p>
+<ul>
+<li><strong>Comments:</strong> Single-line comments start with
+<code>#</code>, and multi-line comments can be placed between
+<code>#=</code> and <code>=#</code> (they can be nested).</li>
+<li><strong>Suppressing Output:</strong> In console mode, a
+<code>;</code> after a command suppresses the output (automatic in
+scripting mode) and switches to a one-time command shell prompt when
+typed alone.</li>
+<li><strong>Indentation:</strong> Indentation doesn’t matter, but spaces
+sometimes do (e.g., functions must have parentheses with inputs
+attached: <code>println(x)</code> OK, <code>println (x)</code>
+ERROR).</li>
+<li><strong>Indexing:</strong> Julia uses one-based indexing (arrays
+start from 1, not 0).</li>
+</ul>
 </div>
 </section>
 

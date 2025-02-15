@@ -1,0 +1,25 @@
+---
+title: "Julia Workshop" 
+subtitle: "JuliaWorkshop.github.io"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting Help and Syntax
+
+
+(<a href="index.html">Back to main page</a>)
+
+
+
+### Help System (Julia and Package Documentation)
+
+Typing `?` in the console leads to the Julia help system for searching function APIs (use `?search_term` in non-interactive environments). Julia kindly returns a list of similar functions if you don't remember the exact name.
+
+---

@@ -1,0 +1,133 @@
+---
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+### Correlation Tests with Julia
+
+In addition to calculating correlation coefficients, you may want to test the significance of the correlation. This is done using a correlation test, which evaluates whether the observed correlation is significantly different from zero. Here's how you can do correlation tests in Julia for Pearson, Spearman, and Kendall correlations.
+
+#### Pearson Correlation Test
+
+The Pearson correlation test evaluates the linear relationship between two continuous variables.
+
+1. **Install the necessary package:**
+
+```julia
+using Pkg
+Pkg.add("HypothesisTests")
+```
+
+2. **Load the data and perform the Pearson correlation test:**
+
+```julia
+using DataFrames
+using CSV
+using HypothesisTests
+
+# Load the data
+data = CSV.read("path_to_your_data.csv", DataFrame)
+
+# Extract the columns
+x = data[:, :column1]
+y = data[:, :column2]
+
+# Perform the Pearson correlation test
+pearson_test = CorrelationTest(x, y, method=:pearson)
+println("Pearson Correlation Test Statistic: ", pearson_test.statistic)
+println("P-Value: ", pearson_test.pvalue)
+```
+
+### Spearman Correlation Test
+
+The Spearman correlation test evaluates the rank correlation between two variables.
+
+1. **Load the data and perform the Spearman correlation test:**
+
+```julia
+using DataFrames
+using CSV
+using HypothesisTests
+
+# Load the data
+data = CSV.read("path_to_your_data.csv", DataFrame)
+
+# Extract the columns
+x = data[:, :column1]
+y = data[:, :column2]
+
+# Perform the Spearman correlation test
+spearman_test = CorrelationTest(x, y, method=:spearman)
+println("Spearman Correlation Test Statistic: ", spearman_test.statistic)
+println("P-Value: ", spearman_test.pvalue)
+```
+
+#### Kendall Correlation Test
+
+The Kendall correlation test evaluates the ordinal association between two variables.
+
+1. **Load the data and perform the Kendall correlation test:**
+
+```julia
+using DataFrames
+using CSV
+using HypothesisTests
+
+# Load the data
+data = CSV.read("path_to_your_data.csv", DataFrame)
+
+# Extract the columns
+x = data[:, :column1]
+y = data[:, :column2]
+
+# Perform the Kendall correlation test
+kendall_test = CorrelationTest(x, y, method=:kendall)
+println("Kendall Correlation Test Statistic: ", kendall_test.statistic)
+println("P-Value: ", kendall_test.pvalue)
+```
+
+#### Complete Example
+
+Here's the complete code for performing correlation tests in Julia:
+
+```julia
+using Pkg
+Pkg.add("DataFrames")
+Pkg.add("CSV")
+Pkg.add("HypothesisTests")
+
+using DataFrames
+using CSV
+using HypothesisTests
+
+# Load the data
+data = CSV.read("path_to_your_data.csv", DataFrame)
+
+# Extract the columns
+x = data[:, :column1]
+y = data[:, :column2]
+
+# Perform the Pearson correlation test
+pearson_test = CorrelationTest(x, y, method=:pearson)
+println("Pearson Correlation Test Statistic: ", pearson_test.statistic)
+println("P-Value: ", pearson_test.pvalue)
+
+# Perform the Spearman correlation test
+spearman_test = CorrelationTest(x, y, method=:spearman)
+println("Spearman Correlation Test Statistic: ", spearman_test.statistic)
+println("P-Value: ", spearman_test.pvalue)
+
+# Perform the Kendall correlation test
+kendall_test = CorrelationTest(x, y, method=:kendall)
+println("Kendall Correlation Test Statistic: ", kendall_test.statistic)
+println("P-Value: ", kendall_test.pvalue)
+```
+
+#### Interpreting the Results
+
+The **p-value** from the correlation test indicates whether the observed correlation is statistically significant:
+- A **p-value < 0.05** generally suggests that the correlation is statistically significant (i.e., unlikely to be due to random chance).
+- A **p-value ≥ 0.05** suggests that the correlation is not statistically significant.
+

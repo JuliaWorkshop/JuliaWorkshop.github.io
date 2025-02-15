@@ -70,8 +70,8 @@ Julia is a high-level, high-performance dynamic programming language for technic
 
   <tr>
    <td class="tg-76so"><strong><a href="Datasets/index.html">Datasets for Julia Examples</a></strong></td>
-   <td class="tg-76so"><strong><a href="EDA_Julia/index.html">Exploratory Data Analysis with Julia</a></strong></td>
-   <td class="tg-76so"><strong><a href="advanced/index.html">Advanced Workshop</a></strong></td>
+   <td class="tg-76so"><strong><a href="Julia_Getting_Help.html">Getting Help with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Julia_Syntax.html">Julia Syntax</a></strong></td>
  </tr>
 
 </table>

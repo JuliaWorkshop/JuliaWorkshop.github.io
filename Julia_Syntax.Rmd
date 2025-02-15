@@ -1,0 +1,26 @@
+---
+title: "Julia Workshop" 
+subtitle: "JuliaWorkshop.github.io"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Syntax Elements
+
+---
+
+(<a href="index.html">Back to main page</a>)
+
+
+
+
+- **Comments:** Single-line comments start with `#`, and multi-line comments can be placed between `#=` and `=#` (they can be nested).
+- **Suppressing Output:** In console mode, a `;` after a command suppresses the output (automatic in scripting mode) and switches to a one-time command shell prompt when typed alone.
+- **Indentation:** Indentation doesn't matter, but spaces sometimes do (e.g., functions must have parentheses with inputs attached: `println(x)` OK, `println (x)` ERROR).
+- **Indexing:** Julia uses one-based indexing (arrays start from 1, not 0).

@@ -21,6 +21,8 @@ Column {.tabset}
 
 ### Syllabus
 
+(<a href="http://juliaworkshop.github.io">Back to Main Page</a>)
+
 ```{r child = "Sampling_Random_Numbers_Julia_Syllabus.Rmd"}
 
 ```
