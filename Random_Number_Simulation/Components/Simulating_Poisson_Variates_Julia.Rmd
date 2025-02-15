@@ -1,0 +1,27 @@
+The algorithm used to simulate Poisson random variates using the inverse transform method is a bit more complex than for continuous distributions like the exponential because the Poisson distribution is discrete.  Here's a breakdown:
+
+1. **The Challenge:** The core idea of the inverse transform method is to use the inverse of the cumulative distribution function (CDF).  For a continuous distribution, the CDF is a smooth, invertible function.  However, for a discrete distribution like the Poisson, the CDF is a step function.  It's not directly invertible in the same way.
+
+2. **The Approach:**  We use a "sequential search" or iterative approach to effectively find the inverse.  Here's how it works:
+
+   a. **Generate a Uniform Random Number:** Generate a random number *u* from a standard uniform distribution (between 0 and 1) using `rand()`.
+
+   b. **Initialize:**
+      - Set `x = 0` (our initial guess for the Poisson random variate).
+      - Calculate the probability of *X = 0*:  `p = exp(-λ)` (where λ is the mean of the Poisson distribution).
+      - Set the cumulative probability (CDF value) `F = p`.
+
+   c. **Iterative Search:**  Enter a loop that continues as long as `u > F`:
+      - Increment `x`: `x += 1` (we're trying the next possible value).
+      - Update `p`: Calculate the probability of *X = x* using the recursive relationship: `p = (p * λ) / x`.  This is a much more efficient way to calculate the probabilities than using factorials directly.
+      - Update `F`: Add the new probability to the cumulative probability: `F += p`.
+
+   d. **Result:** Once the loop terminates (when `u <= F`), the current value of `x` is the Poisson random variate.  We've effectively found the "x" such that *F(x-1) < u ≤ F(x)*, where *F(x)* is the CDF of the Poisson distribution.
+
+3. **Why it Works:** The algorithm searches through the possible values of the Poisson random variable (0, 1, 2, ...) sequentially.  At each step, it checks if the uniform random number `u` falls within the probability interval associated with the current value of `x`.  Because the probabilities sum to 1, we are guaranteed to find the appropriate `x`.
+
+4. **Efficiency:** The iterative calculation of `p` is crucial for efficiency.  Calculating factorials directly can be computationally expensive, especially for larger values of `x`.  The recursive formula `p = (p * λ) / x` avoids this.
+
+5. **Vectorization:**  As shown in the previous response, the process can be vectorized to generate many Poisson random variates at once.  This is very important for performance, especially when you need a large number of samples.
+
+**In summary:** The inverse transform method for Poisson random variates involves a sequential search through the possible values of the random variable.  It uses the uniform random number to guide this search and efficiently calculates the probabilities using a recursive formula.  While not a direct "inverse" like in the continuous case, it achieves the same goal of mapping a uniform random number to a value from the desired distribution.

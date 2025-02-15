@@ -1,0 +1,73 @@
+Let's create a worked example on how the Weibull distribution can be applied to reliability analysis using Julia. We'll walk through the process of fitting a Weibull distribution to a dataset representing the failure times of components, and then we'll use this distribution to calculate reliability metrics such as the probability of failure within a certain time period and the mean time to failure.
+
+### Step-by-Step Example
+
+**1. Generating Synthetic Failure Data**
+
+First, let's generate synthetic data representing the failure times of 100 components. We'll use a Weibull distribution with shape parameter \( \alpha = 1.5 \) and scale parameter \( \beta = 5000 \).
+
+```julia
+using Random
+using Distributions
+using Plots
+
+# Set seed for reproducibility
+Random.seed!(42)
+
+# Generating synthetic failure times
+shape_param = 1.5
+scale_param = 5000
+failure_times = rand(Weibull(shape_param, scale_param), 100)
+println(first(failure_times, 6))
+```
+
+**2. Fitting a Weibull Distribution to the Data**
+
+Next, we will fit a Weibull distribution to the generated data using the `fit` function from the `Distributions` package.
+
+```julia
+# Fitting a Weibull distribution to the failure data
+weibull_fit = fit(Weibull, failure_times)
+println(weibull_fit)
+```
+
+**3. Calculating Reliability Metrics**
+
+Now that we have a fitted Weibull distribution, let's calculate some reliability metrics.
+
+**a. Probability of Failure Within a Certain Time Period**
+
+We can use the cumulative distribution function (CDF) to calculate the probability of failure within a certain time period. For example, let's calculate the probability of failure within 4000 hours.
+
+```julia
+time_period = 4000
+prob_failure = cdf(weibull_fit, time_period)
+println("Probability of failure within $time_period hours: $prob_failure")
+```
+
+**b. Mean Time to Failure (MTTF)**
+
+The mean time to failure (MTTF) is the expected value of the failure time for the Weibull distribution. It can be calculated using the `mean` function.
+
+```julia
+mttf = mean(weibull_fit)
+println("Mean Time to Failure (MTTF): $mttf hours")
+```
+
+**4. Plotting the Reliability Function**
+
+The reliability function, which is the complement of the CDF, gives the probability of survival beyond a certain time period. Let's plot the reliability function.
+
+```julia
+# Calculating reliability function values
+reliability = 1 .- cdf.(weibull_fit, x)
+plot(x, reliability, label="Reliability", title="Weibull Reliability Function", ylabel="Reliability", xlabel="Time (hours)")
+```
+
+### Summary
+- We generated synthetic failure data from a Weibull distribution.
+- Fitted a Weibull distribution to the data.
+- Calculated key reliability metrics such as the probability of failure within a certain time period and the mean time to failure (MTTF).
+- Plotted the reliability function.
+
+This example demonstrates how the Weibull distribution can be effectively used in reliability analysis to predict the failure behavior of components. 

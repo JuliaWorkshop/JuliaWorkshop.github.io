@@ -1,4 +1,6 @@
-## Tidyverse with Julia: A Lesson Plan (8 x 1-hour Classes)
+### Syllabus
+
+**Tidyverse with Julia: A Lesson Plan**
 
 This lesson plan focuses on teaching the core concepts and functionality of the Tidyverse (specifically focusing on its equivalent packages and philosophy) within the Julia programming language.  It emphasizes hands-on practice and real-world examples to make learning engaging and effective.
 

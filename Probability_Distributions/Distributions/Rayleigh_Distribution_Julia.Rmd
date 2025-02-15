@@ -1,0 +1,90 @@
+### The Rayleigh distribution 
+
+<h3>The Rayleigh distribution </h3>
+The Rayleigh distribution with a Julia implementation.
+
+**Description of the Rayleigh Distribution**
+
+The Rayleigh distribution is a continuous probability distribution that describes the magnitude of a vector whose components are independent and identically distributed (i.i.d.) standard normal random variables (zero mean and unit variance).  In simpler terms, it often arises when you're dealing with the *magnitude* of a random variable that can vary in two perpendicular directions (like the wind speed in the x and y directions).  It's characterized by a single parameter, σ (sigma), which is a scale parameter related to the root mean square of the underlying normal variables.
+
+* **Probability Density Function (PDF):**
+   ```
+   f(x; σ) = (x/σ^2) * exp(-x^2 / (2σ^2))  for x ≥ 0
+   ```
+   and f(x; σ) = 0 otherwise.
+
+* **Cumulative Distribution Function (CDF):**
+   ```
+   F(x; σ) = 1 - exp(-x^2 / (2σ^2))  for x ≥ 0
+   ```
+   and F(x; σ) = 0 otherwise.
+
+* **Key Properties:**
+    * **Mean:** σ * sqrt(π/2)
+    * **Variance:** (4 - π)/2 * σ^2
+    * **Mode:** σ
+    * **Median:** σ * sqrt(ln(4))
+
+**Julia Implementation**
+
+```julia
+using Distributions
+using Plots
+
+# Define the scale parameter (sigma)
+sigma = 2.0
+
+# Create a Rayleigh distribution object
+rayleigh_dist = Rayleigh(sigma)
+
+# Generate some random samples
+num_samples = 1000
+samples = rand(rayleigh_dist, num_samples)
+
+# Calculate the PDF at specific points
+x_values = range(0, 3*sigma, length=200)  # Range for plotting
+pdf_values = pdf.(rayleigh_dist, x_values)
+
+# Calculate the CDF at specific points
+cdf_values = cdf.(rayleigh_dist, x_values)
+
+# Plot the PDF and histogram
+histogram(samples, bins=50, density=true, label="Histogram of Samples",
+           xlabel="x", ylabel="Probability Density", title="Rayleigh Distribution (σ = $sigma)")
+plot!(x_values, pdf_values, label="PDF", linewidth=2, color=:red)
+
+# Plot the CDF
+plot(x_values, cdf_values, label="CDF", linewidth=2, color=:blue,
+     xlabel="x", ylabel="Cumulative Probability", title="Rayleigh CDF (σ = $sigma)")
+
+
+# Calculate and print some statistics
+println("Mean: ", mean(rayleigh_dist))
+println("Variance: ", var(rayleigh_dist))
+println("Mode: ", mode(rayleigh_dist))
+println("Median: ", median(rayleigh_dist))
+
+# Display both plots
+display(plot!(x_values, pdf_values, label="PDF", linewidth=2, color=:red))
+display(plot(x_values, cdf_values, label="CDF", linewidth=2, color=:blue))
+
+
+```
+
+**Explanation of the Julia Code:**
+
+1. **`using Distributions`:** Imports the `Distributions` package, which provides tools for working with probability distributions.
+2. **`using Plots`:** Imports the `Plots` package for creating visualizations.
+3. **`sigma = 2.0`:** Sets the scale parameter σ.
+4. **`rayleigh_dist = Rayleigh(sigma)`:** Creates a `Rayleigh` distribution object with the specified `sigma`.
+5. **`rand(rayleigh_dist, num_samples)`:** Generates `num_samples` random numbers from the Rayleigh distribution.
+6. **`pdf.(rayleigh_dist, x_values)`:** Calculates the PDF at each value in `x_values`. The `.` is crucial for broadcasting the `pdf` function over the array.
+7. **`cdf.(rayleigh_dist, x_values)`:**  Calculates the CDF at each value in `x_values` using broadcasting.
+8. **`histogram(...)`:** Creates a histogram of the random samples.  `density=true` normalizes the histogram.
+9. **`plot!(...)`:** Adds the PDF curve to the existing plot. The `!` modifies the current plot.
+10. **`plot(...)`:** Creates a new plot for the CDF.
+11. **`mean(rayleigh_dist)`, `var(rayleigh_dist)`, etc.:** Calculate and print statistical properties of the distribution.
+12. **`display(...)`:** Displays the created plots.  This is important, especially in environments where plots aren't displayed automatically.
+
+This code will generate a histogram of random samples from the Rayleigh distribution, overlay the PDF, and create a separate plot of the CDF.  It also prints the mean, variance, mode, and median.  You can change the `sigma` value to see how the distribution changes.  Remember to install the `Distributions` and `Plots` packages if you haven't already (e.g., using `Pkg.add("Distributions")` and `Pkg.add("Plots")` in the Julia REPL).
+

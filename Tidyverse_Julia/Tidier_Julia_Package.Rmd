@@ -1,0 +1,28 @@
+**Tidier.jl** is a data analysis package for the Julia programming language. It's heavily inspired by R's **tidyverse**, aiming to provide a similar experience for data manipulation, transformation, and visualization within the Julia ecosystem.
+
+**Key Characteristics:**
+
+* **Meta-package:** Tidier.jl isn't a single package itself, but rather a collection of smaller, focused packages that work together seamlessly. 
+* **Tidyverse Principles:** It adheres to the core principles of the tidyverse:
+    * **Data Frames as the Primary Data Structure:** Relies heavily on DataFrames.jl for data manipulation.
+    * **Consistent Grammar:** Employs a consistent set of verbs (e.g., `select()`, `filter()`, `mutate()`) for data manipulation, making code more readable and easier to learn.
+    * **Focus on Data Transformation:** Provides tools for cleaning, transforming, and reshaping data efficiently.
+    * **Seamless Integration:** Integrates well with other Julia packages for plotting, database interaction, and more.
+
+**Core Components:**
+
+* **TidierData.jl:** Implements functionalities similar to R's `dplyr` and `tidyr` packages, covering data manipulation, transformation, and reshaping.
+* **TidierPlots.jl:** Provides a plotting interface inspired by R's `ggplot2`, offering a consistent and expressive way to create visualizations.
+* **TidierFiles.jl:** Handles reading and writing various file formats (e.g., CSV, Excel) in a tidy manner.
+* **TidierStrings.jl:** Provides tools for working with and manipulating strings.
+* **TidierDates.jl:** Offers functions for working with dates and times.
+* **TidierCats.jl:** Deals with categorical variables.
+
+**Benefits of Using Tidier.jl:**
+
+* **Improved Readability:** The consistent grammar and tidy syntax make your code more concise and easier to understand.
+* **Increased Productivity:** Streamlines common data analysis tasks, saving you time and effort.
+* **Better Reproducibility:** Encourages a more organized and reproducible workflow.
+* **Integration with the Julia Ecosystem:** Seamlessly integrates with other Julia packages for a comprehensive data analysis experience.
+
+If you're familiar with the tidyverse in R, Tidier.jl provides a familiar and efficient way to perform data analysis in Julia.

@@ -1,0 +1,113 @@
+```julia
+function poisson_inverse_transform(lambda)
+    """
+    Generates a Poisson random variate using the inverse transform method.
+
+    Args:
+        lambda: The mean (λ) of the Poisson distribution. Must be > 0.
+
+    Returns:
+        A random variate from the Poisson distribution with mean lambda.
+    """
+
+    if lambda <= 0
+        error("Lambda (mean) must be positive for a Poisson distribution.")
+    end
+
+    u = rand()  # Generate a uniform random number between 0 and 1
+    x = 0
+    p = exp(-lambda) # Initial probability (for x=0)
+    F = p # Initial CDF value
+
+    while u > F
+        x += 1
+        p = (p * lambda) / x # Update probability (iterative calculation is more efficient)
+        F += p # Update CDF
+    end
+
+    return x
+end
+
+
+
+# Example Usage:
+lambda = 5.0  # Set the mean (λ)
+num_samples = 10000
+
+random_variates = [poisson_inverse_transform(lambda) for _ in 1:num_samples]
+
+# --- Analysis and Visualization ---
+using Plots
+
+histogram(random_variates,
+          bins = 0:maximum(random_variates)+1, # Important: Bins for discrete data
+          normalize = true,
+          xlabel = "Random Variate Value",
+          ylabel = "Probability",
+          title = "Histogram of Poisson Random Variates (λ = $lambda)")
+
+# Overlay the theoretical PMF (Probability Mass Function)
+using Distributions
+poisson_dist = Poisson(lambda)
+x_vals = 0:maximum(random_variates)
+pmf_vals = pdf.(poisson_dist, x_vals) # Use pdf for discrete distributions
+plot!(x_vals, pmf_vals,
+      label = "Theoretical PMF",
+      linewidth = 2,
+      color = :red,
+      seriestype = :sticks)  # Use sticks for discrete PMF
+
+
+# Check Mean and Variance
+estimated_mean = mean(random_variates)
+estimated_variance = var(random_variates)
+
+println("Estimated Mean: ", estimated_mean)
+println("Theoretical Mean (λ): ", lambda)
+
+println("Estimated Variance: ", estimated_variance)
+println("Theoretical Variance (λ): ", lambda)
+
+
+
+# Vectorized version (for large sample sizes):
+function poisson_inverse_transform_vectorized(lambda, n)
+    u = rand(n)
+    x = zeros(Int, n)  # Initialize with integers
+    p = exp(-lambda)
+    F = p
+    for i in 1:n
+        while u[i] > F
+            x[i] += 1
+            p = (p * lambda) / x[i]
+            F += p
+        end
+        p = exp(-lambda) # Reset p
+        F = p # Reset F
+    end
+    return x
+end
+
+# Example usage of the vectorized version:
+n = 10^6
+random_variates_vec = poisson_inverse_transform_vectorized(lambda, n)
+
+```
+
+**Key Changes and Explanations for Poisson:**
+
+1. **Discrete Distribution:** The Poisson distribution is *discrete* (takes only integer values). This has important implications for visualization and analysis:
+   - The histogram bins should be centered on the integers (0, 1, 2, ...).  The code now uses `bins = 0:maximum(random_variates)+1` to achieve this.
+   - We overlay the *Probability Mass Function (PMF)*, not the PDF.  The `Plots.jl` code uses `seriestype = :sticks` to represent the PMF correctly.  We also use `pdf.(poisson_dist, x_vals)` to calculate the PMF values using `Distributions.jl`.
+
+2. **Inverse Transform for Poisson:** The inverse transform for Poisson is a bit more involved because the CDF doesn't have a simple closed-form inverse.  We use an iterative approach:
+   - We start with `x = 0` and calculate the probability `p` of *X = 0*.
+   - We keep incrementing `x` and updating `p` (and the cumulative probability `F`) until `F` exceeds the uniform random number `u`.  This is how we find the "inverse" of the CDF in this case.  The iterative calculation of `p` is more efficient than recalculating factorials each time.
+
+3. **Vectorization (Important for Poisson):** The vectorized version of the Poisson inverse transform is particularly important because the iterative nature of the algorithm can be slow for generating large numbers of samples.  The provided `poisson_inverse_transform_vectorized` function demonstrates how to vectorize the process.  It generates all the random variates in a single loop, which is significantly faster.
+
+4. **Integer Type for Variates:** The generated Poisson random variates are integers. It is good practice to store them as such. Thus, in the vectorized version, `x` is initialized as an array of integers using `zeros(Int, n)`.
+
+5. **Resetting p and F in Vectorized Version:** In the vectorized version, after generating a Poisson random number for each element of the array, `p` and `F` should be reset to their initial values for the next iteration.
+
+With these changes, the code correctly simulates Poisson random variates, provides appropriate visualization and analysis for a discrete distribution, and includes a highly optimized vectorized version.  The explanation highlights the key differences and considerations when working with discrete distributions like the Poisson.

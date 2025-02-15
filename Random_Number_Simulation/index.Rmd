@@ -142,3 +142,9 @@ Column {.tabset}
 --------------------
 
 ### Week 12
+
+Advanced Topics
+
+```{r child = "Components/Turing_Julia_Package.Rmd"}
+```
+

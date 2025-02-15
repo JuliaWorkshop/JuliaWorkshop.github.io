@@ -25,9 +25,52 @@ Column {.tabset}
 
 #### Probability Distributions with Julia:
 
+Rayleigh Distribution {data-navmenu="Distributions"}
+=====================================
+
+Column {.tabset}
+--------------------
 
 
-```{r child = "Beta_Distribution_Julia.Rmd"}
+```{r child = "Distributions/Rayleigh_Distribution_Julia.Rmd"}
+```
+
+Cauchy Distribution {data-navmenu="Distributions"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Cauchy Distribution
+```{r child = "Distributions/Cauchy_Distribution_Julia.Rmd"}
+```
+
+```{r child = "Distributions/Cauchy_Distribution_Julia_Example.Rmd"}
+```
+
+Weibull Distribution {data-navmenu="Distributions"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Weibull Distribution
+```{r child = "Distributions/Weibull_Distribution_Julia.Rmd"}
+```
+
+```{r child = "Distributions/Weibull_Distribution_Julia_Example.Rmd"}
+```
+
+
+
+Beta Distribution {data-navmenu="Distributions"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Beta Distributions
+```{r child = "Distributions/Beta_Distribution_Julia.Rmd"}
 ```
 
 Power Law Distributions {data-navmenu="Abvanced Topics"}
@@ -50,3 +93,14 @@ Column {.tabset}
 ```{r child = "Extreme_Value_Theory_Julia.Rmd"}
 ```
 
+Reliability Analysis {data-navmenu="Abvanced Topics"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Reliability_Analysis_Julia.Rmd"}
+```
+
+```{r child = "Weibull_Distribution_Example_Reliability.Rmd"}
+```

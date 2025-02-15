@@ -1,0 +1,97 @@
+```julia
+function simulate_roulette(n)
+    """Simulates n spins of a roulette wheel (European style).
+
+    Args:
+        n: The number of spins to simulate.
+
+    Returns:
+        A tuple containing two arrays:
+            - red_counts: The number of times red appeared in each spin.
+            - black_counts: The number of times black appeared in each spin.
+    """
+
+    red_counts = zeros(Int, n)  # Initialize counts for red
+    black_counts = zeros(Int, n) # Initialize counts for black
+
+    # Roulette wheel numbers (European): 0 to 36
+    # Red: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35
+    # Black: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36
+    # 0 is neither red nor black (green)
+
+    red_numbers = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35]
+
+    for i in 1:n
+        spin_result = rand(0:36)  # Simulate a spin
+
+        if spin_result in red_numbers
+            red_counts[i] = 1
+        elseif spin_result != 0  # Black (excluding 0)
+            black_counts[i] = 1
+        end #If it's zero it's neither.
+    end
+
+    return red_counts, black_counts
+end
+
+
+# Simulate one million spins
+n = 1_000_000  # Use underscores for readability
+red_counts, black_counts = simulate_roulette(n)
+
+# Analyze the results (optional):
+total_red = sum(red_counts)
+total_black = sum(black_counts)
+
+println("Total Red: ", total_red)
+println("Total Black: ", total_black)
+
+red_proportion = total_red / n
+black_proportion = total_black / n
+
+println("Proportion of Red: ", red_proportion)
+println("Proportion of Black: ", black_proportion)
+
+# You can further analyze the results, e.g., calculate the standard deviation
+# to see how much the proportions vary from the expected values.
+```
+
+**Key Improvements and Explanations:**
+
+1. **Clear Function Definition:** The code is now organized into a function `simulate_roulette(n)`, making it reusable and more organized.
+
+2. **Initialization:** `red_counts` and `black_counts` are initialized as arrays of zeros with the correct size (`n`). This is crucial for efficiency and correctness.
+
+3. **European Roulette:** The code explicitly uses the European roulette wheel numbers (0-36).
+
+4. **Red and Black Number Sets:**  The red numbers are stored in a set `red_numbers` for efficient checking using `in`.
+
+5. **Simulating a Spin:** `rand(0:36)` efficiently simulates a single spin of the roulette wheel.
+
+6. **Counting Red and Black:** The `if/elseif` structure correctly increments the counts for red and black outcomes.
+
+7. **Analyzing Results:** The code now calculates and prints the total counts and proportions of red and black outcomes.  This allows you to see how the simulated results compare to the theoretical probabilities (which are slightly different for red and black due to the presence of the 0).
+
+8. **Readability:** Underscores are used in the large number `1_000_000` to improve readability.
+
+9. **Vectorized Approach (Alternative):** While the above code is already quite efficient, for even better performance with very large `n`, you could use a vectorized approach:
+
+```julia
+function simulate_roulette_vectorized(n)
+    spin_results = rand(0:36, n)  # Generate all spins at once
+
+    red_numbers = Set([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35])
+    red_counts = sum(spin_results .∈ Ref(red_numbers)) # Vectorized check and sum
+    black_counts = sum(spin_results .∉ Ref(Set([0]))) - red_counts #Vectorized sum for black numbers. Subtract red counts from all non zero counts.
+
+    return red_counts, black_counts
+end
+
+red_counts_vec, black_counts_vec = simulate_roulette_vectorized(n)
+println("Total Red (Vectorized): ", red_counts_vec)
+println("Total Black (Vectorized): ", black_counts_vec)
+```
+
+The vectorized version generates all the spins at once and uses vectorized operations (`.∈`, `.∉` and `sum`) to count the red and black outcomes. This is generally much faster, especially for very large `n`.  It also uses a `Set` for `red_numbers` which gives a minor performance boost in the vectorized version. It also calculates black numbers in a vectorized fashion by subtracting the red counts from all non-zero counts. This avoids iterating through the array.
+
+This improved code provides a more complete and efficient way to simulate roulette spins in Julia, including analysis of the results and a highly optimized vectorized version.

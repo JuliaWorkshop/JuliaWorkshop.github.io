@@ -1,0 +1,88 @@
+---
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+---
+
+
+### Worked Example
+
+This code performs the following steps:
+
+1. **Imports the `Distributions` package:** This package provides functions for working with various probability distributions in Julia.
+
+
+```julia
+using Distributions
+```
+2. **Defines the Weibull distribution parameters:** The `shape` and `scale` parameters are specified.
+
+
+```julia
+# Define the Weibull distribution parameters
+shape = 2.0
+scale = 3.0
+```
+3. **Creates a Weibull distribution object:** The `Weibull` function from the `Distributions` package is used to create a distribution object with the specified parameters.
+
+```julia
+# Create a Weibull distribution object
+dist = Weibull(shape, scale)
+```
+
+4. **Generates random samples:** The `rand` function is used to generate a vector of random samples from the distribution.
+
+```julia
+# Generate random samples from the distribution
+samples = rand(dist, 1000)
+```
+
+
+
+```julia
+# Calculate the probability density function (PDF) at specific points
+x_values = [1.0, 2.0, 3.0]
+pdf_values = pdf.(dist, x_values)
+```
+
+
+5. **Calculates PDF, CDF, and quantile values:** The `pdf`, `cdf`, and `quantile` functions are used to calculate the probability density, cumulative distribution, and quantile values at specific points.
+
+```julia
+# Calculate the cumulative distribution function (CDF) at specific points
+cdf_values = cdf.(dist, x_values)
+```
+
+
+
+```julia
+# Calculate the quantile function (inverse CDF) at specific probabilities
+probabilities = [0.25, 0.5, 0.75]
+quantile_values = quantile.(dist, probabilities)
+```
+
+6. **Calculates mean and standard deviation:** The `mean` and `std` functions are used to calculate the mean and standard deviation of the distribution.
+
+```julia
+# Calculate the mean and standard deviation of the distribution
+mean_dist = mean(dist)
+std_dist = std(dist)
+```
+
+
+7. **Prints the results:** The calculated values are printed to the console.
+
+
+```julia
+# Print the results
+println("Probability density function (PDF) at x = ", x_values, ": ", pdf_values)
+println("Cumulative distribution function (CDF) at x = ", x_values, ": ", cdf_values)
+println("Quantile function (inverse CDF) at probabilities = ", probabilities, ": ", quantile_values)
+println("Mean of the distribution: ", mean_dist)
+println("Standard deviation of the distribution: ", std_dist)
+```
+
+
+
+This example demonstrates the basic usage of the Weibull distribution in Julia. You can modify the parameters and perform other calculations as needed.

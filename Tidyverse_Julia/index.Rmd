@@ -26,3 +26,13 @@ Column {.tabset}
 ```{r child = "Tidyverse_Syllabus_Julia.Rmd"}
 
 ```
+
+Packages {data-navmenu="Packages"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Tidier_Julia_Package.Rmd"}
+
+```
