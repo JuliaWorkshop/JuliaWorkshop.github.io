@@ -1,0 +1,112 @@
+Sure! Here's a tutorial on how to use the `TidierStrings.jl` package in Julia to work with and manipulate strings effectively.
+
+# TidierStrings.jl Tutorial
+
+The `TidierStrings.jl` package in Julia is a powerful tool for handling and manipulating strings in a tidy and efficient way. This tutorial will guide you through the steps of installing `TidierStrings.jl` and how to use it for various string operations.
+
+## Installation
+
+First, you need to install the package. You can do this by using the Julia package manager (Pkg). Open your Julia REPL and run:
+
+```julia
+using Pkg
+Pkg.add("TidierStrings")
+```
+
+## Basic String Operations
+
+#### Concatenation
+
+You can concatenate strings using the `concat` function provided by `TidierStrings.jl`. Here's an example:
+
+```julia
+using TidierStrings
+
+# Define two strings
+str1 = "Hello"
+str2 = "World"
+
+# Concatenate the strings
+result = concat(str1, str2)
+
+# Display the result
+println(result)
+```
+
+#### Splitting Strings
+
+To split a string into an array of substrings based on a delimiter, you can use the `split` function. Here's how:
+
+```julia
+using TidierStrings
+
+# Define a string
+str = "apple,banana,cherry"
+
+# Split the string based on the delimiter ","
+result = split(str, ",")
+
+# Display the result
+println(result)
+```
+
+#### Trimming Strings
+
+To remove leading and trailing whitespace from a string, you can use the `trim` function. Here's an example:
+
+```julia
+using TidierStrings
+
+# Define a string with leading and trailing whitespace
+str = "  Hello World  "
+
+# Trim the whitespace
+result = trim(str)
+
+# Display the result
+println(result)
+```
+
+## Advanced String Manipulations
+
+#### Replacing Substrings
+
+To replace occurrences of a substring with another substring, you can use the `replace` function. Here's an example:
+
+```julia
+using TidierStrings
+
+# Define a string
+str = "The quick brown fox jumps over the lazy dog"
+
+# Replace "fox" with "cat"
+result = replace(str, "fox", "cat")
+
+# Display the result
+println(result)
+```
+
+#### Regular Expressions
+
+`TidierStrings.jl` also supports regular expressions for advanced string manipulations. Here's an example of how to use a regular expression to find all numeric sequences in a string:
+
+```julia
+using TidierStrings
+
+# Define a string with numeric sequences
+str = "My phone number is 123-456-7890"
+
+# Define a regular expression pattern to find numeric sequences
+pattern = r"\d+"
+
+# Find all matches of the pattern in the string
+matches = match_all(str, pattern)
+
+# Display the matches
+println(matches)
+```
+
+## Conclusion
+
+The `TidierStrings.jl` package provides a simple and efficient way to handle and manipulate strings in Julia. 
+By following this tutorial, you should be able to perform basic and advanced string operations with ease.

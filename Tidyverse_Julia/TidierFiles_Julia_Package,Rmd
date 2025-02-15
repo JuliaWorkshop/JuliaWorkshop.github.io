@@ -1,0 +1,88 @@
+### TidierFiles.jl 
+
+The `TidierFiles.jl` package in Julia is a powerful tool for handling different file formats such as CSV and Excel in a tidy and efficient way. This tutorial will guide you through the steps of installing `TidierFiles.jl`, and how to use it for reading from and writing to these file formats.
+
+#### Installation
+
+First, you need to install the package. You can do this by using the Julia package manager (Pkg). Open your Julia REPL and run:
+
+```julia
+using Pkg
+Pkg.add("TidierFiles")
+```
+
+##### Reading Files
+
+**Reading CSV Files**
+
+To read a CSV file, you can use the `read_csv` function provided by `TidierFiles.jl`. Here's how you can do it:
+
+```julia
+using TidierFiles
+
+# Specify the path to your CSV file
+csv_file_path = "path/to/your/file.csv"
+
+# Read the CSV file into a DataFrame
+df = read_csv(csv_file_path)
+
+# Display the DataFrame
+println(df)
+```
+
+##### Reading Excel Files
+
+Similarly, you can read an Excel file using the `read_excel` function. Here's an example:
+
+```julia
+using TidierFiles
+
+# Specify the path to your Excel file
+excel_file_path = "path/to/your/file.xlsx"
+
+# Read the Excel file into a DataFrame
+df = read_excel(excel_file_path)
+
+# Display the DataFrame
+println(df)
+```
+
+#### Writing Files
+
+##### Writing CSV Files
+
+To write a DataFrame to a CSV file, you can use the `write_csv` function. Here's how:
+
+```julia
+using TidierFiles, DataFrames
+
+# Create a sample DataFrame
+df = DataFrame(Name=["Alice", "Bob", "Charlie"], Age=[25, 30, 35])
+
+# Specify the path to save your CSV file
+csv_file_path = "path/to/save/your/file.csv"
+
+# Write the DataFrame to a CSV file
+write_csv(df, csv_file_path)
+```
+
+##### Writing Excel Files
+
+To write a DataFrame to an Excel file, you can use the `write_excel` function. Here's an example:
+
+```julia
+using TidierFiles, DataFrames
+
+# Create a sample DataFrame
+df = DataFrame(Name=["Alice", "Bob", "Charlie"], Age=[25, 30, 35])
+
+# Specify the path to save your Excel file
+excel_file_path = "path/to/save/your/file.xlsx"
+
+# Write the DataFrame to an Excel file
+write_excel(df, excel_file_path)
+```
+
+#### Conclusion
+
+The `TidierFiles.jl` package provides a simple and efficient way to handle reading and writing various file formats in Julia. By following this tutorial, you should be able to read from and write to CSV and Excel files with ease. Happy coding!

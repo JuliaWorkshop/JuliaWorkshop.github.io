@@ -1,0 +1,113 @@
+Absolutely! Here's a tutorial on how to use the `TidierDates.jl` package in Julia to work with and manipulate dates effectively.
+
+# TidierDates.jl Tutorial
+
+The `TidierDates.jl` package in Julia is a powerful tool for handling and manipulating dates in a tidy and efficient way. This tutorial will guide you through the steps of installing `TidierDates.jl` and how to use it for various date operations.
+
+## Installation
+
+First, you need to install the package. You can do this by using the Julia package manager (Pkg). Open your Julia REPL and run:
+
+```julia
+using Pkg
+Pkg.add("TidierDates")
+```
+
+## Basic Date Operations
+
+#### Creating Dates
+
+You can create dates using the `create_date` function provided by `TidierDates.jl`. Here's an example:
+
+```julia
+using TidierDates
+
+# Create a date using year, month, and day
+date = create_date(2025, 2, 15)
+
+# Display the date
+println(date)
+```
+
+#### Formatting Dates
+
+To format a date into a string with a specific format, you can use the `format_date` function. Here's how:
+
+```julia
+using TidierDates
+
+# Define a date
+date = create_date(2025, 2, 15)
+
+# Format the date as "YYYY-MM-DD"
+formatted_date = format_date(date, "yyyy-mm-dd")
+
+# Display the formatted date
+println(formatted_date)
+```
+
+#### Parsing Dates
+
+To parse a string into a date, you can use the `parse_date` function. Here's an example:
+
+```julia
+using TidierDates
+
+# Define a date string
+date_str = "2025-02-15"
+
+# Parse the date string into a date
+date = parse_date(date_str, "yyyy-mm-dd")
+
+# Display the date
+println(date)
+```
+
+## Date Calculations
+
+#### Adding and Subtracting Dates
+
+You can perform date arithmetic using the `add_days` and `subtract_days` functions. Here's how:
+
+```julia
+using TidierDates
+
+# Define a date
+date = create_date(2025, 2, 15)
+
+# Add 10 days to the date
+new_date = add_days(date, 10)
+
+# Display the new date
+println(new_date)
+
+# Subtract 5 days from the date
+new_date = subtract_days(date, 5)
+
+# Display the new date
+println(new_date)
+```
+
+#### Difference Between Dates
+
+To calculate the difference between two dates in days, you can use the `date_diff` function. Here's an example:
+
+```julia
+using TidierDates
+
+# Define two dates
+date1 = create_date(2025, 2, 15)
+date2 = create_date(2025, 3, 1)
+
+# Calculate the difference in days between the dates
+difference = date_diff(date1, date2)
+
+# Display the difference
+println(difference)
+```
+
+## Conclusion
+
+The `TidierDates.jl` package provides a simple and efficient way to handle and manipulate dates in Julia. By following this tutorial, you should be able to perform basic and advanced date operations with ease. Happy coding!
+
+If you have any questions or need further assistance, feel free to ask!

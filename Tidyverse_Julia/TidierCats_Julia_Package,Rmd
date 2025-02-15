@@ -1,0 +1,106 @@
+### TidierCats.jl Tutorial
+
+The `TidierCats.jl` package in Julia is a powerful tool for handling and manipulating categorical data in a tidy and efficient way. This tutorial will guide you through the steps of installing `TidierCats.jl` and how to use it for various categorical data operations.
+
+## Installation
+
+First, you need to install the package. You can do this by using the Julia package manager (Pkg). Open your Julia REPL and run:
+
+```julia
+using Pkg
+Pkg.add("TidierCats")
+```
+
+#### Basic Categorical Data Operations
+
+#### Creating Categorical Arrays
+
+You can create categorical arrays using the `categorical` function provided by `TidierCats.jl`. Here's an example:
+
+```julia
+using TidierCats
+
+# Define a vector of categorical data
+data = ["apple", "banana", "cherry", "apple", "cherry"]
+
+# Create a categorical array
+cat_array = categorical(data)
+
+# Display the categorical array
+println(cat_array)
+```
+
+#### Converting to Categorical Data
+
+To convert an existing array to a categorical array, you can use the `as_categorical` function. Here's how:
+
+```julia
+using TidierCats
+
+# Define an array of data
+data = ["red", "blue", "green", "blue", "red"]
+
+# Convert the array to a categorical array
+cat_array = as_categorical(data)
+
+# Display the categorical array
+println(cat_array)
+```
+
+#### Advanced Categorical Data Manipulations
+
+#### Adding Levels
+
+To add new levels to a categorical array, you can use the `add_levels` function. Here's an example:
+
+```julia
+using TidierCats
+
+# Define a categorical array
+cat_array = categorical(["small", "medium", "large"])
+
+# Add a new level "extra-large"
+cat_array = add_levels(cat_array, ["extra-large"])
+
+# Display the updated categorical array
+println(cat_array)
+```
+
+#### Dropping Levels
+
+To drop unused levels from a categorical array, you can use the `drop_levels` function. Here's how:
+
+```julia
+using TidierCats
+
+# Define a categorical array with unused levels
+cat_array = categorical(["cat", "dog", "fish"], ["cat", "dog", "fish", "bird", "reptile"])
+
+# Drop the unused levels
+cat_array = drop_levels(cat_array)
+
+# Display the updated categorical array
+println(cat_array)
+```
+
+#### Renaming Levels
+
+To rename levels in a categorical array, you can use the `rename_levels` function. Here's an example:
+
+```julia
+using TidierCats
+
+# Define a categorical array
+cat_array = categorical(["low", "medium", "high"])
+
+# Rename the level "medium" to "mid"
+cat_array = rename_levels(cat_array, Dict("medium" => "mid"))
+
+# Display the updated categorical array
+println(cat_array)
+```
+
+#### Conclusion
+
+The `TidierCats.jl` package provides a simple and efficient way to handle and manipulate categorical data in Julia. By following this tutorial, you should be able to perform basic and advanced categorical data operations with ease. Happy coding!
+

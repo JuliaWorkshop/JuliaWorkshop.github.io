@@ -36,3 +36,41 @@ Column {.tabset}
 ```{r child = "Tidier_Julia_Package.Rmd"}
 
 ```
+
+
+`TidierFiles` {data-navmenu="Packages"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "TidierFiles_Julia_Package,Rmd"}
+
+```
+
+
+`TidierFiles` {data-navmenu="Packages"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "TidierFiles_Julia_Package.Rmd"}
+
+```
+
+
+`TidierStrings` {data-navmenu="Packages"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "TidierStrings_Julia_Package.Rmd"}
+
+```
+
+
+
+
+
