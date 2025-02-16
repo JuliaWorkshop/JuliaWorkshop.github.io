@@ -1,10 +1,8 @@
-Sure! Here's a tutorial on how to use the `TidierStrings.jl` package in Julia to work with and manipulate strings effectively.
-
-# TidierStrings.jl Tutorial
+### TidierStrings.jl Tutorial
 
 The `TidierStrings.jl` package in Julia is a powerful tool for handling and manipulating strings in a tidy and efficient way. This tutorial will guide you through the steps of installing `TidierStrings.jl` and how to use it for various string operations.
 
-## Installation
+#### Installation
 
 First, you need to install the package. You can do this by using the Julia package manager (Pkg). Open your Julia REPL and run:
 
@@ -13,7 +11,7 @@ using Pkg
 Pkg.add("TidierStrings")
 ```
 
-## Basic String Operations
+#### Basic String Operations
 
 #### Concatenation
 
@@ -67,7 +65,7 @@ result = trim(str)
 println(result)
 ```
 
-## Advanced String Manipulations
+### Advanced String Manipulations
 
 #### Replacing Substrings
 
@@ -106,7 +104,7 @@ matches = match_all(str, pattern)
 println(matches)
 ```
 
-## Conclusion
+### Conclusion
 
 The `TidierStrings.jl` package provides a simple and efficient way to handle and manipulate strings in Julia. 
 By following this tutorial, you should be able to perform basic and advanced string operations with ease.

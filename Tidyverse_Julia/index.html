@@ -16,6 +16,71 @@
 
 <link href="data:image/x-icon;" rel="icon" type="image/x-icon">
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
 
 <script type="text/javascript">
 window.FlexDashboardComponents = [];
@@ -2990,6 +3055,413 @@ experience.</li>
 </ul>
 <p>If you’re familiar with the tidyverse in R, Tidier.jl provides a
 familiar and efficient way to perform data analysis in Julia.</p>
+</div>
+</div>
+<div id="tidierfiles" class="section level1" data-navmenu="Packages">
+<h1><code>TidierFiles</code></h1>
+<div id="column-2" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="tidierfiles.jl" class="section level3">
+<h3>TidierFiles.jl</h3>
+<p>The <code>TidierFiles.jl</code> package in Julia is a powerful tool
+for handling different file formats such as CSV and Excel in a tidy and
+efficient way. This tutorial will guide you through the steps of
+installing <code>TidierFiles.jl</code>, and how to use it for reading
+from and writing to these file formats.</p>
+<div id="installation" class="section level4">
+<h4>Installation</h4>
+<p>First, you need to install the package. You can do this by using the
+Julia package manager (Pkg). Open your Julia REPL and run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;TidierFiles&quot;</span>)</span></code></pre></div>
+<div id="reading-files" class="section level5">
+<h5>Reading Files</h5>
+<p><strong>Reading CSV Files</strong></p>
+<p>To read a CSV file, you can use the <code>read_csv</code> function
+provided by <code>TidierFiles.jl</code>. Here’s how you can do it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Specify the path to your CSV file</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>csv_file_path <span class="op">=</span> <span class="st">&quot;path/to/your/file.csv&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># Read the CSV file into a DataFrame</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">read_csv</span>(csv_file_path)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">println</span>(df)</span></code></pre></div>
+</div>
+<div id="reading-excel-files" class="section level5">
+<h5>Reading Excel Files</h5>
+<p>Similarly, you can read an Excel file using the
+<code>read_excel</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co"># Specify the path to your Excel file</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>excel_file_path <span class="op">=</span> <span class="st">&quot;path/to/your/file.xlsx&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># Read the Excel file into a DataFrame</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">read_excel</span>(excel_file_path)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="fu">println</span>(df)</span></code></pre></div>
+</div>
+</div>
+<div id="writing-files" class="section level4">
+<h4>Writing Files</h4>
+<div id="writing-csv-files" class="section level5">
+<h5>Writing CSV Files</h5>
+<p>To write a DataFrame to a CSV file, you can use the
+<code>write_csv</code> function. Here’s how:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span>, <span class="bu">DataFrames</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># Create a sample DataFrame</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(Name<span class="op">=</span>[<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>], Age<span class="op">=</span>[<span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">35</span>])</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># Specify the path to save your CSV file</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>csv_file_path <span class="op">=</span> <span class="st">&quot;path/to/save/your/file.csv&quot;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co"># Write the DataFrame to a CSV file</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="fu">write_csv</span>(df, csv_file_path)</span></code></pre></div>
+</div>
+<div id="writing-excel-files" class="section level5">
+<h5>Writing Excel Files</h5>
+<p>To write a DataFrame to an Excel file, you can use the
+<code>write_excel</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span>, <span class="bu">DataFrames</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Create a sample DataFrame</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(Name<span class="op">=</span>[<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>], Age<span class="op">=</span>[<span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">35</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Specify the path to save your Excel file</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>excel_file_path <span class="op">=</span> <span class="st">&quot;path/to/save/your/file.xlsx&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># Write the DataFrame to an Excel file</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="fu">write_excel</span>(df, excel_file_path)</span></code></pre></div>
+</div>
+</div>
+<div id="conclusion" class="section level4">
+<h4>Conclusion</h4>
+<p>The <code>TidierFiles.jl</code> package provides a simple and
+efficient way to handle reading and writing various file formats in
+Julia. By following this tutorial, you should be able to read from and
+write to CSV and Excel files with ease. Happy coding!</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tidiercats" class="section level1" data-navmenu="Packages">
+<h1><code>TidierCats</code></h1>
+<div id="column-3" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="tidiercats.jl-tutorial" class="section level3">
+<h3>TidierCats.jl Tutorial</h3>
+<p>The <code>TidierCats.jl</code> package in Julia is a powerful tool
+for handling and manipulating categorical data in a tidy and efficient
+way. This tutorial will guide you through the steps of installing
+<code>TidierCats.jl</code> and how to use it for various categorical
+data operations.</p>
+</div>
+</div>
+<div id="installation-1" class="section level2">
+<h2>Installation</h2>
+<p>First, you need to install the package. You can do this by using the
+Julia package manager (Pkg). Open your Julia REPL and run:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;TidierCats&quot;</span>)</span></code></pre></div>
+<div id="basic-categorical-data-operations" class="section level4">
+<h4>Basic Categorical Data Operations</h4>
+</div>
+<div id="creating-categorical-arrays" class="section level4">
+<h4>Creating Categorical Arrays</h4>
+<p>You can create categorical arrays using the <code>categorical</code>
+function provided by <code>TidierCats.jl</code>. Here’s an example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierCats</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Define a vector of categorical data</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>data <span class="op">=</span> [<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>, <span class="st">&quot;apple&quot;</span>, <span class="st">&quot;cherry&quot;</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># Create a categorical array</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">categorical</span>(data)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co"># Display the categorical array</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="fu">println</span>(cat_array)</span></code></pre></div>
+</div>
+<div id="converting-to-categorical-data" class="section level4">
+<h4>Converting to Categorical Data</h4>
+<p>To convert an existing array to a categorical array, you can use the
+<code>as_categorical</code> function. Here’s how:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierCats</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Define an array of data</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>data <span class="op">=</span> [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># Convert the array to a categorical array</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">as_categorical</span>(data)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># Display the categorical array</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">println</span>(cat_array)</span></code></pre></div>
+</div>
+<div id="advanced-categorical-data-manipulations" class="section level4">
+<h4>Advanced Categorical Data Manipulations</h4>
+</div>
+<div id="adding-levels" class="section level4">
+<h4>Adding Levels</h4>
+<p>To add new levels to a categorical array, you can use the
+<code>add_levels</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierCats</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># Define a categorical array</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">categorical</span>([<span class="st">&quot;small&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;large&quot;</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># Add a new level &quot;extra-large&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">add_levels</span>(cat_array, [<span class="st">&quot;extra-large&quot;</span>])</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co"># Display the updated categorical array</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="fu">println</span>(cat_array)</span></code></pre></div>
+</div>
+<div id="dropping-levels" class="section level4">
+<h4>Dropping Levels</h4>
+<p>To drop unused levels from a categorical array, you can use the
+<code>drop_levels</code> function. Here’s how:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierCats</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># Define a categorical array with unused levels</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">categorical</span>([<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;fish&quot;</span>], [<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;bird&quot;</span>, <span class="st">&quot;reptile&quot;</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co"># Drop the unused levels</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">drop_levels</span>(cat_array)</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co"># Display the updated categorical array</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="fu">println</span>(cat_array)</span></code></pre></div>
+</div>
+<div id="renaming-levels" class="section level4">
+<h4>Renaming Levels</h4>
+<p>To rename levels in a categorical array, you can use the
+<code>rename_levels</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierCats</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># Define a categorical array</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">categorical</span>([<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co"># Rename the level &quot;medium&quot; to &quot;mid&quot;</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>cat_array <span class="op">=</span> <span class="fu">rename_levels</span>(cat_array, <span class="fu">Dict</span>(<span class="st">&quot;medium&quot;</span> <span class="op">=&gt;</span> <span class="st">&quot;mid&quot;</span>))</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># Display the updated categorical array</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="fu">println</span>(cat_array)</span></code></pre></div>
+</div>
+<div id="conclusion-1" class="section level4">
+<h4>Conclusion</h4>
+<p>The <code>TidierCats.jl</code> package provides a simple and
+efficient way to handle and manipulate categorical data in Julia. By
+following this tutorial, you should be able to perform basic and
+advanced categorical data operations with ease. Happy coding!</p>
+</div>
+</div>
+</div>
+<div id="tidierfiles-1" class="section level1" data-navmenu="Packages">
+<h1><code>TidierFiles</code></h1>
+<div id="column-4" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="tidierfiles.jl-1" class="section level3">
+<h3>TidierFiles.jl</h3>
+<p>The <code>TidierFiles.jl</code> package in Julia is a powerful tool
+for handling different file formats such as CSV and Excel in a tidy and
+efficient way. This tutorial will guide you through the steps of
+installing <code>TidierFiles.jl</code>, and how to use it for reading
+from and writing to these file formats.</p>
+<div id="installation-2" class="section level4">
+<h4>Installation</h4>
+<p>First, you need to install the package. You can do this by using the
+Julia package manager (Pkg). Open your Julia REPL and run:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;TidierFiles&quot;</span>)</span></code></pre></div>
+<div id="reading-files-1" class="section level5">
+<h5>Reading Files</h5>
+<p><strong>Reading CSV Files</strong></p>
+<p>To read a CSV file, you can use the <code>read_csv</code> function
+provided by <code>TidierFiles.jl</code>. Here’s how you can do it:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co"># Specify the path to your CSV file</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>csv_file_path <span class="op">=</span> <span class="st">&quot;path/to/your/file.csv&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co"># Read the CSV file into a DataFrame</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">read_csv</span>(csv_file_path)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="fu">println</span>(df)</span></code></pre></div>
+</div>
+<div id="reading-excel-files-1" class="section level5">
+<h5>Reading Excel Files</h5>
+<p>Similarly, you can read an Excel file using the
+<code>read_excel</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co"># Specify the path to your Excel file</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>excel_file_path <span class="op">=</span> <span class="st">&quot;path/to/your/file.xlsx&quot;</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># Read the Excel file into a DataFrame</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">read_excel</span>(excel_file_path)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co"># Display the DataFrame</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="fu">println</span>(df)</span></code></pre></div>
+</div>
+</div>
+<div id="writing-files-1" class="section level4">
+<h4>Writing Files</h4>
+<div id="writing-csv-files-1" class="section level5">
+<h5>Writing CSV Files</h5>
+<p>To write a DataFrame to a CSV file, you can use the
+<code>write_csv</code> function. Here’s how:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span>, <span class="bu">DataFrames</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># Create a sample DataFrame</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(Name<span class="op">=</span>[<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>], Age<span class="op">=</span>[<span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">35</span>])</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co"># Specify the path to save your CSV file</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>csv_file_path <span class="op">=</span> <span class="st">&quot;path/to/save/your/file.csv&quot;</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co"># Write the DataFrame to a CSV file</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="fu">write_csv</span>(df, csv_file_path)</span></code></pre></div>
+</div>
+<div id="writing-excel-files-1" class="section level5">
+<h5>Writing Excel Files</h5>
+<p>To write a DataFrame to an Excel file, you can use the
+<code>write_excel</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierFiles</span>, <span class="bu">DataFrames</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co"># Create a sample DataFrame</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(Name<span class="op">=</span>[<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>], Age<span class="op">=</span>[<span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">35</span>])</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co"># Specify the path to save your Excel file</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>excel_file_path <span class="op">=</span> <span class="st">&quot;path/to/save/your/file.xlsx&quot;</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co"># Write the DataFrame to an Excel file</span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="fu">write_excel</span>(df, excel_file_path)</span></code></pre></div>
+</div>
+</div>
+<div id="conclusion-2" class="section level4">
+<h4>Conclusion</h4>
+<p>The <code>TidierFiles.jl</code> package provides a simple and
+efficient way to handle reading and writing various file formats in
+Julia. By following this tutorial, you should be able to read from and
+write to CSV and Excel files with ease. Happy coding!</p>
+</div>
+</div>
+</div>
+</div>
+<div id="tidierstrings" class="section level1" data-navmenu="Packages">
+<h1><code>TidierStrings</code></h1>
+<div id="column-5" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="tidierstrings.jl-tutorial" class="section level3">
+<h3>TidierStrings.jl Tutorial</h3>
+<p>The <code>TidierStrings.jl</code> package in Julia is a powerful tool
+for handling and manipulating strings in a tidy and efficient way. This
+tutorial will guide you through the steps of installing
+<code>TidierStrings.jl</code> and how to use it for various string
+operations.</p>
+<div id="installation-3" class="section level4">
+<h4>Installation</h4>
+<p>First, you need to install the package. You can do this by using the
+Julia package manager (Pkg). Open your Julia REPL and run:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;TidierStrings&quot;</span>)</span></code></pre></div>
+</div>
+<div id="basic-string-operations" class="section level4">
+<h4>Basic String Operations</h4>
+</div>
+<div id="concatenation" class="section level4">
+<h4>Concatenation</h4>
+<p>You can concatenate strings using the <code>concat</code> function
+provided by <code>TidierStrings.jl</code>. Here’s an example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierStrings</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co"># Define two strings</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>str1 <span class="op">=</span> <span class="st">&quot;Hello&quot;</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>str2 <span class="op">=</span> <span class="st">&quot;World&quot;</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co"># Concatenate the strings</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">concat</span>(str1, str2)</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co"># Display the result</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="fu">println</span>(result)</span></code></pre></div>
+</div>
+<div id="splitting-strings" class="section level4">
+<h4>Splitting Strings</h4>
+<p>To split a string into an array of substrings based on a delimiter,
+you can use the <code>split</code> function. Here’s how:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierStrings</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="co"># Define a string</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>str <span class="op">=</span> <span class="st">&quot;apple,banana,cherry&quot;</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co"># Split the string based on the delimiter &quot;,&quot;</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">split</span>(str, <span class="st">&quot;,&quot;</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co"># Display the result</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="fu">println</span>(result)</span></code></pre></div>
+</div>
+<div id="trimming-strings" class="section level4">
+<h4>Trimming Strings</h4>
+<p>To remove leading and trailing whitespace from a string, you can use
+the <code>trim</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierStrings</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co"># Define a string with leading and trailing whitespace</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>str <span class="op">=</span> <span class="st">&quot;  Hello World  &quot;</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co"># Trim the whitespace</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">trim</span>(str)</span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="co"># Display the result</span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="fu">println</span>(result)</span></code></pre></div>
+</div>
+</div>
+<div id="advanced-string-manipulations" class="section level3">
+<h3>Advanced String Manipulations</h3>
+<div id="replacing-substrings" class="section level4">
+<h4>Replacing Substrings</h4>
+<p>To replace occurrences of a substring with another substring, you can
+use the <code>replace</code> function. Here’s an example:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierStrings</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co"># Define a string</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>str <span class="op">=</span> <span class="st">&quot;The quick brown fox jumps over the lazy dog&quot;</span></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="co"># Replace &quot;fox&quot; with &quot;cat&quot;</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">replace</span>(str, <span class="st">&quot;fox&quot;</span>, <span class="st">&quot;cat&quot;</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="co"># Display the result</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="fu">println</span>(result)</span></code></pre></div>
+</div>
+<div id="regular-expressions" class="section level4">
+<h4>Regular Expressions</h4>
+<p><code>TidierStrings.jl</code> also supports regular expressions for
+advanced string manipulations. Here’s an example of how to use a regular
+expression to find all numeric sequences in a string:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierStrings</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="co"># Define a string with numeric sequences</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>str <span class="op">=</span> <span class="st">&quot;My phone number is 123-456-7890&quot;</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="co"># Define a regular expression pattern to find numeric sequences</span></span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>pattern <span class="op">=</span> <span class="st">r&quot;</span><span class="sc">\d+</span><span class="st">&quot;</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a><span class="co"># Find all matches of the pattern in the string</span></span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a>matches <span class="op">=</span> <span class="fu">match_all</span>(str, pattern)</span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a><span class="co"># Display the matches</span></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="fu">println</span>(matches)</span></code></pre></div>
+</div>
+</div>
+<div id="conclusion-3" class="section level3">
+<h3>Conclusion</h3>
+<p>The <code>TidierStrings.jl</code> package provides a simple and
+efficient way to handle and manipulate strings in Julia. By following
+this tutorial, you should be able to perform basic and advanced string
+operations with ease.</p>
+</div>
 </div>
 </div>
 

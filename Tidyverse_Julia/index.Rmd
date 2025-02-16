@@ -44,7 +44,17 @@ Column {.tabset}
 Column {.tabset}
 --------------------
 
-```{r child = "TidierFiles_Julia_Package,Rmd"}
+```{r child = "TidierFiles_Julia_Package.Rmd"}
+
+```
+
+`TidierCats` {data-navmenu="Packages"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "TidierCats_Julia_Package.Rmd"}
 
 ```
 
