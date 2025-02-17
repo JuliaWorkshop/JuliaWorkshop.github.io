@@ -38,7 +38,61 @@ boxplot(X, horizontal = TRUE)
 </code>
 </pre>
 
+To detect outliers in Julia using Grubbs' test, you'll need to use the `HypothesisTests` package, which provides statistical tests, including Grubbs' test. Here's how you can do it:
 
-```R
+1. **Install and Load the Package:**
 
+First, you'll need to install the `HypothesisTests` package if you haven't already:
+
+```julia
+using Pkg
+Pkg.add("HypothesisTests")
 ```
+
+Then, load the package:
+
+```julia
+using HypothesisTests
+```
+
+2. **Generate or Load Your Data:**
+
+Let's assume you have a dataset:
+
+```julia
+data = [10.1, 12.3, 11.5, 11.8, 10.9, 12.2, 10.0, 29.5, 11.1, 10.6]  # Example data with a potential outlier
+```
+
+3. **Perform Grubbs' Test:**
+
+To detect outliers, you can use the `GrubbsTest` function from the `HypothesisTests` package. This function tests the hypothesis that the maximum absolute deviation from the mean in the data is an outlier:
+
+```julia
+result = GrubbsTest(data)
+```
+
+4. **Check the Test Result:**
+
+You can then check the result of the test to determine if there's an outlier:
+
+```julia
+println(result)
+```
+
+Here's the complete code:
+
+```julia
+using Pkg
+Pkg.add("HypothesisTests")
+
+using HypothesisTests
+
+data = [10.1, 12.3, 11.5, 11.8, 10.9, 12.2, 10.0, 29.5, 11.1, 10.6]  # Example data with a potential outlier
+
+result = GrubbsTest(data)
+
+println(result)
+```
+
+If the p-value is small (typically less than 0.05), you can reject the null hypothesis and conclude that there's an outlier in your data. The test provides both the test statistic and the p-value, which help in determining the presence of an outlier.
+
