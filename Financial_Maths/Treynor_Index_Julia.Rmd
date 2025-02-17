@@ -1,0 +1,95 @@
+---
+title: "Treynor Index - Worked Example" 
+subtitle: "Mathematical Programming with Julia"
+author: "Julia Workshop"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Treynor Index
+
+The Treynor Index is a risk-adjusted performance metric used to evaluate the performance of an investment portfolio, especially in comparison to a benchmark. It measures the excess return of an investment portfolio relative to the risk-free rate per unit of systematic risk.
+
+**Equation:**
+
+```
+Treynor Ratio = (Rp - Rf) / β
+```
+
+Where:
+
+* **Rp** = Portfolio return
+* **Rf** = Risk-free rate
+* **β** = Portfolio beta (a measure of systematic risk)
+
+**Interpretation:**
+
+* A higher Treynor Ratio indicates better risk-adjusted performance, suggesting higher returns for a given level of systematic risk.
+* A negative Treynor Ratio indicates that the portfolio's returns are below the risk-free rate after adjusting for systematic risk.
+* The Treynor Ratio is often used in conjunction with other risk-adjusted performance metrics like the Sharpe Ratio to provide a more comprehensive assessment of an investment portfolio's risk-return profile.
+
+```julia
+function treynor_ratio(portfolio_return, risk_free_rate, portfolio_beta)
+    """
+    Calculates the Treynor Ratio for a given portfolio.
+
+    Args:
+        portfolio_return: The portfolio's return.
+        risk_free_rate: The risk-free rate of return.
+        portfolio_beta: The portfolio's beta (systematic risk).
+
+    Returns:
+        The Treynor Ratio.
+    """
+
+    if portfolio_beta == 0
+        return Inf  # Handle the case where beta is zero (infinite Treynor Ratio)
+    end
+
+    return (portfolio_return - risk_free_rate) / portfolio_beta
+end
+```
+
+**Explanation:**
+
+1. **Function Definition:**
+   - `treynor_ratio(portfolio_return, risk_free_rate, portfolio_beta)`: Defines the function with three arguments:
+     - `portfolio_return`: The portfolio's return.
+     - `risk_free_rate`: The risk-free rate of return.
+     - `portfolio_beta`: The portfolio's beta (systematic risk).
+
+2. **Handle Zero Beta:**
+   - `if portfolio_beta == 0`: Checks if the portfolio's beta is zero.
+     - `return Inf`: If beta is zero, the Treynor Ratio is mathematically undefined. This code returns `Inf` (infinity) to represent this case.
+
+3. **Calculate Treynor Ratio:**
+   - `return (portfolio_return - risk_free_rate) / portfolio_beta`: Calculates the Treynor Ratio using the provided formula.
+
+**How to Use:**
+
+1. **Import the function:** Copy and paste the function code into your Julia script.
+2. **Prepare your data:**
+   - `portfolio_return`: The return of your portfolio.
+   - `risk_free_rate`: The risk-free rate of return (e.g., the return on a short-term government bond).
+   - `portfolio_beta`: The beta of your portfolio (can be obtained from financial data providers or calculated using regression analysis).
+3. **Calculate the Treynor Ratio:** Call the function with your data:
+
+```julia
+# Example usage
+portfolio_return = 0.12  # 12% portfolio return
+risk_free_rate = 0.03   # 3% risk-free rate
+portfolio_beta = 1.2     # Portfolio beta
+
+treynor_ratio_value = treynor_ratio(portfolio_return, risk_free_rate, portfolio_beta)
+println("Treynor Ratio: ", treynor_ratio_value)
+```
+
+This will calculate and print the Treynor Ratio for the given inputs.
+
+This script effectively implements the Treynor Ratio calculation in Julia, including a check for zero beta.

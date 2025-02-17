@@ -1,0 +1,43 @@
+```julia
+using DataFrames, RDatasets, Plots
+
+# Load the diamonds dataset
+diamonds = dataset("datasets", "diamonds")
+
+# Create a stacked barplot of diamond cut by color
+p = plot(diamonds, x=:color, y=:carat, group=:cut, 
+        geom=:bar, stack=true, 
+        title="Diamond Carat by Color and Cut", 
+        xlabel="Color", ylabel="Carat")
+
+# Display the plot
+display(p)
+```
+
+This code will:
+
+1. **Load necessary packages:**
+   - `DataFrames`: For working with DataFrames.
+   - `RDatasets`: To access the diamonds dataset.
+   - `Plots`: For creating the plot.
+
+2. **Load the diamonds dataset:**
+   - `diamonds = dataset("datasets", "diamonds")` loads the diamonds dataset into a DataFrame.
+
+3. **Create the stacked barplot:**
+   - `plot(diamonds, x=:color, y=:carat, group=:cut, geom=:bar, stack=true)` creates the plot.
+     - `x=:color`: Sets the x-axis to the "color" column.
+     - `y=:carat`: Sets the y-axis to the "carat" column.
+     - `group=:cut`: Groups the bars by the "cut" column.
+     - `geom=:bar`: Specifies that the plot should be a bar plot.
+     - `stack=true`: Creates a stacked barplot.
+
+4. **Add plot title and labels:**
+   - `title="Diamond Carat by Color and Cut"` sets the title of the plot.
+   - `xlabel="Color"` sets the label for the x-axis.
+   - `ylabel="Carat"` sets the label for the y-axis.
+
+5. **Display the plot:**
+   - `display(p)` displays the created plot.
+
+This will produce a stacked barplot showing the distribution of diamond carat by color and cut.

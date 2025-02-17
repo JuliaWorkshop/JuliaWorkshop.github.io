@@ -1,0 +1,101 @@
+```julia
+using Distributions
+using HypothesisTests
+using Plots
+
+# 1. Generate some data (e.g., from a Normal distribution)
+n = 100  # Sample size
+mu = 0
+sigma = 1
+data = rand(Normal(mu, sigma), n)
+
+# 2. Perform the Kolmogorov-Smirnov test against a theoretical distribution
+#    (e.g., test if the data is from a Normal(0, 1) distribution)
+
+d = Normal(0, 1) # The distribution you are testing against
+
+ks_result = ExactKSaKolmogorovSmirnovTest(data, d) # Exact test for small samples
+# For larger samples, you might use:
+# ks_result = ApproximateKolmogorovSmirnovTest(data, d)
+
+# 3. Print the results
+println(ks_result)
+
+# 4. Interpret the results
+p_value = pvalue(ks_result)
+statistic = statistic(ks_result)
+
+println("P-value: ", p_value)
+println("KS statistic: ", statistic)
+
+alpha = 0.05  # Significance level
+
+if p_value > alpha
+    println("Fail to reject the null hypothesis: Data likely comes from the specified distribution.")
+else
+    println("Reject the null hypothesis: Data likely does NOT come from the specified distribution.")
+end
+
+
+# 5. Visualizing the results (optional but highly recommended)
+
+# a. Empirical CDF (ECDF) of the data
+ecdf_values = ecdf(data)
+plot!(sort(data), ecdf_values.(sort(data)), label="ECDF", linewidth=2, color=:blue)
+
+
+# b. CDF of the hypothesized distribution
+cdf_values = cdf.(d, sort(data))  # Calculate CDF values for plotting
+plot!(sort(data), cdf_values, label="Theoretical CDF", linewidth=2, color=:red)
+
+# Add title and labels
+title!("Kolmogorov-Smirnov Test Visualization")
+xlabel!("Data Values")
+ylabel!("Cumulative Probability")
+legend()
+
+# Display or save the plot
+display(plot!)
+# savefig("ks_test_visualization.png")
+
+
+# Example with a different distribution (e.g. Uniform)
+data2 = rand(Uniform(), n)
+ks_result2 = ExactKSaKolmogorovSmirnovTest(data2, d) # Testing Uniform data against Normal
+
+println("\nTesting Uniform data against Normal Distribution:")
+println(ks_result2)
+
+p_value2 = pvalue(ks_result2)
+if p_value2 > alpha
+    println("Fail to reject the null hypothesis: Data likely comes from the specified distribution.")
+else
+    println("Reject the null hypothesis: Data likely does NOT come from the specified distribution.")
+end
+
+
+```
+
+**Explanation and Key Improvements:**
+
+1. **`HypothesisTests.jl`:**  The `KolmogorovSmirnovTest` is now correctly accessed from the `HypothesisTests` package. Make sure you install it: `] add HypothesisTests`
+
+2. **Exact vs. Approximate Test:** The code now uses `ExactKSaKolmogorovSmirnovTest` for smaller sample sizes (like `n = 100` in the example). For larger sample sizes, the approximate test (`ApproximateKolmogorovSmirnovTest`) is more computationally efficient.  The code includes a commented-out line showing how to use the approximate test.
+
+3. **Clearer Results Output:** The code prints the p-value and the KS statistic separately, making it easier to interpret the results.
+
+4. **Hypothesis Test Interpretation:** The code includes a clear interpretation of the test results based on the p-value and a chosen significance level (alpha).
+
+5. **Visualization (ECDF and CDF):** The code now includes a visualization of the Empirical Cumulative Distribution Function (ECDF) of the data and the Cumulative Distribution Function (CDF) of the hypothesized distribution.  This is *extremely* helpful for understanding the results of the KS test.  It visually shows how well the data's distribution matches the theoretical distribution.
+
+6. **Example with Different Distribution:** The code includes an example of testing data from a *Uniform* distribution against the *Normal* distribution. This demonstrates how the test can be used to compare data against different distributions and how the results will differ depending on the true distribution of the data.
+
+7. **`ecdf` function:** Uses the `ecdf` function from `StatsBase.jl` to generate the ECDF. You'll need to install it: `] add StatsBase` and add `using StatsBase` to your code.
+
+**How to Use with Your Data:**
+
+1. **Replace the sample data:**  Instead of `data = rand(Normal(mu, sigma), n)`, use your own data.  Load it into a vector using `CSV.jl`, `DataFrames.jl`, or other appropriate methods.
+2. **Specify the null hypothesis:**  Change `d = Normal(0, 1)` to the distribution you want to test against.  For example, `d = Exponential(2)` to test against an Exponential distribution with a mean of 2.
+3. **Run the test and interpret:**  Run the code and interpret the p-value as explained in the comments.  The visualization will help you understand the results.
+
+The KS test is a powerful tool, but remember that it's just one test.  It's always a good idea to combine the KS test with other methods, such as visual inspection of histograms and QQ plots, to get a complete understanding of your data's distribution.

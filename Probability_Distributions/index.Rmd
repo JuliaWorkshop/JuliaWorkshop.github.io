@@ -25,6 +25,16 @@ Column {.tabset}
 
 #### Probability Distributions with Julia:
 
+Log-Normal Distribution {data-navmenu="Distributions"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+
+```{r child = "Distributions/Log_Normal_Distribution_Julia.Rmd"}
+```
+
 Rayleigh Distribution {data-navmenu="Distributions"}
 =====================================
 
@@ -33,6 +43,10 @@ Column {.tabset}
 
 
 ```{r child = "Distributions/Rayleigh_Distribution_Julia.Rmd"}
+```
+
+
+```{r child = "Distributions/Rayleigh_Distribution_Julia_Example.Rmd"}
 ```
 
 Cauchy Distribution {data-navmenu="Distributions"}

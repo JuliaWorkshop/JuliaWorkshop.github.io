@@ -37,6 +37,8 @@ This course provides a comprehensive introduction to probability distributions a
 
 * Develop skills in statistical modeling and inference
 
+----------------------------------------------
+
 **Week 1: Introduction to Julia and Probability Concepts**
 
 * Overview of Julia programming language
@@ -177,13 +179,29 @@ This course provides a comprehensive introduction to probability distributions a
 
 * Additional readings and resources provided during the course
 
-**Instructor Contact**:
-
-* Office hours: [Specify time]
-
-* Email: [Instructor's email]
-
-* Course website: [Provide link]
+-----------------------------------------------
 
 This revised syllabus includes a dedicated week for specialized probability distributions, such as Weibull, Log-logistic, Gamma, Pareto, and Rayleigh distributions, ensuring comprehensive coverage of these important topics. 
 
+### Supported Distributions**
+
+The Distributions.jl package in Julia supports a wide variety of probability distributions, including:
+
+* **Univariate Distributions:**
+    * Continuous: Normal, Uniform, Exponential, Gamma, Beta, Cauchy, Chi-squared, F, t, Weibull, and many more.
+    * Discrete: Binomial, Poisson, Bernoulli, Geometric, Negative Binomial, and more.
+* **Multivariate Distributions:**
+    * Multinomial, Multivariate Normal, Dirichlet, Wishart, and others.
+* **Matrix-variate Distributions:**
+    * Matrix Normal, Matrix T, and others.
+
+-----------------------------------------------------------------
+
+The package also provides tools for working with:
+
+* **Truncated and Censored Distributions:** Create distributions with restricted support.
+* **Mixture Models:** Combine multiple distributions.
+* **Product Distributions:** Create distributions from independent random variables.
+* **Order Statistics:** Work with the k-th smallest value from a sample.
+
+You can find a comprehensive list of supported distributions and their properties in the Distributions.jl documentation: [https://juliastats.org/Distributions.jl/stable/](https://juliastats.org/Distributions.jl/stable/)

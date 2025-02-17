@@ -1,0 +1,98 @@
+## A Short Tutorial on Using Game-Theoretic Analysis with Julia
+
+This tutorial provides a basic introduction to using Julia for game-theoretic analysis, focusing on representing games and finding Nash Equilibria. We'll use the `Nash` package, so make sure you have Julia installed and the package added:
+
+```julia
+using Pkg
+Pkg.add("Nash")
+using Nash
+```
+
+### 1. Representing Games in Julia
+
+We'll start by representing a simple game, the Prisoner's Dilemma.  The payoff matrix is crucial. In Julia with the `Nash` package, we represent it as a matrix (or tuple of matrices for multi-player games). For a two-player game, the rows represent the strategies of player 1, and the columns represent the strategies of player 2. The entries represent the payoffs.
+
+```julia
+# Prisoner's Dilemma payoff matrix
+# (C = Cooperate, D = Defect)
+
+# Player 1's payoffs (rows) for each combination of strategies
+player1_payoffs = [
+    -1, -3  # C vs C, C vs D
+    0, -2   # D vs C, D vs D
+]
+
+# Player 2's payoffs (rows) for each combination of strategies
+player2_payoffs = [
+    -1, 0   # C vs C, C vs D
+    -3, -2  # D vs C, D vs D
+]
+
+# Create the game
+game = Game(player1_payoffs, player2_payoffs) # For a two-player game
+```
+
+**Explanation:**
+
+* `player1_payoffs` and `player2_payoffs` are matrices representing the payoffs for each player.  The order is *crucial*.  `player1_payoffs[i,j]` is the payoff to player 1 when player 1 plays strategy `i` and player 2 plays strategy `j`.  The same logic applies to `player2_payoffs`.
+* `Game(player1_payoffs, player2_payoffs)` constructs the game object.
+
+### 2. Finding Nash Equilibria
+
+Now, let's find the Nash Equilibria (NE) of the Prisoner's Dilemma.  We'll use the `nash_equilibria` function.
+
+```julia
+equilibria = nash_equilibria(game)
+println(equilibria)
+```
+
+The output will be a `Set` of tuples, where each tuple represents a Nash Equilibrium.  Each element within the tuple is a probability distribution over the strategies for each player.  In the Prisoner's Dilemma, the output will indicate that the only NE is where both players defect (D,D).  The output might look like this (the exact format might vary slightly):
+
+```
+Set{Tuple{Vector{Float64}, Vector{Float64}}} with 1 element:
+  ([0.0, 1.0], [0.0, 1.0])
+```
+
+This means the NE is where player 1 plays strategy 2 (Defect) with probability 1, and player 2 plays strategy 2 (Defect) with probability 1.
+
+### 3. Interpreting the Results
+
+The output `([0.0, 1.0], [0.0, 1.0])` is a tuple of probability vectors.
+
+* `[0.0, 1.0]` for Player 1 means Player 1 plays strategy 1 (Cooperate) with probability 0.0 and strategy 2 (Defect) with probability 1.0.
+* `[0.0, 1.0]` for Player 2 means Player 2 plays strategy 1 (Cooperate) with probability 0.0 and strategy 2 (Defect) with probability 1.0.
+
+Therefore, the Nash Equilibrium is (Defect, Defect).
+
+### 4.  Mixed Strategies
+
+Games can also have mixed strategy Nash Equilibria.  Consider a game like Matching Pennies:
+
+```julia
+player1_payoffs_mp = [
+    1, -1
+    -1, 1
+]
+
+player2_payoffs_mp = [
+    -1, 1
+    1, -1
+]
+
+matching_pennies = Game(player1_payoffs_mp, player2_payoffs_mp)
+equilibria_mp = nash_equilibria(matching_pennies)
+println(equilibria_mp)
+```
+
+The output will show a mixed strategy NE where both players randomize equally between their two strategies:
+
+```
+Set{Tuple{Vector{Float64}, Vector{Float64}}} with 1 element:
+  ([0.5, 0.5], [0.5, 0.5])
+```
+
+### 5.  n-Player Games
+
+The `Nash` package can also handle n-player games.  For example, a three-player game requires a tuple of three payoff matrices.  The dimensions of the matrices need to reflect all possible strategy combinations.  This gets more complex quickly, but the core concept is the same.  Consult the `Nash` package documentation for details on how to structure the payoff matrices for n-player games.
+
+This tutorial provides a basic introduction.  The `Nash` package offers more functionalities, including support for finding other game-theoretic solution concepts.  Refer to the package documentation for more advanced usage. Remember to use `?nash_equilibria` or `help(nash_equilibria)` in the Julia REPL for help on specific functions.  This tutorial should give you a solid starting point for exploring game theory with Julia!

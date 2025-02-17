@@ -2794,6 +2794,15 @@ window.FlexDashboardComponents.push({
 <h1>About</h1>
 <div id="column" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
+<div id="datasets-for-julia" class="section level3">
+<h3>Datasets for Julia</h3>
+</div>
+</div>
+</div>
+<div id="rdatasets" class="section level1" data-navmenu="Data Science">
+<h1>RDatasets</h1>
+<div id="column-1" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
 <div id="the-rdatasets.jl-package" class="section level3">
 <h3>The <code>RDatasets.jl</code> package</h3>
 <p>The <code>RDatasets.jl</code> package in Julia provides an easy way
@@ -2837,9 +2846,133 @@ for a targeted list of datasets.</p>
 </div>
 </div>
 </div>
+<div id="scikit-learn-datasets" class="section level1" data-navmenu="Data Science">
+<h1>Scikit-learn Datasets</h1>
+<div id="column-2" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="scikit-learn-datasets-1" class="section level3">
+<h3>Scikit-learn Datasets</h3>
+<h3>
+Scikit-learn Datasets
+</h3>
+<p>Scikit-learn comes with a number of built-in datasets that are useful
+for learning about and experimenting with machine learning techniques.
+These datasets are often called “toy datasets” because they are
+relatively small and simple, but they are still useful for illustrating
+the behavior of different algorithms.</p>
+<p>Here are some of the most popular toy datasets in scikit-learn:</p>
+<ul>
+<li><strong>Iris:</strong> This dataset contains measurements of the
+sepal and petal lengths and widths of 150 iris flowers, as well as the
+species of each flower. It is often used for classification tasks.</li>
+<li><strong>Diabetes:</strong> This dataset contains measurements of
+various features of 442 patients with diabetes, as well as a measure of
+disease progression one year after baseline. It is often used for
+regression tasks.</li>
+<li><strong>Digits:</strong> This dataset contains images of handwritten
+digits from 0 to 9. It is often used for classification tasks.</li>
+<li><strong>Linnerud:</strong> This dataset contains measurements of the
+physical exercise and physiological characteristics of 20 middle-aged
+men. It is a multivariate regression dataset.</li>
+<li><strong>Wine:</strong> This dataset contains measurements of the
+chemical properties of 178 wines, as well as the cultivar of each wine.
+It is often used for classification tasks.</li>
+<li><strong>Breast cancer Wisconsin:</strong> This dataset contains
+measurements of the features of 569 breast masses, as well as whether
+each mass is malignant or benign. It is often used for classification
+tasks.</li>
+</ul>
+<p>In addition to these toy datasets, scikit-learn also provides a
+number of functions for generating synthetic datasets. These functions
+can be used to create datasets with specific properties, such as a given
+number of features, a given number of classes, or a given level of
+noise.</p>
+<p>The scikit-learn datasets are a valuable resource for anyone who
+wants to learn about or experiment with machine learning. They are
+well-documented and easy to use, and they provide a good starting point
+for many machine learning tasks.</p>
+</div>
+<div id="creating-synthetic-datasets" class="section level3">
+<h3>Creating Synthetic Datasets</h3>
+<p>Scikit-learn is a powerful Python library for machine learning, and
+it provides several tools for generating synthetic datasets. Here’s a
+tutorial on how to create synthetic datasets using scikit-learn:</p>
+<p><strong>1. Importing Libraries</strong></p>
+<p>First, import the necessary libraries:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_classification, make_regression, make_blobs, make_circles, make_moons</span></code></pre></div>
+<p><strong>2. Generating Datasets for Classification</strong></p>
+<ul>
+<li><strong><code>make_classification</code></strong>: This function
+generates a synthetic classification dataset. You can control the number
+of samples, features, classes, and other parameters.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">2</span>, n_informative<span class="op">=</span><span class="dv">2</span>, n_redundant<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>                           n_clusters_per_class<span class="op">=</span><span class="dv">1</span>, n_classes<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">25</span>, edgecolor<span class="op">=</span><span class="st">&#39;k&#39;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<ul>
+<li><strong><code>make_blobs</code></strong>: This function generates
+isotropic Gaussian blobs for clustering.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">100</span>, centers<span class="op">=</span><span class="dv">3</span>, n_features<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">25</span>, edgecolor<span class="op">=</span><span class="st">&#39;k&#39;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<ul>
+<li><strong><code>make_circles</code></strong>: This function generates
+data in a circle.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>X, y <span class="op">=</span> make_circles(n_samples<span class="op">=</span><span class="dv">100</span>, noise<span class="op">=</span><span class="fl">0.1</span>, factor<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">25</span>, edgecolor<span class="op">=</span><span class="st">&#39;k&#39;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<ul>
+<li><strong><code>make_moons</code></strong>: This function generates
+two interleaving half circles.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>X, y <span class="op">=</span> make_moons(n_samples<span class="op">=</span><span class="dv">100</span>, noise<span class="op">=</span><span class="fl">0.1</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">25</span>, edgecolor<span class="op">=</span><span class="st">&#39;k&#39;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><strong>3. Generating Datasets for Regression</strong></p>
+<ul>
+<li><strong><code>make_regression</code></strong>: This function
+generates a synthetic regression dataset.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>X, y <span class="op">=</span> make_regression(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">1</span>, noise<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>plt.scatter(X, y, marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, s<span class="op">=</span><span class="dv">25</span>, edgecolor<span class="op">=</span><span class="st">&#39;k&#39;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><strong>4. Customizing Datasets</strong></p>
+<p>You can customize the generated datasets by adjusting the parameters
+of the functions. For example, you can control the number of samples,
+features, classes, noise level, and more.</p>
+<p><strong>5. Using the Datasets</strong></p>
+<p>The generated datasets can be used for various machine learning
+tasks, such as training and evaluating models.</p>
+<p><strong>Additional Tips</strong></p>
+<ul>
+<li>You can use the <code>random_state</code> parameter to ensure
+reproducibility of your results.</li>
+<li>You can visualize the datasets using Matplotlib to better understand
+their structure.</li>
+<li>Scikit-learn also provides other functions for generating synthetic
+datasets, such as <code>make_gaussian_quantiles</code> and
+<code>make_spd_matrix</code>.</li>
+</ul>
+<p>This tutorial provides a basic overview of how to create synthetic
+datasets using scikit-learn. By experimenting with different functions
+and parameters, you can generate datasets that are tailored to your
+specific needs.</p>
+</div>
+</div>
+</div>
 <div id="nyc-flights" class="section level1" data-navmenu="Data Science">
 <h1>NYC Flights</h1>
-<div id="column-1" class="section level2 tabset">
+<div id="column-3" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="nyc-flights-nycflights13" class="section level3">
 <h3>NYC Flights (<code>nycflights13</code>)</h3>
@@ -2875,20 +3008,20 @@ forecast flight delays or other aviation-related outcomes.</li>
 </ul>
 <p>The NYC Flights 13 dataset provides a valuable resource for learning
 and applying data analysis skills in R.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">HTTP</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># Download the NYC Flights 13 data from GitHub</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>response <span class="op">=</span> HTTP.<span class="fu">get</span>(url)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">String</span>(response.body)</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># Read the data into a DataFrame</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>flights <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">IOBuffer</span>(data), DataFrame)</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># Inspect the dimensions of the dataset</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>num_rows, num_cols <span class="op">=</span> <span class="fu">size</span>(flights) </span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of rows:&quot;</span>, num_rows)</span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of columns:&quot;</span>, num_cols)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">HTTP</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Download the NYC Flights 13 data from GitHub</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>response <span class="op">=</span> HTTP.<span class="fu">get</span>(url)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">String</span>(response.body)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co"># Read the data into a DataFrame</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>flights <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">IOBuffer</span>(data), DataFrame)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co"># Inspect the dimensions of the dataset</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>num_rows, num_cols <span class="op">=</span> <span class="fu">size</span>(flights) </span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of rows:&quot;</span>, num_rows)</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of columns:&quot;</span>, num_cols)</span></code></pre></div>
 <p><strong>Explanation:</strong></p>
 <ol style="list-style-type: decimal">
 <li><strong>Import necessary packages:</strong>
@@ -2913,98 +3046,204 @@ prints them to the console.</li>
 <p>This will output the number of rows and columns in the NYC Flights 13
 dataset.</p>
 <p><strong>Exercise 1.1: Basic Data Exploration</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">HTTP</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># Download and load the data</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv&quot;</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>response <span class="op">=</span> HTTP.<span class="fu">get</span>(url)</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">String</span>(response.body)</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>flights <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">IOBuffer</span>(data), DataFrame)</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># Print the first 10 rows</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;First 10 rows:&quot;</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">show</span>(<span class="fu">first</span>(flights, <span class="fl">10</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Determine the number of rows and columns</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>num_rows, num_cols <span class="op">=</span> <span class="fu">size</span>(flights)</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of rows:&quot;</span>, num_rows)</span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of columns:&quot;</span>, num_cols)</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co"># Print data types of each column</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Data types of each column:&quot;</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="cf">for</span> (col_name, col_type) <span class="kw">in</span> <span class="fu">pairs</span>(<span class="fu">eltype</span>(flights))</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">$</span>col_name<span class="st">: </span><span class="sc">$</span>col_type<span class="st">&quot;</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">CSV</span>, <span class="bu">HTTP</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Download and load the data</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/tidyverse/nycflights13/master/data-raw/nycflights13.csv&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>response <span class="op">=</span> HTTP.<span class="fu">get</span>(url)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">String</span>(response.body)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>flights <span class="op">=</span> CSV.<span class="fu">read</span>(<span class="fu">IOBuffer</span>(data), DataFrame)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># Print the first 10 rows</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;First 10 rows:&quot;</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="fu">show</span>(<span class="fu">first</span>(flights, <span class="fl">10</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co"># Determine the number of rows and columns</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>num_rows, num_cols <span class="op">=</span> <span class="fu">size</span>(flights)</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of rows:&quot;</span>, num_rows)</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of columns:&quot;</span>, num_cols)</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co"># Print data types of each column</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Data types of each column:&quot;</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="cf">for</span> (col_name, col_type) <span class="kw">in</span> <span class="fu">pairs</span>(<span class="fu">eltype</span>(flights))</span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">&quot;</span><span class="sc">$</span>col_name<span class="st">: </span><span class="sc">$</span>col_type<span class="st">&quot;</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
 <p><strong>Exercise 1.2: Unique Airlines and Flight Counts</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Find unique airlines</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>unique_carriers <span class="op">=</span> <span class="fu">unique</span>(flights.carrier)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Unique airlines:&quot;</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">println</span>(unique_carriers)</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># Count flights for each carrier</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>carrier_counts <span class="op">=</span> <span class="fu">countmap</span>(flights.carrier)</span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Flight counts for each carrier:&quot;</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">println</span>(carrier_counts)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Find unique airlines</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>unique_carriers <span class="op">=</span> <span class="fu">unique</span>(flights.carrier)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Unique airlines:&quot;</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="fu">println</span>(unique_carriers)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co"># Count flights for each carrier</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>carrier_counts <span class="op">=</span> <span class="fu">countmap</span>(flights.carrier)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Flight counts for each carrier:&quot;</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="fu">println</span>(carrier_counts)</span></code></pre></div>
 <p><strong>Exercise 2.1: Filtering and Selecting Data</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Filter flights departing from JFK</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>jfk_flights <span class="op">=</span> <span class="fu">filter</span>(<span class="op">:</span>origin <span class="op">=&gt;</span> <span class="op">==</span>(<span class="st">&quot;JFK&quot;</span>), flights)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co"># Select specific columns</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>selected_columns <span class="op">=</span> <span class="fu">select</span>(jfk_flights, [<span class="op">:</span>carrier, <span class="op">:</span>flight, <span class="op">:</span>origin, <span class="op">:</span>dest])</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Flights departing from JFK:&quot;</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="fu">show</span>(selected_columns)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Filter flights departing from JFK</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>jfk_flights <span class="op">=</span> <span class="fu">filter</span>(<span class="op">:</span>origin <span class="op">=&gt;</span> <span class="op">==</span>(<span class="st">&quot;JFK&quot;</span>), flights)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># Select specific columns</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>selected_columns <span class="op">=</span> <span class="fu">select</span>(jfk_flights, [<span class="op">:</span>carrier, <span class="op">:</span>flight, <span class="op">:</span>origin, <span class="op">:</span>dest])</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Flights departing from JFK:&quot;</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">show</span>(selected_columns)</span></code></pre></div>
 <p><strong>Exercise 2.2: Filtering and Calculating Average
 Delay</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Filter flights with arrival delay &gt; 30 minutes</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>delayed_flights <span class="op">=</span> <span class="fu">filter</span>(<span class="op">:</span>arr_delay <span class="op">=&gt;</span> <span class="op">&gt;=</span>(<span class="fl">30</span>), flights)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Calculate average arrival delay</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>avg_delay <span class="op">=</span> <span class="fu">mean</span>(delayed_flights.arr_delay)</span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average arrival delay for delayed flights:&quot;</span>, avg_delay)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Filter flights with arrival delay &gt; 30 minutes</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>delayed_flights <span class="op">=</span> <span class="fu">filter</span>(<span class="op">:</span>arr_delay <span class="op">=&gt;</span> <span class="op">&gt;=</span>(<span class="fl">30</span>), flights)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># Calculate average arrival delay</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>avg_delay <span class="op">=</span> <span class="fu">mean</span>(delayed_flights.arr_delay)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average arrival delay for delayed flights:&quot;</span>, avg_delay)</span></code></pre></div>
 <p><strong>Exercise 3.1: Creating a New Column and Calculating Average
 Delay</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Create a new column &#39;total_delay&#39;</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>flights_with_total_delay <span class="op">=</span> <span class="fu">transform</span>(flights, <span class="op">:</span>total_delay <span class="op">=&gt;</span> (x, y) <span class="op">-&gt;</span> x <span class="op">.+</span> y, <span class="op">:</span>dep_delay, <span class="op">:</span>arr_delay)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># Calculate average total delay for each carrier</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>avg_total_delay_by_carrier <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(flights_with_total_delay, <span class="op">:</span>carrier), <span class="op">:</span>total_delay <span class="op">=&gt;</span> mean <span class="op">=&gt;</span> <span class="op">:</span>avg_total_delay)</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average total delay for each carrier:&quot;</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">show</span>(avg_total_delay_by_carrier)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Create a new column &#39;total_delay&#39;</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>flights_with_total_delay <span class="op">=</span> <span class="fu">transform</span>(flights, <span class="op">:</span>total_delay <span class="op">=&gt;</span> (x, y) <span class="op">-&gt;</span> x <span class="op">.+</span> y, <span class="op">:</span>dep_delay, <span class="op">:</span>arr_delay)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co"># Calculate average total delay for each carrier</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>avg_total_delay_by_carrier <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(flights_with_total_delay, <span class="op">:</span>carrier), <span class="op">:</span>total_delay <span class="op">=&gt;</span> mean <span class="op">=&gt;</span> <span class="op">:</span>avg_total_delay)</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average total delay for each carrier:&quot;</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="fu">show</span>(avg_total_delay_by_carrier)</span></code></pre></div>
 <p><strong>Exercise 3.2: Grouping and Counting Flights by
 Month</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Create a new column &#39;flight_month&#39;</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>flights_with_month <span class="op">=</span> <span class="fu">transform</span>(flights, <span class="op">:</span>flight_month <span class="op">=&gt;</span> x <span class="op">-&gt;</span> <span class="fu">month</span>(x), <span class="op">:</span>month)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Group by &#39;flight_month&#39; and count flights</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>monthly_flight_counts <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(flights_with_month, <span class="op">:</span>flight_month), nrow <span class="op">=&gt;</span> <span class="op">:</span>num_flights)</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of flights per month:&quot;</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">show</span>(monthly_flight_counts)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Create a new column &#39;flight_month&#39;</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>flights_with_month <span class="op">=</span> <span class="fu">transform</span>(flights, <span class="op">:</span>flight_month <span class="op">=&gt;</span> x <span class="op">-&gt;</span> <span class="fu">month</span>(x), <span class="op">:</span>month)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co"># Group by &#39;flight_month&#39; and count flights</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>monthly_flight_counts <span class="op">=</span> <span class="fu">combine</span>(<span class="fu">groupby</span>(flights_with_month, <span class="op">:</span>flight_month), nrow <span class="op">=&gt;</span> <span class="op">:</span>num_flights)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Number of flights per month:&quot;</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="fu">show</span>(monthly_flight_counts)</span></code></pre></div>
 <p><strong>Exercise 4.1: Data Visualization (requires
 Plots.jl)</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Histogram of arrival delays</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">histogram</span>(flights.arr_delay, xlabel<span class="op">=</span><span class="st">&quot;Arrival Delay (minutes)&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Frequency&quot;</span>, title<span class="op">=</span><span class="st">&quot;Histogram of Arrival Delays&quot;</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># Bar chart of flights per carrier</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">bar</span>(<span class="fu">keys</span>(carrier_counts), <span class="fu">values</span>(carrier_counts), xlabel<span class="op">=</span><span class="st">&quot;Carrier&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Number of Flights&quot;</span>, title<span class="op">=</span><span class="st">&quot;Flights per Carrier&quot;</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co"># Scatter plot of departure delay vs. arrival delay</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">scatter</span>(flights.dep_delay, flights.arr_delay, xlabel<span class="op">=</span><span class="st">&quot;Departure Delay (minutes)&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Arrival Delay (minutes)&quot;</span>, title<span class="op">=</span><span class="st">&quot;Departure Delay vs. Arrival Delay&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co"># Histogram of arrival delays</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="fu">histogram</span>(flights.arr_delay, xlabel<span class="op">=</span><span class="st">&quot;Arrival Delay (minutes)&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Frequency&quot;</span>, title<span class="op">=</span><span class="st">&quot;Histogram of Arrival Delays&quot;</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># Bar chart of flights per carrier</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="fu">bar</span>(<span class="fu">keys</span>(carrier_counts), <span class="fu">values</span>(carrier_counts), xlabel<span class="op">=</span><span class="st">&quot;Carrier&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Number of Flights&quot;</span>, title<span class="op">=</span><span class="st">&quot;Flights per Carrier&quot;</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co"># Scatter plot of departure delay vs. arrival delay</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="fu">scatter</span>(flights.dep_delay, flights.arr_delay, xlabel<span class="op">=</span><span class="st">&quot;Departure Delay (minutes)&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Arrival Delay (minutes)&quot;</span>, title<span class="op">=</span><span class="st">&quot;Departure Delay vs. Arrival Delay&quot;</span>)</span></code></pre></div>
 <p><strong>Note:</strong> These are basic examples. You can further
 explore and refine these exercises based on the specific learning
 objectives and the level of your students.</p>
 <p>Remember to install the required packages (<code>DataFrames</code>,
 <code>CSV</code>, <code>HTTP</code>, <code>Plots</code>) before running
 these scripts. You can install them using the Julia package manager:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">&quot;DataFrames&quot;</span>, <span class="st">&quot;CSV&quot;</span>, <span class="st">&quot;HTTP&quot;</span>, <span class="st">&quot;Plots&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">&quot;DataFrames&quot;</span>, <span class="st">&quot;CSV&quot;</span>, <span class="st">&quot;HTTP&quot;</span>, <span class="st">&quot;Plots&quot;</span>])</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="diamonds-dataset" class="section level1" data-navmenu="Data Science">
+<h1>Diamonds Dataset</h1>
+<div id="column-4" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<p>Absolutely! The Diamonds dataset from the <code>ggplot2</code>
+package in R is a popular dataset for practicing data analysis and
+visualization. In this tutorial, we’ll explore how to work with the
+Diamonds dataset using Julia. Let’s get started!</p>
+<div id="install-julia" class="section level3">
+<h3>1. Install Julia</h3>
+<p>Make sure you have Julia installed on your system. You can download
+the latest version from <a href="https://julialang.org/downloads/">Julia’s official
+website</a>.</p>
+</div>
+<div id="install-required-packages" class="section level3">
+<h3>2. Install Required Packages</h3>
+<p>We’ll need several Julia packages for data manipulation and
+visualization. Open your Julia REPL and run the following commands:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;CSV&quot;</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;DataFrames&quot;</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;RCall&quot;</span>)</span></code></pre></div>
+</div>
+<div id="load-the-diamonds-dataset" class="section level3">
+<h3>3. Load the Diamonds Dataset</h3>
+<p>We’ll use <code>RCall</code> to load the Diamonds dataset from R into
+Julia.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="co"># Load the Diamonds dataset from R</span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>R<span class="st">&quot;data(&#39;diamonds&#39;, package=&#39;ggplot2&#39;)&quot;</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>diamonds <span class="op">=</span> <span class="fu">rcopy</span>(R<span class="st">&quot;diamonds&quot;</span>)</span></code></pre></div>
+</div>
+<div id="explore-the-dataset" class="section level3">
+<h3>4. Explore the Dataset</h3>
+<p>Let’s take a look at the first few rows of the dataset and get an
+overview of its structure.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co"># Display the first few rows of the dataset</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">first</span>(diamonds, <span class="fl">5</span>)</span></code></pre></div>
+<p>The Diamonds dataset contains the following columns: -
+<strong>carat</strong>: The weight of the diamond. -
+<strong>cut</strong>: The quality of the cut (Fair, Good, Very Good,
+Premium, Ideal). - <strong>color</strong>: The diamond’s color, from J
+(worst) to D (best). - <strong>clarity</strong>: A measurement of how
+clear the diamond is (I1, SI2, SI1, VS2, VS1, VVS2, VVS1, IF). -
+<strong>depth</strong>: The total depth percentage (z / mean(x, y) = 2 *
+z / (x + y)). - <strong>table</strong>: The width of the top of the
+diamond relative to the widest point. - <strong>price</strong>: The
+price of the diamond. - <strong>x</strong>: Length in mm. -
+<strong>y</strong>: Width in mm. - <strong>z</strong>: Depth in mm.</p>
+</div>
+<div id="data-analysis" class="section level3">
+<h3>5. Data Analysis</h3>
+<p>Let’s perform some basic data analysis on the Diamonds dataset.</p>
+<div id="a.-summary-statistics" class="section level4">
+<h4>a. Summary Statistics</h4>
+<p>We can use the <code>describe</code> function from the
+<code>DataFrames</code> package to get summary statistics for the
+dataset.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">describe</span>(diamonds)</span></code></pre></div>
+</div>
+<div id="b.-average-price-by-cut" class="section level4">
+<h4>b. Average Price by Cut</h4>
+<p>Let’s calculate the average price of diamonds by their cut
+quality.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Group by cut and calculate the average price</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>grouped_data <span class="op">=</span> <span class="fu">groupby</span>(diamonds, <span class="op">:</span>cut)</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>average_price_by_cut <span class="op">=</span> <span class="fu">combine</span>(grouped_data, <span class="op">:</span>price <span class="op">=&gt;</span> mean <span class="op">=&gt;</span> <span class="op">:</span>average_price)</span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>average_price_by_cut</span></code></pre></div>
+</div>
+</div>
+<div id="data-visualization" class="section level3">
+<h3>6. Data Visualization</h3>
+<p>We’ll use the <code>Plots</code> package to create visualizations of
+the Diamonds dataset.</p>
+<div id="a.-histogram-of-diamond-prices" class="section level4">
+<h4>a. Histogram of Diamond Prices</h4>
+<p>Let’s create a histogram of diamond prices.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co"># Histogram of diamond prices</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="fu">histogram</span>(diamonds.price, bins <span class="op">=</span> <span class="fl">50</span>, xlabel <span class="op">=</span> <span class="st">&quot;Price&quot;</span>, ylabel <span class="op">=</span> <span class="st">&quot;Frequency&quot;</span>, title <span class="op">=</span> <span class="st">&quot;Histogram of Diamond Prices&quot;</span>)</span></code></pre></div>
+</div>
+<div id="b.-scatter-plot-of-carat-vs.-price" class="section level4">
+<h4>b. Scatter Plot of Carat vs. Price</h4>
+<p>Let’s create a scatter plot to visualize the relationship between
+diamond weight (carat) and price.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Scatter plot of carat vs. price</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">scatter</span>(diamonds.carat, diamonds.price, xlabel <span class="op">=</span> <span class="st">&quot;Carat&quot;</span>, ylabel <span class="op">=</span> <span class="st">&quot;Price&quot;</span>, title <span class="op">=</span> <span class="st">&quot;Carat vs. Price&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="conclusion" class="section level3">
+<h3>Conclusion</h3>
+<p>In this tutorial, we loaded the Diamonds dataset from R into Julia
+and explored it using various data analysis and visualization
+techniques. By leveraging the strengths of both R and Julia, you can
+enhance your data analysis workflow. Happy coding!</p>
+<p>If you have any questions or need further assistance, feel free to
+ask!</p>
 </div>
 </div>
 </div>
 <div id="pima-diabetes-dataset" class="section level1" data-navmenu="Data Science">
 <h1>Pima Diabetes Dataset</h1>
-<div id="column-2" class="section level2 tabset">
+<div id="column-5" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="pima-diabetes-data" class="section level3">
 <h3>Pima Diabetes Data</h3>
@@ -3080,7 +3319,7 @@ crucial to be mindful of potential biases and limitations.</p>
 </div>
 <div id="sonar-dataset" class="section level1" data-navmenu="Data Science">
 <h1>Sonar Dataset</h1>
-<div id="column-3" class="section level2 tabset">
+<div id="column-6" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="sonar-dataset-1" class="section level3">
 <h3>Sonar Dataset</h3>
@@ -3142,7 +3381,7 @@ and techniques.</p>
 </div>
 <div id="survival-analysis" class="section level1" data-navmenu="Survival Analysis">
 <h1>Survival Analysis</h1>
-<div id="column-4" class="section level2 tabset">
+<div id="column-7" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="survival-analysis-1" class="section level3">
 <h3>Survival Analysis</h3>
@@ -3211,7 +3450,7 @@ the software or through readily available online repositories.</li>
 </div>
 <div id="lung-cancer-data" class="section level1" data-navmenu="Survival Analysis">
 <h1>Lung Cancer Data</h1>
-<div id="column-5" class="section level2 tabset">
+<div id="column-8" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="the-lung-cancer-dataset" class="section level3">
 <h3>The Lung Cancer Dataset</h3>

@@ -1,4 +1,6 @@
-## Modeling Probability Distributions for Reliability Analysis in Julia
+### Reliability Analysis in Julia
+
+<h3>Modeling Probability Distributions for Reliability Analysis in Julia</h3>
 
 This tutorial explores how to use Julia to model probability distributions commonly encountered in reliability analysis and industrial applications. We'll cover key packages, common distributions, parameter fitting, and basic reliability calculations.
 

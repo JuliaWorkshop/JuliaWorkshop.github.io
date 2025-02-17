@@ -1,0 +1,155 @@
+---
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+### High-Performance Computing with Julia: A Hands-On Tutorial
+
+This tutorial provides a practical introduction to high-performance computing (HPC) with Julia. We'll cover key concepts like benchmarking, optimization, parallelization (multithreading and distributed computing), and leveraging GPUs.
+
+**Prerequisites:**
+
+* Basic knowledge of Julia programming.
+* Julia installation (preferably a recent version).
+
+**1. Benchmarking:**
+
+Before optimizing, we need to measure performance. Julia's `@benchmark` macro from the `BenchmarkTools` package is excellent for this.
+
+```julia
+using BenchmarkTools
+
+function my_function(n)
+  sum(1:n)
+end
+
+@benchmark my_function(1000000)
+```
+
+This will run `my_function` multiple times and provide statistics like average execution time, memory allocation, etc.  It's crucial to benchmark *before* and *after* optimizations to quantify improvements.
+
+**2. Profiling:**
+
+Profiling helps identify performance bottlenecks. Julia's built-in profiler and tools like `ProfileView.jl` can visualize where your code spends most of its time.
+
+```julia
+using Profile, ProfileView
+
+@profile my_function(1000000) # Run with profiling enabled
+ProfileView.view() # Open the profile viewer
+```
+
+The profile viewer will highlight the functions consuming the most time, guiding your optimization efforts.
+
+**3. Optimization Techniques:**
+
+* **Type Stability:** Julia's performance relies heavily on type stability. Ensure your functions' input and output types are consistent. Use type annotations where necessary.
+
+```julia
+function my_function(n::Int64) :: Int64 # Type annotations
+  sum(1:n)
+end
+```
+
+* **Avoid Global Variables:** Global variables can hinder performance.  Pass variables as arguments to functions.
+
+* **Loop Optimization:**  Avoid unnecessary memory allocations inside loops.  Use in-place operations where possible.
+
+* **Vectorization:**  Leverage Julia's vectorized operations for faster array processing.
+
+```julia
+# Instead of:
+for i in 1:length(arr)
+  arr[i] = arr[i] * 2
+end
+
+# Use:
+arr .*= 2 # Vectorized operation
+```
+
+**4. Parallelization:**
+
+* **Multithreading:** Julia supports multithreading for shared-memory parallelism.  Use the `@threads` macro for parallel loops.
+
+```julia
+function parallel_sum(n)
+  total = zeros(Threads.nthreads()) # One element per thread
+  @threads for i in 1:n
+    tid = Threads.threadid()
+    total[tid] += i
+  end
+  sum(total)
+end
+
+@benchmark parallel_sum(1000000)
+```
+
+* **Distributed Computing:** For larger problems, distribute computations across multiple processes or machines using the `Distributed` package.
+
+```julia
+using Distributed
+
+addprocs(2) # Start 2 worker processes
+
+@everywhere function distributed_sum(n, start)
+  sum(start:(start + n - 1))
+end
+
+n = 1000000
+chunk_size = n ÷ nprocs()
+
+results = @distributed (+) for i in 1:nprocs()
+  distributed_sum(chunk_size, (i-1)*chunk_size + 1)
+end
+
+println("Sum: ", results)
+```
+
+**5. GPU Programming:**
+
+Julia integrates with GPUs through packages like `CUDA.jl` and `AMDGPU.jl`.  These packages provide tools for offloading computations to GPUs.
+
+```julia
+using CUDA
+
+# Example (requires CUDA.jl and a CUDA-enabled GPU)
+function gpu_function(arr)
+  arr_gpu = CuArray(arr) # Move data to GPU
+  arr_gpu .*= 2 # Perform computation on GPU
+  Array(arr_gpu) # Move result back to CPU
+end
+```
+
+**Example: Matrix Multiplication**
+
+```julia
+using BenchmarkTools, LinearAlgebra
+
+n = 1000
+A = rand(n, n)
+B = rand(n, n)
+
+# Baseline (using BLAS)
+@benchmark A * B
+
+# Multithreaded (if appropriate)
+# (Often, BLAS is already optimized for multithreading)
+
+# GPU (if available)
+using CUDA
+A_gpu = CuArray(A)
+B_gpu = CuArray(B)
+@benchmark A_gpu * B_gpu
+```
+
+**Key Considerations:**
+
+* **Amdahl's Law:**  Parallelization has limits.  The sequential portion of your code will ultimately constrain performance gains.
+* **Communication Overhead:**  Transferring data between processes or to/from GPUs can be expensive.  Minimize data movement.
+* **Load Balancing:**  Distribute work evenly across processors to avoid idle time.
+
+#### Summary 
+This tutorial provides a foundation for HPC with Julia.  Explore the linked documentation and package repositories for more advanced techniques and specific use cases.  Remember to benchmark and profile your code throughout the optimization process. 

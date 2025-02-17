@@ -1,0 +1,126 @@
+### The Log-Normal Distribution
+
+<h3>Working with the Log-Normal Distribution in Julia</h3>
+
+This tutorial will guide you through using the Log-Normal distribution in Julia with the `Distributions.jl` package.  The Log-Normal distribution is useful for modeling data that is positive and skewed, often encountered in fields like finance, economics, and environmental science.
+
+**1. Setting up:**
+
+First, make sure you have Julia installed. Then, open the Julia REPL (Read-Eval-Print Loop) and install the `Distributions` package if you haven't already:
+
+```julia
+] add Distributions
+```
+
+After installation, load the package:
+
+```julia
+using Distributions
+```
+
+**2. Creating a Log-Normal distribution:**
+
+The Log-Normal distribution is parameterized by two values:
+
+* `μ` (mu): The mean of the *underlying* normal distribution.
+* `σ` (sigma): The standard deviation of the *underlying* normal distribution.
+
+*Important Note:*  `mu` and `sigma` are *not* the mean and standard deviation of the log-normal distribution itself.  They are the parameters of the normal distribution you'd get if you took the logarithm of your log-normally distributed data.
+
+Here's how to create a Log-Normal distribution with `μ = 0` and `σ = 1`:
+
+```julia
+d = LogNormal(0, 1)
+```
+
+You can create a distribution with different parameters:
+
+```julia
+d2 = LogNormal(2, 0.5)  # μ = 2, σ = 0.5
+```
+
+**3. Basic Operations:**
+
+* **Generating random samples:**
+
+```julia
+rand(d, 10) # Generates 10 random numbers from the distribution 'd'
+```
+
+* **Probability Density Function (PDF):**  The PDF gives the probability density at a given value.
+
+```julia
+pdf(d, 1.0) # Probability density at x = 1.0
+```
+
+* **Cumulative Distribution Function (CDF):** The CDF gives the probability that a random variable is less than or equal to a given value.
+
+```julia
+cdf(d, 1.0) # Probability that x <= 1.0
+```
+
+* **Quantile Function (Inverse CDF):** The quantile function finds the value below which a given proportion of the data falls.
+
+```julia
+quantile(d, 0.95) # Value below which 95% of the data falls
+```
+
+* **Mean and Standard Deviation:** Remember these are *not* the `mu` and `sigma` you used to create the distribution.
+
+```julia
+mean(d)
+std(d)
+```
+
+* **Variance:**
+
+```julia
+var(d)
+```
+
+**4. Fitting a Log-Normal distribution to data:**
+
+Let's say you have some data that you suspect follows a Log-Normal distribution. You can fit the distribution to the data using the `fit_mle` function (Maximum Likelihood Estimation):
+
+```julia
+data = rand(LogNormal(1, 0.5), 1000) # Generate some sample data
+d_fit = fit_mle(LogNormal, data) # Fit the distribution
+
+println(d_fit) # Print the fitted distribution parameters
+```
+
+**5. Working with Logarithms:**
+
+The key to the Log-Normal distribution is its relationship to the Normal distribution. If `X` is log-normally distributed, then `log(X)` is normally distributed.  This can be very useful:
+
+```julia
+x = rand(d)  # A random value from the LogNormal distribution
+y = log(x)   # The logarithm of x; y will be normally distributed
+
+# You can check this:
+typeof(y) # Float64
+
+# If you know the parameters of the underlying normal distribution, you can
+# calculate the mean and variance of the log-normal distribution:
+mu = 0
+sigma = 1
+lognormal_mean = exp(mu + sigma^2/2)
+lognormal_variance = (exp(sigma^2) - 1) * exp(2*mu + sigma^2)
+println("Theoretical lognormal mean: ", lognormal_mean)
+println("Theoretical lognormal variance: ", lognormal_variance)
+```
+
+**Example: Visualizing the distribution:**
+
+```julia
+using Plots
+x_values = range(0.01, 10, length=100) # Values for plotting
+plot(x_values, pdf.(d, x_values), label="PDF", xlabel="x", ylabel="f(x)")
+plot!(x_values, cdf.(d, x_values), label="CDF")
+```
+
+This will create a plot of the PDF and CDF of the Log-Normal distribution.  Remember to install Plots.jl if you haven't already: `] add Plots`
+
+This tutorial provides a basic overview of working with the Log-Normal distribution in Julia.  
+
+For more advanced usage and details, refer to the official `Distributions.jl` documentation: [https://juliastats.org/Distributions.jl/stable/](https://juliastats.org/Distributions.jl/stable/)

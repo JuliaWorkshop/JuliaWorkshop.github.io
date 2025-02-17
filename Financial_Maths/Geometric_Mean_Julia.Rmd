@@ -1,0 +1,79 @@
+---
+title: "Geometric Mean Function - Worked Example" 
+subtitle: "Mathematical Programming with Julia"
+author: "Julia Workshop"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Geometric Mean
+
+
+This script will calculate the geometric mean of the given data and print the result to the console. If any invalid values are encountered, it will either throw an error or issue a warning as appropriate.
+
+### Function
+
+```julia
+function geometric_mean(data)
+    """
+    Calculates the geometric mean of a series of numbers. 
+
+    Args:
+        data: A vector of numbers.
+
+    Returns:
+        The geometric mean of the data.
+
+    Raises:
+        DomainError: If any value in the data is less than or equal to zero.
+        Warning: If any value in the data is greater than 3.
+    """
+
+    # Check for invalid values
+    if any(x <= 0 for x in data)
+        throw(DomainError(data, "Geometric mean is undefined for non-positive values."))
+    end
+
+    if any(x > 3 for x in data)
+        @warn("Some values in the data are greater than 3.") 
+    end
+
+    # Calculate the geometric mean
+    product = prod(data)
+    return product^(1/length(data))
+end
+```
+
+**Explanation:**
+
+1. **Function Definition:**
+   - `geometric_mean(data)`: Defines a function named `geometric_mean` that takes a single argument, `data`, which is expected to be a vector of numbers.
+
+2. **Error Handling:**
+   - `if any(x <= 0 for x in data)`: Checks if any value in the `data` vector is less than or equal to zero. If so, it throws a `DomainError` with a descriptive message, as the geometric mean is undefined for non-positive values.
+   - `if any(x > 3 for x in data)`: Checks if any value in the `data` vector is greater than 3. If so, it issues a `@warn` message to alert the user about the potential outliers.
+
+3. **Calculate Geometric Mean:**
+   - `product = prod(data)`: Calculates the product of all values in the `data` vector using the `prod()` function.
+   - `return product^(1/length(data))`: Calculates the geometric mean by raising the product to the power of 1/n, where n is the number of elements in the `data` vector.
+
+**How to Use:**
+
+1. **Prepare your data:** Create a vector containing the numbers for which you want to calculate the geometric mean.
+
+2. **Call the function:** Call the `geometric_mean()` function with the data vector as the argument.
+
+   ```julia
+   data = [1.5, 2.0, 2.5, 3.0] 
+   result = geometric_mean(data) 
+   println("Geometric Mean:", result) 
+   ```
+
+

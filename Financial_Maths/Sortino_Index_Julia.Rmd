@@ -1,0 +1,118 @@
+---
+title: "Sortino Index - Worked Example" 
+subtitle: "Mathematical Programming with Julia"
+author: "Julia Workshop"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sortino Index
+
+The Sortino Index is a risk-adjusted return metric that measures the performance of an investment relative to the downside deviation, which is the standard deviation of returns below a specified minimum acceptable return (MAR). It is similar to the Sharpe ratio, but focuses only on downside risk rather than total volatility.
+
+**Equation:**
+
+```
+Sortino Ratio = (Rp - Rf) / σd
+```
+
+Where:
+
+* **Rp** = Portfolio return
+* **Rf** = Risk-free rate
+* **σd** = Downside deviation
+
+**Downside Deviation:**
+
+```
+σd = √[Σ(max(R - MAR, 0))^2 / n]
+```
+
+Where:
+
+* **R** = Individual returns
+* **MAR** = Minimum acceptable return
+* **n** = Number of observations
+
+**Interpretation:**
+
+* A higher Sortino ratio indicates better risk-adjusted performance, as it suggests higher returns for a given level of downside risk.
+* A negative Sortino ratio indicates that the investment's returns are below the minimum acceptable return.
+* The Sortino ratio is often used in conjunction with the Sharpe ratio to provide a more comprehensive picture of an investment's risk-return profile.
+
+
+```julia
+function sortino_ratio(returns, minimum_acceptable_return = 0.0)
+    """
+    Calculates the Sortino Ratio for a given series of returns.
+
+    Args:
+        returns: A vector of returns.
+        minimum_acceptable_return: The minimum acceptable return for the investment.
+            Defaults to 0.0.
+
+    Returns:
+        The Sortino Ratio.
+    """
+
+    # Calculate the average return
+    avg_return = mean(returns)
+
+    # Calculate the downside deviation
+    downside_deviation = sqrt(mean((returns[returns .< minimum_acceptable_return] .- minimum_acceptable_return) .^ 2))
+
+    # Calculate the Sortino Ratio
+    sortino_ratio = (avg_return - minimum_acceptable_return) / downside_deviation
+
+    return sortino_ratio
+end
+```
+
+**Explanation:**
+
+1. **Function Definition:**
+   - `sortino_ratio(returns, minimum_acceptable_return = 0.0)`: Defines the function with two arguments:
+     - `returns`: A vector containing the series of returns.
+     - `minimum_acceptable_return`: The minimum acceptable return for the investment. Defaults to 0.0.
+
+2. **Calculate Average Return:**
+   - `avg_return = mean(returns)`: Calculates the average return of the given series of returns using the `mean()` function.
+
+3. **Calculate Downside Deviation:**
+   - `downside_deviation = sqrt(mean((returns[returns .< minimum_acceptable_return] .- minimum_acceptable_return) .^ 2))`:
+     - `returns[returns .< minimum_acceptable_return]`: Filters the returns vector to include only those returns that are below the `minimum_acceptable_return`.
+     - `(returns[returns .< minimum_acceptable_return] .- minimum_acceptable_return)`: Calculates the difference between each of these filtered returns and the `minimum_acceptable_return`.
+     - `.^ 2`: Squares each of these differences.
+     - `mean(...)`: Calculates the average of the squared differences.
+     - `sqrt(...)`: Takes the square root of the average to obtain the downside deviation.
+
+4. **Calculate Sortino Ratio:**
+   - `sortino_ratio = (avg_return - minimum_acceptable_return) / downside_deviation`: Calculates the Sortino Ratio by dividing the excess return (average return minus minimum acceptable return) by the downside deviation.
+
+5. **Return Sortino Ratio:**
+   - `return sortino_ratio`: Returns the calculated Sortino Ratio.
+
+**How to Use:**
+
+1. **Import the function:** Copy and paste the function code into your Julia script.
+2. **Prepare your return data:** Create a vector containing the series of returns for your investment.
+3. **Calculate the Sortino Ratio:** Call the function with your return data and the optional `minimum_acceptable_return` argument:
+
+```julia
+# Example usage
+returns = [0.02, -0.01, 0.03, -0.02, 0.01]
+minimum_acceptable_return = 0.01
+
+sortino_ratio_value = sortino_ratio(returns, minimum_acceptable_return)
+println("Sortino Ratio: ", sortino_ratio_value)
+```
+
+This will calculate and print the Sortino Ratio for the given return series and minimum acceptable return.
+
+This implementation provides a basic framework for calculating the Sortino Ratio in Julia. You can further enhance it by adding error handling, input validation, and other features as needed.

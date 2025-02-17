@@ -1,0 +1,146 @@
+Let's create a tutorial on nonparametric statistics in Julia.
+
+## Tutorial: Nonparametric Statistics in Julia
+
+This tutorial introduces nonparametric statistical methods in Julia using packages like `HypothesisTests.jl` and `StatsBase.jl`. Nonparametric tests are useful when your data doesn't meet the assumptions of parametric tests (e.g., normality, equal variances).
+
+**1. Setting Up:**
+
+Install the necessary packages:
+
+```julia
+] add HypothesisTests StatsBase Distributions
+```
+
+Load the packages:
+
+```julia
+using HypothesisTests
+using StatsBase
+using Distributions #For generating sample data
+```
+
+**2. When to Use Nonparametric Tests:**
+
+Nonparametric tests are preferred when:
+
+* **Data is not normally distributed:**  Parametric tests assume normality. If your data is skewed, has outliers, or is otherwise non-normal, nonparametric tests are more appropriate.
+* **Small sample size:**  With small samples, it's difficult to assess normality. Nonparametric tests are often more reliable in these situations.
+* **Ordinal or ranked data:**  If your data is ordinal (e.g., ratings, rankings), parametric tests might not be applicable.
+* **Unequal variances:** Some parametric tests assume equal variances between groups.  Nonparametric tests don't have this requirement.
+
+**3. Common Nonparametric Tests and Examples:**
+
+**a) Mann-Whitney U test (Wilcoxon rank-sum test):**  Compares two independent groups.
+
+```julia
+# Sample Data (non-normal)
+group1 = rand(Exponential(2), 50)
+group2 = rand(Exponential(3), 60)
+
+# Perform the Mann-Whitney U test
+result_mw = MannWhitneyUTest(group1, group2)
+println(result_mw)
+
+# Interpretation
+p_value_mw = pvalue(result_mw)
+alpha = 0.05
+if p_value_mw < alpha
+    println("Reject null hypothesis: Groups are significantly different.")
+else
+    println("Fail to reject null hypothesis: No significant difference between groups.")
+end
+```
+
+**b) Wilcoxon signed-rank test:** Compares two related samples (e.g., before and after measurements).
+
+```julia
+# Sample Data (paired)
+before = rand(Normal(10, 2), 30)
+after = before + rand(Normal(0, 1), 30) # Simulate some change
+
+# Perform the Wilcoxon signed-rank test
+result_sr = SignedRankTest(before, after)
+println(result_sr)
+
+# Interpretation (same as above, but for paired data)
+p_value_sr = pvalue(result_sr)
+if p_value_sr < alpha
+    println("Reject null hypothesis: Significant difference between before and after.")
+else
+    println("Fail to reject null hypothesis: No significant difference.")
+end
+
+```
+
+**c) Kruskal-Wallis test:**  Compares three or more independent groups.  A nonparametric equivalent of ANOVA.
+
+```julia
+# Sample Data (3 groups)
+group_a = rand(Normal(5, 1), 40)
+group_b = rand(Normal(7, 1.5), 50)
+group_c = rand(Normal(6, 1.2), 45)
+
+# Perform the Kruskal-Wallis test
+result_kw = KruskalWallisTest(group_a, group_b, group_c)
+println(result_kw)
+
+# Interpretation
+p_value_kw = pvalue(result_kw)
+if p_value_kw < alpha
+    println("Reject null hypothesis: At least one group is different.")
+else
+    println("Fail to reject null hypothesis: No significant difference between groups.")
+end
+```
+
+**d) Spearman's rank correlation:** Measures the monotonic relationship between two variables.
+
+```julia
+# Sample Data
+x = rand(1:10, 50)
+y = x .^ 2 + rand(Normal(0, 5), 50) # Introduce some noise
+
+# Calculate Spearman's rank correlation
+correlation_coefficient = corspearman(x, y)
+println("Spearman's rank correlation: ", correlation_coefficient)
+
+# Hypothesis test for correlation
+result_sc = SpearmanCorrelationTest(x, y)
+println(result_sc)
+
+p_value_sc = pvalue(result_sc)
+if p_value_sc < alpha
+  println("Reject null hypothesis: Significant correlation.")
+else
+  println("Fail to reject null hypothesis: No significant correlation.")
+end
+
+```
+
+**4. Visualizing Results:**
+
+Visualizations are crucial for understanding nonparametric tests. Boxplots are excellent for comparing groups:
+
+```julia
+using Plots
+boxplot([group1, group2], labels = ["Group 1", "Group 2"], title = "Mann-Whitney U Test")
+# Add similar boxplots for Kruskal-Wallis or scatter plots for correlation.
+```
+
+**5. Choosing the Right Test:**
+
+The choice of test depends on the nature of your data and the research question.  Here's a quick guide:
+
+* **Two independent groups:** Mann-Whitney U test
+* **Two related samples:** Wilcoxon signed-rank test
+* **Three or more independent groups:** Kruskal-Wallis test
+* **Correlation:** Spearman's rank correlation
+
+**Important Considerations:**
+
+* **Assumptions:** While nonparametric tests don't assume normality, they might have other assumptions (e.g., independence of observations).
+* **Power:** Nonparametric tests can have less statistical power than parametric tests when the assumptions of the parametric tests are met.  This means they might be less likely to detect a true effect.
+* **Effect size:**  Consider calculating effect sizes (e.g., Cliff's delta for Mann-Whitney U) to quantify the magnitude of the observed differences.  `StatsBase.jl` can help with some of these.
+
+This tutorial provides a starting point for nonparametric statistics in Julia.  For more advanced topics or specific tests, consult the documentation of the relevant packages. Remember to always consider the context of your data and research question when choosing a statistical method.

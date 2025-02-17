@@ -1,0 +1,128 @@
+---
+title: "Distance Measures in Julia" 
+subtitle: "Data Science with Julia"
+author: "Julia Workshop"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Distance Metrics 
+
+Let's explore distance metrics suitable for clustering analysis in Julia. We'll cover common metrics and how to use them with the `Distances.jl` package.
+
+
+```julia
+using Pkg
+Pkg.add("Distances") # Install the Distances package
+using Distances
+using Plots # For visualization (optional)
+
+# Sample Data (for demonstration)
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 1, 3, 5]
+z = [5, 4, 3, 2, 1] # Example of a third data point
+
+# 1. Euclidean Distance (L2 Norm)
+
+euclidean_distance = euclidean(x, y)
+println("Euclidean Distance (x, y): ", euclidean_distance)
+
+# 2. Manhattan Distance (L1 Norm, Cityblock Distance)
+
+manhattan_distance = cityblock(x, y)
+println("Manhattan Distance (x, y): ", manhattan_distance)
+
+# 3. Chebyshev Distance
+
+chebyshev_distance = chebyshev(x, y)
+println("Chebyshev Distance (x, y): ", chebyshev_distance)
+
+# 4. Minkowski Distance (Generalized L-p Norm)
+
+# Euclidean is Minkowski with p=2, Manhattan is Minkowski with p=1
+minkowski_distance_p3 = minkowski(x, y, 3)  # Example with p=3
+println("Minkowski Distance (x, y, p=3): ", minkowski_distance_p3)
+
+# 5. Hamming Distance (for categorical/binary data)
+
+a = [1, 0, 1, 1]
+b = [0, 0, 1, 0]
+hamming_distance = hamming(a, b)
+println("Hamming Distance (a, b): ", hamming_distance)
+
+# 6. Cosine Distance (measures angle between vectors)
+
+cosine_distance = cosine(x, y)
+println("Cosine Distance (x, y): ", cosine_distance)
+
+# 7. Jaccard Distance (for set-like data)
+
+set1 = Set([1, 2, 3, 4])
+set2 = Set([2, 4, 5, 6])
+jaccard_distance = jaccard(set1, set2)
+println("Jaccard Distance (set1, set2): ", jaccard_distance)
+
+# 8.  Bray-Curtis Distance (for ecological/abundance data)
+
+abundance1 = [10, 5, 2, 8]
+abundance2 = [5, 8, 0, 12]
+braycurtis_distance = braycurtis(abundance1, abundance2)
+println("Bray-Curtis Distance (abundance1, abundance2): ", braycurtis_distance)
+
+# 9. Mahalanobis Distance (considers correlations between variables)
+
+# You'll need a covariance matrix for Mahalanobis distance
+data_matrix = hcat(x, y, z) # Example data matrix
+covariance_matrix = cov(data_matrix) # Calculate the covariance
+mahalanobis_distance = mahalanobis(x, y, covariance_matrix)
+println("Mahalanobis Distance (x, y): ", mahalanobis_distance)
+
+# 10. Visualization (Optional - for understanding the distances)
+
+# Example: Distances between all pairs of points
+data = hcat(x, y, z)' # Transpose for pairwise distances
+pairwise_distances = pairwise(Euclidean(), data)
+println("Pairwise Distances:\n", pairwise_distances)
+
+# You can visualize this as a heatmap if you have many points:
+# heatmap(pairwise_distances, colormap=:viridis, title="Pairwise Distances")
+# display(current())
+
+# Example with cosine distance
+pairwise_cosine = pairwise(CosineDist(), data)
+println("Pairwise Cosine Distances:\n", pairwise_cosine)
+
+```
+
+**Explanation and Key Improvements:**
+
+* **Package Installation:** Shows how to install the `Distances.jl` package.
+* **Sample Data:** Provides example vectors `x`, `y`, and `z` for easy demonstration.  Also includes examples for categorical/binary data (`a`, `b`), sets (`set1`, `set2`), and abundance data (`abundance1`, `abundance2`).
+* **Clear Examples:** Demonstrates how to use each distance function with clear examples.
+* **Variety of Metrics:** Covers a wide range of distance metrics, including Euclidean, Manhattan, Chebyshev, Minkowski, Hamming, Cosine, Jaccard, Bray-Curtis, and Mahalanobis.
+* **Mahalanobis Distance:** Includes a complete example of calculating the Mahalanobis distance, which requires a covariance matrix.
+* **Pairwise Distances:** Shows how to calculate pairwise distances between multiple data points using `pairwise()`.
+* **Visualization (Optional):**  Provides an example of how to visualize pairwise distances as a heatmap.  This is very helpful for understanding relationships in your data.
+* **Comments and Structure:**  Improved comments and code structure for better readability.
+
+**Choosing the Right Distance Metric:**
+
+The choice of distance metric depends heavily on the nature of your data and the goals of your clustering analysis.
+
+* **Euclidean:**  Commonly used for continuous data in Euclidean space. Sensitive to outliers and scale differences.
+* **Manhattan:**  Useful when movements are restricted to grid-like paths (e.g., city blocks). Less sensitive to outliers than Euclidean.
+* **Chebyshev:**  Measures the maximum difference along any single coordinate. Useful when you care about the largest difference.
+* **Minkowski:** A generalization of Euclidean and Manhattan.  The `p` parameter controls the type of distance.
+* **Hamming:**  Suitable for categorical or binary data. Counts the number of positions at which two vectors differ.
+* **Cosine:**  Measures the angle between vectors, not their magnitude. Useful for text analysis or when the direction of the data is more important than the magnitude.
+* **Jaccard:**  Used for set-like data. Measures the dissimilarity between two sets.
+* **Bray-Curtis:**  Commonly used in ecology for abundance data.  Sensitive to differences in species presence/absence and their quantities.
+* **Mahalanobis:**  Takes into account the correlations between variables. Useful when your data has complex dependencies.
+
+Remember to consider the properties of your data and the specific problem you're trying to solve when selecting a distance metric.  Experimenting with different metrics and visualizing the results can help you find the most appropriate one for your clustering analysis.

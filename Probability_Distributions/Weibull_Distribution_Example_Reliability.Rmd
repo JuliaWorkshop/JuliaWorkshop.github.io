@@ -1,6 +1,9 @@
+### Reliability - Worked Example
+
+<h3>Reliability - Worked Example</h3>
 Let's create a worked example on how the Weibull distribution can be applied to reliability analysis using Julia. We'll walk through the process of fitting a Weibull distribution to a dataset representing the failure times of components, and then we'll use this distribution to calculate reliability metrics such as the probability of failure within a certain time period and the mean time to failure.
 
-### Step-by-Step Example
+#### Step-by-Step Example
 
 **1. Generating Synthetic Failure Data**
 

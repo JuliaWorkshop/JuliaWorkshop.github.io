@@ -1,0 +1,135 @@
+### The Rayleigh Distribution in Julia
+
+<h3>Tutorial: The Rayleigh Distribution in Julia with Engineering Applications</h3>
+
+This tutorial explores the Rayleigh distribution using Julia's `Distributions.jl` package, highlighting its applications in engineering.
+
+**1. Introduction:**
+
+The Rayleigh distribution is a continuous probability distribution that describes the magnitude of a vector sum of several independent, equally distributed random vectors.  It's characterized by a single parameter, σ (sigma), which is a scale parameter related to the root mean square (RMS) value of the underlying normal distributions.  It's commonly used in scenarios involving signal strength, wind speed, and component lifetime.
+
+**2. Setting up:**
+
+Ensure you have Julia installed. Open the REPL and install `Distributions.jl`:
+
+```julia
+] add Distributions
+```
+
+Load the package:
+
+```julia
+using Distributions
+```
+
+**3. Creating a Rayleigh distribution:**
+
+The Rayleigh distribution is defined by its scale parameter `σ`.  Here's how to create one with `σ = 2`:
+
+```julia
+d = Rayleigh(2)
+```
+
+**4. Core Operations:**
+
+* **Generating random samples:**
+
+```julia
+rand(d, 10) # Generates 10 random numbers from the distribution 'd'
+```
+
+* **Probability Density Function (PDF):**
+
+```julia
+pdf(d, 3.0) # Probability density at x = 3.0
+```
+
+* **Cumulative Distribution Function (CDF):**
+
+```julia
+cdf(d, 3.0) # Probability that x <= 3.0
+```
+
+* **Quantile Function:**
+
+```julia
+quantile(d, 0.9) # Value below which 90% of the data falls
+```
+
+* **Mean and Variance:**
+
+```julia
+mean(d)
+var(d)
+```
+
+* **Mode:**
+
+```julia
+mode(d)
+```
+
+**5. Engineering Applications:**
+
+**a) Signal Strength in Wireless Communication:**
+
+The Rayleigh distribution is fundamental in modeling the received signal strength in wireless communication systems affected by multipath fading.  Imagine a mobile receiver moving in an environment with many reflectors (buildings, trees). The received signal is the sum of many reflected waves, each with a random phase and amplitude.  The *envelope* (magnitude) of this combined signal often follows a Rayleigh distribution.
+
+* **Example:**  Suppose the received signal strength (in dBm) follows a Rayleigh distribution with `σ = 3`.  What's the probability that the signal strength is above -80 dBm?
+
+```julia
+sigma = 3
+d = Rayleigh(sigma)
+threshold_linear = 10^(-80/10) # Convert dBm to linear scale
+probability_above_threshold = 1 - cdf(d, threshold_linear)
+println("Probability of signal strength above -80 dBm: ", probability_above_threshold)
+```
+
+**b) Wind Speed Modeling:**
+
+The Rayleigh distribution can approximate wind speed in some locations.  While the Weibull distribution is often a better fit, the Rayleigh distribution provides a simpler model in certain cases.
+
+* **Example:**  Assume wind speed (m/s) is Rayleigh distributed with `σ = 5`. What's the average wind speed?
+
+```julia
+sigma = 5
+d = Rayleigh(sigma)
+average_wind_speed = mean(d)
+println("Average wind speed: ", average_wind_speed, " m/s")
+```
+
+**c) Lifetime of Components:**
+
+In reliability engineering, the Rayleigh distribution can model the lifetime of certain components subject to wear-out failure mechanisms.
+
+* **Example:** The time to failure (in hours) of a specific electronic component follows a Rayleigh distribution with `σ = 1000`. What's the probability that the component will fail before 1500 hours?
+
+```julia
+sigma = 1000
+d = Rayleigh(sigma)
+probability_failure_before_1500 = cdf(d, 1500)
+println("Probability of failure before 1500 hours: ", probability_failure_before_1500)
+```
+
+**6. Fitting to Data:**
+
+If you have data that you suspect follows a Rayleigh distribution, you can fit the distribution using maximum likelihood estimation (MLE):
+
+```julia
+data = rand(Rayleigh(4), 500) # Generate some sample data
+d_fit = fit_mle(Rayleigh, data)
+println(d_fit) # Print the fitted distribution
+```
+
+**7. Visualization:**
+
+```julia
+using Plots
+x_values = range(0, 20, length=100)
+plot(x_values, pdf.(Rayleigh(3), x_values), label="PDF", xlabel="x", ylabel="f(x)")
+plot!(x_values, cdf.(Rayleigh(3), x_values), label="CDF")
+```
+
+This will plot the PDF and CDF.  Remember to install Plots.jl if necessary: `] add Plots`
+
+This tutorial provides a basic understanding of the Rayleigh distribution and its applications.  For more in-depth information, consult the `Distributions.jl` documentation: [https://juliastats.org/Distributions.jl/stable/](https://juliastats.org/Distributions.jl/stable/)

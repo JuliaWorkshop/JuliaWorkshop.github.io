@@ -20,9 +20,32 @@ About {data-navmenu="About"}
 Column {.tabset}
 --------------------
 
+### Datasets for Julia
+
+
+RDatasets {data-navmenu="Data Science"}
+=====================================
+
+Column {.tabset}
+--------------------
+
 
 ```{r child = "RDatasets_Julia_Package.Rmd"}
 ```
+
+
+Scikit-learn Datasets {data-navmenu="Data Science"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+
+```{r child = "SKLearn_Datasets.Rmd"}
+```
+
+
+
 
 NYC Flights {data-navmenu="Data Science"}
 =====================================
@@ -32,6 +55,16 @@ Column {.tabset}
 
 ### NYC Flights (`nycflights13`)
 ```{r child = "NYCflights13_Dataset.Rmd"}
+```
+
+Diamonds Dataset {data-navmenu="Data Science"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+
+```{r child = "Diamonds_Dataset.Rmd"}
 ```
 
 Pima Diabetes Dataset {data-navmenu="Data Science"}

@@ -1,0 +1,35 @@
+---
+title: "Using R with Julia"
+output:
+  flexdashboard::flex_dashboard:
+    theme: 
+      version: 4
+      bootswatch: minty
+---
+
+```{r  include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+About {data-navmenu="About"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+### Using R with Julia
+
+(<a href="http://juliaworkshop.github.io">Back to Main Page</a>)
+
+#### Using R with Julia
+
+```{r child = "Using_R_within_Julia.Rmd"}
+```
+
+
+```{r child = "RCall_Julia_Package.Rmd"}
+```
+
+

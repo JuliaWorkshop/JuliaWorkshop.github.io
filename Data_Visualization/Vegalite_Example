@@ -1,0 +1,10 @@
+p = plot(D, x=:Sex, y=:Freq, color=:Eye, xgroup=:Hair,
+    Geom.subplot_grid(Geom.bar(position=:stack)),
+    Scale.color_discrete_manual(palette...), 
+    Guide.xlabel("Hair color"))
+	
+using VegaLite, RDatasets
+
+df = dataset("datasets", "HairEyeColor")
+
+df |> @vlplot(:bar, x=:Sex, y=:Freq, color=:Eye, column=:Hair)

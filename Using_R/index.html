@@ -8,9 +8,9 @@
 
 
 
-<title>Probability Distributions with Julia</title>
+<title>Using R with Julia</title>
 
-<meta property="og:title" content="Probability Distributions with Julia" />
+<meta property="og:title" content="Using R with Julia" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -1088,7 +1088,7 @@ height: 100%;
   
 </span>
 <span class="navbar-brand">
-  Probability Distributions with Julia
+  Using R with Julia
   <span class="navbar-author">
         </span>
 </span>
@@ -2794,1279 +2794,195 @@ window.FlexDashboardComponents.push({
 <h1>About</h1>
 <div id="column" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
-<div id="probability-distributions-with-julia" class="section level3">
-<h3>Probability Distributions with Julia</h3>
-<p>(<a href="https://juliaworkshop.github.io">Back to Main Page</a>)</p>
-<div id="probability-distributions-with-julia-1" class="section level4">
-<h4>Probability Distributions with Julia:</h4>
+<div id="using-r-with-julia" class="section level3">
+<h3>Using R with Julia</h3>
+<p>(<a href="http://juliaworkshop.github.io">Back to Main Page</a>)</p>
+<div id="using-r-with-julia-1" class="section level4">
+<h4>Using R with Julia</h4>
 </div>
 </div>
+<div id="using-r-within-julia" class="section level3">
+<h3>Using R within Julia</h3>
+<p>Using R within Julia can open up a world of possibilities by
+leveraging both languages’ strengths. Here’s a step-by-step guide to get
+you started:</p>
+<div id="install-julia" class="section level4">
+<h4>1. Install Julia</h4>
+<p>First, you’ll need to have Julia installed on your system. You can
+download the latest version from <a href="https://julialang.org/downloads/">Julia’s official
+website</a>.</p>
+</div>
+<div id="install-the-r-and-rcall-packages" class="section level4">
+<h4>2. Install the R and RCall packages</h4>
+<p>Within the Julia REPL (Read-Eval-Print Loop), you’ll need to install
+two key packages: <code>R</code> and <code>RCall</code>. Open your Julia
+REPL and run the following commands:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;RCall&quot;</span>)</span></code></pre></div>
+</div>
+<div id="configure-the-rcall-package" class="section level4">
+<h4>3. Configure the RCall package</h4>
+<p>You’ll also need R installed on your system. If you don’t have R, you
+can download it from <a href="https://cran.r-project.org/">The
+Comprehensive R Archive Network (CRAN)</a>. Once R is installed,
+configure RCall to use your R installation.</p>
+<p>In your Julia REPL, run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>RCall.<span class="fu">find_r</span>()  <span class="co"># This should automatically detect your R installation</span></span></code></pre></div>
+</div>
+<div id="using-r-within-julia-1" class="section level4">
+<h4>4. Using R within Julia</h4>
+<p>Now that you have everything set up, you can start using R from
+within Julia. Here are a few ways to do that:</p>
+<div id="a.-running-r-code" class="section level5">
+<h5>a. Running R code</h5>
+<p>You can execute R code directly from within Julia using the
+<code>R</code> macro. For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>R<span class="st">&quot;print(&#39;Hello from R!&#39;)&quot;</span></span></code></pre></div>
+</div>
+<div id="b.-passing-data-between-julia-and-r" class="section level5">
+<h5>b. Passing data between Julia and R</h5>
+<p>You can also pass data between Julia and R seamlessly. Here’s an
+example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># Create a DataFrame in Julia</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(A <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, B <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">4</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># Pass the DataFrame to R</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="pp">@rput</span> df</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># Perform operations on the DataFrame in R</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>R<span class="st">&quot;print(summary(df))&quot;</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># Retrieve the modified DataFrame back to Julia</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>R<span class="st">&quot;df</span><span class="sc">$</span>new_column<span class="st"> &lt;- df</span><span class="sc">$</span>A<span class="st"> + df</span><span class="sc">$</span>B<span class="st">&quot;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="pp">@rget</span> df</span></code></pre></div>
 </div>
 </div>
-<div id="log-normal-distribution" class="section level1" data-navmenu="Distributions">
-<h1>Log-Normal Distribution</h1>
-<div id="column-1" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="the-log-normal-distribution" class="section level3">
-<h3>The Log-Normal Distribution</h3>
-<h3>
-Working with the Log-Normal Distribution in Julia
-</h3>
-<p>This tutorial will guide you through using the Log-Normal
-distribution in Julia with the <code>Distributions.jl</code> package.
-The Log-Normal distribution is useful for modeling data that is positive
-and skewed, often encountered in fields like finance, economics, and
-environmental science.</p>
-<p><strong>1. Setting up:</strong></p>
-<p>First, make sure you have Julia installed. Then, open the Julia REPL
-(Read-Eval-Print Loop) and install the <code>Distributions</code>
-package if you haven’t already:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>] add Distributions</span></code></pre></div>
-<p>After installation, load the package:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span></code></pre></div>
-<p><strong>2. Creating a Log-Normal distribution:</strong></p>
-<p>The Log-Normal distribution is parameterized by two values:</p>
-<ul>
-<li><code>μ</code> (mu): The mean of the <em>underlying</em> normal
-distribution.</li>
-<li><code>σ</code> (sigma): The standard deviation of the
-<em>underlying</em> normal distribution.</li>
-</ul>
-<p><em>Important Note:</em> <code>mu</code> and <code>sigma</code> are
-<em>not</em> the mean and standard deviation of the log-normal
-distribution itself. They are the parameters of the normal distribution
-you’d get if you took the logarithm of your log-normally distributed
-data.</p>
-<p>Here’s how to create a Log-Normal distribution with
-<code>μ = 0</code> and <code>σ = 1</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>d <span class="op">=</span> <span class="fu">LogNormal</span>(<span class="fl">0</span>, <span class="fl">1</span>)</span></code></pre></div>
-<p>You can create a distribution with different parameters:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>d2 <span class="op">=</span> <span class="fu">LogNormal</span>(<span class="fl">2</span>, <span class="fl">0.5</span>)  <span class="co"># μ = 2, σ = 0.5</span></span></code></pre></div>
-<p><strong>3. Basic Operations:</strong></p>
-<ul>
-<li><strong>Generating random samples:</strong></li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">rand</span>(d, <span class="fl">10</span>) <span class="co"># Generates 10 random numbers from the distribution &#39;d&#39;</span></span></code></pre></div>
-<ul>
-<li><strong>Probability Density Function (PDF):</strong> The PDF gives
-the probability density at a given value.</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">pdf</span>(d, <span class="fl">1.0</span>) <span class="co"># Probability density at x = 1.0</span></span></code></pre></div>
-<ul>
-<li><strong>Cumulative Distribution Function (CDF):</strong> The CDF
-gives the probability that a random variable is less than or equal to a
-given value.</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">cdf</span>(d, <span class="fl">1.0</span>) <span class="co"># Probability that x &lt;= 1.0</span></span></code></pre></div>
-<ul>
-<li><strong>Quantile Function (Inverse CDF):</strong> The quantile
-function finds the value below which a given proportion of the data
-falls.</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">quantile</span>(d, <span class="fl">0.95</span>) <span class="co"># Value below which 95% of the data falls</span></span></code></pre></div>
-<ul>
-<li><strong>Mean and Standard Deviation:</strong> Remember these are
-<em>not</em> the <code>mu</code> and <code>sigma</code> you used to
-create the distribution.</li>
-</ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">mean</span>(d)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">std</span>(d)</span></code></pre></div>
-<ul>
-<li><strong>Variance:</strong></li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">var</span>(d)</span></code></pre></div>
-<p><strong>4. Fitting a Log-Normal distribution to data:</strong></p>
-<p>Let’s say you have some data that you suspect follows a Log-Normal
-distribution. You can fit the distribution to the data using the
-<code>fit_mle</code> function (Maximum Likelihood Estimation):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">LogNormal</span>(<span class="fl">1</span>, <span class="fl">0.5</span>), <span class="fl">1000</span>) <span class="co"># Generate some sample data</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>d_fit <span class="op">=</span> <span class="fu">fit_mle</span>(LogNormal, data) <span class="co"># Fit the distribution</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">println</span>(d_fit) <span class="co"># Print the fitted distribution parameters</span></span></code></pre></div>
-<p><strong>5. Working with Logarithms:</strong></p>
-<p>The key to the Log-Normal distribution is its relationship to the
-Normal distribution. If <code>X</code> is log-normally distributed, then
-<code>log(X)</code> is normally distributed. This can be very
-useful:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">rand</span>(d)  <span class="co"># A random value from the LogNormal distribution</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>y <span class="op">=</span> <span class="fu">log</span>(x)   <span class="co"># The logarithm of x; y will be normally distributed</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co"># You can check this:</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">typeof</span>(y) <span class="co"># Float64</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co"># If you know the parameters of the underlying normal distribution, you can</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co"># calculate the mean and variance of the log-normal distribution:</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>lognormal_mean <span class="op">=</span> <span class="fu">exp</span>(mu <span class="op">+</span> sigma<span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fl">2</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>lognormal_variance <span class="op">=</span> (<span class="fu">exp</span>(sigma<span class="op">^</span><span class="fl">2</span>) <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> <span class="fu">exp</span>(<span class="fl">2</span><span class="op">*</span>mu <span class="op">+</span> sigma<span class="op">^</span><span class="fl">2</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Theoretical lognormal mean: &quot;</span>, lognormal_mean)</span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Theoretical lognormal variance: &quot;</span>, lognormal_variance)</span></code></pre></div>
-<p><strong>Example: Visualizing the distribution:</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>x_values <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0.01</span>, <span class="fl">10</span>, length<span class="op">=</span><span class="fl">100</span>) <span class="co"># Values for plotting</span></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">plot</span>(x_values, <span class="fu">pdf</span>.(d, x_values), label<span class="op">=</span><span class="st">&quot;PDF&quot;</span>, xlabel<span class="op">=</span><span class="st">&quot;x&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;f(x)&quot;</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="fu">plot!</span>(x_values, <span class="fu">cdf</span>.(d, x_values), label<span class="op">=</span><span class="st">&quot;CDF&quot;</span>)</span></code></pre></div>
-<p>This will create a plot of the PDF and CDF of the Log-Normal
-distribution. Remember to install Plots.jl if you haven’t already:
-<code>] add Plots</code></p>
-<p>This tutorial provides a basic overview of working with the
-Log-Normal distribution in Julia.</p>
-<p>For more advanced usage and details, refer to the official
-<code>Distributions.jl</code> documentation: <a href="https://juliastats.org/Distributions.jl/stable/">https://juliastats.org/Distributions.jl/stable/</a></p>
+<div id="using-r-packages-in-julia" class="section level4">
+<h4>5. Using R packages in Julia</h4>
+<p>You can install and use R packages within your Julia environment. For
+example, to use the <code>ggplot2</code> package for plotting:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Install ggplot2 in R</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>R<span class="st">&quot;install.packages(&#39;ggplot2&#39;)&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Use ggplot2 in R</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>R<span class="st">&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(x <span class="op">=</span> displ, y <span class="op">=</span> hwy, colour <span class="op">=</span> class)) <span class="op">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="st">&quot;</span></span></code></pre></div>
+</div>
+<div id="conclusion" class="section level4">
+<h4>Conclusion</h4>
+<p>By integrating R within Julia, you can enjoy the flexibility and
+power of both languages. Whether it’s advanced statistical analysis in R
+or high-performance computing in Julia, this combination can greatly
+enhance your workflow.</p>
+<p>Feel free to explore further and happy coding! If you have any
+specific questions or need more examples, let me know.</p>
 </div>
 </div>
-</div>
-<div id="rayleigh-distribution" class="section level1" data-navmenu="Distributions">
-<h1>Rayleigh Distribution</h1>
-<div id="column-2" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="the-rayleigh-distribution" class="section level3">
-<h3>The Rayleigh distribution</h3>
-<h3>
-The Rayleigh distribution
-</h3>
-<p>The Rayleigh distribution with a Julia implementation.</p>
-<p><strong>Description of the Rayleigh Distribution</strong></p>
-<p>The Rayleigh distribution is a continuous probability distribution
-that describes the magnitude of a vector whose components are
-independent and identically distributed (i.i.d.) standard normal random
-variables (zero mean and unit variance). In simpler terms, it often
-arises when you’re dealing with the <em>magnitude</em> of a random
-variable that can vary in two perpendicular directions (like the wind
-speed in the x and y directions). It’s characterized by a single
-parameter, σ (sigma), which is a scale parameter related to the root
-mean square of the underlying normal variables.</p>
+<div id="the-rcall.jl-package" class="section level3">
+<h3>The <code>RCall.jl</code> Package</h3>
+<p><code>RCall.jl</code> is a powerful Julia package that allows
+seamless integration and communication between Julia and R. Here are
+some key functions and features of <code>RCall.jl</code>:</p>
+<div id="key-functions-and-features" class="section level4">
+<h4>Key Functions and Features</h4>
+<ol style="list-style-type: decimal">
+<li><strong>R”…” String Macro</strong>
 <ul>
-<li><p><strong>Probability Density Function (PDF):</strong>
-<code>f(x; σ) = (x/σ^2) * exp(-x^2 / (2σ^2))  for x ≥ 0</code> and f(x;
-σ) = 0 otherwise.</p></li>
-<li><p><strong>Cumulative Distribution Function (CDF):</strong>
-<code>F(x; σ) = 1 - exp(-x^2 / (2σ^2))  for x ≥ 0</code> and F(x; σ) = 0
-otherwise.</p></li>
-<li><p><strong>Key Properties:</strong></p>
-<ul>
-<li><strong>Mean:</strong> σ * sqrt(π/2)</li>
-<li><strong>Variance:</strong> (4 - π)/2 * σ^2</li>
-<li><strong>Mode:</strong> σ</li>
-<li><strong>Median:</strong> σ * sqrt(ln(4))</li>
+<li><p>Executes R code from within Julia. For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>R<span class="st">&quot;print(&#39;Hello from R!&#39;)&quot;</span></span></code></pre></div></li>
 </ul></li>
-</ul>
-<p><strong>Julia Implementation</strong></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># Define the scale parameter (sigma)</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">2.0</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co"># Create a Rayleigh distribution object</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>rayleigh_dist <span class="op">=</span> <span class="fu">Rayleigh</span>(sigma)</span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co"># Generate some random samples</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="fl">1000</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(rayleigh_dist, num_samples)</span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co"># Calculate the PDF at specific points</span></span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>x_values <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">3</span><span class="op">*</span>sigma, length<span class="op">=</span><span class="fl">200</span>)  <span class="co"># Range for plotting</span></span>
-<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>pdf_values <span class="op">=</span> <span class="fu">pdf</span>.(rayleigh_dist, x_values)</span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="co"># Calculate the CDF at specific points</span></span>
-<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a>cdf_values <span class="op">=</span> <span class="fu">cdf</span>.(rayleigh_dist, x_values)</span>
-<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a></span>
-<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="co"># Plot the PDF and histogram</span></span>
-<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="fu">histogram</span>(samples, bins<span class="op">=</span><span class="fl">50</span>, density<span class="op">=</span><span class="cn">true</span>, label<span class="op">=</span><span class="st">&quot;Histogram of Samples&quot;</span>,</span>
-<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a>           xlabel<span class="op">=</span><span class="st">&quot;x&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Probability Density&quot;</span>, title<span class="op">=</span><span class="st">&quot;Rayleigh Distribution (σ = </span><span class="sc">$</span>sigma<span class="st">)&quot;</span>)</span>
-<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a><span class="fu">plot!</span>(x_values, pdf_values, label<span class="op">=</span><span class="st">&quot;PDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>, color<span class="op">=:</span>red)</span>
-<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a></span>
-<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a><span class="co"># Plot the CDF</span></span>
-<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a><span class="fu">plot</span>(x_values, cdf_values, label<span class="op">=</span><span class="st">&quot;CDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>, color<span class="op">=:</span>blue,</span>
-<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a>     xlabel<span class="op">=</span><span class="st">&quot;x&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Cumulative Probability&quot;</span>, title<span class="op">=</span><span class="st">&quot;Rayleigh CDF (σ = </span><span class="sc">$</span>sigma<span class="st">)&quot;</span>)</span>
-<span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a></span>
-<span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" tabindex="-1"></a><span class="co"># Calculate and print some statistics</span></span>
-<span id="cb14-32"><a href="#cb14-32" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, <span class="fu">mean</span>(rayleigh_dist))</span>
-<span id="cb14-33"><a href="#cb14-33" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Variance: &quot;</span>, <span class="fu">var</span>(rayleigh_dist))</span>
-<span id="cb14-34"><a href="#cb14-34" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mode: &quot;</span>, <span class="fu">mode</span>(rayleigh_dist))</span>
-<span id="cb14-35"><a href="#cb14-35" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Median: &quot;</span>, <span class="fu">median</span>(rayleigh_dist))</span>
-<span id="cb14-36"><a href="#cb14-36" tabindex="-1"></a></span>
-<span id="cb14-37"><a href="#cb14-37" tabindex="-1"></a><span class="co"># Display both plots</span></span>
-<span id="cb14-38"><a href="#cb14-38" tabindex="-1"></a><span class="fu">display</span>(<span class="fu">plot!</span>(x_values, pdf_values, label<span class="op">=</span><span class="st">&quot;PDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>, color<span class="op">=:</span>red))</span>
-<span id="cb14-39"><a href="#cb14-39" tabindex="-1"></a><span class="fu">display</span>(<span class="fu">plot</span>(x_values, cdf_values, label<span class="op">=</span><span class="st">&quot;CDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>, color<span class="op">=:</span>blue))</span>
-<span id="cb14-40"><a href="#cb14-40" tabindex="-1"></a></span></code></pre></div>
-<p><strong>Explanation of the Julia Code:</strong></p>
-<ol style="list-style-type: decimal">
-<li><strong><code>using Distributions</code>:</strong> Imports the
-<code>Distributions</code> package, which provides tools for working
-with probability distributions.</li>
-<li><strong><code>using Plots</code>:</strong> Imports the
-<code>Plots</code> package for creating visualizations.</li>
-<li><strong><code>sigma = 2.0</code>:</strong> Sets the scale parameter
-σ.</li>
-<li><strong><code>rayleigh_dist = Rayleigh(sigma)</code>:</strong>
-Creates a <code>Rayleigh</code> distribution object with the specified
-<code>sigma</code>.</li>
-<li><strong><code>rand(rayleigh_dist, num_samples)</code>:</strong>
-Generates <code>num_samples</code> random numbers from the Rayleigh
-distribution.</li>
-<li><strong><code>pdf.(rayleigh_dist, x_values)</code>:</strong>
-Calculates the PDF at each value in <code>x_values</code>. The
-<code>.</code> is crucial for broadcasting the <code>pdf</code> function
-over the array.</li>
-<li><strong><code>cdf.(rayleigh_dist, x_values)</code>:</strong>
-Calculates the CDF at each value in <code>x_values</code> using
-broadcasting.</li>
-<li><strong><code>histogram(...)</code>:</strong> Creates a histogram of
-the random samples. <code>density=true</code> normalizes the
-histogram.</li>
-<li><strong><code>plot!(...)</code>:</strong> Adds the PDF curve to the
-existing plot. The <code>!</code> modifies the current plot.</li>
-<li><strong><code>plot(...)</code>:</strong> Creates a new plot for the
-CDF.</li>
-<li><strong><code>mean(rayleigh_dist)</code>,
-<code>var(rayleigh_dist)</code>, etc.:</strong> Calculate and print
-statistical properties of the distribution.</li>
-<li><strong><code>display(...)</code>:</strong> Displays the created
-plots. This is important, especially in environments where plots aren’t
-displayed automatically.</li>
-</ol>
-<p>This code will generate a histogram of random samples from the
-Rayleigh distribution, overlay the PDF, and create a separate plot of
-the CDF. It also prints the mean, variance, mode, and median. You can
-change the <code>sigma</code> value to see how the distribution changes.
-Remember to install the <code>Distributions</code> and
-<code>Plots</code> packages if you haven’t already (e.g., using
-<code>Pkg.add(&quot;Distributions&quot;)</code> and <code>Pkg.add(&quot;Plots&quot;)</code>
-in the Julia REPL).</p>
-</div>
-<div id="the-rayleigh-distribution-in-julia" class="section level3">
-<h3>The Rayleigh Distribution in Julia</h3>
-<h3>
-Tutorial: The Rayleigh Distribution in Julia with Engineering
-Applications
-</h3>
-<p>This tutorial explores the Rayleigh distribution using Julia’s
-<code>Distributions.jl</code> package, highlighting its applications in
-engineering.</p>
-<p><strong>1. Introduction:</strong></p>
-<p>The Rayleigh distribution is a continuous probability distribution
-that describes the magnitude of a vector sum of several independent,
-equally distributed random vectors. It’s characterized by a single
-parameter, σ (sigma), which is a scale parameter related to the root
-mean square (RMS) value of the underlying normal distributions. It’s
-commonly used in scenarios involving signal strength, wind speed, and
-component lifetime.</p>
-<p><strong>2. Setting up:</strong></p>
-<p>Ensure you have Julia installed. Open the REPL and install
-<code>Distributions.jl</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>] add Distributions</span></code></pre></div>
-<p>Load the package:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span></code></pre></div>
-<p><strong>3. Creating a Rayleigh distribution:</strong></p>
-<p>The Rayleigh distribution is defined by its scale parameter
-<code>σ</code>. Here’s how to create one with <code>σ = 2</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>d <span class="op">=</span> <span class="fu">Rayleigh</span>(<span class="fl">2</span>)</span></code></pre></div>
-<p><strong>4. Core Operations:</strong></p>
+<li><strong><span class="citation">@rput</span> and <span class="citation">@rget</span> Macros</strong>
 <ul>
-<li><strong>Generating random samples:</strong></li>
-</ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">rand</span>(d, <span class="fl">10</span>) <span class="co"># Generates 10 random numbers from the distribution &#39;d&#39;</span></span></code></pre></div>
-<ul>
-<li><strong>Probability Density Function (PDF):</strong></li>
-</ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">pdf</span>(d, <span class="fl">3.0</span>) <span class="co"># Probability density at x = 3.0</span></span></code></pre></div>
-<ul>
-<li><strong>Cumulative Distribution Function (CDF):</strong></li>
-</ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">cdf</span>(d, <span class="fl">3.0</span>) <span class="co"># Probability that x &lt;= 3.0</span></span></code></pre></div>
-<ul>
-<li><strong>Quantile Function:</strong></li>
-</ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">quantile</span>(d, <span class="fl">0.9</span>) <span class="co"># Value below which 90% of the data falls</span></span></code></pre></div>
-<ul>
-<li><strong>Mean and Variance:</strong></li>
-</ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">mean</span>(d)</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">var</span>(d)</span></code></pre></div>
-<ul>
-<li><strong>Mode:</strong></li>
-</ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">mode</span>(d)</span></code></pre></div>
-<p><strong>5. Engineering Applications:</strong></p>
-<p><strong>a) Signal Strength in Wireless Communication:</strong></p>
-<p>The Rayleigh distribution is fundamental in modeling the received
-signal strength in wireless communication systems affected by multipath
-fading. Imagine a mobile receiver moving in an environment with many
-reflectors (buildings, trees). The received signal is the sum of many
-reflected waves, each with a random phase and amplitude. The
-<em>envelope</em> (magnitude) of this combined signal often follows a
-Rayleigh distribution.</p>
-<ul>
-<li><strong>Example:</strong> Suppose the received signal strength (in
-dBm) follows a Rayleigh distribution with <code>σ = 3</code>. What’s the
-probability that the signal strength is above -80 dBm?</li>
-</ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">3</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>d <span class="op">=</span> <span class="fu">Rayleigh</span>(sigma)</span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>threshold_linear <span class="op">=</span> <span class="fl">10</span><span class="op">^</span>(<span class="op">-</span><span class="fl">80</span><span class="op">/</span><span class="fl">10</span>) <span class="co"># Convert dBm to linear scale</span></span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>probability_above_threshold <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">cdf</span>(d, threshold_linear)</span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Probability of signal strength above -80 dBm: &quot;</span>, probability_above_threshold)</span></code></pre></div>
-<p><strong>b) Wind Speed Modeling:</strong></p>
-<p>The Rayleigh distribution can approximate wind speed in some
-locations. While the Weibull distribution is often a better fit, the
-Rayleigh distribution provides a simpler model in certain cases.</p>
-<ul>
-<li><strong>Example:</strong> Assume wind speed (m/s) is Rayleigh
-distributed with <code>σ = 5</code>. What’s the average wind speed?</li>
-</ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>d <span class="op">=</span> <span class="fu">Rayleigh</span>(sigma)</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>average_wind_speed <span class="op">=</span> <span class="fu">mean</span>(d)</span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Average wind speed: &quot;</span>, average_wind_speed, <span class="st">&quot; m/s&quot;</span>)</span></code></pre></div>
-<p><strong>c) Lifetime of Components:</strong></p>
-<p>In reliability engineering, the Rayleigh distribution can model the
-lifetime of certain components subject to wear-out failure
-mechanisms.</p>
-<ul>
-<li><strong>Example:</strong> The time to failure (in hours) of a
-specific electronic component follows a Rayleigh distribution with
-<code>σ = 1000</code>. What’s the probability that the component will
-fail before 1500 hours?</li>
-</ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1000</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>d <span class="op">=</span> <span class="fu">Rayleigh</span>(sigma)</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>probability_failure_before_1500 <span class="op">=</span> <span class="fu">cdf</span>(d, <span class="fl">1500</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Probability of failure before 1500 hours: &quot;</span>, probability_failure_before_1500)</span></code></pre></div>
-<p><strong>6. Fitting to Data:</strong></p>
-<p>If you have data that you suspect follows a Rayleigh distribution,
-you can fit the distribution using maximum likelihood estimation
-(MLE):</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">Rayleigh</span>(<span class="fl">4</span>), <span class="fl">500</span>) <span class="co"># Generate some sample data</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>d_fit <span class="op">=</span> <span class="fu">fit_mle</span>(Rayleigh, data)</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="fu">println</span>(d_fit) <span class="co"># Print the fitted distribution</span></span></code></pre></div>
-<p><strong>7. Visualization:</strong></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>x_values <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">20</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">plot</span>(x_values, <span class="fu">pdf</span>.(<span class="fu">Rayleigh</span>(<span class="fl">3</span>), x_values), label<span class="op">=</span><span class="st">&quot;PDF&quot;</span>, xlabel<span class="op">=</span><span class="st">&quot;x&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;f(x)&quot;</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="fu">plot!</span>(x_values, <span class="fu">cdf</span>.(<span class="fu">Rayleigh</span>(<span class="fl">3</span>), x_values), label<span class="op">=</span><span class="st">&quot;CDF&quot;</span>)</span></code></pre></div>
-<p>This will plot the PDF and CDF. Remember to install Plots.jl if
-necessary: <code>] add Plots</code></p>
-<p>This tutorial provides a basic understanding of the Rayleigh
-distribution and its applications. For more in-depth information,
-consult the <code>Distributions.jl</code> documentation: <a href="https://juliastats.org/Distributions.jl/stable/">https://juliastats.org/Distributions.jl/stable/</a></p>
-</div>
-</div>
-</div>
-<div id="cauchy-distribution" class="section level1" data-navmenu="Distributions">
-<h1>Cauchy Distribution</h1>
-<div id="column-3" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="cauchy-distribution-1" class="section level3">
-<h3>Cauchy Distribution</h3>
-<p>The Cauchy distribution, named after Augustin-Louis Cauchy, is a
-continuous probability distribution. It is characterized by a
-heavy-tailed shape, meaning that it has a higher probability of
-producing extreme values than many other distributions.</p>
-<p>The probability density function (PDF) of the Cauchy distribution is
-given by:</p>
-<p>f(x) = (1/π) * (γ / ((x - x₀)² + γ²))</p>
-<p>where:</p>
-<ul>
-<li>x₀ is the location parameter, representing the peak of the
-distribution.</li>
-<li>γ is the scale parameter, controlling the width of the
-distribution.</li>
-</ul>
-<p>The Cauchy distribution does not have a finite mean or variance. This
-is due to its heavy tails, which cause the integral for the mean and
-variance to diverge. However, it does have a well-defined median, which
-is equal to the location parameter x₀.</p>
-<p>The cumulative distribution function (CDF) of the Cauchy distribution
-is given by:</p>
-<p>F(x) = (1/π) * arctan((x - x₀) / γ) + 1/2</p>
-<p>The Cauchy distribution is often used in physics and engineering to
-model phenomena with heavy tails, such as the Lorentzian line profile in
-spectroscopy and the distribution of particle sizes in certain
-materials. It is also used in finance to model the returns of certain
-assets.</p>
-<p>One of the challenges with the Cauchy distribution is that its lack
-of finite moments makes it difficult to apply some statistical methods
-that rely on these moments, such as the central limit theorem. However,
-there are alternative methods that can be used to analyze data from a
-Cauchy distribution, such as robust statistical methods.</p>
-<p>Sure! Here’s an equivalent exercise using Julia:</p>
-</div>
-<div id="exercise-modeling-measurement-errors-with-cauchy-distribution" class="section level3">
-<h3>Exercise: Modeling Measurement Errors with Cauchy Distribution</h3>
-<div id="problem-statement" class="section level4">
-<h4>Problem Statement:</h4>
-<p>In engineering, measurement errors can sometimes follow a Cauchy
-distribution due to its heavy tails, which can model outliers more
-effectively than a normal distribution. Suppose you are measuring the
-length of a component, and the measurement errors <span class="math inline">\(E\)</span> follow a Cauchy distribution with
-location parameter <span class="math inline">\(x_0 = 0\)</span> and
-scale parameter <span class="math inline">\(\gamma = 1\)</span>. The
-true length of the component is <span class="math inline">\(L =
-10\)</span> units.</p>
-<ol style="list-style-type: decimal">
-<li><strong>Simulate Measurement Errors</strong>: Generate a sample of
-1000 measurement errors from the Cauchy distribution.</li>
-<li><strong>Calculate Measured Lengths</strong>: Compute the measured
-lengths by adding the measurement errors to the true length.</li>
-<li><strong>Analyze the Data</strong>: Plot the histogram of the
-measured lengths and compare it with the true length.</li>
-<li><strong>Discuss the Impact</strong>: Discuss how the heavy tails of
-the Cauchy distribution affect the measurement process and the
-reliability of the measurements.</li>
-</ol>
-</div>
-<div id="solution" class="section level4">
-<h4>Solution:</h4>
-<ol style="list-style-type: decimal">
-<li><p><strong>Simulate Measurement Errors</strong>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span>, <span class="bu">Distributions</span>, <span class="bu">Plots</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>sample_size <span class="op">=</span> <span class="fl">1000</span></span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a><span class="co"># Generate Cauchy measurement errors</span></span>
-<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a>errors <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">Cauchy</span>(x0, gamma), sample_size)</span></code></pre></div></li>
-<li><p><strong>Calculate Measured Lengths</strong>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># True length of the component</span></span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">10</span></span>
-<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="co"># Measured lengths</span></span>
-<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>measured_lengths <span class="op">=</span> L <span class="op">.+</span> errors</span></code></pre></div></li>
-<li><p><strong>Analyze the Data</strong>:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Plot histogram of measured lengths</span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">histogram</span>(measured_lengths, bins<span class="op">=</span><span class="fl">50</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=:</span>blue, edgecolor<span class="op">=:</span>black, title<span class="op">=</span><span class="st">&quot;Histogram of Measured Lengths with Cauchy Errors&quot;</span>, xlabel<span class="op">=</span><span class="st">&quot;Measured Length&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Frequency&quot;</span>, legend<span class="op">=</span><span class="cn">false</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="fu">vline!</span>([L], color<span class="op">=:</span>red, linestyle<span class="op">=:</span>dash, linewidth<span class="op">=</span><span class="fl">2</span>, label<span class="op">=</span><span class="st">&quot;True Length&quot;</span>)</span></code></pre></div></li>
-<li><p><strong>Discuss the Impact</strong>: The Cauchy distribution has
-heavy tails, meaning it can produce extreme values more frequently than
-a normal distribution. This characteristic can significantly affect the
-measurement process by introducing large errors, making the measurements
-less reliable. In practical applications, this means that using a Cauchy
-distribution to model errors requires robust statistical methods to
-handle outliers effectively.</p></li>
-</ol>
-</div>
-</div>
-<div id="applications" class="section level3">
-<h3>Applications:</h3>
-<ul>
-<li><strong>Engineering</strong>: Modeling measurement errors in
-precision engineering where outliers are common.</li>
-<li><strong>Physics</strong>: Describing resonance phenomena in systems
-with damping.</li>
-<li><strong>Finance</strong>: Modeling returns on investments with high
-volatility.</li>
-</ul>
-<p>Would you like to explore more examples or discuss a specific
-application in detail?</p>
-<p>Sources:<br />
-(1) INTRODUCTION TO PROBABILITY AND STATISTICS FOR ENGINEERS AND
-SCIENTISTS. <a href="https://minerva.it.manchester.ac.uk/~saralees/statbook3.pdf" class="uri">https://minerva.it.manchester.ac.uk/~saralees/statbook3.pdf</a><br />
-(2) 5.32: The Cauchy Distribution - Statistics LibreTexts. <a href="https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_%28Siegrist%29/05%3A_Special_Distributions/5.32%3A_The_Cauchy_Distribution" class="uri">https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_%28Siegrist%29/05%3A_Special_Distributions/5.32%3A_The_Cauchy_Distribution</a><br />
-(3) Topp-Leone Cauchy Family of Distributions with Applications in …. <a href="https://link.springer.com/content/pdf/10.1007/s44199-023-00066-4.pdf" class="uri">https://link.springer.com/content/pdf/10.1007/s44199-023-00066-4.pdf</a></p>
-</div>
-</div>
-</div>
-<div id="weibull-distribution" class="section level1" data-navmenu="Distributions">
-<h1>Weibull Distribution</h1>
-<div id="column-4" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="weibull-distribution-1" class="section level3">
-<h3>Weibull Distribution</h3>
-<div id="weibull-distribution-2" class="section level4">
-<h4>Weibull Distribution</h4>
-<p>The Weibull distribution is a versatile probability distribution with
-a wide range of applications across various fields. It is particularly
-useful in situations where the failure rate of a system or component
-changes over time. Here are some of the key areas where the Weibull
-distribution is commonly used:</p>
-<p><strong>Reliability and Survival Analysis:</strong></p>
-<ul>
-<li><strong>Modeling Failure Times:</strong> The Weibull distribution is
-a popular choice for modeling the time-to-failure of components and
-systems. It can capture various failure patterns, including early
-failures (infant mortality), constant failure rates, and wear-out
-failures.</li>
-<li><strong>Predicting Product Lifespan:</strong> By analyzing
-historical failure data and fitting a Weibull distribution, engineers
-can estimate the expected lifespan of products and plan maintenance
-accordingly.</li>
-<li><strong>Assessing Product Reliability:</strong> The Weibull
-distribution helps quantify the reliability of products and systems,
-allowing for informed decisions on design, manufacturing, and warranty
-policies.</li>
-</ul>
-<p><strong>Engineering and Materials Science:</strong></p>
-<ul>
-<li><strong>Fatigue and Endurance Life:</strong> The Weibull
-distribution is used to model the fatigue life of materials, which is
-crucial in designing structures and components that can withstand
-repeated stresses.</li>
-<li><strong>Strength of Materials:</strong> It can also model the
-distribution of material strengths, helping engineers select appropriate
-materials for specific applications.</li>
-<li><strong>Reliability of Electronic Components:</strong> The Weibull
-distribution is used to analyze the reliability of electronic
-components, such as capacitors and resistors, and predict their failure
-rates.</li>
-</ul>
-<p><strong>Other Applications:</strong></p>
-<ul>
-<li><strong>Meteorology and Hydrology:</strong> The Weibull distribution
-can model the distribution of wind speeds, rainfall, and other
-meteorological phenomena.</li>
-<li><strong>Finance:</strong> It can be used in risk management and
-insurance to model the distribution of losses and claim sizes.</li>
-<li><strong>Healthcare:</strong> The Weibull distribution can model the
-survival times of patients with certain diseases, aiding in treatment
-planning and prognosis.</li>
-</ul>
-<p><strong>Key Advantages of the Weibull Distribution:</strong></p>
-<ul>
-<li><strong>Flexibility:</strong> The Weibull distribution can model a
-wide range of failure patterns by adjusting its shape and scale
-parameters.</li>
-<li><strong>Simplicity:</strong> Its probability density function and
-cumulative distribution function have relatively simple forms, making it
-easy to work with mathematically.</li>
-<li><strong>Wide Applicability:</strong> The Weibull distribution has
-proven useful in a variety of fields, making it a versatile tool for
-data analysis and modeling.</li>
-</ul>
-<p>In summary, the Weibull distribution is a powerful tool for modeling
-and analyzing data related to failure times, reliability, and other
-phenomena where the failure rate changes over time. Its flexibility,
-simplicity, and wide applicability make it a valuable asset in various
-engineering, scientific, and business applications.</p>
-<hr />
-</div>
-</div>
-<div id="weibull-distribution-applications" class="section level3">
-<h3>Weibull Distribution Applications</h3>
-<p>The Weibull distribution is highly versatile and finds applications
-across various fields due to its flexibility in modeling different types
-of data. Here are some key applications:</p>
-<div id="reliability-engineering" class="section level4">
-<h4>1. <strong>Reliability Engineering</strong></h4>
-<ul>
-<li><strong>Failure Analysis</strong>: Used to model the time until
-failure of components and systems, helping in predicting product
-lifespan and maintenance schedules.</li>
-<li><strong>Warranty Analysis</strong>: Helps in determining warranty
-periods by analyzing failure rates over time.</li>
-</ul>
-</div>
-<div id="survival-analysis" class="section level4">
-<h4>2. <strong>Survival Analysis</strong></h4>
-<ul>
-<li><strong>Medical Studies</strong>: Applied to model the time until an
-event occurs, such as the onset of a disease or patient survival
-times.</li>
-<li><strong>Clinical Trials</strong>: Used to analyze the effectiveness
-of treatments over time.</li>
-</ul>
-</div>
-<div id="quality-control" class="section level4">
-<h4>3. <strong>Quality Control</strong></h4>
-<ul>
-<li><strong>Manufacturing</strong>: Assists in assessing the reliability
-and quality of products by analyzing failure times and defect
-rates.</li>
-</ul>
-</div>
-<div id="finance" class="section level4">
-<h4>4. <strong>Finance</strong></h4>
-<ul>
-<li><strong>Risk Assessment</strong>: Used to model the time until
-financial defaults or other economic events, aiding in risk management
-and decision-making.</li>
-</ul>
-</div>
-<div id="environmental-science" class="section level4">
-<h4>5. <strong>Environmental Science</strong></h4>
-<ul>
-<li><strong>Climate Studies</strong>: Applied to model extreme weather
-events, such as the time between significant rainfall events or the
-duration of droughts.</li>
-</ul>
-</div>
-<div id="hydrology" class="section level4">
-<h4>6. <strong>Hydrology</strong></h4>
-<ul>
-<li><strong>Flood Analysis</strong>: Helps in predicting the time
-between flood events and the magnitude of such events.</li>
-</ul>
-</div>
-<div id="material-science" class="section level4">
-<h4>7. <strong>Material Science</strong></h4>
-<ul>
-<li><strong>Strength Analysis</strong>: Used to model the distribution
-of material strengths and predict failure under stress.</li>
-</ul>
-</div>
-<div id="operations-research" class="section level4">
-<h4>8. <strong>Operations Research</strong></h4>
-<ul>
-<li><strong>Maintenance Scheduling</strong>: Helps in optimizing
-maintenance schedules by predicting the failure times of machinery and
-equipment.</li>
-</ul>
-<p>The Weibull distribution’s ability to model both increasing and
-decreasing failure rates makes it particularly useful in these diverse
-applications¹²³.</p>
-<hr />
-<ol style="list-style-type: decimal">
-<li>Weibull Distribution: Uses, Parameters &amp; Examples. <a href="https://statisticsbyjim.com/probability/weibull-distribution/" class="uri">https://statisticsbyjim.com/probability/weibull-distribution/</a>.</li>
-<li>Weibull distribution - Wikipedia. <a href="https://en.wikipedia.org/wiki/Weibull_distribution" class="uri">https://en.wikipedia.org/wiki/Weibull_distribution</a>.</li>
-<li>Weibull Distribution: Theory &amp; Applications - Vaia. <a href="https://www.vaia.com/en-us/explanations/math/probability-and-statistics/weibull-distribution/" class="uri">https://www.vaia.com/en-us/explanations/math/probability-and-statistics/weibull-distribution/</a>.</li>
-<li>Weibull Distributions and Their Applications | SpringerLink. <a href="https://link.springer.com/referenceworkentry/10.1007/978-1-84628-288-1_3" class="uri">https://link.springer.com/referenceworkentry/10.1007/978-1-84628-288-1_3</a>.</li>
-<li>Weibull Distribution - BYJU’S. <a href="https://byjus.com/maths/weibull-distribution/" class="uri">https://byjus.com/maths/weibull-distribution/</a>.</li>
-</ol>
-</div>
-</div>
-<div id="worked-example" class="section level3">
-<h3>Worked Example</h3>
-<p>This code performs the following steps:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Imports the <code>Distributions</code> package:</strong>
-This package provides functions for working with various probability
-distributions in Julia.</li>
-</ol>
-<div class="sourceCode" id="cb32"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Defines the Weibull distribution parameters:</strong> The
-<code>shape</code> and <code>scale</code> parameters are specified.</li>
-</ol>
-<div class="sourceCode" id="cb33"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Define the Weibull distribution parameters</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>shape <span class="op">=</span> <span class="fl">2.0</span></span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>scale <span class="op">=</span> <span class="fl">3.0</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Creates a Weibull distribution object:</strong> The
-<code>Weibull</code> function from the <code>Distributions</code>
-package is used to create a distribution object with the specified
-parameters.</li>
-</ol>
-<div class="sourceCode" id="cb34"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Create a Weibull distribution object</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>dist <span class="op">=</span> <span class="fu">Weibull</span>(shape, scale)</span></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Generates random samples:</strong> The <code>rand</code>
-function is used to generate a vector of random samples from the
-distribution.</li>
-</ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># Generate random samples from the distribution</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(dist, <span class="fl">1000</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># Calculate the probability density function (PDF) at specific points</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>x_values <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>]</span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>pdf_values <span class="op">=</span> <span class="fu">pdf</span>.(dist, x_values)</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Calculates PDF, CDF, and quantile values:</strong> The
-<code>pdf</code>, <code>cdf</code>, and <code>quantile</code> functions
-are used to calculate the probability density, cumulative distribution,
-and quantile values at specific points.</li>
-</ol>
-<div class="sourceCode" id="cb37"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># Calculate the cumulative distribution function (CDF) at specific points</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>cdf_values <span class="op">=</span> <span class="fu">cdf</span>.(dist, x_values)</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Calculate the quantile function (inverse CDF) at specific probabilities</span></span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>probabilities <span class="op">=</span> [<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>]</span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>quantile_values <span class="op">=</span> <span class="fu">quantile</span>.(dist, probabilities)</span></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li><strong>Calculates mean and standard deviation:</strong> The
-<code>mean</code> and <code>std</code> functions are used to calculate
-the mean and standard deviation of the distribution.</li>
-</ol>
-<div class="sourceCode" id="cb39"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Calculate the mean and standard deviation of the distribution</span></span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>mean_dist <span class="op">=</span> <span class="fu">mean</span>(dist)</span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>std_dist <span class="op">=</span> <span class="fu">std</span>(dist)</span></code></pre></div>
-<ol start="7" style="list-style-type: decimal">
-<li><strong>Prints the results:</strong> The calculated values are
-printed to the console.</li>
-</ol>
-<div class="sourceCode" id="cb40"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Print the results</span></span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Probability density function (PDF) at x = &quot;</span>, x_values, <span class="st">&quot;: &quot;</span>, pdf_values)</span>
-<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Cumulative distribution function (CDF) at x = &quot;</span>, x_values, <span class="st">&quot;: &quot;</span>, cdf_values)</span>
-<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Quantile function (inverse CDF) at probabilities = &quot;</span>, probabilities, <span class="st">&quot;: &quot;</span>, quantile_values)</span>
-<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean of the distribution: &quot;</span>, mean_dist)</span>
-<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Standard deviation of the distribution: &quot;</span>, std_dist)</span></code></pre></div>
-<p>This example demonstrates the basic usage of the Weibull distribution
-in Julia. You can modify the parameters and perform other calculations
-as needed.</p>
-</div>
-</div>
-</div>
-<div id="beta-distribution" class="section level1" data-navmenu="Distributions">
-<h1>Beta Distribution</h1>
-<div id="column-5" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="beta-distributions" class="section level3">
-<h3>Beta Distributions</h3>
-</div>
-<div id="beta-distribution---example" class="section level3">
-<h3>Beta Distribution - Example</h3>
-<h4>
-Beta Distribution - Example
-</h4>
-<p>** Here’s a worked example of the Beta distribution using
-Julia.**</p>
-<p>First, let’s install the required packages if you don’t already have
-them:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Distributions&quot;</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span></code></pre></div>
-<p>Now, let’s dive into the example:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Import the necessary packages:</strong></li>
-</ol>
-<div class="sourceCode" id="cb42"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Define the parameters of the Beta
-distribution:</strong></li>
-</ol>
-<p>Let’s choose parameters <span class="math inline">\(\alpha =
-2\)</span> and <span class="math inline">\(\beta = 5\)</span>.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">5</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Create a Beta distribution object:</strong></li>
-</ol>
-<div class="sourceCode" id="cb44"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>beta_dist <span class="op">=</span> <span class="fu">Beta</span>(alpha, beta)</span></code></pre></div>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Calculate the mean and variance:</strong></li>
-</ol>
-<div class="sourceCode" id="cb45"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>mean_beta <span class="op">=</span> <span class="fu">mean</span>(beta_dist)</span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>variance_beta <span class="op">=</span> <span class="fu">var</span>(beta_dist)</span>
-<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, mean_beta)</span>
-<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Variance: &quot;</span>, variance_beta)</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Generate random samples from the Beta
-distribution:</strong></li>
-</ol>
-<p>Let’s generate 1000 random samples.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(beta_dist, <span class="fl">1000</span>)</span></code></pre></div>
-<ol start="6" style="list-style-type: decimal">
-<li><strong>Plot the probability density function (PDF):</strong></li>
-</ol>
-<p>We will plot the PDF of the Beta distribution and the histogram of
-the samples.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>pdf_values <span class="op">=</span> <span class="fu">pdf</span>.(beta_dist, x)</span>
-<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a><span class="fu">plot</span>(x, pdf_values, label<span class="op">=</span><span class="st">&quot;Beta(2, 5) PDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>)</span>
-<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a><span class="fu">histogram!</span>(samples, normalize<span class="op">=</span><span class="cn">true</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&quot;Sample Histogram&quot;</span>)</span></code></pre></div>
-<p>The complete code looks like this:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a><span class="co"># Define the parameters of the Beta distribution</span></span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">2</span></span>
-<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a><span class="co"># Create a Beta distribution object</span></span>
-<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a>beta_dist <span class="op">=</span> <span class="fu">Beta</span>(alpha, beta)</span>
-<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a></span>
-<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a><span class="co"># Calculate the mean and variance</span></span>
-<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>mean_beta <span class="op">=</span> <span class="fu">mean</span>(beta_dist)</span>
-<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a>variance_beta <span class="op">=</span> <span class="fu">var</span>(beta_dist)</span>
-<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean: &quot;</span>, mean_beta)</span>
-<span id="cb48-15"><a href="#cb48-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Variance: &quot;</span>, variance_beta)</span>
-<span id="cb48-16"><a href="#cb48-16" tabindex="-1"></a></span>
-<span id="cb48-17"><a href="#cb48-17" tabindex="-1"></a><span class="co"># Generate random samples from the Beta distribution</span></span>
-<span id="cb48-18"><a href="#cb48-18" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(beta_dist, <span class="fl">1000</span>)</span>
-<span id="cb48-19"><a href="#cb48-19" tabindex="-1"></a></span>
-<span id="cb48-20"><a href="#cb48-20" tabindex="-1"></a><span class="co"># Plot the probability density function (PDF)</span></span>
-<span id="cb48-21"><a href="#cb48-21" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
-<span id="cb48-22"><a href="#cb48-22" tabindex="-1"></a>pdf_values <span class="op">=</span> <span class="fu">pdf</span>.(beta_dist, x)</span>
-<span id="cb48-23"><a href="#cb48-23" tabindex="-1"></a></span>
-<span id="cb48-24"><a href="#cb48-24" tabindex="-1"></a><span class="fu">plot</span>(x, pdf_values, label<span class="op">=</span><span class="st">&quot;Beta(2, 5) PDF&quot;</span>, linewidth<span class="op">=</span><span class="fl">2</span>)</span>
-<span id="cb48-25"><a href="#cb48-25" tabindex="-1"></a><span class="fu">histogram!</span>(samples, normalize<span class="op">=</span><span class="cn">true</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&quot;Sample Histogram&quot;</span>)</span></code></pre></div>
-<p>This code will generate a plot showing the probability density
-function of the Beta(2, 5) distribution and a histogram of 1000 random
-samples drawn from this distribution.</p>
-</div>
-</div>
-</div>
-<div id="power-law-distributions" class="section level1" data-navmenu="Abvanced Topics">
-<h1>Power Law Distributions</h1>
-<div id="column-6" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="power-law-distributions-1" class="section level3">
-<h3>Power Law Distributions</h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="co"># Power Law Distribution Tutorial in Julia</span></span>
-<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span>, <span class="bu">Plots</span>, <span class="bu">StatsPlots</span></span>
-<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" tabindex="-1"></a><span class="co"># 1. Defining a Power Law Distribution</span></span>
-<span id="cb49-7"><a href="#cb49-7" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" tabindex="-1"></a><span class="co"># The Distributions.jl package doesn&#39;t have a built-in Power Law distribution.</span></span>
-<span id="cb49-9"><a href="#cb49-9" tabindex="-1"></a><span class="co"># We can define it ourselves.  Here&#39;s a simple implementation:</span></span>
-<span id="cb49-10"><a href="#cb49-10" tabindex="-1"></a></span>
-<span id="cb49-11"><a href="#cb49-11" tabindex="-1"></a><span class="kw">struct</span> PowerLaw{T<span class="op">&lt;:</span><span class="dt">Real</span>} <span class="op">&lt;:</span><span class="dt"> ContinuousUnivariateDistribution</span></span>
-<span id="cb49-12"><a href="#cb49-12" tabindex="-1"></a>    xmin<span class="op">::</span><span class="dt">T  </span><span class="co"># Minimum value (must be &gt; 0)</span></span>
-<span id="cb49-13"><a href="#cb49-13" tabindex="-1"></a>    alpha<span class="op">::</span><span class="dt">T </span><span class="co"># Exponent (must be &gt; 1 for a proper distribution)</span></span>
-<span id="cb49-14"><a href="#cb49-14" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb49-15"><a href="#cb49-15" tabindex="-1"></a></span>
-<span id="cb49-16"><a href="#cb49-16" tabindex="-1"></a><span class="co"># Define a method to generate random samples.</span></span>
-<span id="cb49-17"><a href="#cb49-17" tabindex="-1"></a><span class="im">import</span> <span class="bu">Base.rand</span></span>
-<span id="cb49-18"><a href="#cb49-18" tabindex="-1"></a><span class="kw">function</span> <span class="fu">rand</span>(rng<span class="op">::</span><span class="dt">AbstractRNG</span>, d<span class="op">::</span><span class="dt">PowerLaw</span>)</span>
-<span id="cb49-19"><a href="#cb49-19" tabindex="-1"></a>    u <span class="op">=</span> <span class="fu">rand</span>(rng)</span>
-<span id="cb49-20"><a href="#cb49-20" tabindex="-1"></a>    <span class="cf">return</span> d.xmin <span class="op">*</span> (<span class="fl">1</span> <span class="op">-</span> u)<span class="op">^</span>(<span class="op">-</span><span class="fl">1</span><span class="op">/</span>(d.alpha <span class="op">-</span> <span class="fl">1</span>))</span>
-<span id="cb49-21"><a href="#cb49-21" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb49-22"><a href="#cb49-22" tabindex="-1"></a></span>
-<span id="cb49-23"><a href="#cb49-23" tabindex="-1"></a><span class="co"># Define other necessary methods for Distributions.jl compatibility (optional but good practice).</span></span>
-<span id="cb49-24"><a href="#cb49-24" tabindex="-1"></a><span class="im">import</span> <span class="bu">Distributions</span>: pdf, cdf</span>
-<span id="cb49-25"><a href="#cb49-25" tabindex="-1"></a></span>
-<span id="cb49-26"><a href="#cb49-26" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pdf</span>(d<span class="op">::</span><span class="dt">PowerLaw</span>, x<span class="op">::</span><span class="dt">Real</span>)</span>
-<span id="cb49-27"><a href="#cb49-27" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> d.xmin</span>
-<span id="cb49-28"><a href="#cb49-28" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb49-29"><a href="#cb49-29" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb49-30"><a href="#cb49-30" tabindex="-1"></a>        <span class="cf">return</span> (d.alpha <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> d.xmin<span class="op">^</span>(d.alpha <span class="op">-</span> <span class="fl">1</span>) <span class="op">*</span> x<span class="op">^</span>(<span class="op">-</span>d.alpha)</span>
-<span id="cb49-31"><a href="#cb49-31" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb49-32"><a href="#cb49-32" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb49-33"><a href="#cb49-33" tabindex="-1"></a></span>
-<span id="cb49-34"><a href="#cb49-34" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cdf</span>(d<span class="op">::</span><span class="dt">PowerLaw</span>, x<span class="op">::</span><span class="dt">Real</span>)</span>
-<span id="cb49-35"><a href="#cb49-35" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&lt;</span> d.xmin</span>
-<span id="cb49-36"><a href="#cb49-36" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb49-37"><a href="#cb49-37" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb49-38"><a href="#cb49-38" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1</span> <span class="op">-</span> (d.xmin <span class="op">/</span> x)<span class="op">^</span>(d.alpha <span class="op">-</span> <span class="fl">1</span>)</span>
-<span id="cb49-39"><a href="#cb49-39" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb49-40"><a href="#cb49-40" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb49-41"><a href="#cb49-41" tabindex="-1"></a></span>
-<span id="cb49-42"><a href="#cb49-42" tabindex="-1"></a><span class="co"># Example usage:</span></span>
-<span id="cb49-43"><a href="#cb49-43" tabindex="-1"></a>xmin <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># Minimum value</span></span>
-<span id="cb49-44"><a href="#cb49-44" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">2.5</span> <span class="co"># Exponent</span></span>
-<span id="cb49-45"><a href="#cb49-45" tabindex="-1"></a>dist <span class="op">=</span> <span class="fu">PowerLaw</span>(xmin, alpha)</span>
-<span id="cb49-46"><a href="#cb49-46" tabindex="-1"></a></span>
-<span id="cb49-47"><a href="#cb49-47" tabindex="-1"></a><span class="co"># 2. Generating Random Samples</span></span>
-<span id="cb49-48"><a href="#cb49-48" tabindex="-1"></a></span>
-<span id="cb49-49"><a href="#cb49-49" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="fl">10000</span></span>
-<span id="cb49-50"><a href="#cb49-50" tabindex="-1"></a>samples <span class="op">=</span> <span class="fu">rand</span>(dist, n_samples)  <span class="co"># Generate random samples</span></span>
-<span id="cb49-51"><a href="#cb49-51" tabindex="-1"></a></span>
-<span id="cb49-52"><a href="#cb49-52" tabindex="-1"></a><span class="co"># 3. Visualizing the Distribution</span></span>
-<span id="cb49-53"><a href="#cb49-53" tabindex="-1"></a></span>
-<span id="cb49-54"><a href="#cb49-54" tabindex="-1"></a><span class="co"># Histogram</span></span>
-<span id="cb49-55"><a href="#cb49-55" tabindex="-1"></a><span class="fu">histogram</span>(samples, </span>
-<span id="cb49-56"><a href="#cb49-56" tabindex="-1"></a>          bins <span class="op">=</span> <span class="op">:</span> FreedmanDiaconis, <span class="co">#Good automatic bin selection</span></span>
-<span id="cb49-57"><a href="#cb49-57" tabindex="-1"></a>          normalize <span class="op">=</span> <span class="cn">true</span>,</span>
-<span id="cb49-58"><a href="#cb49-58" tabindex="-1"></a>          xlabel <span class="op">=</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb49-59"><a href="#cb49-59" tabindex="-1"></a>          ylabel <span class="op">=</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
-<span id="cb49-60"><a href="#cb49-60" tabindex="-1"></a>          title <span class="op">=</span> <span class="st">&quot;Power Law Distribution (xmin=</span><span class="sc">$</span>xmin<span class="st">, α=</span><span class="sc">$</span>alpha<span class="st">)&quot;</span>)</span>
-<span id="cb49-61"><a href="#cb49-61" tabindex="-1"></a></span>
-<span id="cb49-62"><a href="#cb49-62" tabindex="-1"></a><span class="co"># Overlay the theoretical PDF (for comparison)</span></span>
-<span id="cb49-63"><a href="#cb49-63" tabindex="-1"></a>x_vals <span class="op">=</span> <span class="fu">range</span>(xmin, <span class="fu">maximum</span>(samples), length <span class="op">=</span> <span class="fl">200</span>)</span>
-<span id="cb49-64"><a href="#cb49-64" tabindex="-1"></a><span class="fu">plot!</span>(x_vals, <span class="fu">pdf</span>.(dist, x_vals), </span>
-<span id="cb49-65"><a href="#cb49-65" tabindex="-1"></a>      label <span class="op">=</span> <span class="st">&quot;Theoretical PDF&quot;</span>, </span>
-<span id="cb49-66"><a href="#cb49-66" tabindex="-1"></a>      linewidth <span class="op">=</span> <span class="fl">2</span>, </span>
-<span id="cb49-67"><a href="#cb49-67" tabindex="-1"></a>      color <span class="op">=</span> <span class="op">:</span>red)</span>
-<span id="cb49-68"><a href="#cb49-68" tabindex="-1"></a></span>
-<span id="cb49-69"><a href="#cb49-69" tabindex="-1"></a></span>
-<span id="cb49-70"><a href="#cb49-70" tabindex="-1"></a><span class="co"># Log-log plot (essential for power laws)</span></span>
-<span id="cb49-71"><a href="#cb49-71" tabindex="-1"></a><span class="fu">histogram</span>(samples,</span>
-<span id="cb49-72"><a href="#cb49-72" tabindex="-1"></a>          bins <span class="op">=</span> <span class="op">:</span>log, <span class="co"># Logarithmic bins</span></span>
-<span id="cb49-73"><a href="#cb49-73" tabindex="-1"></a>          normalize <span class="op">=</span> <span class="cn">true</span>,</span>
-<span id="cb49-74"><a href="#cb49-74" tabindex="-1"></a>          xlabel <span class="op">=</span> <span class="st">&quot;x (log scale)&quot;</span>,</span>
-<span id="cb49-75"><a href="#cb49-75" tabindex="-1"></a>          ylabel <span class="op">=</span> <span class="st">&quot;Probability Density (log scale)&quot;</span>,</span>
-<span id="cb49-76"><a href="#cb49-76" tabindex="-1"></a>          title <span class="op">=</span> <span class="st">&quot;Power Law Distribution (Log-Log Scale)&quot;</span>,</span>
-<span id="cb49-77"><a href="#cb49-77" tabindex="-1"></a>          xscale <span class="op">=</span> <span class="op">:</span>log10, yscale <span class="op">=</span> <span class="op">:</span>log10)</span>
-<span id="cb49-78"><a href="#cb49-78" tabindex="-1"></a></span>
-<span id="cb49-79"><a href="#cb49-79" tabindex="-1"></a><span class="fu">plot!</span>(x_vals, <span class="fu">pdf</span>.(dist, x_vals), </span>
-<span id="cb49-80"><a href="#cb49-80" tabindex="-1"></a>      label <span class="op">=</span> <span class="st">&quot;Theoretical PDF&quot;</span>, </span>
-<span id="cb49-81"><a href="#cb49-81" tabindex="-1"></a>      linewidth <span class="op">=</span> <span class="fl">2</span>, </span>
-<span id="cb49-82"><a href="#cb49-82" tabindex="-1"></a>      color <span class="op">=</span> <span class="op">:</span>red)</span>
-<span id="cb49-83"><a href="#cb49-83" tabindex="-1"></a></span>
-<span id="cb49-84"><a href="#cb49-84" tabindex="-1"></a><span class="co"># 4. Parameter Estimation (Optional)</span></span>
-<span id="cb49-85"><a href="#cb49-85" tabindex="-1"></a></span>
-<span id="cb49-86"><a href="#cb49-86" tabindex="-1"></a><span class="co"># Estimating parameters from data is more complex for power laws.</span></span>
-<span id="cb49-87"><a href="#cb49-87" tabindex="-1"></a><span class="co"># There are specialized methods, but a simple (though not always best)</span></span>
-<span id="cb49-88"><a href="#cb49-88" tabindex="-1"></a><span class="co"># approach is to use a linear fit on the log-log histogram.</span></span>
-<span id="cb49-89"><a href="#cb49-89" tabindex="-1"></a></span>
-<span id="cb49-90"><a href="#cb49-90" tabindex="-1"></a><span class="co"># (Simplified example – more robust methods exist)</span></span>
-<span id="cb49-91"><a href="#cb49-91" tabindex="-1"></a>log_x <span class="op">=</span> <span class="fu">log</span>.(samples)</span>
-<span id="cb49-92"><a href="#cb49-92" tabindex="-1"></a>log_counts <span class="op">=</span> <span class="fu">log</span>.(<span class="fu">fit</span>(Histogram, samples, <span class="op">:</span>log).weights)</span>
-<span id="cb49-93"><a href="#cb49-93" tabindex="-1"></a></span>
-<span id="cb49-94"><a href="#cb49-94" tabindex="-1"></a><span class="co"># Fit a line to the log-log data (you would typically exclude the tail of the distribution).</span></span>
-<span id="cb49-95"><a href="#cb49-95" tabindex="-1"></a><span class="co"># Note: This is a simplified example and might not be the most accurate estimation method.</span></span>
-<span id="cb49-96"><a href="#cb49-96" tabindex="-1"></a><span class="co">#       More robust methods like maximum likelihood estimation (MLE) are recommended.</span></span>
-<span id="cb49-97"><a href="#cb49-97" tabindex="-1"></a><span class="co">#       Packages like `PowerLaw` may be helpful for more advanced analysis.</span></span>
-<span id="cb49-98"><a href="#cb49-98" tabindex="-1"></a><span class="co">#       However, MLE for power-law is a complex topic and requires specialized treatment.</span></span>
-<span id="cb49-99"><a href="#cb49-99" tabindex="-1"></a></span>
-<span id="cb49-100"><a href="#cb49-100" tabindex="-1"></a><span class="co"># 5. Key Considerations for Power Laws</span></span>
-<span id="cb49-101"><a href="#cb49-101" tabindex="-1"></a></span>
-<span id="cb49-102"><a href="#cb49-102" tabindex="-1"></a><span class="co"># - **Minimum Value (xmin):**  The minimum value is a crucial parameter.  Accurately determining xmin is important.</span></span>
-<span id="cb49-103"><a href="#cb49-103" tabindex="-1"></a><span class="co"># - **Exponent (alpha):**  The exponent determines the shape of the distribution.</span></span>
-<span id="cb49-104"><a href="#cb49-104" tabindex="-1"></a><span class="co"># - **Log-log plots:**  Essential for visualizing and analyzing power laws.  The power law appears as a straight line on a log-log plot.</span></span>
-<span id="cb49-105"><a href="#cb49-105" tabindex="-1"></a><span class="co"># - **Parameter Estimation:**  Can be challenging.  Simple linear fits on log-log plots are a starting point but may not be accurate.  MLE is preferred but has its own complexities.  Be careful about binning effects.</span></span>
-<span id="cb49-106"><a href="#cb49-106" tabindex="-1"></a><span class="co"># - **Heavy Tails:**  Power laws have &quot;heavy tails,&quot; meaning extreme values are more likely than in many other distributions.  This has important implications for analysis and simulation.</span></span>
-<span id="cb49-107"><a href="#cb49-107" tabindex="-1"></a></span>
-<span id="cb49-108"><a href="#cb49-108" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Tutorial Completed!&quot;</span>)</span></code></pre></div>
-<p><strong>Explanation and Key Improvements:</strong></p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Custom <code>PowerLaw</code> Type:</strong> Since
-<code>Distributions.jl</code> doesn’t have a built-in power law, we
-define our own <code>PowerLaw</code> struct and implement the necessary
-methods (<code>rand</code>, <code>pdf</code>, <code>cdf</code>). This
-makes it behave like other Distributions.jl distributions.</p></li>
-<li><p><strong>Random Number Generation:</strong> The <code>rand</code>
-method uses the inverse transform sampling method, which is the standard
-way to generate power-law random variates.</p></li>
-<li><p><strong>PDF and CDF:</strong> The <code>pdf</code> and
-<code>cdf</code> methods are implemented for completeness and to allow
-comparison with the theoretical distribution.</p></li>
-<li><p><strong>Visualization:</strong></p>
-<ul>
-<li>The code now includes a regular histogram and a <em>log-log
-histogram</em>, which is absolutely essential for visualizing and
-confirming that your data follows a power law. Power laws appear as
-straight lines on a log-log plot.</li>
-<li>The theoretical PDF is overlaid on the histogram for
-comparison.</li>
-<li><code>FreedmanDiaconis</code> is used for automatic bin selection
-which is generally a good choice.</li>
+<li><p>Pass data between Julia and R.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Pass a Julia variable to R</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">42</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="pp">@rput</span> x  <span class="co"># Now x is available in R</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># Retrieve an R variable back to Julia</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>R<span class="st">&quot;x &lt;- x + 1&quot;</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="pp">@rget</span> x  <span class="co"># x is updated to 43 in Julia</span></span></code></pre></div></li>
 </ul></li>
-<li><p><strong>Parameter Estimation (Simplified):</strong> The code
-provides a <em>very</em> basic example of parameter estimation using a
-linear fit on the log-log histogram. <strong>Important:</strong> This is
-a simplified example and may not be the most accurate method. Power-law
-parameter estimation is a complex topic. Maximum likelihood estimation
-(MLE) is generally preferred, but it’s more involved. The
-<code>PowerLaw</code> package may be helpful.</p></li>
-<li><p><strong>Key Considerations:</strong> The tutorial emphasizes the
-importance of <code>xmin</code>, <code>alpha</code>, log-log plots, and
-the challenges of parameter estimation for power laws.</p></li>
-<li><p><strong>Clearer Comments and Structure:</strong> The code is
-well-commented and organized, making it easier to follow.</p></li>
-<li><p><strong>Package Loading:</strong> Explicitly loads the necessary
-packages.</p></li>
+<li><strong>RObject Type</strong>
+<ul>
+<li><p>Provides a wrapper for R objects in Julia, allowing manipulation
+of R data types within Julia.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>y <span class="op">=</span> <span class="fu">RObject</span>(<span class="fl">3.14</span>)</span></code></pre></div></li>
+</ul></li>
+<li><strong>rcopy Function</strong>
+<ul>
+<li><p>Converts an R object to a native Julia object.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>y <span class="op">=</span> <span class="fu">rcopy</span>(R<span class="st">&quot;pi&quot;</span>)</span></code></pre></div></li>
+</ul></li>
+<li><strong>RFunction Type</strong>
+<ul>
+<li><p>Represents R functions in Julia, enabling direct calling of R
+functions.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>rnorm <span class="op">=</span> <span class="fu">RFunction</span>(R<span class="st">&quot;rnorm&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>julia_rand <span class="op">=</span> <span class="fu">rnorm</span>(<span class="fl">5</span>)</span></code></pre></div></li>
+</ul></li>
+<li><strong>REval</strong>
+<ul>
+<li><p>Evaluates R expressions and returns the result in Julia.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">reval</span>(<span class="st">&quot;sum(c(1, 2, 3, 4, 5))&quot;</span>)  <span class="co"># Result will be 15</span></span></code></pre></div></li>
+</ul></li>
+<li><strong>RCall.find_r()</strong>
+<ul>
+<li>Automatically detects the R installation on your system.</li>
+</ul></li>
 </ol>
-<p>This improved tutorial provides a more complete and informative
-introduction to working with power-law distributions in Julia, covering
-definition, random number generation, visualization, and basic (though
-simplified) parameter estimation. It also highlights the important
-considerations when dealing with power laws. Remember to install the
-necessary packages using
-<code>] add Distributions Plots StatsPlots</code> in the Julia REPL.</p>
 </div>
+<div id="examples" class="section level4">
+<h4>Examples</h4>
 </div>
+<div id="plotting-with-ggplot2-in-r-from-julia" class="section level4">
+<h4>Plotting with ggplot2 in R from Julia</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>R<span class="st">&quot;library(ggplot2)&quot;</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>R<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="st">data(mpg, package = &#39;ggplot2&#39;)</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="st">ggplot(mpg, aes(x = displ, y = hwy, colour = class)) + geom_point()</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
 </div>
-<div id="extreme-value-theory" class="section level1" data-navmenu="Abvanced Topics">
-<h1>Extreme Value Theory</h1>
-<div id="column-7" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="extreme-value-theory-evt-with-julia" class="section level3">
-<h3>Extreme Value Theory (EVT) with Julia</h3>
-<h3>
-Extreme Value Theory (EVT) with Julia
-</h3>
-<p>Extreme Value Theory (EVT) is primarily concerned with modeling the
-tails of probability distributions, focusing on extreme events.</p>
-<p>Here are the main probability distributions used in EVT:</p>
-<p><strong>1. Generalized Extreme Value (GEV) Distribution:</strong></p>
-<ul>
-<li><strong>Central to EVT:</strong> The GEV distribution is the
-cornerstone of EVT for modeling block maxima (the largest or smallest
-values in a set of data).</li>
-<li><strong>Unified Family:</strong> It combines three distributions
-into a single family:
-<ul>
-<li><strong>Gumbel:</strong> Used for unbounded distributions (e.g.,
-maximum temperatures).</li>
-<li><strong>Fréchet:</strong> Used for heavy-tailed distributions (e.g.,
-financial losses).</li>
-<li><strong>Weibull:</strong> Used for bounded distributions (e.g.,
-material strength).</li>
-</ul></li>
-<li><strong>Parameters:</strong>
-<ul>
-<li><strong>μ (location):</strong> Shifts the distribution.</li>
-<li><strong>σ (scale):</strong> Controls the spread.</li>
-<li><strong>ξ (shape):</strong> Determines the tail behavior and which
-of the three types it is.</li>
-</ul></li>
-</ul>
-<p><strong>2. Generalized Pareto Distribution (GPD):</strong></p>
-<ul>
-<li><strong>Peaks Over Threshold (POT):</strong> The GPD is used to
-model exceedances over a high threshold (values above a certain
-level).</li>
-<li><strong>Focus on Tails:</strong> It specifically models the behavior
-of the distribution beyond the threshold.</li>
-<li><strong>Parameters:</strong>
-<ul>
-<li><strong>σ (scale):</strong> Controls the spread of the tail.</li>
-<li><strong>ξ (shape):</strong> Determines the tail’s heaviness.</li>
-</ul></li>
-</ul>
-<hr />
-<p><strong>Key Points:</strong></p>
-<ul>
-<li><strong>Extreme Value Theorem:</strong> The foundation of EVT states
-that under certain conditions, the distribution of extreme values (block
-maxima or exceedances) will converge to one of these distributions (GEV
-or GPD).</li>
-<li><strong>Choice of Distribution:</strong> The choice between GEV and
-GPD depends on the specific problem and data:
-<ul>
-<li><strong>GEV:</strong> For modeling block maxima.</li>
-<li><strong>GPD:</strong> For modeling peaks over thresholds.</li>
-</ul></li>
-<li><strong>Parameter Estimation:</strong> Accurate estimation of the
-parameters is crucial for making reliable predictions about extreme
-events.</li>
-</ul>
-<p><strong>Applications:</strong></p>
-<p>These distributions are widely used in various fields:</p>
-<ul>
-<li><strong>Finance:</strong> Risk management, estimating extreme
-losses.</li>
-<li><strong>Insurance:</strong> Assessing the probability of large
-claims.</li>
-<li><strong>Environmental Science:</strong> Modeling extreme weather
-events, floods, droughts.</li>
-<li><strong>Engineering:</strong> Assessing the reliability of
-structures under extreme loads.</li>
-</ul>
-<p>Understanding these distributions and their properties is essential
-for applying EVT effectively and making informed decisions about extreme
-events.</p>
+<div id="statistical-analysis" class="section level4">
+<h4>Statistical Analysis</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co"># Create a DataFrame in Julia</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">DataFrame</span>(A <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, B <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">4</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co"># Pass the DataFrame to R</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="pp">@rput</span> df</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co"># Perform statistical analysis in R</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>R<span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="st">summary(lm(B ~ A, data = df))</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span></code></pre></div>
 </div>
+<div id="conclusion-1" class="section level4">
+<h4>Conclusion</h4>
+<p><code>RCall.jl</code> is a versatile tool that enhances the Julia
+programming environment by integrating R’s extensive packages and
+functionality. This synergy allows users to leverage the best of both
+languages for data analysis, visualization, and much more.</p>
+<p>If you have any specific questions or need further examples, feel
+free to ask!</p>
 </div>
-</div>
-<div id="reliability-analysis" class="section level1" data-navmenu="Abvanced Topics">
-<h1>Reliability Analysis</h1>
-<div id="column-8" class="section level2 tabset">
-<h2 class="tabset">Column</h2>
-<div id="reliability-analysis-in-julia" class="section level3">
-<h3>Reliability Analysis in Julia</h3>
-<h3>
-Modeling Probability Distributions for Reliability Analysis in Julia
-</h3>
-<p>This tutorial explores how to use Julia to model probability
-distributions commonly encountered in reliability analysis and
-industrial applications. We’ll cover key packages, common distributions,
-parameter fitting, and basic reliability calculations.</p>
-<p><strong>1. Setting up the Environment</strong></p>
-<p>First, ensure you have Julia installed. Then, open the Julia REPL (or
-use an IDE like VS Code with the Julia extension) and install the
-necessary packages:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>([<span class="st">&quot;Distributions&quot;</span>, <span class="st">&quot;StatsPlots&quot;</span>, <span class="st">&quot;Plots&quot;</span>, <span class="st">&quot;Optim&quot;</span>]) <span class="co"># Add more if needed</span></span></code></pre></div>
-<p><strong>2. The <code>Distributions.jl</code> Package</strong></p>
-<p>The <code>Distributions.jl</code> package is the core tool for
-working with probability distributions in Julia. It provides a wide
-range of distributions and functions for manipulating them.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a><span class="co"># Example: Creating a Weibull distribution</span></span>
-<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>weibull_dist <span class="op">=</span> <span class="fu">Weibull</span>(<span class="fl">2.0</span>, <span class="fl">10.0</span>) <span class="co"># Shape = 2.0, Scale = 10.0</span></span>
-<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a></span>
-<span id="cb51-6"><a href="#cb51-6" tabindex="-1"></a><span class="co"># Example: Creating a Normal distribution</span></span>
-<span id="cb51-7"><a href="#cb51-7" tabindex="-1"></a>normal_dist <span class="op">=</span> <span class="fu">Normal</span>(<span class="fl">0</span>, <span class="fl">1</span>) <span class="co"># Mean = 0, Standard deviation = 1</span></span>
-<span id="cb51-8"><a href="#cb51-8" tabindex="-1"></a></span>
-<span id="cb51-9"><a href="#cb51-9" tabindex="-1"></a><span class="co"># Example: Creating an Exponential distribution</span></span>
-<span id="cb51-10"><a href="#cb51-10" tabindex="-1"></a>exponential_dist <span class="op">=</span> <span class="fu">Exponential</span>(<span class="fl">5</span>) <span class="co"># Rate = 1/5 (Mean = 5)</span></span>
-<span id="cb51-11"><a href="#cb51-11" tabindex="-1"></a></span>
-<span id="cb51-12"><a href="#cb51-12" tabindex="-1"></a><span class="co"># Example: Creating a LogNormal distribution</span></span>
-<span id="cb51-13"><a href="#cb51-13" tabindex="-1"></a>lognormal_dist <span class="op">=</span> <span class="fu">LogNormal</span>(<span class="fl">0</span>, <span class="fl">1</span>) <span class="co"># Meanlog = 0, Sigmalog = 1</span></span></code></pre></div>
-<p><strong>3. Common Distributions in Reliability</strong></p>
-<ul>
-<li><strong>Weibull:</strong> Widely used for modeling time-to-failure,
-especially for components exhibiting wear-out.</li>
-<li><strong>Exponential:</strong> Models constant failure rates, often
-used for electronic components or during the useful life period.</li>
-<li><strong>Normal (Gaussian):</strong> Used when failure is due to a
-combination of many small, independent factors.</li>
-<li><strong>Lognormal:</strong> Useful when the logarithm of the failure
-time is normally distributed, often applicable when failure is due to
-fatigue or degradation.</li>
-<li><strong>Gamma:</strong> Flexible distribution often used in
-reliability and queuing theory.</li>
-<li><strong>Rayleigh:</strong> A special case of the Weibull
-distribution, used in some specific reliability contexts.</li>
-</ul>
-<p><strong>4. Key Functions</strong></p>
-<ul>
-<li><strong>Probability Density Function (PDF):</strong>
-<code>pdf(dist, x)</code> gives the probability density at
-<code>x</code>.</li>
-<li><strong>Cumulative Distribution Function (CDF):</strong>
-<code>cdf(dist, x)</code> gives the probability of the random variable
-being less than or equal to <code>x</code>. This is crucial for
-reliability calculations.</li>
-<li><strong>Quantile Function (Inverse CDF):</strong>
-<code>quantile(dist, p)</code> gives the value of <code>x</code> such
-that <code>cdf(dist, x) = p</code>.</li>
-<li><strong>Random Number Generation:</strong>
-<code>rand(dist, n)</code> generates <code>n</code> random samples from
-the distribution.</li>
-<li><strong>Mean and Variance:</strong> <code>mean(dist)</code>,
-<code>var(dist)</code> provide the mean and variance.</li>
-</ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="co"># Examples</span></span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">5</span></span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>pdf_value <span class="op">=</span> <span class="fu">pdf</span>(weibull_dist, x)</span>
-<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>cdf_value <span class="op">=</span> <span class="fu">cdf</span>(weibull_dist, x)</span>
-<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>quantile_value <span class="op">=</span> <span class="fu">quantile</span>(weibull_dist, <span class="fl">0.95</span>) <span class="co"># 95th percentile</span></span>
-<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a>random_samples <span class="op">=</span> <span class="fu">rand</span>(weibull_dist, <span class="fl">100</span>)</span>
-<span id="cb52-7"><a href="#cb52-7" tabindex="-1"></a>mean_value <span class="op">=</span> <span class="fu">mean</span>(weibull_dist)</span></code></pre></div>
-<p><strong>5. Parameter Estimation (Fitting Distributions to
-Data)</strong></p>
-<p>Often, you’ll have failure data and need to estimate the parameters
-of the distribution that best fits the data.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Optim</span></span>
-<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a><span class="co"># Example data (time-to-failure data)</span></span>
-<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a>data <span class="op">=</span> [<span class="fl">8.5</span>, <span class="fl">9.2</span>, <span class="fl">10.1</span>, <span class="fl">11.5</span>, <span class="fl">12.8</span>, <span class="fl">13.5</span>, <span class="fl">14.2</span>, <span class="fl">15.0</span>, <span class="fl">16.3</span>, <span class="fl">17.1</span>]</span>
-<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a></span>
-<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a><span class="co"># Maximum Likelihood Estimation (MLE) for Weibull</span></span>
-<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a><span class="kw">function</span> <span class="fu">weibull_mle</span>(params)</span>
-<span id="cb53-8"><a href="#cb53-8" tabindex="-1"></a>    shape, scale <span class="op">=</span> params</span>
-<span id="cb53-9"><a href="#cb53-9" tabindex="-1"></a>    dist <span class="op">=</span> <span class="fu">Weibull</span>(shape, scale)</span>
-<span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a>    <span class="fu">-sum</span>(<span class="fu">logpdf</span>(dist, data)) <span class="co"># Negative log-likelihood for minimization</span></span>
-<span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb53-12"><a href="#cb53-12" tabindex="-1"></a></span>
-<span id="cb53-13"><a href="#cb53-13" tabindex="-1"></a>initial_params <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">10.0</span>]  <span class="co"># Initial guess for shape and scale</span></span>
-<span id="cb53-14"><a href="#cb53-14" tabindex="-1"></a>result <span class="op">=</span> <span class="fu">optimize</span>(weibull_mle, initial_params)</span>
-<span id="cb53-15"><a href="#cb53-15" tabindex="-1"></a>estimated_shape, estimated_scale <span class="op">=</span> result.minimizer</span>
-<span id="cb53-16"><a href="#cb53-16" tabindex="-1"></a></span>
-<span id="cb53-17"><a href="#cb53-17" tabindex="-1"></a>fitted_weibull <span class="op">=</span> <span class="fu">Weibull</span>(estimated_shape, estimated_scale)</span>
-<span id="cb53-18"><a href="#cb53-18" tabindex="-1"></a></span>
-<span id="cb53-19"><a href="#cb53-19" tabindex="-1"></a><span class="co"># Plotting the fitted distribution against the data (optional)</span></span>
-<span id="cb53-20"><a href="#cb53-20" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsPlots</span></span>
-<span id="cb53-21"><a href="#cb53-21" tabindex="-1"></a><span class="fu">histogram</span>(data, bins<span class="op">=</span><span class="fl">10</span>, normalize<span class="op">=:</span>pdf, label<span class="op">=</span><span class="st">&quot;Data&quot;</span>)</span>
-<span id="cb53-22"><a href="#cb53-22" tabindex="-1"></a>x_vals <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fu">maximum</span>(data)<span class="op">*</span><span class="fl">1.5</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
-<span id="cb53-23"><a href="#cb53-23" tabindex="-1"></a><span class="fu">plot!</span>(x_vals, <span class="fu">pdf</span>.(fitted_weibull, x_vals), label<span class="op">=</span><span class="st">&quot;Fitted Weibull&quot;</span>)</span>
-<span id="cb53-24"><a href="#cb53-24" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">&quot;Time to Failure&quot;</span>)</span>
-<span id="cb53-25"><a href="#cb53-25" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">&quot;Probability Density&quot;</span>)</span>
-<span id="cb53-26"><a href="#cb53-26" tabindex="-1"></a><span class="fu">savefig</span>(<span class="st">&quot;weibull_fit.png&quot;</span>) <span class="co"># Save plot</span></span></code></pre></div>
-<p><strong>6. Reliability Calculations</strong></p>
-<ul>
-<li><strong>Reliability Function:</strong>
-<code>R(t) = 1 - F(t) = 1 - cdf(dist, t)</code> The probability of a
-system surviving beyond time <code>t</code>.</li>
-<li><strong>Failure Rate (Hazard Rate):</strong>
-<code>h(t) = f(t) / R(t) = pdf(dist, t) / (1 - cdf(dist, t))</code></li>
-</ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">15</span> <span class="co"># Time of interest</span></span>
-<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>reliability <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">cdf</span>(fitted_weibull, t)</span>
-<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>failure_rate <span class="op">=</span> <span class="fu">pdf</span>(fitted_weibull, t) <span class="op">/</span> (<span class="fl">1</span> <span class="op">-</span> <span class="fu">cdf</span>(fitted_weibull, t))</span>
-<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a></span>
-<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Reliability at t=</span><span class="sc">$</span>t<span class="st">: &quot;</span>, reliability)</span>
-<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Failure rate at t=</span><span class="sc">$</span>t<span class="st">: &quot;</span>, failure_rate)</span></code></pre></div>
-<p><strong>7. Monte Carlo Simulation</strong></p>
-<p>For complex systems, Monte Carlo simulation can be used to estimate
-reliability.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>n_simulations <span class="op">=</span> <span class="fl">10000</span></span>
-<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>system_lifetimes <span class="op">=</span> []</span>
-<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n_simulations</span>
-<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a>    <span class="co"># Simulate the lifetime of each component (replace with your system logic)</span></span>
-<span id="cb55-6"><a href="#cb55-6" tabindex="-1"></a>    component1_lifetime <span class="op">=</span> <span class="fu">rand</span>(fitted_weibull)</span>
-<span id="cb55-7"><a href="#cb55-7" tabindex="-1"></a>    component2_lifetime <span class="op">=</span> <span class="fu">rand</span>(exponential_dist)  <span class="co"># Example: another component</span></span>
-<span id="cb55-8"><a href="#cb55-8" tabindex="-1"></a></span>
-<span id="cb55-9"><a href="#cb55-9" tabindex="-1"></a>    system_lifetime <span class="op">=</span> <span class="fu">min</span>(component1_lifetime, component2_lifetime) <span class="co"># Example: series system</span></span>
-<span id="cb55-10"><a href="#cb55-10" tabindex="-1"></a>    <span class="fu">push!</span>(system_lifetimes, system_lifetime)</span>
-<span id="cb55-11"><a href="#cb55-11" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb55-12"><a href="#cb55-12" tabindex="-1"></a></span>
-<span id="cb55-13"><a href="#cb55-13" tabindex="-1"></a>estimated_system_reliability <span class="op">=</span> <span class="fu">mean</span>(system_lifetimes <span class="op">.&gt;</span> t) <span class="co"># Reliability at time t</span></span>
-<span id="cb55-14"><a href="#cb55-14" tabindex="-1"></a></span>
-<span id="cb55-15"><a href="#cb55-15" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Estimated system reliability at t=</span><span class="sc">$</span>t<span class="st"> (Monte Carlo): &quot;</span>, estimated_system_reliability)</span></code></pre></div>
-<p><strong>8. Further Exploration</strong></p>
-<ul>
-<li><strong><code>SurvivalAnalysis.jl</code>:</strong> For more advanced
-survival analysis techniques.</li>
-<li><strong><code>ModelingToolkit.jl</code>:</strong> For building
-complex system models.</li>
-<li><strong>Bayesian methods:</strong> Use <code>MCMCChains.jl</code>
-and <code>Turing.jl</code> for Bayesian reliability analysis.</li>
-</ul>
-<p>This tutorial provides a starting point for reliability analysis in
-Julia. Remember to adapt the code and distributions to your specific
-problem and explore the linked packages for more advanced techniques.
-Practice fitting distributions to real-world data and interpreting the
-results in the context of your application.</p>
-</div>
-<div id="reliability---worked-example" class="section level3">
-<h3>Reliability - Worked Example</h3>
-<h3>
-Reliability - Worked Example
-</h3>
-<p>Let’s create a worked example on how the Weibull distribution can be
-applied to reliability analysis using Julia. We’ll walk through the
-process of fitting a Weibull distribution to a dataset representing the
-failure times of components, and then we’ll use this distribution to
-calculate reliability metrics such as the probability of failure within
-a certain time period and the mean time to failure.</p>
-<div id="step-by-step-example" class="section level4">
-<h4>Step-by-Step Example</h4>
-<p><strong>1. Generating Synthetic Failure Data</strong></p>
-<p>First, let’s generate synthetic data representing the failure times
-of 100 components. We’ll use a Weibull distribution with shape parameter
-<span class="math inline">\(\alpha = 1.5\)</span> and scale parameter
-<span class="math inline">\(\beta = 5000\)</span>.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
-<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span></span>
-<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">42</span>)</span>
-<span id="cb56-7"><a href="#cb56-7" tabindex="-1"></a></span>
-<span id="cb56-8"><a href="#cb56-8" tabindex="-1"></a><span class="co"># Generating synthetic failure times</span></span>
-<span id="cb56-9"><a href="#cb56-9" tabindex="-1"></a>shape_param <span class="op">=</span> <span class="fl">1.5</span></span>
-<span id="cb56-10"><a href="#cb56-10" tabindex="-1"></a>scale_param <span class="op">=</span> <span class="fl">5000</span></span>
-<span id="cb56-11"><a href="#cb56-11" tabindex="-1"></a>failure_times <span class="op">=</span> <span class="fu">rand</span>(<span class="fu">Weibull</span>(shape_param, scale_param), <span class="fl">100</span>)</span>
-<span id="cb56-12"><a href="#cb56-12" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">first</span>(failure_times, <span class="fl">6</span>))</span></code></pre></div>
-<p><strong>2. Fitting a Weibull Distribution to the Data</strong></p>
-<p>Next, we will fit a Weibull distribution to the generated data using
-the <code>fit</code> function from the <code>Distributions</code>
-package.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a><span class="co"># Fitting a Weibull distribution to the failure data</span></span>
-<span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a>weibull_fit <span class="op">=</span> <span class="fu">fit</span>(Weibull, failure_times)</span>
-<span id="cb57-3"><a href="#cb57-3" tabindex="-1"></a><span class="fu">println</span>(weibull_fit)</span></code></pre></div>
-<p><strong>3. Calculating Reliability Metrics</strong></p>
-<p>Now that we have a fitted Weibull distribution, let’s calculate some
-reliability metrics.</p>
-<p><strong>a. Probability of Failure Within a Certain Time
-Period</strong></p>
-<p>We can use the cumulative distribution function (CDF) to calculate
-the probability of failure within a certain time period. For example,
-let’s calculate the probability of failure within 4000 hours.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a>time_period <span class="op">=</span> <span class="fl">4000</span></span>
-<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>prob_failure <span class="op">=</span> <span class="fu">cdf</span>(weibull_fit, time_period)</span>
-<span id="cb58-3"><a href="#cb58-3" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Probability of failure within </span><span class="sc">$</span>time_period<span class="st"> hours: </span><span class="sc">$</span>prob_failure<span class="st">&quot;</span>)</span></code></pre></div>
-<p><strong>b. Mean Time to Failure (MTTF)</strong></p>
-<p>The mean time to failure (MTTF) is the expected value of the failure
-time for the Weibull distribution. It can be calculated using the
-<code>mean</code> function.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb59-1"><a href="#cb59-1" tabindex="-1"></a>mttf <span class="op">=</span> <span class="fu">mean</span>(weibull_fit)</span>
-<span id="cb59-2"><a href="#cb59-2" tabindex="-1"></a><span class="fu">println</span>(<span class="st">&quot;Mean Time to Failure (MTTF): </span><span class="sc">$</span>mttf<span class="st"> hours&quot;</span>)</span></code></pre></div>
-<p><strong>4. Plotting the Reliability Function</strong></p>
-<p>The reliability function, which is the complement of the CDF, gives
-the probability of survival beyond a certain time period. Let’s plot the
-reliability function.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="co"># Calculating reliability function values</span></span>
-<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>reliability <span class="op">=</span> <span class="fl">1</span> <span class="op">.-</span> <span class="fu">cdf</span>.(weibull_fit, x)</span>
-<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a><span class="fu">plot</span>(x, reliability, label<span class="op">=</span><span class="st">&quot;Reliability&quot;</span>, title<span class="op">=</span><span class="st">&quot;Weibull Reliability Function&quot;</span>, ylabel<span class="op">=</span><span class="st">&quot;Reliability&quot;</span>, xlabel<span class="op">=</span><span class="st">&quot;Time (hours)&quot;</span>)</span></code></pre></div>
-</div>
-</div>
-<div id="summary" class="section level3">
-<h3>Summary</h3>
-<ul>
-<li>We generated synthetic failure data from a Weibull
-distribution.</li>
-<li>Fitted a Weibull distribution to the data.</li>
-<li>Calculated key reliability metrics such as the probability of
-failure within a certain time period and the mean time to failure
-(MTTF).</li>
-<li>Plotted the reliability function.</li>
-</ul>
-<p>This example demonstrates how the Weibull distribution can be
-effectively used in reliability analysis to predict the failure behavior
-of components.</p>
 </div>
 </div>
 </div>

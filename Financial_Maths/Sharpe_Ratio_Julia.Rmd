@@ -1,0 +1,160 @@
+---
+title: "Sharpe Ratio with Julia"
+subtitle: "Mathematical Programming with Julia"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    font_size: 20pts
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+<style type="text/css">
+  body{
+  font-size: 20pt;
+}
+</style>
+
+```{r eval=FALSE,include=FALSE}
+
+# CT6 
+# - ASI 2005 April Question B - 1
+# - ASI 2006 April Question B - 1
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(knitr)
+library(dplyr)
+library(janitor)
+
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  #base_color = "#4169e1", #)(vvv#TREES
+  #background_color = "#E6E6FA",  #TREE
+  base_color = "black", #)(
+  background_color =  "#1dddd1",,
+  text_color="black",
+  text_bold_color = "black",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "400", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+
+### Sharpe Ratio
+
+
+
+
+**Here's the formula:**
+
+**Sharpe Ratio = (Rp - Rf) / σ**
+
+* **Rp:** Portfolio return
+* **Rf:** Risk-free rate of return (e.g., return on a short-term government bond)
+* **σ:** Standard deviation of portfolio returns
+
+---
+
+**Interpretation:**
+
+* **Higher Sharpe Ratio:** Indicates better risk-adjusted performance. This means the investment generates higher returns for a given level of risk (volatility).
+* **Negative Sharpe Ratio:** Suggests the investment's returns are below the risk-free rate after adjusting for risk. 
+* **Sharpe Ratio of 1 or higher:** Generally considered good. 
+* **Sharpe Ratio of 2 or higher:** Often considered very good.
+
+---
+
+**Key Points:**
+
+* **Risk-Adjusted Return:** The Sharpe Ratio focuses on how much excess return you receive for each additional unit of risk you take.
+* **Volatility:** Standard deviation measures the volatility or fluctuation of returns. Higher volatility implies higher risk.
+* **Comparison:** The Sharpe Ratio helps compare the performance of different investments or portfolios, even if they have different levels of risk.
+
+**Example:**
+
+* If a portfolio has an annual return of 12%, the risk-free rate is 3%, and the standard deviation of returns is 8%, the Sharpe Ratio would be: 
+   (12% - 3%) / 8% = 0.9 
+
+---
+
+**Limitations:**
+
+* **Assumes Normal Distribution:** The Sharpe Ratio assumes that returns are normally distributed, which may not always be the case in reality.
+* **Focus on Total Volatility:** It considers both upside and downside volatility, while some investors may be more concerned with downside risk only.
+
+**In Summary:**
+
+The Sharpe Ratio is a valuable tool for evaluating the risk-adjusted performance of investments and portfolios. By considering both return and risk, it helps investors make more informed investment decisions.
+
+---
+
+```julia
+function calculate_sharpe_ratio(returns, risk_free_rate)
+    """
+    Calculates the Sharpe Ratio for a given series of returns.
+
+    Args:
+        returns: A vector of returns.
+        risk_free_rate: The risk-free rate of return.
+
+    Returns:
+        The Sharpe Ratio.
+    """
+
+    avg_return = mean(returns)
+    std_dev = std(returns)
+
+    sharpe_ratio = (avg_return - risk_free_rate) / std_dev
+
+    return sharpe_ratio
+end
+
+# Example usage:
+returns = [0.02, -0.01, 0.03, -0.02, 0.01]
+risk_free_rate = 0.01
+
+sharpe_ratio = calculate_sharpe_ratio(returns, risk_free_rate)
+println("Sharpe Ratio:", sharpe_ratio)
+```
+
+---
+
+**Explanation:**
+
+**1**. **Function Definition:**
+   - `calculate_sharpe_ratio(returns, risk_free_rate)`: Defines the function with two arguments:
+     - `returns`: A vector containing the series of returns.
+     - `risk_free_rate`: The risk-free rate of return.
+
+**2**. **Calculate Average Return:**
+   - `avg_return = mean(returns)`: Calculates the average return of the given series of returns using the `mean()` function.
+
+**3**. **Calculate Standard Deviation:**
+   - `std_dev = std(returns)`: Calculates the standard deviation of the returns using the `std()` function.
+
+**4**. **Calculate Sharpe Ratio:**
+   - `sharpe_ratio = (avg_return - risk_free_rate) / std_dev`: Calculates the Sharpe Ratio by dividing the excess return (average return minus risk-free rate) by the standard deviation.
+
+---
+
+**5**. **Return Sharpe Ratio:**
+   - `return sharpe_ratio`: Returns the calculated Sharpe Ratio.
+
+**6**. **Example Usage:**
+   - `returns = [0.02, -0.01, 0.03, -0.02, 0.01]`: Creates a vector containing sample return data.
+   - `risk_free_rate = 0.01`: Sets the risk-free rate.
+   - `sharpe_ratio = calculate_sharpe_ratio(returns, risk_free_rate)`: Calls the function to calculate the Sharpe Ratio.
+   - `println("Sharpe Ratio:", sharpe_ratio)`: Prints the calculated Sharpe Ratio to the console.
+
+This Julia script provides a concise and efficient way to calculate the Sharpe Ratio.
+

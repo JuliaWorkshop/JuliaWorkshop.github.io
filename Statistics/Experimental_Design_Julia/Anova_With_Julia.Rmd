@@ -1,0 +1,182 @@
+### Tutorial: Analysis of Variance (ANOVA) in Julia
+
+This tutorial demonstrates how to perform Analysis of Variance (ANOVA) in Julia using the `StatsModels.jl` and `GLM.jl` packages. ANOVA is a statistical test used to compare the means of two or more groups.
+
+**1. Setting Up:**
+
+Install the necessary packages:
+
+```julia
+] add StatsModels GLM DataFrames
+```
+
+Load the packages:
+
+```julia
+using StatsModels
+using GLM
+using DataFrames
+using Distributions # For generating sample data
+using Plots # For visualization
+```
+
+**2. Generating Sample Data:**
+
+Let's create some sample data for a one-way ANOVA. We'll simulate three groups with different means but similar variances.
+
+```julia
+n = 50  # Number of observations per group
+mu1 = 10; mu2 = 12; mu3 = 15 # Group means
+sigma = 2 # Common standard deviation
+
+group1 = rand(Normal(mu1, sigma), n)
+group2 = rand(Normal(mu2, sigma), n)
+group3 = rand(Normal(mu3, sigma), n)
+
+# Create a DataFrame
+df = DataFrame(
+    value = vcat(group1, group2, group3),
+    group = repeat(["A", "B", "C"], inner = n)
+)
+```
+
+**3. Performing One-Way ANOVA:**
+
+```julia
+# Define the model formula
+formula = @formula(value ~ group)
+
+# Fit the linear model
+model = lm(formula, df)
+
+# Perform ANOVA
+anova_table = anova(model)
+
+# Print the ANOVA table
+println(anova_table)
+
+# Extract the p-value
+p_value = anova_table[1, 5] # Assuming the 'Pr(>F)' column is the 5th
+println("P-value: ", p_value)
+
+alpha = 0.05
+if p_value < alpha
+    println("Reject null hypothesis: At least one group mean is different.")
+else
+    println("Fail to reject null hypothesis: No significant difference between group means.")
+end
+
+```
+
+**4. Performing Two-Way ANOVA:**
+
+Let's create data for a two-way ANOVA with two factors (e.g., treatment and time).
+
+```julia
+n = 30 # Observations per cell
+treatments = ["Control", "Treatment A", "Treatment B"]
+times = ["Pre", "Post"]
+
+data = DataFrame(
+    value = Float64[],
+    treatment = String[],
+    time = String[]
+)
+
+for t in treatments, tm in times
+    mu = (t == "Control" ? 10 : (t == "Treatment A" ? 12 : 15)) + (tm == "Post" ? 3 : 0) # Example means
+    push!(data, DataFrame(value = rand(Normal(mu, 2), n), treatment = repeat([t], n), time = repeat([tm], n)))
+end
+
+# Define and fit the model (with interaction)
+formula_2way = @formula(value ~ treatment * time)
+model_2way = lm(formula_2way, data)
+
+# Perform ANOVA
+anova_table_2way = anova(model_2way)
+println(anova_table_2way)
+
+# Extract p-values (example)
+p_treatment = anova_table_2way[1, 5]
+p_time = anova_table_2way[2, 5]
+p_interaction = anova_table_2way[3, 5]
+
+println("P-value for treatment: ", p_treatment)
+println("P-value for time: ", p_time)
+println("P-value for interaction: ", p_interaction)
+
+```
+
+**5. Post-Hoc Tests (if ANOVA is significant):**
+
+If the ANOVA is significant (p-value < alpha), you'll want to perform post-hoc tests to determine *which* groups are different.  The `MultivariateStats.jl` package can be useful for this.  A common post-hoc test is Tukey's HSD.
+
+```julia
+using MultivariateStats
+
+if p_value < alpha # Only if ANOVA is significant
+    tukey_result = tukeycompare(model, :group) # Compare all pairs of groups
+    println(tukey_result)
+end
+
+if p_interaction < alpha # For two-way ANOVA
+    tukey_result_treatment = tukeycompare(model_2way, :treatment)
+    println(tukey_result_treatment)
+    tukey_result_time = tukeycompare(model_2way, :time)
+    println(tukey_result_time)
+end
+
+```
+
+**6. Visualizing the Results:**
+
+Boxplots are excellent for visualizing ANOVA results:
+
+```julia
+# One-way ANOVA
+boxplot(df.value, by = df.group, labels = ["A", "B", "C"], title = "One-Way ANOVA Results")
+
+# Two-way ANOVA (example)
+using Plots
+boxplot(data.value, by = [data.treatment, data.time], 
+        labels = reshape([t * " - " * tm for t in treatments, tm in times], (length(treatments), length(times))),
+        title = "Two-Way ANOVA Results")
+
+```
+
+**7. Assumptions of ANOVA:**
+
+* **Normality:** The residuals (errors) of the model should be approximately normally distributed.  Check this with a Q-Q plot or Shapiro-Wilk test.
+* **Homogeneity of Variance (Homoscedasticity):** The variances of the groups should be approximately equal.  Levene's test can be used to check this.
+* **Independence:** The observations should be independent of each other.
+
+**Example of checking normality of residuals:**
+
+```julia
+using Plots
+residuals = model.residuals
+qqplot(residuals) # Q-Q plot
+#shapiro_wilk(residuals)  # Shapiro-Wilk test (from HypothesisTests.jl)
+```
+
+**Example of Levene's Test (for homogeneity of variance):**
+
+```julia
+using HypothesisTests
+levene_result = LeveneTest(df.value, df.group)
+println(levene_result)
+```
+
+**Key Improvements and Explanations:**
+
+* **Clearer Data Generation:** The sample data generation is more organized and allows for easy adjustment of means and standard deviations.
+* **DataFrame Use:** Using DataFrames makes the data handling and model specification much cleaner.
+* **Formula Macro:** The `@formula` macro simplifies model definition.
+* **ANOVA Table:** The `anova()` function provides a nicely formatted ANOVA table.
+* **P-value Extraction:** The code shows how to extract the p-value from the ANOVA table.
+* **Two-Way ANOVA:** Added a clear example of how to perform a two-way ANOVA, including interaction effects.
+* **Post-Hoc Tests:** Included a section on how to perform Tukey's HSD post-hoc test using `tukeycompare` from `MultivariateStats.jl`. This is essential after a significant ANOVA to know *which* groups differ.
+* **Visualization:** Added boxplot examples for both one-way and two-way ANOVA results.  Boxplots are very effective for visualizing group differences.
+* **Assumption Checking:** Added examples of how to check the assumptions of normality (Q-Q plot, Shapiro-Wilk) and homogeneity of variance (Levene's test). This is *crucial* for the validity of the ANOVA results.
+
+This tutorial provides a solid foundation for ANOVA in Julia. Remember to always check the assumptions of ANOVA and perform post-hoc tests when necessary.  For more complex designs or specific post-hoc tests, refer to the documentation of the relevant packages.
