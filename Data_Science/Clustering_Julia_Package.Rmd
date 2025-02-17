@@ -1,0 +1,25 @@
+The `Clustering.jl` package is a powerful tool in Julia for performing data clustering. It covers two main aspects of data clustering: clustering algorithms and clustering comparison & evaluation.
+
+### Clustering Algorithms
+`Clustering.jl` implements a variety of clustering algorithms, including:
+- **K-means**: A popular algorithm for partitioning data into k clusters.
+- **K-medoids**: Similar to K-means but uses medoids instead of centroids.
+- **Affinity Propagation**: Clusters data by sending messages between data points.
+- **DBSCAN**: Density-Based Spatial Clustering of Applications with Noise, useful for finding clusters of varying shapes and sizes.
+- **Hierarchical Clustering**: Builds a hierarchy of clusters using methods like single linkage, complete linkage, and Ward's linkage.
+- **Markov Clustering Algorithm (MCL)**: Clusters data based on flow simulation.
+- **Fuzzy C-means**: Allows data points to belong to multiple clusters with varying degrees of membership.
+
+### Clustering Comparison & Evaluation
+The package also provides tools for comparing and evaluating clustering results, such as:
+- **Cross-tabulation**: Compares clustering results with ground truth labels.
+- **Variational and Mutual Information**: Measures the similarity between different clustering results.
+- **Intrinsic Clustering Quality Indices**: Includes metrics like silhouette scores to evaluate the quality of clustering.
+
+### Usage
+Most clustering functions in `Clustering.jl` have a similar interface, making it easy to switch between different algorithms. The package accepts input data in the form of a data matrix or a distance matrix, and provides options to control the iterations and convergence criteria.
+
+### Results
+The output of a clustering function is typically an instance of a `ClusteringResult` subtype, which contains both the resulting clustering (e.g., assignments of points to clusters) and information about the clustering algorithm (e.g., number of iterations, convergence status).
+
+For more detailed information, you can check out the [official documentation](https://juliastats.org/Clustering.jl/stable/).
