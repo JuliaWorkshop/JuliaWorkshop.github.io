@@ -1,6 +1,6 @@
 **MLJ.jl** (Machine Learning in Julia) is a comprehensive machine learning framework written in the Julia programming language. It provides a unified interface and meta-algorithms for selecting, tuning, evaluating, composing, and comparing over 200 machine learning models.
 
-### Key Features:
+#### Key Features:
 - **Unified Interface**: MLJ.jl offers a common interface for a wide range of machine learning models, making it easier to switch between different algorithms and compare their performance.
 - **Meta-Algorithms**: The package includes meta-algorithms for model selection, hyperparameter tuning, and ensemble learning, allowing users to build robust and optimized models.
 - **Interoperability**: MLJ.jl supports models written in Julia as well as other languages, providing flexibility and a broad range of options for machine learning practitioners.
@@ -8,10 +8,10 @@
 - **Evaluation and Comparison**: The framework includes tools for evaluating and comparing models using various metrics, helping users to identify the best-performing models for their tasks.
 - **Comprehensive Documentation**: MLJ.jl comes with detailed documentation and examples, making it accessible for both beginners and experienced users.
 
-### Development and Support:
+#### Development and Support:
 MLJ.jl was initially created as a Tools, Practices, and Systems project at the Alan Turing Institute in 2019. It has received funding from the New Zealand Strategic Science Investment Fund awarded to the University of Auckland. The development of MLJ.jl is supported by several organizations and contributors, ensuring continuous improvement and updates.
 
-### Community and Contributions:
+#### Community and Contributions:
 The MLJ.jl framework is developed and maintained by a dedicated team of contributors. The core design was led by A. Blaom, F. Kiraly, and S. Vollmer, with active maintainers including A. Blaom, S. Okon, T. Lienart, and D. Aluthge. The project encourages contributions from the community, providing guidelines and a roadmap for those interested in contributing.
 
 For more information, you can visit the [MLJ.jl GitHub repository](https://github.com/JuliaAI/MLJ.jl).
