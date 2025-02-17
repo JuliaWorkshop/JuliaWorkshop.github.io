@@ -24,7 +24,9 @@ if !isfile(filepath)
 else
     println("Sonar dataset already exists.")
 end
+```
 
+```julia
 # 2. Load the dataset using CSV.jl
 df = CSV.read(filepath, DataFrame, header=false)
 
@@ -34,19 +36,32 @@ data = df[:, 1:end-1]  # Features (60 columns)
 
 # Convert features to a matrix for PCA
 X = Matrix{Float64}(data)
+```
 
+#### 3. Perform PCA using MultivariateStats.jl
+```julia
 # 3. Perform PCA using MultivariateStats.jl
 # We'll reduce the dimensionality to, say, 10 components.  Adjust as needed.
 n_components = 10
 pca_result = pca(X, nprincipal=n_components)
+```
 
+#### 4. Get the principal components (the new feature space)
+```julia
 # 4. Get the principal components (the new feature space)
 X_pca = principalvars(pca_result)
+```
 
+#### 5. Combine the principal components with the labels
+```julia
 # 5. Combine the principal components with the labels
 df_pca = DataFrame(X_pca, :auto)
 df_pca[:Class] = labels # Add the labels back
 
+```
+#### 6. (Optional) Explore the results
+
+```julia
 # Now df_pca contains the data projected onto the principal components and the original labels.
 
 # 6. (Optional) Explore the results
@@ -60,7 +75,9 @@ explained_variance = principalvars(pca_result)./ sum(principalvars(pca_result))
 println("Explained variance by each component: $(explained_variance)")
 println("Total explained variance (first $n_components components): $(sum(explained_variance))")
 
+```
 
+```julia
 # Example using MLJ to train a simple model (Logistic Regression) after PCA
 
 # Convert labels to categorical for MLJ
@@ -103,6 +120,10 @@ Key improvements and explanations:
 * **Reproducibility:** The `partition` function in MLJ uses a `rng` (random number generator) argument to make the train/test split reproducible.
 * **Error Handling (Optional):** You could add a `try-catch` block around the `download` function to handle potential network issues.
 * **Comments:**  More comments have been added to explain each step.
+
+-------------------------------------------------------------------------
+
+#### Summary
 
 This improved example provides a more complete and practical demonstration of how to download, process, perform PCA, and use the results with MLJ in Julia. Remember to install the necessary packages: `CSV`, `DataFrames`, `MLJ`, `MultivariateStats`, and `MLJLinearModels`.  You can install them using the Pkg REPL mode (press ] in the Julia REPL):
 
