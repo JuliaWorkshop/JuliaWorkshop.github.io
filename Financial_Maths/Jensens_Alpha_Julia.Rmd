@@ -1,0 +1,90 @@
+### Jensen's Alpha 
+
+Jensen's alpha is a performance measure used in finance to determine the excess return of a portfolio over its expected return, given its level of systematic risk. Essentially, it helps assess whether a portfolio manager has added value through their investment decisions.
+
+The formula for Jensen's alpha is:
+
+$$\alpha = R_i - \left(R_f + \beta_i \left(R_m - R_f\right)\right)$$
+
+where:
+
+- \(R_i\) = Actual return of the portfolio
+- \(R_f\) = Risk-free rate
+- \(\beta_i\) = Beta of the portfolio (a measure of its sensitivity to market movements)
+- \(R_m\) = Return of the market
+
+--------------------------------------------------------------------------------------------------------------
+
+A positive Jensen's alpha indicates that the portfolio has outperformed its expected return, suggesting that the manager's decisions have added value. 
+
+Conversely, a negative Jensen's alpha suggests underperformance. It's a useful tool for evaluating the performance of actively managed portfolios relative to their benchmarks.
+1. **Install required packages:**
+   You'll need the `DataFrames` and `Statistics` packages. You can install them using the following commands:
+   ```julia
+   using Pkg
+   Pkg.add("DataFrames")
+   Pkg.add("Statistics")
+   ```
+
+2. **Load the packages:**
+   ```julia
+   using DataFrames
+   using Statistics
+   ```
+
+3. **Define the necessary data:**
+   You'll need the actual portfolio returns, risk-free rate, market returns, and the portfolio beta.
+   ```julia
+   actual_returns = [0.05, 0.02, 0.03, 0.04, 0.01]  # Example actual portfolio returns
+   risk_free_rate = 0.01  # Example risk-free rate
+   market_returns = [0.04, 0.01, 0.02, 0.03, 0.015]  # Example market returns
+   beta = 1.2  # Example portfolio beta
+   ```
+
+4. **Calculate the average returns:**
+   ```julia
+   average_actual_return = mean(actual_returns)
+   average_market_return = mean(market_returns)
+   ```
+
+5. **Calculate the expected return:**
+   ```julia
+   expected_return = risk_free_rate + beta * (average_market_return - risk_free_rate)
+   ```
+
+6. **Calculate Jensen's alpha:**
+   ```julia
+   jensens_alpha = average_actual_return - expected_return
+   ```
+
+7. **Print the result:**
+   ```julia
+   println("Jensen's Alpha: ", jensens_alpha)
+   ```
+
+Here's the complete code:
+
+```julia
+using Pkg
+Pkg.add("DataFrames")
+Pkg.add("Statistics")
+
+using DataFrames
+using Statistics
+
+actual_returns = [0.05, 0.02, 0.03, 0.04, 0.01]  # Example actual portfolio returns
+risk_free_rate = 0.01  # Example risk-free rate
+market_returns = [0.04, 0.01, 0.02, 0.03, 0.015]  # Example market returns
+beta = 1.2  # Example portfolio beta
+
+average_actual_return = mean(actual_returns)
+average_market_return = mean(market_returns)
+
+expected_return = risk_free_rate + beta * (average_market_return - risk_free_rate)
+
+jensens_alpha = average_actual_return - expected_return
+
+println("Jensen's Alpha: ", jensens_alpha)
+```
+
+You can run this code in Julia to calculate Jensen's alpha for the given data. You can adjust the `actual_returns`, `risk_free_rate`, `market_returns`, and `beta` to match your specific scenario.
