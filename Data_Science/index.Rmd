@@ -1,119 +1,73 @@
 ---
-title: "Data Science With Julia"
+title: "Julia Workshop" 
+subtitle: "JuliaWorkshop.github.io"
 output:
-  flexdashboard::flex_dashboard:
-    theme: 
-      version: 4
-      bootswatch: minty
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
 ---
 
-```{r  include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 ```
 
-
-About {data-navmenu="About"}
-=====================================
-
-Column {.tabset}
---------------------
-
-### Data Science with Julia
-
-#### Data Science with Julia
-
-**Week 1: Introduction to Julia and Data Science**
-- Overview of Data Science
-- Why Julia for Data Science?
-- Setting Up Julia Environment
-- Basic Syntax and Data Types
-- Simple Data Manipulation
-
-**Week 2: Julia Fundamentals**
-- Control Flow (loops, conditions)
-- Functions and Modules
-- Working with Arrays and Matrices
-- Introduction to DataFrames.jl
-
-**Week 3: Data Manipulation**
-- Loading and Saving Data
-- Data Cleaning and Preprocessing
-- Handling Missing Data
-- Data Transformation and Aggregation
-
-**Week 4: Exploratory Data Analysis (EDA)**
-- Descriptive Statistics
-- Data Visualization with Plots.jl
-- Advanced Plotting Techniques
-- Correlation Analysis
-
-**Week 5: Probability and Statistics**
-- Introduction to Probability
-- Common Probability Distributions
-- Statistical Tests and Inference
-- Resampling Methods
-
-**Week 6: Linear Algebra for Data Science**
-- Vectors and Matrices
-- Matrix Operations
-- Eigenvalues and Eigenvectors
-- Singular Value Decomposition
-
-**Week 7: Regression Analysis**
-- Simple Linear Regression
-- Multiple Linear Regression
-- Diagnostics and Model Assumptions
-- Polynomial Regression
-
-**Week 8: Classification Techniques**
-- Logistic Regression
-- Decision Trees
-- Support Vector Machines
-- Model Evaluation Metrics
-
-**Week 9: Unsupervised Learning**
-- Clustering Algorithms (K-Means, Hierarchical Clustering)
-- Dimensionality Reduction (PCA, LDA)
-- Association Rule Mining
-
-**Week 10: Time Series Analysis**
-- Introduction to Time Series Data
-- Time Series Decomposition
-- Forecasting Models (ARIMA, Exponential Smoothing)
-- Evaluating Forecast Accuracy
-
-**Week 11: Natural Language Processing (NLP)**
-- Text Preprocessing and Tokenization
-- Sentiment Analysis
-- Topic Modeling
-- Word Embeddings
-
-**Week 12: Neural Networks and Deep Learning**
-- Introduction to Neural Networks
-- Building Neural Networks with Flux.jl
-- Training and Evaluating Models
-- Convolutional Neural Networks (CNNs)
-
-**Week 13: Big Data with Julia**
-- Introduction to Big Data
-- Working with Distributed Computing
-- Julia and Apache Spark
-- Case Studies
-
-**Week 14: Advanced Topics in Data Science**
-- Model Deployment and Productionization
-- Model Interpretation and Explainability
-- Ethical Considerations in Data Science
-- Latest Trends and Research in Data Science
-
-**Week 15: Capstone Project**
-- Project Planning and Data Collection
-- Applying Data Science Techniques
-- Project Presentation and Evaluation
+## Julia Workshop
+<center>
+<a href="http://julialang.org/"><img src="http://statslabdotcom.files.wordpress.com/2013/05/julia-logo-e1368996683973.png?w=150&h=100" alt="Julia logo" width="100" height="67" /></a>
+</center>
 
 
-### MlJ Julia package
+<h2>Data Science</h2>
 
-```{r child = "MLJ_Julia_Package.Rmd"}
-```
+<center>
+<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
+<colgroup>
+<col style="width: 350px">
+<col style="width: 350px">
+<col style="width: 350px">
+</colgroup>
+
+   <tr>
+   <td class="tg-76so"><strong><a href="Random_Forest/index.html">Introduction to Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Model_Appraisal/index.html">Mathematics with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Statistics/index.html">Statistics with Julia</a></strong></td>
+   </tr>
+  <tr>
+   <td class="tg-76so"><strong><a href="Data_Science/index.html">Data Science With Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Survival_Analysis/index.html">Survival Analysis With Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Data_Visualization/index.html">Data Visualization with Julia</a></strong></td>
+ </tr>
+  <tr>
+   <td class="tg-76so"><strong><a href="Machine_Learning/index.html">Machine Learning with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Financial_Maths/index.html">Financial Maths with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Random_Number_Simulation/index.html">Random Numbers & Simulation with Julia</a></strong></td>
+ </tr>
+</table>
+</center>
+
+
+<h2>Advanced Topics</h2>
+
+<center>
+<table class="tg" style="undefined;table-layout: fixed; width: 1050px">
+<colgroup>
+<col style="width: 350px">
+<col style="width: 350px">
+<col style="width: 350px">
+</colgroup>
+
+
+  <tr>
+   <td class="tg-76so"><strong><a href="Advanced_Statistics/index.html">LME Models With Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Advanced_Statistics/index.html">GLMs with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Advanced_Statistics/index.html">Advanced Statistics</a></strong></td>
+ </tr>
+   <tr>
+   <td class="tg-76so"><strong><a href="Using_R/index.html">Using R with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="HPC_With_Julia/index.html">HPC with Julia</a></strong></td>
+   <td class="tg-76so"><strong><a href="Big_Data_Julia/index.html">Big Data With Julia</a></strong></td>
+ </tr>
+</table>
+</centre>
+
+<br><br><br>
