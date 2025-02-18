@@ -1,0 +1,39 @@
+
+### Key Concepts in Survival Analysis
+
+Survival analysis is a branch of statistics that focuses on analyzing the time until an event of interest occurs, such as death, failure, or recovery. 
+Let's dive into some key concepts:
+
+
+#### 1. Censoring
+Censoring occurs when we have incomplete information about the survival time of some individuals. This can happen for various reasons, such as the study ending before the event occurs, or the individual being lost to follow-up. There are different types of censoring:
+- **Right-censoring**: The event has not occurred by the end of the study period.
+- **Left-censoring**: The event occurred before the individual entered the study.
+- **Interval-censoring**: The event occurs within a known time interval.
+
+#### 2. Survival Function
+The survival function, \( S(t) \), gives the probability that an individual survives beyond a certain time \( t \). It is defined as:
+\[ S(t) = P(T > t) \]
+where \( T \) is the time to the event.
+
+#### 3. Hazard Function
+The hazard function, \( h(t) \), describes the instantaneous rate at which the event occurs at time \( t \), given that the individual has survived up to that time. It is defined as:
+\[ h(t) = \lim_{\Delta t \to 0} \frac{P(t \leq T < t + \Delta t \mid T \geq t)}{\Delta t} \]
+
+#### 4. Kaplan-Meier Estimator
+The Kaplan-Meier estimator is a non-parametric method for estimating the survival function from censored data. It provides a step-wise estimate of the survival probability at different time points.
+
+#### 5. Cox Proportional Hazards Model
+The Cox proportional hazards model is a semi-parametric model that assesses the effect of covariates on the hazard function. It assumes that the hazard ratio between individuals is constant over time. The model can be written as:
+\[ h(t \mid X) = h_0(t) \exp(\beta X) \]
+where \( h_0(t) \) is the baseline hazard function, \( X \) is the vector of covariates, and \( \beta \) is the vector of regression coefficients.
+
+#### 6. Log-Rank Test
+The log-rank test is a non-parametric test used to compare the survival distributions of two or more groups. It tests the null hypothesis that there is no difference in survival between the groups.
+
+#### Applications
+Survival analysis has various applications, including:
+- **Medical research**: Analyzing patient survival times and the impact of treatments.
+- **Engineering**: Assessing the reliability and failure times of mechanical systems.
+- **Social sciences**: Studying the duration of events such as unemployment or marriage.
+

@@ -3139,18 +3139,71 @@ these scripts. You can install them using the Julia package manager:</p>
 <h1>Diamonds Dataset</h1>
 <div id="column-4" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
-<p>Absolutely! The Diamonds dataset from the <code>ggplot2</code>
-package in R is a popular dataset for practicing data analysis and
-visualization. In this tutorial, we’ll explore how to work with the
-Diamonds dataset using Julia. Let’s get started!</p>
-<div id="install-julia" class="section level3">
-<h3>1. Install Julia</h3>
+<p>The diamonds dataset is a popular dataset commonly used in data
+analysis and visualization tutorials, particularly within the R
+programming language and its associated packages like ggplot2.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li><strong>Origin:</strong> It’s derived from the R package ggplot2,
+which is widely used for creating elegant and informative statistical
+graphics.</li>
+<li><strong>Content:</strong> The dataset contains information about
+53,940 diamonds, including:
+<ul>
+<li><strong>Price:</strong> The price of each diamond in US
+dollars.</li>
+<li><strong>Carat:</strong> The weight of the diamond.</li>
+<li><strong>Cut:</strong> A quality grade for the diamond’s cut (e.g.,
+Fair, Good, Very Good, Premium, Ideal).</li>
+<li><strong>Color:</strong> A grade for the diamond’s color (from D
+(best) to J (worst)).</li>
+<li><strong>Clarity:</strong> A grade for the diamond’s clarity (e.g.,
+I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best)).</li>
+<li><strong>x, y, z:</strong> Length, width, and depth of the diamond in
+millimeters.</li>
+<li><strong>Depth:</strong> Total depth percentage = z / mean(x, y) *
+100.</li>
+<li><strong>Table:</strong> Width of the top of the diamond relative to
+its widest point.</li>
+</ul></li>
+</ul>
+<p><strong>Common Uses:</strong></p>
+<ul>
+<li><strong>Data exploration and visualization:</strong> The diamonds
+dataset is frequently used to demonstrate various data visualization
+techniques, such as scatter plots, box plots, histograms, and more.</li>
+<li><strong>Statistical modeling:</strong> It can be used to build
+predictive models, such as regression models, to understand the factors
+that influence a diamond’s price.</li>
+<li><strong>Teaching and learning:</strong> The dataset provides a
+valuable resource for learning data analysis and visualization
+concepts.</li>
+</ul>
+<p><strong>Availability:</strong></p>
+<ul>
+<li><strong>R:</strong> The diamonds dataset is readily available within
+the ggplot2 package in R.</li>
+<li><strong>Other languages:</strong> The dataset is often included in
+libraries or packages for other programming languages like Python
+(pandas) and Julia (RDatasets).</li>
+</ul>
+<p>By exploring the diamonds dataset, users can gain insights into the
+factors that affect diamond prices and develop their data analysis and
+visualization skills.</p>
+<div id="installation" class="section level3">
+<h3>Installation</h3>
+<p>The Diamonds dataset from the <code>ggplot2</code> package in R is a
+popular dataset for practicing data analysis and visualization. In this
+tutorial, we’ll explore how to work with the Diamonds dataset using
+Julia. Let’s get started!</p>
+<div id="install-julia" class="section level4">
+<h4>1. Install Julia</h4>
 <p>Make sure you have Julia installed on your system. You can download
 the latest version from <a href="https://julialang.org/downloads/">Julia’s official
 website</a>.</p>
 </div>
-<div id="install-required-packages" class="section level3">
-<h3>2. Install Required Packages</h3>
+<div id="install-required-packages" class="section level4">
+<h4>2. Install Required Packages</h4>
 <p>We’ll need several Julia packages for data manipulation and
 visualization. Open your Julia REPL and run the following commands:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
@@ -3159,8 +3212,8 @@ visualization. Open your Julia REPL and run the following commands:</p>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;Plots&quot;</span>)</span>
 <span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">&quot;RCall&quot;</span>)</span></code></pre></div>
 </div>
-<div id="load-the-diamonds-dataset" class="section level3">
-<h3>3. Load the Diamonds Dataset</h3>
+<div id="load-the-diamonds-dataset" class="section level4">
+<h4>3. Load the Diamonds Dataset</h4>
 <p>We’ll use <code>RCall</code> to load the Diamonds dataset from R into
 Julia.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">RCall</span></span>
@@ -3170,8 +3223,8 @@ Julia.</p>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>R<span class="st">&quot;data(&#39;diamonds&#39;, package=&#39;ggplot2&#39;)&quot;</span></span>
 <span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>diamonds <span class="op">=</span> <span class="fu">rcopy</span>(R<span class="st">&quot;diamonds&quot;</span>)</span></code></pre></div>
 </div>
-<div id="explore-the-dataset" class="section level3">
-<h3>4. Explore the Dataset</h3>
+<div id="explore-the-dataset" class="section level4">
+<h4>4. Explore the Dataset</h4>
 <p>Let’s take a look at the first few rows of the dataset and get an
 overview of its structure.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
@@ -3190,9 +3243,10 @@ diamond relative to the widest point. - <strong>price</strong>: The
 price of the diamond. - <strong>x</strong>: Length in mm. -
 <strong>y</strong>: Width in mm. - <strong>z</strong>: Depth in mm.</p>
 </div>
-<div id="data-analysis" class="section level3">
-<h3>5. Data Analysis</h3>
+<div id="data-analysis" class="section level4">
+<h4>5. Data Analysis</h4>
 <p>Let’s perform some basic data analysis on the Diamonds dataset.</p>
+</div>
 <div id="a.-summary-statistics" class="section level4">
 <h4>a. Summary Statistics</h4>
 <p>We can use the <code>describe</code> function from the
@@ -3209,11 +3263,11 @@ quality.</p>
 <span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>average_price_by_cut <span class="op">=</span> <span class="fu">combine</span>(grouped_data, <span class="op">:</span>price <span class="op">=&gt;</span> mean <span class="op">=&gt;</span> <span class="op">:</span>average_price)</span>
 <span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>average_price_by_cut</span></code></pre></div>
 </div>
-</div>
-<div id="data-visualization" class="section level3">
-<h3>6. Data Visualization</h3>
+<div id="data-visualization" class="section level4">
+<h4>6. Data Visualization</h4>
 <p>We’ll use the <code>Plots</code> package to create visualizations of
 the Diamonds dataset.</p>
+</div>
 <div id="a.-histogram-of-diamond-prices" class="section level4">
 <h4>a. Histogram of Diamond Prices</h4>
 <p>Let’s create a histogram of diamond prices.</p>
@@ -3229,15 +3283,13 @@ diamond weight (carat) and price.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Scatter plot of carat vs. price</span></span>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">scatter</span>(diamonds.carat, diamonds.price, xlabel <span class="op">=</span> <span class="st">&quot;Carat&quot;</span>, ylabel <span class="op">=</span> <span class="st">&quot;Price&quot;</span>, title <span class="op">=</span> <span class="st">&quot;Carat vs. Price&quot;</span>)</span></code></pre></div>
 </div>
-</div>
-<div id="conclusion" class="section level3">
-<h3>Conclusion</h3>
+<div id="conclusion" class="section level4">
+<h4>Conclusion</h4>
 <p>In this tutorial, we loaded the Diamonds dataset from R into Julia
 and explored it using various data analysis and visualization
 techniques. By leveraging the strengths of both R and Julia, you can
-enhance your data analysis workflow. Happy coding!</p>
-<p>If you have any questions or need further assistance, feel free to
-ask!</p>
+enhance your data analysis workflow.</p>
+</div>
 </div>
 </div>
 </div>
@@ -3448,9 +3500,157 @@ the software or through readily available online repositories.</li>
 </div>
 </div>
 </div>
+<div id="orange-telecom-churn" class="section level1" data-navmenu="Survival Analysis">
+<h1>Orange Telecom Churn</h1>
+<div id="column-8" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="orange-telecoms-churn-dataset" class="section level3">
+<h3>Orange Telecom’s Churn Dataset</h3>
+<h3>
+Orange Telecom’s Churn Dataset
+</h3>
+<p>The <strong>Orange Telecom’s Churn Dataset</strong> is designed to
+help in developing predictive models to identify customers who are
+likely to cancel their subscriptions. Here’s a detailed breakdown of the
+dataset:</p>
+<div id="overview" class="section level4">
+<h4>Overview:</h4>
+<ul>
+<li><strong>Content:</strong> The dataset includes cleaned customer
+activity data (features) and a churn label indicating whether a customer
+has canceled their subscription.</li>
+<li><strong>Purpose:</strong> Used for developing predictive models to
+anticipate customer churn.</li>
+</ul>
+</div>
+<div id="key-features-and-columns" class="section level4">
+<h4>Key Features and Columns:</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Customer Information:</strong> Data such as customer IDs and
+demographic details.</li>
+<li><strong>Behavior and Usage:</strong> Details on customer behavior,
+usage statistics, and other relevant metrics.</li>
+<li><strong>Service Plans:</strong>
+<ul>
+<li><strong>Voice Mail Plan (<code>vmailplan</code>):</strong> Indicates
+if the customer has a voice mail plan.</li>
+<li><strong>International Plan (<code>intlplan</code>):</strong>
+Indicates if the customer has an international call plan.</li>
+</ul></li>
+<li><strong>Usage Statistics:</strong>
+<ul>
+<li><strong>Day Minutes (<code>daymins</code>):</strong> Total minutes
+of calls during the day.</li>
+<li><strong>Day Calls (<code>daycalls</code>):</strong> Total number of
+calls during the day.</li>
+<li><strong>Day Charges (<code>daycharge</code>):</strong> Charges for
+the calls during the day.</li>
+<li>Similar metrics are available for evening, night, and international
+calls.</li>
+</ul></li>
+<li><strong>Customer Service Interaction:</strong> Number of calls made
+to customer service (<code>custservicecalls</code>).</li>
+<li><strong>Churn Indicator (<code>churned</code>):</strong> A binary
+indicator showing whether the customer has churned (1 if churned, 0
+otherwise).</li>
+</ol>
+</div>
+<div id="sample-columns" class="section level4">
+<h4>Sample Columns:</h4>
+<ul>
+<li><code>customerID</code>: Unique identifier for each customer.</li>
+<li><code>accountdur</code>: Duration of the customer’s account (in
+months).</li>
+<li><code>areacode</code>: Area code of the customer’s phone
+number.</li>
+<li><code>phonenumber</code>: Customer’s phone number.</li>
+<li><code>vmailmessage</code>: Number of voicemail messages.</li>
+<li><code>evemins</code>: Total minutes of calls during the
+evening.</li>
+<li><code>evecalls</code>: Total number of calls during the
+evening.</li>
+<li><code>evecharge</code>: Charges for the calls during the
+evening.</li>
+<li><code>nightmins</code>: Total minutes of calls during the
+night.</li>
+<li><code>nightcalls</code>: Total number of calls during the
+night.</li>
+<li><code>nightcharge</code>: Charges for the calls during the
+night.</li>
+<li><code>intlmins</code>: Total minutes of international calls.</li>
+<li><code>intlcalls</code>: Total number of international calls.</li>
+<li><code>intlcharge</code>: Charges for international calls.</li>
+</ul>
+</div>
+<div id="example-use-cases" class="section level4">
+<h4>Example Use Cases:</h4>
+<ul>
+<li><strong>Survival Analysis:</strong> Estimating the time until a
+customer churns.</li>
+<li><strong>Predictive Modeling:</strong> Identifying factors that
+contribute to churn and predicting which customers are likely to
+churn.</li>
+<li><strong>Descriptive Statistics:</strong> Understanding the
+distribution of features such as service usage and customer service
+calls.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="prostate-cancer-data" class="section level1" data-navmenu="Survival Analysis">
+<h1>Prostate Cancer Data</h1>
+<div id="column-9" class="section level2 tabset">
+<h2 class="tabset">Column</h2>
+<div id="prostate-cancer-dataset" class="section level3">
+<h3>Prostate Cancer Dataset</h3>
+<p>The <strong>Prostate Cancer Dataset</strong> is often used in medical
+research to study prostate cancer screening, diagnosis, and treatment
+outcomes. One well-known dataset is from the <strong>Prostate, Lung,
+Colorectal, and Ovarian (PLCO) Cancer Screening Trial</strong>. Here’s a
+brief overview:</p>
+<div id="overview-1" class="section level4">
+<h4>Overview:</h4>
+<p>The PLCO dataset includes data from a large-scale randomized
+controlled trial aimed at evaluating the impact of cancer screening on
+mortality. The prostate cancer component of this dataset contains
+information on approximately <strong>77,000 male
+participants</strong>.</p>
+</div>
+<div id="key-features" class="section level4">
+<h4>Key Features:</h4>
+<ol style="list-style-type: decimal">
+<li><strong>Participant Information</strong>: Demographic details,
+medical history, and lifestyle factors.</li>
+<li><strong>Screening Data</strong>: Results from prostate-specific
+antigen (PSA) tests and digital rectal exams (DRE).</li>
+<li><strong>Diagnostic Procedures</strong>: Information on biopsies,
+imaging studies, and other diagnostic tests.</li>
+<li><strong>Treatment Data</strong>: Details on treatments received,
+such as surgery, radiation, and hormone therapy.</li>
+<li><strong>Follow-up Data</strong>: Longitudinal data on cancer
+incidence, progression, and mortality.</li>
+</ol>
+</div>
+<div id="example-analysis" class="section level4">
+<h4>Example Analysis:</h4>
+<ul>
+<li><strong>Survival Analysis</strong>: Estimating the time until cancer
+diagnosis or death.</li>
+<li><strong>Predictive Modeling</strong>: Identifying factors that
+predict cancer outcomes.</li>
+<li><strong>Comparative Studies</strong>: Comparing the effectiveness of
+different screening and treatment methods.</li>
+</ul>
+<p>This dataset is valuable for researchers aiming to improve prostate
+cancer screening and treatment strategies.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="lung-cancer-data" class="section level1" data-navmenu="Survival Analysis">
 <h1>Lung Cancer Data</h1>
-<div id="column-8" class="section level2 tabset">
+<div id="column-10" class="section level2 tabset">
 <h2 class="tabset">Column</h2>
 <div id="the-lung-cancer-dataset" class="section level3">
 <h3>The Lung Cancer Dataset</h3>

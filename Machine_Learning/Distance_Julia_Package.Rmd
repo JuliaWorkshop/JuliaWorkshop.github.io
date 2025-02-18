@@ -1,0 +1,69 @@
+### Introduction to Distances.jl
+`Distances.jl` is a Julia package for evaluating distances (metrics) between vectors. It provides optimized functions to compute column-wise and pairwise distances, which are often substantially faster than straightforward loop implementations.
+
+#### Installation
+To install `Distances.jl`, you can use Julia's package manager:
+```julia
+using Pkg
+Pkg.add("Distances")
+```
+
+#### Basic Usage
+The library supports three ways of computation:
+1. **Computing the distance between two vectors**: 
+    ```julia
+    using Distances
+    x = [1, 2, 3]
+    y = [4, 5, 6]
+    euclidean_distance = euclidean(x, y)
+    println(euclidean_distance)
+    ```
+2. **Zip-wise computation**: 
+    ```julia
+    using Distances
+    x = [1, 2, 3]
+    y = [4, 5, 6]
+    euclidean_distance = evaluate(Euclidean(), x, y)
+    println(euclidean_distance)
+    ```
+3. **Pairwise computation**: 
+    ```julia
+    using Distances
+    X = [1 2; 3 4]
+    Y = [5 6; 7 8]
+    distances = colwise(Euclidean(), X, Y)
+    println(distances)
+    ```
+
+#### Supported Distances
+`Distances.jl` supports a variety of distance metrics, including:
+- Euclidean distance
+- Squared Euclidean distance
+- Cityblock distance
+- Total variation distance
+- Jaccard distance
+- Rogers-Tanimoto distance
+- Chebyshev distance
+- Minkowski distance
+- Hamming distance
+- Cosine distance
+- Correlation distance
+- Chi-square distance
+- Kullback-Leibler divergence
+- Mahalanobis distance
+- Bray-Curtis dissimilarity
+
+#### Example: Euclidean Distance
+Here's an example of computing the Euclidean distance between two vectors:
+```julia
+using Distances
+x = [1, 2, 3]
+y = [4, 5, 6]
+euclidean_distance = euclidean(x, y)
+println(euclidean_distance)
+```
+
+#### Conclusion
+`Distances.jl` is a powerful and efficient package for computing various distance metrics between vectors. It's particularly useful for data analysis, machine learning, and scientific computing.
+
+

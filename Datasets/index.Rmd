@@ -103,6 +103,28 @@ Column {.tabset}
 ```
 
 
+Orange Telecom Churn {data-navmenu="Survival Analysis"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+
+
+```{r child = "Orange_Telco_Churn_Dataset.Rmd"}
+```
+
+Prostate Cancer Data {data-navmenu="Survival Analysis"}
+=====================================
+
+Column {.tabset}
+--------------------
+
+```{r child = "Prostate_Cancer_Survival_Dataset.Rmd"}
+```
+
+
+
 Lung Cancer Data {data-navmenu="Survival Analysis"}
 =====================================
 

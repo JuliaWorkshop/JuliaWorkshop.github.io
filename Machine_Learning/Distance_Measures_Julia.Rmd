@@ -1,17 +1,3 @@
----
-title: "Distance Measures in Julia" 
-subtitle: "Data Science with Julia"
-author: "Julia Workshop"
-output:
-  prettydoc::html_pretty:
-    theme: leonids
-    highlight: github
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ### Distance Metrics 
 
 Let's explore distance metrics suitable for clustering analysis in Julia. We'll cover common metrics and how to use them with the `Distances.jl` package.
@@ -125,4 +111,5 @@ The choice of distance metric depends heavily on the nature of your data and the
 * **Bray-Curtis:**  Commonly used in ecology for abundance data.  Sensitive to differences in species presence/absence and their quantities.
 * **Mahalanobis:**  Takes into account the correlations between variables. Useful when your data has complex dependencies.
 
-Remember to consider the properties of your data and the specific problem you're trying to solve when selecting a distance metric.  Experimenting with different metrics and visualizing the results can help you find the most appropriate one for your clustering analysis.
+Remember to consider the properties of your data and the specific problem you're trying to solve when selecting a distance metric.  
+Experimenting with different metrics and visualizing the results can help you find the most appropriate one for your clustering analysis.

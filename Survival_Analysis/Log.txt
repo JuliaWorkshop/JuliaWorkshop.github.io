@@ -1,0 +1,87 @@
+Sure! Implementing a log-rank test in Julia involves several steps: you'll need to install relevant packages, create survival data, and then perform the test. Here's an outline of how you can do it:
+
+1. **Install the required packages**:
+
+You'll need the `Survival` package for survival analysis. If you haven't already, you can install it using the following command:
+
+```julia
+using Pkg
+Pkg.add("Survival")
+```
+
+2. **Load the necessary libraries**:
+
+```julia
+using Survival
+using DataFrames
+using Plots
+```
+
+3. **Create survival data**:
+
+Assume you have two groups with survival times and event indicators.
+
+```julia
+# Example data
+group1_times = [5, 6, 7, 10, 12, 15]
+group1_events = [1, 1, 1, 1, 0, 0]
+
+group2_times = [3, 4, 8, 9, 11, 14]
+group2_events = [1, 1, 1, 0, 1, 0]
+
+# Combine data into a DataFrame
+df = DataFrame(
+    time = vcat(group1_times, group2_times),
+    event = vcat(group1_events, group2_events),
+    group = vcat(fill("Group 1", length(group1_times)), fill("Group 2", length(group2_times)))
+)
+```
+
+4. **Perform the log-rank test**:
+
+The `survival.jl` package provides tools for survival analysis but does not have a built-in log-rank test function. We can create a custom function for the log-rank test.
+
+```julia
+function logrank_test(df::DataFrame, time_col::Symbol, event_col::Symbol, group_col::Symbol)
+    # Split the data into groups
+    groups = unique(df[group_col])
+    if length(groups) != 2
+        error("Log-rank test is only for two groups")
+    end
+
+    group1 = df[df[group_col] .== groups[1], :]
+    group2 = df[df[group_col] .== groups[2], :]
+
+    # Combine the survival times of both groups and sort them
+    all_times = sort(union(group1[time_col], group2[time_col]))
+
+    # Initialize the observed and expected events
+    obs1, exp1, var1 = 0.0, 0.0, 0.0
+    obs2, exp2, var2 = 0.0, 0.0, 0.0
+
+    for t in all_times
+        r1 = sum(group1[time_col] .>= t)
+        r2 = sum(group2[time_col] .>= t)
+        d1 = sum((group1[time_col] .== t) .& (group1[event_col] .== 1))
+        d2 = sum((group2[time_col] .== t) .& (group2[event_col] .== 1))
+        
+        if r1 + r2 > 0
+            obs1 += d1
+            exp1 += (d1 + d2) * r1 / (r1 + r2)
+            var1 += (d1 + d2) * r1 * r2 / ((r1 + r2)^2 * (r1 + r2 - 1))
+        end
+    end
+
+    # Calculate the chi-square statistic
+    chi2 = (obs1 - exp1)^2 / var1
+    p_value = 1 - cdf(Chisq(1), chi2)
+    return chi2, p_value
+end
+
+# Run the log-rank test
+chi2, p_value = logrank_test(df, :time, :event, :group)
+println("Chi-square: ", chi2)
+println("p-value: ", p_value)
+```
+
+This code creates a custom function `logrank_test` to perform the log-rank test on your data. The function returns the chi-square statistic and the p-value. Feel free to customize the data and function as needed for your specific analysis!-r
