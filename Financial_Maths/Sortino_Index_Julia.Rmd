@@ -1,18 +1,4 @@
----
-title: "Sortino Index - Worked Example" 
-subtitle: "Mathematical Programming with Julia"
-author: "Julia Workshop"
-output:
-  prettydoc::html_pretty:
-    theme: tactile
-    highlight: github
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Sortino Index
+### Sortino Index
 
 The Sortino Index is a risk-adjusted return metric that measures the performance of an investment relative to the downside deviation, which is the standard deviation of returns below a specified minimum acceptable return (MAR). It is similar to the Sharpe ratio, but focuses only on downside risk rather than total volatility.
 
