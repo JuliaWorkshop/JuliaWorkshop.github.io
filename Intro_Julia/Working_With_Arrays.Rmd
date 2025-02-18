@@ -1,0 +1,79 @@
+###Working With Arrays
+
+Let's dive into some of the most commonly used array manipulation functions in Julia. 
+
+Here’s a tutorial on how to use `push!`, `pop!`, `shift!`, and `unshift!` along with some similar commands.
+
+## `push!` and `pop!`
+
+### `push!`
+The `push!` function is used to append elements to the end of an array.
+
+```julia
+# Example
+arr = [1, 2, 3]
+push!(arr, 4) # arr becomes [1, 2, 3, 4]
+```
+
+### `pop!`
+The `pop!` function removes the last element from the array and returns it.
+
+```julia
+# Example
+arr = [1, 2, 3, 4]
+last_element = pop!(arr) # arr becomes [1, 2, 3], last_element is 4
+```
+
+## `shift!` and `unshift!`
+
+### `shift!`
+The `shift!` function removes the first element of the array and returns it.
+
+```julia
+# Example
+arr = [1, 2, 3, 4]
+first_element = shift!(arr) # arr becomes [2, 3, 4], first_element is 1
+```
+
+### `unshift!`
+The `unshift!` function is used to insert an element at the beginning of an array.
+
+```julia
+# Example
+arr = [2, 3, 4]
+unshift!(arr, 1) # arr becomes [1, 2, 3, 4]
+```
+
+## Similar Commands
+
+### `append!`
+The `append!` function is used to concatenate two arrays, appending the elements of one array to another.
+
+```julia
+# Example
+arr1 = [1, 2, 3]
+arr2 = [4, 5, 6]
+append!(arr1, arr2) # arr1 becomes [1, 2, 3, 4, 5, 6]
+```
+
+### `splice!`
+The `splice!` function removes a range of elements from an array and can optionally replace them with another collection of elements.
+
+```julia
+# Example
+arr = [1, 2, 3, 4, 5]
+splice!(arr, 2:4) # arr becomes [1, 5], removed elements are [2, 3, 4]
+splice!(arr, 2:2, [8, 9]) # arr becomes [1, 8, 9, 5]
+```
+
+### `insert!`
+The `insert!` function is used to insert an element at a specified position in the array.
+
+```julia
+# Example
+arr = [1, 3, 4]
+insert!(arr, 2, 2) # arr becomes [1, 2, 3, 4]
+```
+
+## Conclusion
+These commands provide a robust set of tools for manipulating arrays in Julia. By mastering these, you can efficiently handle and transform array data to suit your needs.
