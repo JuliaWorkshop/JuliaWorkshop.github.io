@@ -1,0 +1,172 @@
+### `RollingFunctions.jl`
+
+#### Tutorial: RollingFunctions.jl - Efficient Rolling Computations in Julia
+
+`RollingFunctions.jl` is a Julia package designed for efficient computation of rolling or moving window functions on vectors and arrays.  It's particularly useful for time series analysis, signal processing, and other applications where you need to calculate statistics over a sliding window of data. This tutorial will cover the core functionalities of `RollingFunctions.jl` and demonstrate its usage with practical examples.
+
+#### Installation
+
+First, install the package using the Julia package manager:
+
+```julia
+] add RollingFunctions
+```
+
+Then, load the package in your Julia script or REPL:
+
+```julia
+using RollingFunctions
+```
+
+#### Core Functions
+
+The primary function in `RollingFunctions.jl` is `rollingfunction`.  However, for convenience, the package also provides specialized functions like `rollingmean`, `rollingmedian`, `rollingvar`, etc., which are wrappers around `rollingfunction`.  We'll explore both.
+
+#### 1. `rollingfunction` (General Case)
+
+`rollingfunction` takes three main arguments:
+
+* `f`: The function to apply to each window (e.g., `mean`, `median`, `sum`, a custom function).
+* `x`: The input vector or array.
+* `window_size`: The size of the rolling window.
+
+```julia
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Calculate the 3-point rolling mean using rollingfunction
+rolling_mean_general = rollingfunction(mean, x, 3)
+println(rolling_mean_general)
+
+# Calculate the 2-point rolling sum
+rolling_sum_general = rollingfunction(sum, x, 2)
+println(rolling_sum_general)
+```
+
+#### 2. Specialized Functions (Convenience)
+
+`RollingFunctions.jl` provides convenient wrappers for common functions:
+
+```julia
+x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Calculate the 3-point rolling mean
+rolling_mean = rollingmean(x, 3)
+println(rolling_mean)
+
+# Calculate the 2-point rolling median
+rolling_median = rollingmedian(x, 2)
+println(rolling_median)
+
+# Calculate the 4-point rolling variance
+rolling_var = rollingvar(x, 4)
+println(rolling_var)
+
+# Calculate the 3-point rolling standard deviation
+rolling_std = rollingstd(x, 3)
+println(rolling_std)
+
+# Calculate the 3-point rolling minimum
+rolling_min = rollingmin(x, 3)
+println(rolling_min)
+
+# Calculate the 3-point rolling maximum
+rolling_max = rollingmax(x, 3)
+println(rolling_max)
+```
+
+#### 3. `center` Argument (Window Alignment)
+
+The `center` argument controls the alignment of the rolling window:
+
+* `center = true` (default): Centers the window.
+* `center = false`: Left-aligns (trailing window).
+
+```julia
+x = [1, 2, 3, 4, 5]
+
+# Centered rolling mean (3-point)
+rolling_mean_centered = rollingmean(x, 3, center=true)
+println(rolling_mean_centered)
+
+# Trailing (left-aligned) rolling mean (3-point)
+rolling_mean_trailing = rollingmean(x, 3, center=false)
+println(rolling_mean_trailing)
+```
+
+#### 4. `partial` Argument (Handling Edges)
+
+The `partial` argument controls how the edges of the data are handled:
+
+* `partial = false` (default): Returns `NaN` for incomplete windows at the edges.
+* `partial = true`: Computes the function on the available data points at the edges (shorter windows).
+
+```julia
+x = [1, 2, 3, 4, 5]
+
+# Rolling mean with partial=false (default)
+rolling_mean_nan = rollingmean(x, 3)
+println(rolling_mean_nan)
+
+# Rolling mean with partial=true
+rolling_mean_partial = rollingmean(x, 3, partial=true)
+println(rolling_mean_partial)
+```
+
+#### 5. Weights
+
+You can provide weights to the `rollingfunction` and specialized functions to calculate weighted rolling statistics.  The weights must have the same length as the rolling window.
+
+```julia
+x = [1, 2, 3, 4, 5]
+weights = [0.1, 0.2, 0.3] # Example weights
+
+# Weighted rolling mean (3-point window)
+rolling_mean_weighted = rollingmean(x, 3, weights)
+println(rolling_mean_weighted)
+
+# Weighted rolling mean (3-point window, trailing)
+rolling_mean_weighted_trailing = rollingmean(x, 3, weights, center=false)
+println(rolling_mean_weighted_trailing)
+```
+
+#### 6. Custom Functions
+
+You can use any function with `rollingfunction`, including custom functions you define.
+
+```julia
+x = [1, 2, 3, 4, 5]
+
+# Custom function to calculate the range of a window
+range_func(window) = maximum(window) - minimum(window)
+
+rolling_range = rollingfunction(range_func, x, 3)
+println(rolling_range)
+```
+
+#### 7. 2D Arrays (Matrices)
+
+`RollingFunctions.jl` also supports 2D arrays (matrices).  The rolling window is applied along the first dimension (rows) by default.
+
+```julia
+matrix = [1 2 3; 4 5 6; 7 8 9; 10 11 12]
+
+# Rolling mean along rows (3-row window)
+rolling_mean_matrix = rollingmean(matrix, 3)
+println(rolling_mean_matrix)
+
+# Rolling mean along columns (using eachcol and collect)
+rolling_mean_cols = hcat(rollingmean.(eachcol(matrix), 2)...) # 2-element rolling window for columns
+println(rolling_mean_cols)
+```
+
+#### Key Advantages of `RollingFunctions.jl`
+
+* **Efficiency:** Optimized for performance, especially for large datasets.
+* **Flexibility:** Supports various window alignments and edge handling.
+* **Extensibility:**  Works with custom functions.
+* **Conciseness:** Provides convenient wrapper functions for common statistics.
+* **Handles 2D Arrays:** Supports rolling computations on matrices.
+
+`RollingFunctions.jl` is a valuable tool for anyone working with rolling computations in Julia. 
+Its ease of use and efficiency make it a great choice for various data analysis and signal processing tasks.  
+Remember to consult the official documentation for the most up-to-date information and advanced features.

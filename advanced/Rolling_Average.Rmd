@@ -1,0 +1,86 @@
+```julia
+using DataFrames, RollingFunctions
+
+# Create a sample DataFrame
+df = DataFrame(Value = rand(100))
+
+# Method 1: Using RollingFunctions.jl (Recommended for simple rolling averages)
+
+# Calculate a 5-point rolling average
+df[:RollingMean5] = rollingmean(df[:Value], 5)
+
+# Calculate a 10-point rolling average
+df[:RollingMean10] = rollingmean(df[:Value], 10)
+
+# The `center` argument controls whether the window is centered, left-aligned, or right-aligned.
+# By default, it's centered. For a trailing (left-aligned) rolling average:
+df[:TrailingMean5] = rollingmean(df[:Value], 5, center=false)
+
+# Handling edge cases (NaNs at the beginning):
+# The default behavior is to fill with NaN values. You can handle this in several ways:
+
+# 1. Fill with the first valid value (forward fill)
+df[:RollingMean5_ff] = rollingmean(df[:Value], 5)
+df[:RollingMean5_ff] = coalesce.(df[:RollingMean5_ff], first(df[:Value]))
+
+# 2. Fill with 0 (or any other value)
+df[:RollingMean5_0] = rollingmean(df[:Value], 5)
+df[:RollingMean5_0] = replace(df[:RollingMean5_0], NaN => 0.0)
+
+# 3. Use a shorter window at the start
+df[:RollingMean5_short] = rollingmean(df[:Value], 5, partial=true) # Calculate using available data points at the start
+
+
+# Method 2: Manually using a loop (More flexible, but less efficient for large DataFrames)
+
+function rolling_average!(df, window_size, col_name)
+    n = nrow(df)
+    rolling_means = zeros(n) # Pre-allocate for efficiency
+
+    for i in 1:n
+        start_index = max(1, i - window_size + 1) # Handle the beginning of the DataFrame
+        window = df[:Value][start_index:i]
+        rolling_means[i] = mean(window)
+    end
+
+    df[col_name] = rolling_means
+end
+
+rolling_average!(df, 5, :RollingMean5_manual)
+rolling_average!(df, 10, :RollingMean10_manual)
+
+
+# Display the DataFrame (first few rows)
+println(first(df, 20))
+
+
+# Demonstrating weights (Method 1 with RollingFunctions)
+
+# Create some weights (e.g., linearly increasing)
+weights = collect(1:100) # Or any other weight vector of the same length as your data
+
+# Calculate a weighted rolling mean (5-point window)
+df[:WeightedRollingMean5] = rollingmean(df[:Value], 5, weights, center=false) # weights must be same length as the rolling window
+
+# Handling NaNs for weighted rolling mean (same approaches as above)
+df[:WeightedRollingMean5_ff] = rollingmean(df[:Value], 5, weights, center=false)
+df[:WeightedRollingMean5_ff] = coalesce.(df[:WeightedRollingMean5_ff], first(df[:Value]))
+
+println(first(df, 20))
+
+```
+
+**Explanation and Key Improvements:**
+
+* **`RollingFunctions.jl`:** This package is the most straightforward and efficient way to calculate rolling averages.  It handles the windowing logic and edge cases effectively.
+* **`center` argument:**  Controls the alignment of the rolling window.  `center=true` (the default) centers the window. `center=false` makes it a trailing/left-aligned window.
+* **Handling NaNs:**  The code demonstrates several ways to deal with the `NaN` values that appear at the beginning of the DataFrame when using rolling calculations.  Forward fill (`coalesce.()`), replacing with a specific value (`replace()`), and using a shorter window at the start (`partial=true`) are shown.
+* **Manual Loop (Method 2):** While less efficient, the manual loop approach provides more flexibility if you need custom windowing logic or calculations beyond simple averages.  It's useful for understanding the underlying process.  The code includes handling of the edge cases at the beginning of the DataFrame.
+* **Pre-allocation:** In the manual loop example, `rolling_means = zeros(n)` pre-allocates the array to store the rolling means. This is *crucial* for performance, especially with large DataFrames.  Avoid growing arrays dynamically in a loop.
+* **Weighted Rolling Mean:** The example demonstrates how to use `RollingFunctions.jl` to compute a weighted rolling mean.  Make sure your `weights` vector has the same length as your rolling window size (e.g., 5 weights for a 5-point rolling mean).  NaN handling is also demonstrated for the weighted case.
+* **Clearer Variable Names:**  More descriptive variable names (e.g., `RollingMean5`, `TrailingMean5`) improve readability.
+* **`first(df, 20)`:**  This displays the first 20 rows of the DataFrame, making it easier to see the results of the rolling calculations.
+
+**Which method to use?**
+
+For simple rolling means (and other basic rolling functions), **`RollingFunctions.jl` is highly recommended** due to its conciseness and efficiency.  Use the manual loop approach only if you have very specific requirements that `RollingFunctions.jl` cannot handle.  Always consider the edge cases (NaNs) and choose the appropriate method for handling them based on your data and application.

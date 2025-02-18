@@ -1,0 +1,124 @@
+### The `OnlineStats.jl` Julia Package
+
+**Tutorial: OnlineStats.jl - Efficiently Updating Statistics**
+
+`OnlineStats.jl` is a powerful Julia package for computing statistics in an online, or streaming, fashion. This means you can update statistics as new data arrives without needing to store the entire dataset. This is incredibly useful for large datasets, real-time data streams, and situations where memory is limited. This tutorial will guide you through the basics of `OnlineStats.jl`, covering common use cases and demonstrating its flexibility.
+
+#### Installation
+
+First, you need to install the package. Open your Julia REPL and type:
+
+```julia
+] add OnlineStats
+```
+
+This will download and install `OnlineStats.jl` and its dependencies.  Then, in your Julia script or REPL, load the package:
+
+```julia
+using OnlineStats
+```
+
+#### Core Concepts: `OnlineStat` and `fit!`
+
+The fundamental building block of `OnlineStats.jl` is the `OnlineStat` type.  An `OnlineStat` object represents a specific statistical computation.  You create an instance of an `OnlineStat` *before* you see any data.  Then, you use the `fit!` function to update the `OnlineStat` with new data.
+
+#### Basic Statistics
+
+Let's start with some basic statistics:
+
+```julia
+# Create an Mean estimator
+m = Mean()
+
+# Update with data points
+fit!(m, 1.0)
+fit!(m, 2.5)
+fit!(m, 4.0)
+
+# Get the current value
+println(m) # Output: Mean: 2.5
+
+# Fit with an array
+data = [5.0, 7.0, 9.0]
+fit!(m, data)
+println(m) # Output: Mean: 5.375
+
+# You can also use the more concise form for single observations
+fit!(m, 11.0, 2) # Update with 11.0, and a weight of 2.  Equivalent to fitting 11.0 twice.
+println(m) # Output: Mean: 6.25
+```
+
+Similarly, you can calculate variance, standard deviation, and other basic statistics:
+
+```julia
+v = Variance()
+fit!(v, [1, 2, 3, 4, 5])
+println(v) # Output: Variance: 2.5
+
+s = Std()
+fit!(s, [1, 2, 3, 4, 5])
+println(s) # Output: Std: 1.5811388300841898
+```
+
+#### Histograms
+
+`OnlineStats.jl` also provides online computation of histograms:
+
+```julia
+h = Hist(0:1:10) # Create a histogram with bins from 0 to 10, step size 1
+fit!(h, [1, 2, 2, 3, 4, 4, 4, 5, 6, 7, 8, 9, 10])
+println(h) # Output: Hist: 1, 2, 3, 4, 1, 1, 1, 1, 1, 1
+
+# Access bin counts and edges
+println(counts(h))  # Output: [1, 2, 3, 1, 1, 1, 1, 1, 1, 1]
+println(edges(h))   # Output: 0.0:1.0:10.0
+```
+
+#### Quantiles
+
+Estimating quantiles online is particularly useful for large datasets. `OnlineStats.jl` provides the `Quantile` estimator:
+
+```julia
+q = Quantile(0.5) # Estimate the median (0.5 quantile)
+fit!(q, rand(1000))  # Fit with some random data
+println(q) # Output: Quantile(0.5): 0.4984576366155663
+
+q_multiple = Quantile([0.25, 0.5, 0.75]) # Estimate multiple quantiles at once
+fit!(q_multiple, rand(1000))
+println(q_multiple) # Output: Quantile([0.25, 0.5, 0.75]): [0.2504626120539121, 0.4984576366155663, 0.750478052187309]
+```
+
+#### Other Useful `OnlineStat` Types
+
+`OnlineStats.jl` provides many other useful `OnlineStat` types, including:
+
+* `Covariance`: For online computation of covariance matrices.
+* `Moments`: For tracking the first four moments (mean, variance, skewness, kurtosis).
+* `Extrema`: For tracking minimum and maximum values.
+* `KMeans`: For online k-means clustering.
+
+#### Combining `OnlineStat`s
+
+You can combine multiple `OnlineStat`s using the `Series` type:
+
+```julia
+s = Series(Mean(), Variance())
+fit!(s, [1, 2, 3, 4, 5])
+println(s[1]) # Output: Mean: 3.0
+println(s[2]) # Output: Variance: 2.5
+```
+
+#### Weights
+
+You can provide weights to the `fit!` function to give different importance to data points. This is useful when some data points are more reliable or represent multiple observations:
+
+```julia
+m = Mean()
+fit!(m, 1, 2) # Value 1, weight 2
+fit!(m, 2, 3) # Value 2, weight 3
+println(m)    # Output: Mean: 1.6
+```
+
+#### Conclusion
+
+`OnlineStats.jl` is a versatile and efficient package for online statistical computations. Its ability to update statistics incrementally makes it invaluable for various applications. This tutorial has covered the basic usage and demonstrated some of the most common `OnlineStat` types.  Explore the package documentation for a complete overview of available functionalities and advanced features.  With `OnlineStats.jl`, you can easily handle large datasets and real-time data streams, efficiently extracting valuable statistical information.
