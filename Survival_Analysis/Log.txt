@@ -1,4 +1,6 @@
-Sure! Implementing a log-rank test in Julia involves several steps: you'll need to install relevant packages, create survival data, and then perform the test. Here's an outline of how you can do it:
+###Log-Rank Test
+<h3>Log-Rank Test</h3>
+Implementing a log-rank test in Julia involves several steps: you'll need to install relevant packages, create survival data, and then perform the test. Here's an outline of how you can do it:
 
 1. **Install the required packages**:
 
