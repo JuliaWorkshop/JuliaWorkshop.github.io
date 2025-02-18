@@ -1,3 +1,6 @@
+### ROC curves using Julia
+
+<h3>ROC curves using Julia</h3>
 Let's dive into rendering ROC curves using Julia! 
 
 The ROC (Receiver Operating Characteristic) curve is a valuable tool for evaluating the performance of a binary classification model.
@@ -53,4 +56,6 @@ Finally, display the plot to see the ROC curve:
 display(plot)
 ```
 
-And there you have it! This code will render a ROC curve using Julia. 
+#### Summary
+
+This code will render a ROC curve using Julia. 
