@@ -1,18 +1,6 @@
----
-title: "Treynor Index - Worked Example" 
-subtitle: "Mathematical Programming with Julia"
-author: "Julia Workshop"
-output:
-  prettydoc::html_pretty:
-    theme: tactile
-    highlight: github
----
+### Treynor Index 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Treynor Index
+<h3>Treynor Index - Worked Example
 
 The Treynor Index is a risk-adjusted performance metric used to evaluate the performance of an investment portfolio, especially in comparison to a benchmark. It measures the excess return of an investment portfolio relative to the risk-free rate per unit of systematic risk.
 
