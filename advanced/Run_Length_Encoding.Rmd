@@ -1,0 +1,96 @@
+```julia
+using StatsBase
+
+# Example 1: Basic usage with a simple vector
+x = [1, 1, 1, 2, 2, 3, 3, 3, 3, 1, 1]
+rle_result = rle(x)
+
+println("Original vector: ", x)
+println("RLE result: ", rle_result)
+println("Values: ", rle_result.values)
+println("Lengths: ", rle_result.lengths)
+
+# Accessing elements:
+println("First value: ", rle_result.values[1])
+println("Length of first run: ", rle_result.lengths[1])
+
+
+# Example 2:  Using a different data type (e.g., String)
+y = ["a", "a", "b", "c", "c", "c", "a"]
+rle_result_y = rle(y)
+println("\nOriginal String Vector: ", y)
+println("RLE result: ", rle_result_y)
+println("Values: ", rle_result_y.values)
+println("Lengths: ", rle_result_y.lengths)
+
+# Example 3: Empty vector
+z = []
+rle_result_z = rle(z)
+println("\nEmpty vector: ", z)
+println("RLE result: ", rle_result_z)  # Note: rle on an empty array returns empty arrays.
+println("Values: ", rle_result_z.values) # Empty
+println("Lengths: ", rle_result_z.lengths) # Empty
+
+
+# Example 4: All elements the same
+w = [5, 5, 5, 5, 5]
+rle_result_w = rle(w)
+println("\nAll same vector: ", w)
+println("RLE result: ", rle_result_w)
+println("Values: ", rle_result_w.values)
+println("Lengths: ", rle_result_w.lengths)
+
+# Example 5:  Reconstructing the original vector
+# You can reconstruct the original vector from the RLE result:
+
+reconstructed_x = repeat.(rle_result.values, rle_result.lengths)
+println("\nReconstructed x: ", reconstructed_x)
+println("x == reconstructed_x: ", x == reconstructed_x) # Should print true
+
+
+# Example 6: Using `inverse_rle` to reconstruct (more efficient)
+reconstructed_x_inv = inverse_rle(rle_result)
+println("\nReconstructed x using inverse_rle: ", reconstructed_x_inv)
+println("x == reconstructed_x_inv: ", x == reconstructed_x_inv) # Should print true
+
+
+# Example 7: Using `rle` with a `by` function (grouping based on a condition)
+v = [1, 2, 2, 3, 1, 1, 4, 4, 4]
+
+# Group by even/odd:
+rle_even_odd = rle(v, by=iseven)
+println("\nVector v: ", v)
+println("RLE by even/odd: ", rle_even_odd)
+println("Values (even/odd): ", rle_even_odd.values)
+println("Lengths: ", rle_even_odd.lengths)
+
+# Accessing the runs:
+for i in 1:length(rle_even_odd.values)
+    println("Run ", i, ": ", v[sum(rle_even_odd.lengths[1:i-1])+1:sum(rle_even_odd.lengths[1:i])])
+end
+
+
+
+```
+
+**Explanation and Key Points:**
+
+1. **Basic Usage:** The `rle()` function takes a vector (or other iterable) as input and returns an `RLE` object.  This object has two important fields:
+   - `values`: A vector containing the unique values in the runs.
+   - `lengths`: A vector containing the lengths of each corresponding run.
+
+2. **Accessing Elements:** You can access the `values` and `lengths` fields using dot notation (e.g., `rle_result.values[1]`).
+
+3. **Different Data Types:** `rle()` works with various data types, not just numbers (as shown with the String example).
+
+4. **Empty Vector:**  If you pass an empty vector to `rle()`, it returns an `RLE` object with empty `values` and `lengths` vectors.
+
+5. **All Elements Same:** If all elements in the input vector are the same, the `rle` result will have a single value and a length equal to the size of the original vector.
+
+6. **Reconstructing the Original Vector:** You can reconstruct the original vector from the RLE result using `repeat.()` and `inverse_rle()`. `inverse_rle()` is the more efficient way to reconstruct the original vector.
+
+7. **`by` Function (Grouping):** The `rle()` function also accepts an optional `by` keyword argument. This allows you to specify a function that determines how elements should be grouped.  In the example, we group by whether numbers are even or odd. This is very powerful for more complex run-length encoding scenarios.
+
+8. **Iterating Through Runs:** The example shows how to iterate through the runs and extract the corresponding elements from the original vector. This is useful when you need to work with the individual runs.
+
+This comprehensive demonstration covers the essential aspects of the `rle()` function in StatsBase.jl, including basic usage, different data types, handling edge cases (empty vector, all elements same), reconstructing the original vector, and using the powerful `by` function for custom grouping.  It also shows how to iterate through the runs. Remember to install StatsBase if you haven't already: `] add StatsBase` in the Julia REPL.
