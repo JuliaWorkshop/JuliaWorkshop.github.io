@@ -1,9 +1,3 @@
-Julia-Basic-Statistics
-========================================================
-author: 
-date: 
-autosize: true
-
 Statistics with Julia
 ========================================================
 
@@ -18,18 +12,13 @@ julia> std(x)
 0.2885446536178459
 \end{frame}
 
-Statistics with Julia
-========================================================
-
 
 Julia already has some builtin support for statistical operations, so additional packages are not strictly necessary. However they do increase the scope and ease of possible operations (as we'll see below).Julia already has some builtin support for statistical operations. Let's kick off by loading all the packages that we'll be looking at today.
 
 julia> using StatsBase, StatsFuns, StreamStats
 StatsBase
 
-Statistics with Julia
-========================================================
-
+----------------------------------------------------------------
 
 The documentation for StatsBase can be found here. As the package name implies, it provides support for basic statistical operations in Julia.
 
@@ -44,8 +33,8 @@ Median:       0.529662
 3rd Quartile: 0.649787
 Maximum:      0.974760
 
-Statistics with Julia
-========================================================
+
+----------------------------------------------------------------
 
 Weighted versions of the mean, variance and standard deviation are implemented. There're also geometric and harmonic means.
 
@@ -57,8 +46,10 @@ julia> var(x, w)                           # Weighted variance.
 julia> std(x, w)                           # Weighted standard deviation.
 0.2881639067498738
 
-Skewness and Kurtosis
-========================================================
+
+---------------------------------------------------------------
+
+### Skewness and Kurtosis
 
 <pre><code>
 julia> skewness(x, w)
@@ -69,9 +60,8 @@ julia> mean_and_std(x, w)
 (0.48819933297961043,0.2881639067498738)
 </code></pre>
 
-Statistics with Julia
-========================================================
 
+----------------------------------------------------------------
 
 There's a weighted median as well as functions for calculating quantiles.
 
@@ -87,8 +77,6 @@ julia> quantile(x)
  0.649787 
  0.97476  
  
-Statistics with Julia
-========================================================
 
 <pre><code> 
 julia> nquantile(x, 8)
@@ -106,7 +94,7 @@ julia> nquantile(x, 8)
  
 
 Statistics with Julia
-========================================================
+--------------------------------------------------
 
 julia> iqr(x)                              # Inter-quartile range.
 0.3319677541313941
