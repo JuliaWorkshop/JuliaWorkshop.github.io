@@ -1,18 +1,8 @@
 Julia-Inspecting-Arrays
-========================================================
-author: 
-date: 
-autosize: true
 
-First Slide
-========================================================
-\documentclass[Julia-Main.tex]{subfiles}
-\begin{document}
-	
-%===================================================================================================================%
-%\subsection*{Finding out about an array}
+### Finding out about an array}
 
-\begin{frame}[fragile]
+
 \textbf{Finding out about an array}
 	
 	With our 2D array:
@@ -28,10 +18,8 @@ First Slide
 		\end{verbatim}
 	\end{framed}
 	%------------------------------------------------%
-\end{frame}
-%===================================================================================================================%
 
-\begin{frame}[fragile]
+
 	we can find out more about it using the following functions:
 	\begin{itemize}
 		\item \texttt{ndims()}
@@ -39,10 +27,8 @@ First Slide
 		\item \texttt{length()}
 		\item \texttt{countnz()}
 	\end{itemize}
-\end{frame}
-%===================================================================================================================%
 
-\begin{frame}[fragile] 
+
 	\texttt{ndims()} returns the number of dimensions, ie 1 for a vector, 2 for a table, and so on:
 	%------------------------------------------------%
 	\begin{framed}
@@ -63,10 +49,7 @@ First Slide
 	\end{framed}
 	%------------------------------------------------%
 	
-\end{frame}
-%===================================================================================================================%
 
-\begin{frame}[fragile]
 	\texttt{length()} tells you how many elements the array contains:
 	%------------------------------------------------%
 	\begin{framed}
@@ -84,11 +67,7 @@ First Slide
 		9
 		\end{verbatim}
 	\end{framed}
-	%------------------------------------------------%
-\end{frame}
-%===================================================================================================================%
 
-\begin{frame}[fragile]
 \begin{itemize}
 \item	There are two related functions for converting between row/column numbers and array index numbers, 
 	\texttt{ind2sub()} and \texttt{sub2ind()}. 
@@ -96,11 +75,7 @@ First Slide
 \item Row 3, Column 7 is harder to work out. 
 	\texttt{ind2sub()} takes the total rows and columns, and a element index. 
 \end{itemize}	
-\end{frame}
 
-%===================================================================================================================%
-
-\begin{frame}[fragile]
 	
 	For example, \texttt{ind2sub(size(a2), 5)} returns the row and column for the fifth element, in the form of a tuple:
 	%------------------------------------------------%
@@ -111,11 +86,7 @@ First Slide
 		\end{verbatim}
 	\end{framed}
 	%------------------------------------------------%
-\end{frame}
 
-%===================================================================================================================%
-
-\begin{frame}[fragile]
 	With a loop, you could look at the row/column numbers of every element in an array:
 	%------------------------------------------------%
 	\begin{framed}
@@ -133,11 +104,7 @@ First Slide
 		\end{verbatim}
 	\end{framed}
 	%------------------------------------------------% 
-\end{frame}
 
-%===================================================================================================================%
-
-\begin{frame}[fragile]
 To go in the reverse direction, use \texttt{sub2ind()}.
 %------------------------------------------------%
 \begin{framed}
@@ -147,9 +114,4 @@ julia> a2[sub2ind((3,3), 2, 1)]
 \end{verbatim}
 \end{framed}
 finds you the element at row 2, column 1, for an array with dimensions (3,3).
-%------------------------------------------------%
-\end{frame}
-%===================================================================================================================%
-\end{document}
-
 
