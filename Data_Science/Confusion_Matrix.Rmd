@@ -1,3 +1,5 @@
+### Confusion Matrices with Julia
+
 Creating a confusion matrix and computing recall and precision in Julia is straightforward with the help of the `MLMetrics` package. Here's how you can do it:
 
 1. **Install and Load the Package:**
@@ -68,5 +70,4 @@ println("Precision: ", precision)
 println("Recall: ", recall)
 ```
 
-This will output the confusion matrix, precision, and recall values based on your true and predicted labels. Feel free to customize the data and explore the results! 📊
-
+This will output the confusion matrix, precision, and recall values based on your true and predicted labels. 
