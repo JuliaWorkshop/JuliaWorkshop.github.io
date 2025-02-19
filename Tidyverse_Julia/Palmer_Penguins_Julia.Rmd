@@ -1,0 +1,89 @@
+### Palmer Penguins dataset in Julia
+
+Here is a tutorial on how to use the Palmer Penguins dataset in Julia with the Tidier.jl package. This dataset is a great alternative to the classic Iris dataset for data exploration and visualization.
+
+#### Introduction
+The Palmer Penguins dataset contains data for 344 penguins from three different species, collected from three islands in the Palmer Archipelago, Antarctica. The dataset includes measurements such as bill length, bill depth, flipper length, body mass, and more.
+
+#### Setting Up
+First, ensure you have Julia installed on your system. You can download it from the [official Julia website](https://julialang.org/downloads/).
+
+Next, we'll install the necessary packages: PalmerPenguins.jl for loading the dataset and Tidier.jl for data manipulation and visualization.
+
+```julia
+using Pkg
+Pkg.add("PalmerPenguins")
+Pkg.add("Tidier")
+Pkg.add("DataFrames")
+```
+
+#### Loading the Dataset
+Let's start by loading the Palmer Penguins dataset.
+
+```julia
+using PalmerPenguins
+using DataFrames
+
+# Load the dataset
+penguins = PalmerPenguins.load()
+df = DataFrame(penguins)
+```
+
+#### Exploring the Dataset
+Now that we have the dataset loaded into a DataFrame, let's explore it.
+
+```julia
+# Display the first few rows of the dataset
+first(df, 5)
+
+# Summary statistics
+describe(df)
+```
+
+#### Data Manipulation with Tidier.jl
+Tidier.jl is a meta-package inspired by R's tidyverse, designed for data manipulation and analysis in Julia. Let's use it to perform some common data manipulation tasks.
+
+```julia
+using Tidier
+
+# Select specific columns
+df_selected = select(df, :species, :bill_length_mm, :bill_depth_mm)
+
+# Filter rows based on a condition
+df_filtered = filter(row -> row.bill_length_mm > 40, df_selected)
+
+# Create a new column
+df_transformed = transform(df_filtered, :bill_ratio => ByRow(row -> row.bill_length_mm / row.bill_depth_mm) => :bill_ratio)
+```
+
+#### Data Visualization
+Tidier.jl also integrates well with visualization packages. Let's create some plots to visualize the data.
+
+```julia
+using Plots
+
+# Scatter plot of bill length vs. bill depth
+scatter(df_transformed.bill_length_mm, df_transformed.bill_depth_mm, group=df_transformed.species, 
+        xlabel="Bill Length (mm)", ylabel="Bill Depth (mm)", title="Bill Length vs. Bill Depth")
+
+# Histogram of bill length
+histogram(df_transformed.bill_length_mm, bins=20, xlabel="Bill Length (mm)", ylabel="Frequency", title="Histogram of Bill Length")
+```
+
+#### Advanced Analysis
+You can also perform more advanced analyses, such as grouping and summarizing data.
+
+```julia
+# Group by species and calculate mean bill length
+df_grouped = groupby(df, :species)
+df_summary = combine(df_grouped, :bill_length_mm => mean => :mean_bill_length)
+
+# Display the summary
+df_summary
+```
+
+#### Conclusion
+In this tutorial, we've covered how to load, explore, manipulate, and visualize the Palmer Penguins dataset using Julia and the Tidier.jl package. 
+This dataset provides a rich source of data for practicing data analysis and visualization techniques.
+
+Feel free to experiment with the dataset and explore more features of Julia and Tidier.jl.
