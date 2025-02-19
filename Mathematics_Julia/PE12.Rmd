@@ -16,6 +16,47 @@ Project Euler Question 12
 - We can see that 28 is the first triangle number to have over five divisors.
 - What is the value of the first triangle number to have over five hundred divisors?
 
+Let's solve this problem using Julia. We need to find the first triangle number that has over 500 divisors.
+
+Here's the approach:
+1. Generate triangle numbers.
+2. Count the divisors of each triangle number.
+3. Find the first triangle number with more than 500 divisors.
+
+We'll use a loop to generate triangle numbers and a function to count the divisors of a number.
+
+```julia
+# Function to generate the n-th triangle number
+function triangle_number(n)
+    return div(n * (n + 1), 2)
+end
+
+# Function to count the number of divisors of a number
+function count_divisors(n)
+    count = 0
+    for i in 1:sqrt(n)
+        if n % i == 0
+            count += (i * i == n) ? 1 : 2
+        end
+    end
+    return count
+end
+
+# Main loop to find the first triangle number with over 500 divisors
+n = 1
+while true
+    t = triangle_number(n)
+    divisors = count_divisors(t)
+    if divisors > 500
+        println("The first triangle number with over 500 divisors is: $t")
+        break
+    end
+    n += 1
+end
+```
+
+When you run this code in a Julia environment, it will calculate and print the first triangle number that has over 500 divisors. This solution effectively combines the generation of triangle numbers with the divisor count to find the required value.
+
 <pre><code>
 #problem 12
 
