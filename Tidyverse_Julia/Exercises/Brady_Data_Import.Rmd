@@ -1,0 +1,24 @@
+Importing Data in the Tidyverse
+Johns Hopkins University
+
+Brady Data
+For the Brady Scores data, quantifying numerical scores for firearm legislation in each state, we’ll need the httr package, as these data are stored in an Excel spreadsheet. Note, we could download these files to our local computer, store them, and read this file in using readxl’s read_excel() file, or we can use the httr package to download and store the file in a temporary directory, followed by read_excel() to read them into R. We’ll go with this second option here to demonstrate how it works.
+
+```r
+
+library(readxl)
+library(httr)
+
+# specify URL to file
+url = "https://github.com/opencasestudies/ocs-police-shootings-firearm-legislation/blob/master/data/Brady-State-Scorecard-2015.xlsx?raw=true"
+
+# Use httr's GET() and read_excel() to read in file
+GET(url, write_disk(tf <- tempfile(fileext = ".xlsx")))
+## Response [https://raw.githubusercontent.com/opencasestudies/ocs-police-shootings-firearm-legislation/master/data/Brady-State-Scorecard-2015.xlsx]
+##   Date: 2020-10-28 02:06
+##   Status: 200
+##   Content-Type: application/octet-stream
+##   Size: 66.2 kB
+## <ON DISK>  /var/folders/6h/jgypt4153dq7_4nl6g04qtqh0000gn/T//RtmpavgJ54/file5b3174856499.xlsx`
+
+```
