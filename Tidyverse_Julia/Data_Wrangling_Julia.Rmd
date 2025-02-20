@@ -1,0 +1,111 @@
+Certainly! Let's embark on a comprehensive tutorial on data wrangling with Julia and the `Tidier.jl` family of Julia packages. Here's an overview featuring the sections you've mentioned:
+
+---
+
+## Data Wrangling with Julia and Tidier.jl
+
+Data wrangling involves transforming and mapping raw data into more valuable formats for analysis. The `Tidier.jl` family of Julia packages provides a suite of tools to make this process seamless and efficient.
+
+### Using Julia Packages
+
+To start, you'll need to install and load the required packages:
+
+```julia
+using Pkg
+Pkg.add("DataFrames")
+Pkg.add("Tidier")
+using DataFrames
+using Tidier
+```
+
+### The Pipe Operator
+
+The pipe operator (`|>`) in Julia is useful for chaining multiple operations in a readable manner. For example:
+
+```julia
+df |> filter(row -> row[:col] > 5) |> sort(:col)
+```
+
+### Filtering Data
+
+Filtering data allows you to subset data frames based on conditions. Using `filter`:
+
+```julia
+filtered_df = filter(:col => x -> x > 5, df)
+```
+
+### Reordering
+
+Reordering columns in a data frame:
+
+```julia
+reordered_df = select(df, :col2, :col1, :col3)
+```
+
+### Creating New Columns
+
+Creating new columns can be done using the `transform` function:
+
+```julia
+df = transform(df, :col1 => x -> x .* 2 => :new_col)
+```
+
+### Separating Columns
+
+Separating a column into multiple columns, e.g., a column with "first_last" names:
+
+```julia
+df = separate(df, :full_name, into=["first_name", "last_name"], sep="_")
+```
+
+### Merging Columns
+
+Combining columns into a single column:
+
+```julia
+df = unite(df, :full_name, [:first_name, :last_name], sep="_")
+```
+
+### Cleaning Column Names
+
+Ensuring column names are clean and consistent:
+
+```julia
+df = rename(df, Dict(:OldName => :NewName))
+```
+
+### Combining Data Across Data Frames
+
+Combining multiple data frames using `join` functions:
+
+```julia
+combined_df = innerjoin(df1, df2, on=:id)
+```
+
+### Grouping Data
+
+Grouping data by specific columns:
+
+```julia
+grouped_df = groupby(df, :group_col)
+```
+
+### Summarizing Data
+
+Generating summary statistics for data groups:
+
+```julia
+summary_df = combine(grouped_df, :value_col => mean => :mean_value)
+```
+
+### Operations Across Columns
+
+Applying operations across multiple columns:
+
+```julia
+df = transform(df, [:col1, :col2] => ((c1, c2) -> c1 + c2) => :sum_col)
+```
+
+---
+
+This tutorial provides a structured approach to data wrangling using the powerful `Tidier.jl` package in Julia. By following these sections, you can efficiently manage and manipulate your data to prepare it for analysis. If you have any questions or need further details on any section, feel free to ask!
